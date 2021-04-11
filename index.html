@@ -17,7 +17,7 @@
      body {
          font-family: 'Iosevka Sparkle Web', Fallback, sans-serif;
          margin: 40px auto;
-         max-width: 650px;
+         max-width: 800px;
          line-height: 1.6;
          font-size: 20px;
          color: #444;
@@ -30,18 +30,34 @@
     h3 {
             line-height: 1.2
     }
+
+    hr { border: none; border-top: 1px solid rgb(0, 0, 0); margin: 1rem 0rem; }
+
+    nav.navbar { font-family: 'Iosevka Sparkle Web', Fallback, sans-serif; }
+    nav.navbar ul { list-style-type: none; display: flex; justify-content: center; flex-direction: row; border-top: 1px solid #999; border-bottom: 1px solid #999; padding: 0.5rem 0 0.5rem 0px; margin-top: -0.5rem; margin-bottom: 1.5rem; }
+    nav.navbar ul li { padding: 0 1rem; }
+    nav.navbar ul li.active a { font-weight: bold; text-decoration: none; color: #000 !important; }
+    nav.navbar ul li a:link, nav.navbar ul li a:visited, nav.navbar ul li a:active { color: #0000EE; }
+    nav.navbar ul li a:link:hover, nav.navbar ul li a:visited:hover, nav.navbar ul li a:active:hover { color: #333; }
+    ul li a.active { font-weight: bold; text-decoration: none; }
+    ul.nav li.nav-item a.nav-link { padding-left: 0; }
+
+    blockquote { padding: 0.5rem 2rem; font-style: italic; }
     </style>
 </head>
 <body>
     <header>
         <h1><a id="top">Kyle Fring</a></h1>
-        <a href="#now">Right Now</a>
-        <a href="#elsewhere">Elsewhere</a>
-        <a href="#bookshelf">Bookshelf</a>
-        <a href="#albums">Albums</a>
-        <a href="#epilogue">Epilogue</a>
+        <nav class="navbar">
+        <ul>
+            <li class="nav-item"><a class="nav-link" href="#now"><span itemprop="name">Right Now</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="#elsewhere"><span itemprop="name">Elsewhere</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="#bookshelf"><span itemprop="name">Bookshelf</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="#albums"><span itemprop="name"><a href="#albums">Albums</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="#epilogue"><span itemprop="name">Epilogue</span></a></li>
+        </ul>
+        </nav>
     </header>
-    <hr>
     <h2><a id="now">Now</a></h2>
     <h3>Life</h3>
     <aside>📍 <a href="https://en.wikipedia.org/wiki/Chattanooga,_Tennessee">Chattanooga, TN</a></aside>

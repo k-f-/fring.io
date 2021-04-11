@@ -1,0 +1,262 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>AWS: S3 & CloudFront sub-directory indexes &#8211; kf: outamyelement</title>
+<meta name="description" content="get them clean urls working..">
+<meta name="keywords" content="aws, amazon, s3, cloudfront, websites, how-to">
+<!-- Twitter Cards -->
+	
+		<meta name="twitter:card" content="summary_large_image">
+		<meta name="twitter:image" content=
+			
+				"http://kfring.com/images/feat/heuy.jpg"
+			
+		>
+	
+	<meta name="twitter:title" content="AWS: S3 & CloudFront sub-directory indexes">
+	<meta name="twitter:description" content="get them clean urls working..">
+	<meta name="twitter:creator" content="@kfring">
+
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AWS: S3 & CloudFront sub-directory indexes">
+<meta property="og:description" content="get them clean urls working..">
+<meta property="og:url" content="http://kfring.com/how-to/aws%3A-s3-%26-cloudfront-sub-directory-indexes">
+<meta property="og:site_name" content="kf: outamyelement">
+
+
+
+
+
+<link rel="canonical" href="http://kfring.com/how-to/aws%3A-s3-%26-cloudfront-sub-directory-indexes">
+<link href="http://kfring.com/feed.xml" type="application/atom+xml" rel="alternate" title="kf: outamyelement Feed">
+<link rel="author" href="http://plus.google.com/+http://plus.google.com/+KyleFring/?rel=author">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Google Webfonts -->
+<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700|PT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://kfring.com/assets/css/main.min.css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+	<script src="http://kfring.com/assets/js/vendor/html5shiv.min.js"></script>
+	<script src="http://kfring.com/assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="http://kfring.com/assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+<!-- Icons -->                                                                   
+<!-- 16x16 -->                                                                   
+<link rel="shortcut icon" href="http://kfring.com/favicon.ico">                     
+<!-- 32x32 -->                                                                   
+<link rel="shortcut icon" href="http://kfring.com/favicon.png">                     
+<link rel="apple-touch-icon" href="http://kfring.com/assets/img/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="57x57" href="http://kfring.com/assets/img/apple-touch-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="72x72" href="http://kfring.com/assets/img/apple-touch-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="http://kfring.com/assets/img/apple-touch-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="144x144" href="http://kfring.com/assets/img/apple-touch-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="57x57" href="http://kfring.com/assets/img/apple-touch-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="http://kfring.com/assets/img/apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="114x114" href="http://kfring.com/assets/img/apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="144x144" href="http://kfring.com/assets/img/apple-touch-icon-152x152.png">
+<meta name="msapplication-square70x70logo" content="http://kfring.com/assets/img/smalltile.png">
+<meta name="msapplication-square150x150logo" content="http://kfring.com/assets/img/mediumtile.png">
+<meta name="msapplication-wide310x150logo" content="http://kfring.com/assets/img/widetile.png">
+<meta name="msapplication-square310x310logo" content="http://kfring.com/assets/img/largetile.png">
+
+</head>
+
+<body class="post">
+
+<!--[if lt IE 9]><div class="browser-upgrade alert alert-info">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div><![endif]-->
+
+<div class="navigation-wrapper">
+	<div class="site-name">
+		<a href="http://kfring.com">kf: outamyelement</a>
+	</div><!-- /.site-name -->
+	<div class="top-navigation">
+		<nav role="navigation" id="site-nav" class="nav">
+		    <ul>
+		        
+				<li><a href="http://kfring.com/about/" >About</a></li>
+		        
+				<li><a href="http://kfring.com/roadtrip/" >Road Trip</a></li>
+		        
+				<li><a href="http://kfring.com/thelist/" >the List</a></li>
+		        
+				<li><a href="http://kfring.com/archives/" >Archives</a></li>
+		        
+		    </ul>
+		</nav>
+	</div><!-- /.top-navigation -->
+</div><!-- /.navigation-wrapper -->
+
+
+
+  <div class="image-wrap">
+  <img src=
+    
+      "http://kfring.com/images/feat/heuy.jpg"
+    
+  alt="AWS: S3 & CloudFront sub-directory indexes feature image">
+  
+    <span class="image-credit">Photo Credit: <a href="http://www.flickr.com/photos/kfring/6994770678/">Craig Fring</a></span>
+  
+  </div><!-- /.image-wrap -->
+
+
+<div id="main" role="main">
+  <div class="article-author-side">
+    
+	<img src="http://kfring.com/images/bio/bio-car1.jpg" class="bio-photo" alt="kf bio photo"></a>
+
+<h3>kf</h3>
+<p>Prickly on the outside. Gooey on the inside.</p>
+<a href="http://twitter.com/kfring" class="author-social" target="_blank"><i class="icon-twitter"></i> Twitter</a>
+<a href="http://facebook.com/kyle.fring" class="author-social" target="_blank"><i class="icon-facebook"></i> Facebook</a>
+<a href="http://plus.google.com/+http://plus.google.com/+KyleFring/" class="author-social" target="_blank"><i class="icon-google-plus"></i> Google+</a>
+<a href="http://linkedin.com/in/kfring" class="author-social" target="_blank"><i class="icon-linkedin"></i> LinkedIn</a>
+<a href="http://instagram.com/outamyelement" class="author-social" target="_blank"><i class="icon-instagram"></i> Instagram</a>
+
+<a href="http://github.com/k-f-" class="author-social" target="_blank"><i class="icon-github"></i> Github</a>
+
+
+
+
+
+
+
+  </div>
+  <article>
+    <div class="headline-wrap">
+      
+        <h1><a href="http://kfring.com/how-to/aws%3A-s3-%26-cloudfront-sub-directory-indexes" rel="bookmark" title="AWS: S3 & CloudFront sub-directory indexes">AWS: S3 & CloudFront sub-directory indexes</a></h1>
+      
+    </div><!--/ .headline-wrap -->
+    <div class="article-wrap">
+      <p>Ran into a frustrating problem while setting up this site with clean urls.</p>
+
+<h3 id="symptom">Symptom</h3>
+
+<p>When in any directory other than root, such as <strong>http://kfring.com/foo/</strong> 
+CloudFront refuses to display an <strong>index.html</strong> as default.  </p>
+
+<h4 id="whats-going-on">What’s going on?</h4>
+
+<p>CloudFront does not respect root document settings when pulling directly from an S3
+Bucket.</p>
+
+<h4 id="solution">Solution</h4>
+
+<p>Change the CloudFront origin point to the website version of your S3 bucket.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td><strong>Good</strong></td>
+      <td><strong>Bad</strong></td>
+    </tr>
+    <tr>
+      <td>kfring.com.s3-website-us-east-1.amazonaws.com</td>
+      <td>kfring.com.s3.amazonaws.com</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="result">Result:</h4>
+
+<p>Clean URL’s such as <a href="http://kfring.com/archives">http://kfring.com/archives</a> can now work as expected.</p>
+
+      <hr />
+      <footer role="contentinfo">
+        <div class="article-author-bottom">
+          
+	<img src="http://kfring.com/images/bio/bio-car1.jpg" class="bio-photo" alt="kf bio photo"></a>
+
+<h3>kf</h3>
+<p>Prickly on the outside. Gooey on the inside.</p>
+<a href="http://twitter.com/kfring" class="author-social" target="_blank"><i class="icon-twitter"></i> Twitter</a>
+<a href="http://facebook.com/kyle.fring" class="author-social" target="_blank"><i class="icon-facebook"></i> Facebook</a>
+<a href="http://plus.google.com/+http://plus.google.com/+KyleFring/" class="author-social" target="_blank"><i class="icon-google-plus"></i> Google+</a>
+<a href="http://linkedin.com/in/kfring" class="author-social" target="_blank"><i class="icon-linkedin"></i> LinkedIn</a>
+<a href="http://instagram.com/outamyelement" class="author-social" target="_blank"><i class="icon-instagram"></i> Instagram</a>
+
+<a href="http://github.com/k-f-" class="author-social" target="_blank"><i class="icon-github"></i> Github</a>
+
+
+
+
+
+
+
+        </div>
+        <p class="byline"><strong>AWS: S3 & CloudFront sub-directory indexes</strong> was published on <time datetime="2014-01-16T00:00:00-05:00">January 16, 2014</time> by <a href="http://kfring.com/about" title="About kf">kf</a>.</p>
+      </footer>
+    </div><!-- /.article-wrap -->
+  
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrap">
+  <div class="related-articles">
+  <h4>You might also enjoy <small class="pull-right">(<a href="http://kfring.com/archives/">View all posts</a>)</small></h4>
+    <ul>
+    
+      <li><a href="http://kfring.com/roadtrip/joes-valley" title="Road Trip: Joe's Valley">Road Trip: Joe's Valley</a></li>
+    
+      <li><a href="http://kfring.com/roadtrip/road-trip%3A-hueco---spring-break-2014" title="Road Trip: Hueco - Spring Break 2014">Road Trip: Hueco - Spring Break 2014</a></li>
+    
+      <li><a href="http://kfring.com/roadtrip/road-trip%3A-photos---lrc-%26-rocktown" title="Road Trip: Photos - LRC & Rocktown">Road Trip: Photos - LRC & Rocktown</a></li>
+    
+    </ul>
+    <hr />
+  </div><!-- /.related-articles -->
+  <footer>
+    <span>
+	&copy; 2014 kf. 
+	<a href="http://kfring.com/downloads/public_key.txt">gpg key</a>. 
+	Powered by <a href="http://jekyllrb.com">jekyll</a>
+</span>
+
+  </footer>
+</div><!-- /.footer-wrap -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://kfring.com/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://kfring.com/assets/js/scripts.min.js"></script>
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl = 
+ '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-46689259-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+	        
+
+</body>
+</html>

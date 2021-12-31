@@ -1,3 +1,7 @@
-# Personal Website
-- History of old sites in ```archive``` tags.
-- History also lives @ respective branch name: v1.kfring.com, v2.kfring.com
+## Personal Website
+What it says on the tin. 😉
+## Historical
+- Old branches in ```archive``` tags.
+- Site history is also live @ respective branch/url: 
+  - http://v1.kfring.com
+  - http://v2.kfring.com

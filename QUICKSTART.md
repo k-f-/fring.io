@@ -1,20 +1,11 @@
 # Quick Start Guide
 
-## 🚨 Security First
+## Prerequisites
 
-**STOP!** Before doing anything else:
-
-1. **Rotate AWS credentials** (exposed in git history)
-   - Go to AWS Console > IAM > Users > Security credentials
-   - Delete old access key (see SECURITY_REMEDIATION.md for details)
-   - Create new access key
-   - Save credentials securely
-
-2. **Check for unauthorized AWS usage**
-   - CloudTrail: Look for suspicious API calls
-   - Billing: Check for unexpected charges
-
-See `SECURITY_REMEDIATION.md` for detailed steps.
+Ensure you have:
+- AWS credentials configured in GitHub Secrets
+- GitHub CLI installed and authenticated
+- Proper IAM permissions for S3, CloudFront, and Route53
 
 ## Setup GitHub Secrets
 
@@ -99,7 +90,6 @@ fring.io/
 ├── infrastructure/
 │   ├── provision-site.sh       # Provision new version
 │   └── README.md               # Infrastructure docs
-├── SECURITY_REMEDIATION.md     # Security steps
 ├── V4_SITE_PLAN.md            # v4 design plan
 ├── QUICKSTART.md              # This file
 ├── .gitignore                 # Ignore secrets
@@ -161,7 +151,6 @@ git branch -a
 ## Resources
 
 - Infrastructure docs: `infrastructure/README.md`
-- Security guide: `SECURITY_REMEDIATION.md`
 - v4 design plan: `V4_SITE_PLAN.md`
 - AWS S3 docs: https://docs.aws.amazon.com/s3/
 - GitHub Actions: https://docs.github.com/actions

@@ -56,9 +56,10 @@ jobs:
           aws s3 sync . s3://${BUCKET}/ \
             --exclude ".git/*" \
             --exclude ".github/*" \
+            --exclude ".claude/*" \
             --exclude "*.md" \
-            --exclude "SECURITY_REMEDIATION.md" \
             --exclude "*.sh" \
+            --exclude "infrastructure/*" \
             --delete \
             --cache-control "public, max-age=3600"
 

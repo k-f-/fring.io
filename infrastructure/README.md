@@ -60,7 +60,7 @@ This directory contains scripts and documentation for managing the fring.io infr
 ### AWS Setup
 1. AWS Account with appropriate permissions
 2. Route53 hosted zone for `fring.io`
-3. IAM user with deployment permissions (see SECURITY_REMEDIATION.md)
+3. IAM user with deployment permissions for S3, CloudFront, and Route53
 
 ### GitHub Secrets Required
 Add these secrets to your GitHub repository:

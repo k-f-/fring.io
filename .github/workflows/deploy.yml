@@ -13,7 +13,7 @@ on:
         default: 'main'
 
 env:
-  AWS_REGION: us-east-1
+  AWS_REGION: ${{ secrets.AWS_REGION }}
 
 jobs:
   deploy:
@@ -43,7 +43,7 @@ jobs:
           else
             # Branch name like "v4.fring.io" becomes bucket "v4.fring.io"
             echo "bucket=${BRANCH_NAME}" >> $GITHUB_OUTPUT
-            echo "distribution_id=${{ secrets.CLOUDFRONT_DISTRIBUTION_VERSIONS }}" >> $GITHUB_OUTPUT
+            echo "distribution_id=${{ secrets.CLOUDFRONT_DISTRIBUTION_MAIN }}" >> $GITHUB_OUTPUT
             echo "is_main=false" >> $GITHUB_OUTPUT
           fi
 

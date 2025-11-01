@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git show:*)",
+      "Bash(git ls-tree:*)",
+      "Bash(git log:*)",
+      "Bash(git remote get-url:*)",
+      "Bash(gh repo view:*)",
+      "Bash(chmod:*)",
+      "Bash(gitleaks detect:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(bfg:*)",
+      "Bash(git reflog:*)",
+      "Bash(git gc:*)",
+      "Bash(cat:*)",
+      "Bash(git push:*)",
+      "Bash(gh auth:*)",
+      "Bash(git remote:*)",
+      "Bash(git remote set-url:*)",
+      "Bash(gh secret list:*)",
+      "Bash(git reset:*)",
+      "Bash(git rm:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

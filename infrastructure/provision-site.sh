@@ -9,8 +9,10 @@ set -euo pipefail
 
 VERSION="${1:-}"
 CREATE_CLOUDFRONT="${2:-}"
-DOMAIN="fring.io"
-BUCKET_NAME="${VERSION}.${DOMAIN}"
+PRIMARY_DOMAIN="kfring.com"
+SECONDARY_DOMAIN="fring.io"
+PRIMARY_BUCKET="${VERSION}.${PRIMARY_DOMAIN}"
+SECONDARY_BUCKET="${VERSION}.${SECONDARY_DOMAIN}"
 AWS_REGION="${AWS_REGION:-us-east-1}"
 
 if [[ -z "$VERSION" ]]; then
@@ -19,23 +21,43 @@ if [[ -z "$VERSION" ]]; then
     exit 1
 fi
 
-echo "🚀 Provisioning ${BUCKET_NAME}..."
+echo "🚀 Provisioning ${VERSION} (${PRIMARY_DOMAIN} + ${SECONDARY_DOMAIN})..."
 
-# 1. Create S3 bucket
-echo "📦 Creating S3 bucket: ${BUCKET_NAME}"
+# 1. Create PRIMARY S3 bucket (kfring.com - contains actual content)
+echo "📦 Creating PRIMARY S3 bucket: ${PRIMARY_BUCKET}"
 aws s3api create-bucket \
-    --bucket "${BUCKET_NAME}" \
+    --bucket "${PRIMARY_BUCKET}" \
     --region "${AWS_REGION}" \
     --acl public-read
 
-# 2. Enable website hosting
-echo "🌐 Enabling static website hosting..."
-aws s3 website "s3://${BUCKET_NAME}" \
+# 1b. Create SECONDARY S3 bucket (fring.io - redirect to kfring.com)
+echo "📦 Creating SECONDARY S3 bucket (redirect): ${SECONDARY_BUCKET}"
+aws s3api create-bucket \
+    --bucket "${SECONDARY_BUCKET}" \
+    --region "${AWS_REGION}"
+
+# 2. Enable website hosting on PRIMARY bucket
+echo "🌐 Enabling static website hosting on ${PRIMARY_BUCKET}..."
+aws s3 website "s3://${PRIMARY_BUCKET}" \
     --index-document index.html \
     --error-document index.html
 
-# 3. Set bucket policy for public read
-echo "🔓 Setting bucket policy for public read..."
+# 2b. Configure SECONDARY bucket to redirect to PRIMARY
+echo "🔀 Configuring ${SECONDARY_BUCKET} to redirect to ${PRIMARY_BUCKET}..."
+cat > /tmp/redirect-config.json <<EOF
+{
+  "RedirectAllRequestsTo": {
+    "HostName": "${PRIMARY_BUCKET}"
+  }
+}
+EOF
+
+aws s3api put-bucket-website \
+    --bucket "${SECONDARY_BUCKET}" \
+    --website-configuration file:///tmp/redirect-config.json
+
+# 3. Set bucket policy for public read (PRIMARY bucket only)
+echo "🔓 Setting bucket policy for public read on ${PRIMARY_BUCKET}..."
 cat > /tmp/bucket-policy.json <<EOF
 {
   "Version": "2012-10-17",
@@ -45,18 +67,18 @@ cat > /tmp/bucket-policy.json <<EOF
       "Effect": "Allow",
       "Principal": "*",
       "Action": "s3:GetObject",
-      "Resource": "arn:aws:s3:::${BUCKET_NAME}/*"
+      "Resource": "arn:aws:s3:::${PRIMARY_BUCKET}/*"
     }
   ]
 }
 EOF
 
 aws s3api put-bucket-policy \
-    --bucket "${BUCKET_NAME}" \
+    --bucket "${PRIMARY_BUCKET}" \
     --policy file:///tmp/bucket-policy.json
 
-# 4. Enable CORS if needed
-echo "🔀 Configuring CORS..."
+# 4. Enable CORS if needed (PRIMARY bucket only)
+echo "🔀 Configuring CORS on ${PRIMARY_BUCKET}..."
 cat > /tmp/cors-config.json <<EOF
 {
   "CORSRules": [
@@ -71,7 +93,7 @@ cat > /tmp/cors-config.json <<EOF
 EOF
 
 aws s3api put-bucket-cors \
-    --bucket "${BUCKET_NAME}" \
+    --bucket "${PRIMARY_BUCKET}" \
     --cors-configuration file:///tmp/cors-config.json
 
 # 5. Create CloudFront distribution (optional)
@@ -139,44 +161,65 @@ EOF
     echo "   Add this to GitHub Secrets as CLOUDFRONT_DISTRIBUTION_VERSIONS"
 fi
 
-# 6. Create Route53 DNS record
-echo "🌍 Creating Route53 DNS record..."
-HOSTED_ZONE_ID=$(aws route53 list-hosted-zones \
-    --query "HostedZones[?Name=='${DOMAIN}.'].Id" \
+# 6. Create Route53 DNS records (both domains)
+echo "🌍 Creating Route53 DNS records..."
+
+# Get hosted zone IDs
+KFRING_ZONE_ID=$(aws route53 list-hosted-zones \
+    --query "HostedZones[?Name=='${PRIMARY_DOMAIN}.'].Id" \
     --output text | cut -d'/' -f3)
 
-if [[ -z "$HOSTED_ZONE_ID" ]]; then
-    echo "⚠️  Warning: Could not find hosted zone for ${DOMAIN}"
-    echo "   Please create DNS record manually"
-else
-    # Get S3 website endpoint
-    WEBSITE_ENDPOINT="${BUCKET_NAME}.s3-website-${AWS_REGION}.amazonaws.com"
+FRING_ZONE_ID=$(aws route53 list-hosted-zones \
+    --query "HostedZones[?Name=='${SECONDARY_DOMAIN}.'].Id" \
+    --output text | cut -d'/' -f3)
 
-    cat > /tmp/route53-change.json <<EOF
+if [[ -z "$KFRING_ZONE_ID" ]] || [[ -z "$FRING_ZONE_ID" ]]; then
+    echo "⚠️  Warning: Could not find hosted zones"
+    echo "   Please create DNS records manually"
+else
+    # Create DNS record for PRIMARY domain (kfring.com)
+    echo "📝 Creating DNS for ${PRIMARY_BUCKET}..."
+    cat > /tmp/route53-primary.json <<EOF
 {
-  "Changes": [
-    {
-      "Action": "UPSERT",
-      "ResourceRecordSet": {
-        "Name": "${BUCKET_NAME}",
-        "Type": "CNAME",
-        "TTL": 300,
-        "ResourceRecords": [
-          {
-            "Value": "${WEBSITE_ENDPOINT}"
-          }
-        ]
-      }
+  "Changes": [{
+    "Action": "UPSERT",
+    "ResourceRecordSet": {
+      "Name": "${PRIMARY_BUCKET}",
+      "Type": "CNAME",
+      "TTL": 300,
+      "ResourceRecords": [{"Value": "${PRIMARY_BUCKET}.s3-website-${AWS_REGION}.amazonaws.com"}]
     }
-  ]
+  }]
 }
 EOF
 
     aws route53 change-resource-record-sets \
-        --hosted-zone-id "${HOSTED_ZONE_ID}" \
-        --change-batch file:///tmp/route53-change.json
+        --hosted-zone-id "${KFRING_ZONE_ID}" \
+        --change-batch file:///tmp/route53-primary.json
 
-    echo "✅ DNS record created: ${BUCKET_NAME} -> ${WEBSITE_ENDPOINT}"
+    echo "✅ DNS created: ${PRIMARY_BUCKET}"
+
+    # Create DNS record for SECONDARY domain (fring.io)
+    echo "📝 Creating DNS for ${SECONDARY_BUCKET}..."
+    cat > /tmp/route53-secondary.json <<EOF
+{
+  "Changes": [{
+    "Action": "UPSERT",
+    "ResourceRecordSet": {
+      "Name": "${SECONDARY_BUCKET}",
+      "Type": "CNAME",
+      "TTL": 300,
+      "ResourceRecords": [{"Value": "${PRIMARY_BUCKET}"}]
+    }
+  }]
+}
+EOF
+
+    aws route53 change-resource-record-sets \
+        --hosted-zone-id "${FRING_ZONE_ID}" \
+        --change-batch file:///tmp/route53-secondary.json
+
+    echo "✅ DNS created: ${SECONDARY_BUCKET} (redirects to ${PRIMARY_BUCKET})"
 fi
 
 # 7. Summary
@@ -184,16 +227,22 @@ echo ""
 echo "✅ Site provisioned successfully!"
 echo ""
 echo "📋 Summary:"
-echo "   Bucket:      ${BUCKET_NAME}"
-echo "   Region:      ${AWS_REGION}"
-echo "   Website URL: http://${BUCKET_NAME}.s3-website-${AWS_REGION}.amazonaws.com"
-echo "   Domain URL:  http://${BUCKET_NAME}"
+echo "   Primary Bucket:   ${PRIMARY_BUCKET} (content)"
+echo "   Secondary Bucket: ${SECONDARY_BUCKET} (redirect)"
+echo "   Region:           ${AWS_REGION}"
+echo ""
+echo "   🌐 Accessible at:"
+echo "      http://${PRIMARY_BUCKET}"
+echo "      http://${SECONDARY_BUCKET} (redirects to primary)"
 echo ""
 echo "📝 Next steps:"
 echo "   1. Create git branch: git checkout -b ${VERSION}.fring.io"
 echo "   2. Add your site files to the branch"
 echo "   3. Push to GitHub: git push -u origin ${VERSION}.fring.io"
-echo "   4. GitHub Actions will automatically deploy to S3"
+echo "   4. GitHub Actions will automatically deploy to ${PRIMARY_BUCKET}"
+echo "   5. Site will be accessible at both:"
+echo "      - ${PRIMARY_BUCKET} (primary)"
+echo "      - ${SECONDARY_BUCKET} (auto-redirects)"
 echo ""
 if [[ "$CREATE_CLOUDFRONT" == "--create-cloudfront" ]]; then
     echo "   5. Wait for CloudFront distribution to deploy (~15 minutes)"
@@ -201,4 +250,4 @@ if [[ "$CREATE_CLOUDFRONT" == "--create-cloudfront" ]]; then
 fi
 
 # Cleanup
-rm -f /tmp/bucket-policy.json /tmp/cors-config.json /tmp/cloudfront-config.json /tmp/route53-change.json
+rm -f /tmp/bucket-policy.json /tmp/cors-config.json /tmp/cloudfront-config.json /tmp/redirect-config.json /tmp/route53-primary.json /tmp/route53-secondary.json

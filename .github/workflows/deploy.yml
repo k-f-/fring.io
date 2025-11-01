@@ -3,14 +3,14 @@ name: Deploy to S3
 on:
   push:
     branches:
-      - main
       - 'v*.fring.io'  # Matches branches like v4.fring.io, v5.fring.io, etc.
+      # Note: main branch is NOT auto-deployed (contains infrastructure only)
   workflow_dispatch:
     inputs:
-      environment:
-        description: 'Deployment target (main or version like v4)'
+      branch:
+        description: 'Branch to deploy (e.g., v4.fring.io or main)'
         required: true
-        default: 'main'
+        default: 'v4.fring.io'
 
 env:
   AWS_REGION: ${{ secrets.AWS_REGION }}

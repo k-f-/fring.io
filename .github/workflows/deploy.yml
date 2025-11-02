@@ -3,14 +3,14 @@ name: Deploy to S3
 on:
   push:
     branches:
-      - main
       - 'v*.fring.io'  # Matches branches like v4.fring.io, v5.fring.io, etc.
+      # Note: main branch is NOT auto-deployed (contains infrastructure only)
   workflow_dispatch:
     inputs:
-      environment:
-        description: 'Deployment target (main or version like v4)'
+      branch:
+        description: 'Branch to deploy (e.g., v4.fring.io or main)'
         required: true
-        default: 'main'
+        default: 'v4.fring.io'
 
 env:
   AWS_REGION: ${{ secrets.AWS_REGION }}
@@ -49,7 +49,7 @@ jobs:
 
           echo "Deploying to bucket: ${BUCKET}"
 
-      - name: Sync files to S3
+      - name: Sync files to S3 (versioned bucket)
         run: |
           BUCKET="${{ steps.target.outputs.bucket }}"
 
@@ -65,6 +65,26 @@ jobs:
 
           # Set longer cache for static assets
           aws s3 cp s3://${BUCKET}/css s3://${BUCKET}/css \
+            --recursive \
+            --cache-control "public, max-age=31536000, immutable" \
+            --metadata-directive REPLACE
+
+      - name: Sync files to S3 (main bucket for apex domains)
+        if: steps.target.outputs.is_main == 'false'
+        run: |
+          # Also deploy to main bucket so fring.io/kfring.com/www show latest version
+          aws s3 sync . s3://fring.io/ \
+            --exclude ".git/*" \
+            --exclude ".github/*" \
+            --exclude ".claude/*" \
+            --exclude "*.md" \
+            --exclude "*.sh" \
+            --exclude "infrastructure/*" \
+            --delete \
+            --cache-control "public, max-age=3600"
+
+          # Set longer cache for static assets
+          aws s3 cp s3://fring.io/css s3://fring.io/css \
             --recursive \
             --cache-control "public, max-age=31536000, immutable" \
             --metadata-directive REPLACE
@@ -122,9 +142,22 @@ jobs:
       - name: Deployment summary
         run: |
           echo "✅ Deployment successful!"
-          echo "Bucket: ${{ steps.target.outputs.bucket }}"
           if [[ "${{ steps.target.outputs.is_main }}" == "true" ]]; then
-            echo "URLs: https://fring.io, https://www.fring.io"
+            echo "📦 Deployed to: fring.io"
+            echo "🌐 URLs:"
+            echo "   - https://fring.io"
+            echo "   - https://www.fring.io"
+            echo "   - https://kfring.com (redirects to fring.io)"
+            echo "   - https://www.kfring.com (redirects to fring.io)"
           else
-            echo "URL: https://${{ steps.target.outputs.bucket }}"
+            echo "📦 Deployed to:"
+            echo "   - ${{ steps.target.outputs.bucket }} (versioned)"
+            echo "   - fring.io (apex domains)"
+            echo ""
+            echo "🌐 URLs:"
+            echo "   - https://${{ steps.target.outputs.bucket }}"
+            echo "   - https://fring.io (latest)"
+            echo "   - https://www.fring.io (latest)"
+            echo "   - https://kfring.com (latest)"
+            echo "   - https://www.kfring.com (latest)"
           fi

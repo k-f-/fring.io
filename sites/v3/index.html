@@ -1,307 +1,648 @@
 <!DOCTYPE html>
-<html class="no-js" lang="">
-  <head>
-    <meta charset="utf-8" />
-    <title>fring.io</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kyle Fring</title>
+    <meta name="description" content="Kyle Fring - Senior Data Analyst, climber, reader">
 
-    <meta property="og:title" content="" />
-    <meta property="og:type" content="" />
-    <meta property="og:url" content="" />
-    <meta property="og:image" content="" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="site.webmanifest" />
+    <style>
+        /* ========================================
+           CSS Variables for Light/Dark Mode
+           ======================================== */
+        :root {
+            --bg: #fefefe;
+            --fg: #1a1a1a;
+            --fg-muted: #666;
+            --link: #0066cc;
+            --link-hover: #004499;
+            --border: #d0d0d0;
+            --table-stripe: #f8f8f8;
+            --code-bg: #f5f5f5;
+            --selection-bg: #b3d4fc;
+        }
 
-    <link rel="stylesheet" href="css/normalize.css" />
-    <link rel="stylesheet" href="css/main.css" />
-    <style type="text/css">
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #1a1a1a;
+                --fg: #e8e8e8;
+                --fg-muted: #999;
+                --link: #6eb3ff;
+                --link-hover: #a8d0ff;
+                --border: #404040;
+                --table-stripe: #252525;
+                --code-bg: #2a2a2a;
+                --selection-bg: #264f78;
+            }
+        }
+
+        [data-theme="light"] {
+            --bg: #fefefe;
+            --fg: #1a1a1a;
+            --fg-muted: #666;
+            --link: #0066cc;
+            --link-hover: #004499;
+            --border: #d0d0d0;
+            --table-stripe: #f8f8f8;
+            --code-bg: #f5f5f5;
+            --selection-bg: #b3d4fc;
+        }
+
+        [data-theme="dark"] {
+            --bg: #1a1a1a;
+            --fg: #e8e8e8;
+            --fg-muted: #999;
+            --link: #6eb3ff;
+            --link-hover: #a8d0ff;
+            --border: #404040;
+            --table-stripe: #252525;
+            --code-bg: #2a2a2a;
+            --selection-bg: #264f78;
+        }
+
+        /* ========================================
+           Typography & Base Styles
+           ======================================== */
+        * {
+            box-sizing: border-box;
+        }
+
+        ::selection {
+            background: var(--selection-bg);
+            color: var(--fg);
+        }
+
         body {
-            font-family:
-            -apple-system, BlinkMacSystemFont,
-            “Segoe UI”, “Roboto”, “Oxygen”, “Ubuntu”, “Cantarell”,
-            “Fira Sans”, “Droid Sans”, “Helvetica Neue”, sans-serif;
-            margin: 40px auto;
-            max-width: 800px;
+            font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+            font-size: 16px;
             line-height: 1.6;
-            font-size: 20px;
-            color: #444;
-            padding: 0 10px;
-            background: #fefefe
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-       }
+            color: var(--fg);
+            background: var(--bg);
+            margin: 0;
+            padding: 2rem 1rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
 
-        h1 { font-family:
-                'Iosevka Sparkle Web',
-                'SF Mono', SFMono-Regular, ui-monospace,
-                -apple-system, BlinkMacSystemFont,
-                “Segoe UI”, “Roboto”, “Oxygen”, “Ubuntu”, “Cantarell”,
-                “Fira Sans”, “Droid Sans”, “Helvetica Neue”,
-                sans-serif; }
-        h2,
+        h1, h2, h3 {
+            line-height: 1.2;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 0.5rem;
+        }
+
         h3 {
-            font-family:
-                -apple-system, BlinkMacSystemFont,
-                “Segoe UI”, “Roboto”, “Oxygen”, “Ubuntu”, “Cantarell”,
-                “Fira Sans”, “Droid Sans”, “Helvetica Neue”,
-                sans-serif;
-            line-height: 1.2
+            font-size: 1.25rem;
+            font-weight: 600;
         }
 
-       hr { border: none; border-top: 1px solid rgb(0, 0, 0); margin: 1rem 0rem; }
-
-        nav.navbar {
-            font-family:
-            'SF Mono', SFMono-Regular, ui-monospace,
-            -apple-system, BlinkMacSystemFont,
-            “Segoe UI”, “Roboto”, “Oxygen”, “Ubuntu”, “Cantarell”,
-            “Fira Sans”, “Droid Sans”, “Helvetica Neue”, sans-serif;
+        a {
+            color: var(--link);
+            text-decoration: none;
         }
-       nav.navbar ul { list-style-type: none; display: flex; justify-content: center; flex-direction: row; border-top: 1px solid #999; border-bottom: 1px solid #999; padding: 0.5rem 0 0.5rem 0px; margin-top: -0.5rem; margin-bottom: 1.5rem; }
-       nav.navbar ul li { padding: 0 1rem; }
-       nav.navbar ul li.active a { font-weight: bold; text-decoration: none; color: #000 !important; }
-       nav.navbar ul li a:link, nav.navbar ul li a:visited, nav.navbar ul li a:active { color: #0000EE; }
-       nav.navbar ul li a:link:hover, nav.navbar ul li a:visited:hover, nav.navbar ul li a:active:hover { color: #333; }
-       ul li a.active { font-weight: bold; text-decoration: none; }
-       ul.nav li.nav-item a.nav-link { padding-left: 0; }
 
-       blockquote { padding: 0.5rem 2rem; font-style: italic; }
+        a:hover {
+            color: var(--link-hover);
+            text-decoration: underline;
+        }
+
+        p {
+            margin: 1rem 0;
+        }
+
+        ul {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        li {
+            margin: 0.5rem 0;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid var(--border);
+            margin: 2rem 0;
+        }
+
+        code {
+            font-family: inherit;
+            background: var(--code-bg);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-size: 0.9em;
+        }
+
+        pre {
+            background: var(--code-bg);
+            padding: 1rem;
+            border-radius: 4px;
+            overflow-x: auto;
+            line-height: 1.4;
+        }
+
+        pre code {
+            background: none;
+            padding: 0;
+        }
+
+        /* ========================================
+           Header & Navigation
+           ======================================== */
+        header {
+            margin-bottom: 2rem;
+        }
+
+        nav {
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 0.75rem 0;
+            margin: 1rem 0 2rem 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 1.5rem;
+            justify-content: center;
+        }
+
+        nav li {
+            margin: 0;
+        }
+
+        /* ========================================
+           Theme Toggle
+           ======================================== */
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            padding: 0.5rem 0.75rem;
+            cursor: pointer;
+            font-family: inherit;
+            font-size: 0.9rem;
+            color: var(--fg);
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .theme-toggle:hover {
+            background: var(--table-stripe);
+        }
+
+        /* ========================================
+           Tables (for Books)
+           ======================================== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        table.box-table {
+            border: 1px solid var(--border);
+        }
+
+        thead {
+            background: var(--table-stripe);
+        }
+
+        th, td {
+            text-align: left;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--border);
+        }
+
+        th {
+            font-weight: 600;
+        }
+
+        tbody tr:nth-child(even) {
+            background: var(--table-stripe);
+        }
+
+        /* ========================================
+           Utility Classes
+           ======================================== */
+        .muted {
+            color: var(--fg-muted);
+        }
+
+        .back-to-top {
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        aside {
+            font-style: italic;
+            color: var(--fg-muted);
+            margin: 0.5rem 0;
+        }
+
+        /* ========================================
+           Year Navigation for Books
+           ======================================== */
+        .year-nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .year-nav a {
+            padding: 0.25rem 0.5rem;
+            background: var(--table-stripe);
+            border: 1px solid var(--border);
+            border-radius: 3px;
+        }
+
+        .year-nav a:hover {
+            text-decoration: none;
+            background: var(--border);
+        }
     </style>
 </head>
 <body>
+    <button class="theme-toggle" onclick="toggleTheme()">
+        <span class="theme-toggle-light">☀</span>
+        <span class="theme-toggle-dark">☾</span>
+    </button>
+
     <header>
-        <h1><a id="top">Kyle Fring</a></h1>
-        <nav class="navbar">
-        <ul>
-            <li class="nav-item"><a class="nav-link" href="#now"><span itemprop="name">Right Now</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="#elsewhere"><span itemprop="name">Elsewhere</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="#bookshelf"><span itemprop="name">Bookshelf</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="#albums"><span itemprop="name"><a href="#albums">Albums</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="#epilogue"><span itemprop="name">Epilogue</span></a></li>
-        </ul>
+        <h1><a href="#top" id="top">Kyle Fring</a></h1>
+        <nav>
+            <ul>
+                <li><a href="#now">Now</a></li>
+                <li><a href="#elsewhere">Elsewhere</a></li>
+                <li><a href="#bookshelf">Bookshelf</a></li>
+                <li><a href="#epilogue">Epilogue</a></li>
+            </ul>
         </nav>
     </header>
-    <h2><a id="now">Now</a></h2>
-    <h3>Life</h3>
-    <aside>📍 <a href="https://en.wikipedia.org/wiki/Chattanooga,_Tennessee">Chattanooga, TN</a></aside>
-    <p>
-        I've made several good friends since moving here and that's <em>ultra</em> rewarding.
-        Content. Life is good.
-    </p>
-    <h3>Work</h3>
-    <p>
-        I'm fortunate to be able to work remotely in a <strong><em>Senior Data Engineer</em></strong> role for a Fortune 100 healthcare company.
-        The fact that my co-workers are fantastic is a bonus.
-    </p>
-    <p>
-        Putting time in on a semantic Data-Lake has been a deep dive on understanding Health Care data-sets.
-    </p>
-    <h3>Future</h3>
-    <p>
-        <ul>
-	<li>I am currently fishing around lightly for a position which will allow me to do <em>more</em> at scale and expose me
-		to new or different tech stacks I am not likely to get exposure to here in any near to medium timeframe.</li>
-            <li>I do appriciate the modern need for <em>specialization</em>. However, I'd like to flex a life-time of wearing many hats.
-        </ul>
-    </p>
-    <p><a href="#top">⬆</a></p>
-    <hr>
-    <h2><a id="elsewhere">Elsewhere</a></h2>
-    <p>
-        <a href="http://github.com/k-f-/">github</a>
-        <a href="http://linkedin.com/in/kfring/">linkedin</a>
-        <a href="http://goodreads.com/kfring/">goodreads</a>
-    </p>
-    <p><a href="#top">⬆</a></p>
-    <hr>
-    <h2><a id="bookshelf">Bookshelf</a></h2>
-    <p>
-        <a href="#b2020">2020</a>
-        <a href="#b2019">2019</a>
-        <a href="#b2018">2018</a>
-        <a href="#b2017">2017</a>
-        <a href="#b2016">2016</a>
-        <a href="#b2015">2015</a>
-        <a href="#bprior">prior</a>
-    </p>
-    <h3><a id="b2020">2020</a></h3>
-    <ul>
-        <li>Discrete Mathematics and it's Applications</li>
-        <li>Python3 The Hard Way</li>
-        <li>Unwanted</li>
-        <li>The Book of Joy</li>
-        <li>Let's pretend this never happened</li>
-        <li>The Personality Brokers</li>
-        <li>The Book of Joy: Lasting Happiness in a Changing World</li>
-        <li>Black Elk Speaks: Being the Life Story of a Holy Man of the Oglala Sioux</li>
-        <li>I Hate You, Don't Leave Me: Understanding the Borderline Personality</li>
-    </ul>
-    <h3><a id="b2019">2019</a></h3>
-    <ul>
-        <li>Gang Leader for a Day</li>
-        <li>Re:Work</li>
-        <li>The Crossing</li>
-        <li>Cities of the Plain</li>
-        <li>All the Pretty Horses</li>
-        <li>The Idiot</li>
-    </ul>
-    <h3><a id="b2018">2018</a></h3>
-    <ul>
-        <li>Man's Search for Meaning</li>
-        <li>Snowcrash</li>
-        <li>Codependent No More</li>
-        <li>Ask Polly's Guide To Your Next Crisis</li>
-        <li>Getting The Love You Want</li>
-        <li>Tribe of Mentors</li>
-        <li>The Curious Case of Benjamin Button</li>
-        <li>Sapiens</li>
-        <li>A Brief History of Time</li>
-        <li>Kitchen Confidential</li>
-        <li>Devil in the Kitchen</li>
-        <li>Manhood</li>
-     </ul>
-     <h3><a id="b2017">2017</a></h3>
-     <ul>
-         <li>The Simple Path to Wealth</li>
-         <li>Early Retirement Extreme</li>
-         <li>The Autobiography of Benjamin Franklin</li>
-         <li>Aesop’s Fables</li>
-         <li>Ulysses</li>
-         <li>How to Speak and Write Correctly</li>
-         <li>Popular Tales from the Norse</li>
-         <li>Complete Works of David Hume (selections)</li>
-         <li>The Greatest Generation</li>
-         <li>Don Quixote</li>
-         <li>The Ultimate Sherlock Holmes Collection</li>
-         <li>The Wisdom of Insecurity</li>
-         <li>The 4-Hour Body</li>
-         <li>The Little Book that Beats the Market</li>
-         <li>A Book of Five Rings</li>
-         <li>Meditations</li>
-         <li>Designing Your Life</li>
-         <li>The New Better Off</li>
-         <li>Your Money or Your Life</li>
-         <li>The Magic of Thinking BIG</li>
-         <li>City in the City</li>
-    </ul>
-    <h3><a id="b2016">2016</a></h3>
-    <ul>
-        <li>Still Life with Woodpecker</li>
-        <li>Media Control</li>
-        <li>Practical Lock Picking</li>
-        <li>The Rings of Saturn</li>
-        <li>The Economist Guide to Financial Markets</li>
-        <li>Gratitude</li>
-        <li>Cryptonomicon</li>
-        <li>The Name of the Wind</li>
-        <li>The Wise Man's Fear</li>
-        <li>Power Systems</li>
-        <li>How to Archer</li>
-        <li>The Joy of x</li>
-        <li>Ready Player One</li>
-        <li>The Road to Character</li>
-        <li>Berkshire Hathaway Letters</li>
-    </ul>    
-    <h3><a id="b2015">2015</a></h3>
-    <ul>
-        <li>1Q84</li>
-        <li>The Swarm</li>
-        <li>4 Hour Work Week</li>
-    </ul>
-    <h3><a id="bprior">Prior</a></h3>
-    <ul>
-        <li>The Watchmen</li>
-        <li>Evidence</li>
-        <li>The White Tiger</li>
-        <li>Collapse: How Societies Chose to Fail or Succeed</li>
-        <li>Guns, Germs and Steel</li>
-        <li>The Prince</li>
-        <li>Sphere</li>
-        <li>Out of the Silent Planet</li>
-        <li>Perelandra</li>
-        <li>That Hideous Strength</li>
-        <li>Redwall</li>
-        <li>Mossflower</li>
-        <li>Mattimeo</li>
-        <li>Martin the Warrior</li>
-        <li>Salamandastron</li>
-        <li>Mariel of Redwall</li>
-        <li>The Bellmaker</li>
-        <li>Outcast of Redwall</li>
-        <li>Pearls of Lutra</li>
-        <li>The Long Patrol</li>
-        <li>Inferno</li>
-        <li>The Book of Three</li>
-        <li>The Black Cauldron</li>
-        <li>Taran Wanderer</li>
-        <li>The Castle of Llyr</li>
-        <li>The High King</li>
-        <li>The Foundling and Other Tales of Prydain</li>
-        <li>A Game of Thrones</li>
-        <li>A Clash of Kings</li>
-        <li>A Storm of Swords</li>
-        <li>A Feast for Crows</li>
-        <li>A Dance with Dragons</li>
-        <li>The Flight of the Silvers</li>
-        <li>Dune</li>
-        <li>Dune Messiah</li>
-        <li>Children of Dune</li>
-        <li>The Gunslinger</li>
-        <li>The Drawing of the Three</li>
-        <li>The Waste Lands</li>
-        <li>Wizard and Glass</li>
-        <li>Wolves of the Calla</li>
-        <li>Song of Susannah</li>
-        <li>The Dark Tower</li>
-        <li>American Gods</li>
-        <li>Ender’s Game</li>
-        <li>Zen and the Art of Motorcycle Maintenance</li>
-        <li>The New American Road Trip Mixtape</li>
-        <li>Self-Coached Climber</li>
-        <li>Shantaram</li>
-        <li>The One-Straw Revolution</li>
-        <li>The China Study</li>
-        <li>The Hobbit</li>
-        <li>Fellowship of the Ring</li>
-        <li>The Two Towers</li>
-        <li>Return of the King</li>
-        <li>This is Water</li>
-        <li>9 Out of 10 Climbers Make the Same Mistakes</li>
-        <li>Great Expectations</li>
-        <li>The Communist Manifesto</li>
-        <li>Ethics</li>
-        <li>The Odyssey</li>
-        <li>Dracula</li>
-        <li>The Hedge Knight</li>
-        <li>Flow</li>
-        <li>Foundation</li>
-        <li>Hyperion</li>
-        <li>The Fall of Hyperion</li>
-        <li>Endymion</li>
-        <li>The Rise of Endymion</li>
-        <li>The History of Herodotus</li>
-        <li>Autobiography of a Yogi</li>
-        <li>A Picture of Dorian Gray</li>
-        <li>Twenty Thousand Leagues Under the Sea</li>
-        <li>The Art of War</li>
-        <li>A Tale of Two Cities</li>
-        <li>Pride and Prejudice</li>
-        <li>The Adventures of Sherlock Holmes</li>
-    </ul>
-    <p><a href="#top">⬆</a></p>
-    <hr>
-    <h2><a id="albums">Albums</a></h2>
-    <p>Soon&#8482;</p>
-    <p><a href="#top">⬆</a></p>
-    <hr>
-    <h2><a id="epilogue">Epilogue</a></h2>
-    <p>Previous iterations: <a href="http://v1.kfring.com">v1</a></p>
-    <p>
-        Credit to <a href="http://bettermotherfuckingwebsite.com/">this guy</a> for inspiring me to get this up with minimal fuss.
-    </p>
-    <p><a href="#top">⬆</a></p>
+
+    <main>
+        <section id="now">
+            <h2>Now</h2>
+
+            <h3>Life</h3>
+            <aside>📍 <a href="https://en.wikipedia.org/wiki/Chattanooga,_Tennessee">Chattanooga, TN</a></aside>
+            <p>
+                Most mornings I sweat at <a href="http://cruxconditioning.com/">Crux</a>, an incredible gym with a great community.
+                Progress there has been a massive solace through the second half of Covid-19's 2020. I'm able to get outdoors on the weekends
+                and go hard.
+            </p>
+            <p>
+                I've made several good friends since moving here and that's <em>ultra</em> rewarding.
+                Content. Life is good.
+            </p>
+
+            <h3>Work</h3>
+            <p>
+                I'm fortunate to be able to work remotely in a <strong><em>Senior Data/Analyst</em></strong> role for a Fortune 500 managed care provider.
+                Day to day, I'm able to answer vague questions with <em>facts</em> and that feels great. It isn't always massively interesting,
+                but I've rekindled a love of <strong>data</strong> and my daily output impacts <em>tens of thousands</em> of co-workers and <em>many millions</em>
+                of members. The fact that my co-workers are fantastic is a bonus.
+            </p>
+            <p>
+                Putting time in on a semantic Data-Lake has been a deep dive on understanding Health Care data-sets.
+                Being in-part responsible for what will become <em>the single source of truth</em> is engaging.
+            </p>
+
+            <h3>Future</h3>
+            <ul>
+                <li>I'd like to use different tools. Microsoft is fine, Teams &amp; PowerBI are <em>very</em> good,
+                    but in my heart I'm a <em>FOSS</em> guy: Terminals, Python, R, etc. are more interesting to me.</li>
+                <li>I do appreciate the modern need for <em>specialization</em>. However, I'd like to flex a life-time of wearing many hats.</li>
+                <li>A good deal more flexibility with working hours. I always deliver. Don't make me sit
+                    at a desk just because I need to <em>not</em> be afk. Life is <strong>way</strong> too short.</li>
+            </ul>
+
+            <p class="back-to-top"><a href="#top">↑ Back to top</a></p>
+        </section>
+
+        <hr>
+
+        <section id="elsewhere">
+            <h2>Elsewhere</h2>
+            <p>
+                <a href="http://github.com/k-f-/">github</a> •
+                <a href="http://linkedin.com/in/kfring/">linkedin</a> •
+                <a href="http://goodreads.com/kfring/">goodreads</a>
+            </p>
+            <p class="back-to-top"><a href="#top">↑ Back to top</a></p>
+        </section>
+
+        <hr>
+
+        <section id="bookshelf">
+            <h2>Bookshelf</h2>
+
+            <div class="year-nav">
+                <a href="#b2020">2020</a>
+                <a href="#b2019">2019</a>
+                <a href="#b2018">2018</a>
+                <a href="#b2017">2017</a>
+                <a href="#b2016">2016</a>
+                <a href="#b2015">2015</a>
+                <a href="#bprior">Prior</a>
+            </div>
+
+            <h3 id="b2020">2020</h3>
+            <table class="box-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Discrete Mathematics and it's Applications</td></tr>
+                    <tr><td>Python3 The Hard Way</td></tr>
+                    <tr><td>Unwanted</td></tr>
+                    <tr><td>The Book of Joy</td></tr>
+                    <tr><td>Let's pretend this never happened</td></tr>
+                    <tr><td>The Personality Brokers</td></tr>
+                    <tr><td>The Book of Joy: Lasting Happiness in a Changing World</td></tr>
+                    <tr><td>Black Elk Speaks: Being the Life Story of a Holy Man of the Oglala Sioux</td></tr>
+                    <tr><td>I Hate You, Don't Leave Me: Understanding the Borderline Personality</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="b2019">2019</h3>
+            <table class="box-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Gang Leader for a Day</td></tr>
+                    <tr><td>Re:Work</td></tr>
+                    <tr><td>The Crossing</td></tr>
+                    <tr><td>Cities of the Plain</td></tr>
+                    <tr><td>All the Pretty Horses</td></tr>
+                    <tr><td>The Idiot</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="b2018">2018</h3>
+            <table class="box-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Man's Search for Meaning</td></tr>
+                    <tr><td>Snowcrash</td></tr>
+                    <tr><td>Codependent No More</td></tr>
+                    <tr><td>Ask Polly's Guide To Your Next Crisis</td></tr>
+                    <tr><td>Getting The Love You Want</td></tr>
+                    <tr><td>Tribe of Mentors</td></tr>
+                    <tr><td>The Curious Case of Benjamin Button</td></tr>
+                    <tr><td>Sapiens</td></tr>
+                    <tr><td>A Brief History of Time</td></tr>
+                    <tr><td>Kitchen Confidential</td></tr>
+                    <tr><td>Devil in the Kitchen</td></tr>
+                    <tr><td>Manhood</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="b2017">2017</h3>
+            <table class="box-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>The Simple Path to Wealth</td></tr>
+                    <tr><td>Early Retirement Extreme</td></tr>
+                    <tr><td>The Autobiography of Benjamin Franklin</td></tr>
+                    <tr><td>Aesop's Fables</td></tr>
+                    <tr><td>Ulysses</td></tr>
+                    <tr><td>How to Speak and Write Correctly</td></tr>
+                    <tr><td>Popular Tales from the Norse</td></tr>
+                    <tr><td>Complete Works of David Hume (selections)</td></tr>
+                    <tr><td>The Greatest Generation</td></tr>
+                    <tr><td>Don Quixote</td></tr>
+                    <tr><td>The Ultimate Sherlock Holmes Collection</td></tr>
+                    <tr><td>The Wisdom of Insecurity</td></tr>
+                    <tr><td>The 4-Hour Body</td></tr>
+                    <tr><td>The Little Book that Beats the Market</td></tr>
+                    <tr><td>A Book of Five Rings</td></tr>
+                    <tr><td>Meditations</td></tr>
+                    <tr><td>Designing Your Life</td></tr>
+                    <tr><td>The New Better Off</td></tr>
+                    <tr><td>Your Money or Your Life</td></tr>
+                    <tr><td>The Magic of Thinking BIG</td></tr>
+                    <tr><td>City in the City</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="b2016">2016</h3>
+            <table class="box-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>Still Life with Woodpecker</td></tr>
+                    <tr><td>Media Control</td></tr>
+                    <tr><td>Practical Lock Picking</td></tr>
+                    <tr><td>The Rings of Saturn</td></tr>
+                    <tr><td>The Economist Guide to Financial Markets</td></tr>
+                    <tr><td>Gratitude</td></tr>
+                    <tr><td>Cryptonomicon</td></tr>
+                    <tr><td>The Name of the Wind</td></tr>
+                    <tr><td>The Wise Man's Fear</td></tr>
+                    <tr><td>Power Systems</td></tr>
+                    <tr><td>How to Archer</td></tr>
+                    <tr><td>The Joy of x</td></tr>
+                    <tr><td>Ready Player One</td></tr>
+                    <tr><td>The Road to Character</td></tr>
+                    <tr><td>Berkshire Hathaway Letters</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="b2015">2015</h3>
+            <table class="box-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1Q84</td></tr>
+                    <tr><td>The Swarm</td></tr>
+                    <tr><td>4 Hour Work Week</td></tr>
+                </tbody>
+            </table>
+
+            <h3 id="bprior">Prior</h3>
+            <table class="box-table">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>The Watchmen</td></tr>
+                    <tr><td>Evidence</td></tr>
+                    <tr><td>The White Tiger</td></tr>
+                    <tr><td>Collapse: How Societies Chose to Fail or Succeed</td></tr>
+                    <tr><td>Guns, Germs and Steel</td></tr>
+                    <tr><td>The Prince</td></tr>
+                    <tr><td>Sphere</td></tr>
+                    <tr><td>Out of the Silent Planet</td></tr>
+                    <tr><td>Perelandra</td></tr>
+                    <tr><td>That Hideous Strength</td></tr>
+                    <tr><td>Redwall</td></tr>
+                    <tr><td>Mossflower</td></tr>
+                    <tr><td>Mattimeo</td></tr>
+                    <tr><td>Martin the Warrior</td></tr>
+                    <tr><td>Salamandastron</td></tr>
+                    <tr><td>Mariel of Redwall</td></tr>
+                    <tr><td>The Bellmaker</td></tr>
+                    <tr><td>Outcast of Redwall</td></tr>
+                    <tr><td>Pearls of Lutra</td></tr>
+                    <tr><td>The Long Patrol</td></tr>
+                    <tr><td>Inferno</td></tr>
+                    <tr><td>The Book of Three</td></tr>
+                    <tr><td>The Black Cauldron</td></tr>
+                    <tr><td>Taran Wanderer</td></tr>
+                    <tr><td>The Castle of Llyr</td></tr>
+                    <tr><td>The High King</td></tr>
+                    <tr><td>The Foundling and Other Tales of Prydain</td></tr>
+                    <tr><td>A Game of Thrones</td></tr>
+                    <tr><td>A Clash of Kings</td></tr>
+                    <tr><td>A Storm of Swords</td></tr>
+                    <tr><td>A Feast for Crows</td></tr>
+                    <tr><td>A Dance with Dragons</td></tr>
+                    <tr><td>The Flight of the Silvers</td></tr>
+                    <tr><td>Dune</td></tr>
+                    <tr><td>Dune Messiah</td></tr>
+                    <tr><td>Children of Dune</td></tr>
+                    <tr><td>The Gunslinger</td></tr>
+                    <tr><td>The Drawing of the Three</td></tr>
+                    <tr><td>The Waste Lands</td></tr>
+                    <tr><td>Wizard and Glass</td></tr>
+                    <tr><td>Wolves of the Calla</td></tr>
+                    <tr><td>Song of Susannah</td></tr>
+                    <tr><td>The Dark Tower</td></tr>
+                    <tr><td>American Gods</td></tr>
+                    <tr><td>Ender's Game</td></tr>
+                    <tr><td>Zen and the Art of Motorcycle Maintenance</td></tr>
+                    <tr><td>The New American Road Trip Mixtape</td></tr>
+                    <tr><td>Self-Coached Climber</td></tr>
+                    <tr><td>Shantaram</td></tr>
+                    <tr><td>The One-Straw Revolution</td></tr>
+                    <tr><td>The China Study</td></tr>
+                    <tr><td>The Hobbit</td></tr>
+                    <tr><td>Fellowship of the Ring</td></tr>
+                    <tr><td>The Two Towers</td></tr>
+                    <tr><td>Return of the King</td></tr>
+                    <tr><td>This is Water</td></tr>
+                    <tr><td>9 Out of 10 Climbers Make the Same Mistakes</td></tr>
+                    <tr><td>Great Expectations</td></tr>
+                    <tr><td>The Communist Manifesto</td></tr>
+                    <tr><td>Ethics</td></tr>
+                    <tr><td>The Odyssey</td></tr>
+                    <tr><td>Dracula</td></tr>
+                    <tr><td>The Hedge Knight</td></tr>
+                    <tr><td>Flow</td></tr>
+                    <tr><td>Foundation</td></tr>
+                    <tr><td>Hyperion</td></tr>
+                    <tr><td>The Fall of Hyperion</td></tr>
+                    <tr><td>Endymion</td></tr>
+                    <tr><td>The Rise of Endymion</td></tr>
+                    <tr><td>The History of Herodotus</td></tr>
+                    <tr><td>Autobiography of a Yogi</td></tr>
+                    <tr><td>A Picture of Dorian Gray</td></tr>
+                    <tr><td>Twenty Thousand Leagues Under the Sea</td></tr>
+                    <tr><td>The Art of War</td></tr>
+                    <tr><td>A Tale of Two Cities</td></tr>
+                    <tr><td>Pride and Prejudice</td></tr>
+                    <tr><td>The Adventures of Sherlock Holmes</td></tr>
+                </tbody>
+            </table>
+
+            <p class="back-to-top"><a href="#top">↑ Back to top</a></p>
+        </section>
+
+        <hr>
+
+        <section id="epilogue">
+            <h2>Epilogue</h2>
+            <p>Previous iterations: <a href="http://v2.fring.io">v2</a> • <a href="http://v1.kfring.com">v1</a></p>
+            <p class="muted">
+                Credit to <a href="http://bettermotherfuckingwebsite.com/">this guy</a> for inspiring minimal fuss.
+            </p>
+            <p class="back-to-top"><a href="#top">↑ Back to top</a></p>
+        </section>
+    </main>
+
+    <script>
+        // Theme toggle functionality
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Initialize theme from localStorage or system preference
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                document.documentElement.setAttribute('data-theme', savedTheme);
+            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
+        })();
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
 </html>

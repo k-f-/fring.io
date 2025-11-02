@@ -15,7 +15,7 @@ on:
 
 env:
   AWS_REGION: ${{ secrets.AWS_REGION }}
-  LATEST_VERSION: v4  # Update this when you create v5, v6, etc.
+  LATEST_VERSION: v3  # Current live version (change to v4 when ready to launch)
 
 jobs:
   deploy:

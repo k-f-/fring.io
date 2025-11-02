@@ -9,8 +9,8 @@ set -euo pipefail
 
 VERSION="${1:-}"
 CREATE_CLOUDFRONT="${2:-}"
-PRIMARY_DOMAIN="kfring.com"
-SECONDARY_DOMAIN="fring.io"
+PRIMARY_DOMAIN="fring.io"
+SECONDARY_DOMAIN="kfring.com"
 PRIMARY_BUCKET="${VERSION}.${PRIMARY_DOMAIN}"
 SECONDARY_BUCKET="${VERSION}.${SECONDARY_DOMAIN}"
 AWS_REGION="${AWS_REGION:-us-east-1}"
@@ -23,14 +23,14 @@ fi
 
 echo "🚀 Provisioning ${VERSION} (${PRIMARY_DOMAIN} + ${SECONDARY_DOMAIN})..."
 
-# 1. Create PRIMARY S3 bucket (kfring.com - contains actual content)
+# 1. Create PRIMARY S3 bucket (fring.io - contains actual content)
 echo "📦 Creating PRIMARY S3 bucket: ${PRIMARY_BUCKET}"
 aws s3api create-bucket \
     --bucket "${PRIMARY_BUCKET}" \
     --region "${AWS_REGION}" \
     --acl public-read
 
-# 1b. Create SECONDARY S3 bucket (fring.io - redirect to kfring.com)
+# 1b. Create SECONDARY S3 bucket (kfring.com - redirect to fring.io)
 echo "📦 Creating SECONDARY S3 bucket (redirect): ${SECONDARY_BUCKET}"
 aws s3api create-bucket \
     --bucket "${SECONDARY_BUCKET}" \

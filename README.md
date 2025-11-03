@@ -21,8 +21,7 @@ This is a monorepo containing all versions of the site:
 sites/
   ├── v1/  # Jekyll blog (2013-2015)
   ├── v2/  # Minimal HTML (2015-2020)
-  ├── v3/  # Refined minimal (2020-2024) ← LIVE
-  └── v4/  # In development (2024-present)
+  └── v3/  # Refined minimal (2020-present) ← LIVE
 
 infrastructure/
   ├── provision-site.sh
@@ -34,46 +33,42 @@ infrastructure/
 
 ## Development
 
-**To work on v4 (in development):**
+**To work on v3 (current):**
 ```bash
-cd sites/v4/
+cd sites/v3/
 # Edit index.html, CSS, etc.
-git add sites/v4/
-git commit -m "Update v4 design"
+git add sites/v3/
+git commit -m "Update v3 design"
 git push origin main
-# Note: Won't deploy to apex domains until LATEST_VERSION is changed to v4
+# Deploys to both s3://v3.fring.io and s3://fring.io (apex)
+```
+
+**To create v4 (future version):**
+```bash
+# 1. Provision AWS infrastructure
+./infrastructure/provision-site.sh v4
+
+# 2. Create v4 directory
+mkdir sites/v4
+cp sites/v3/* sites/v4/  # Start from v3
+
+# 3. Work on v4
+cd sites/v4/
+# Edit files as needed
+
+# 4. Commit and push (will deploy to v4.fring.io only)
+git add sites/v4/
+git commit -m "Add v4 site"
+git push origin main
 ```
 
 **To launch v4 (make it live):**
-```bash
-# 1. Update workflow to make v4 live
-sed -i '' 's/LATEST_VERSION: v3/LATEST_VERSION: v4/' .github/workflows/deploy.yml
 
-# 2. Commit and push
-git add .github/workflows/deploy.yml
-git commit -m "Launch v4"
-git push origin main
-# This triggers deployment to both s3://v4.fring.io and s3://fring.io
-```
-
-**To create v5:**
-```bash
-# 1. Provision AWS infrastructure
-./infrastructure/provision-site.sh v5
-
-# 2. Create v5 directory
-mkdir sites/v5
-cp sites/v4/* sites/v5/  # Start from v4
-
-# 3. Update LATEST_VERSION in .github/workflows/deploy.yml
-# Change: LATEST_VERSION: v4
-# To:     LATEST_VERSION: v5
-
-# 4. Commit and push
-git add sites/v5/ .github/workflows/deploy.yml
-git commit -m "Add v5 site"
-git push origin main
-```
+See LAUNCH_CHECKLIST.md for complete procedure. Summary:
+1. Update VERSION file → `echo "v4" > VERSION`
+2. Update LATEST_VERSION in .github/workflows/deploy.yml
+3. Update README.md "Current Live Version" section
+4. Commit and push
 
 ## Deployment
 
@@ -95,6 +90,5 @@ The `LATEST_VERSION` in `.github/workflows/deploy.yml` controls which version ap
 - https://v3.fring.io, https://v3.kfring.com → v3 (current latest)
 - https://v2.fring.io, https://v2.kfring.com → v2 (previous version)
 - https://v1.fring.io, https://v1.kfring.com → v1 (original)
-- https://v4.fring.io → v4 (in development, not yet latest)
 
 See [DEPLOYMENT_ARCHITECTURE.md](DEPLOYMENT_ARCHITECTURE.md) for complete details.

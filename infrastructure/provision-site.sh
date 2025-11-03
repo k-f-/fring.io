@@ -27,8 +27,12 @@ echo "🚀 Provisioning ${VERSION} (${PRIMARY_DOMAIN} + ${SECONDARY_DOMAIN})..."
 echo "📦 Creating PRIMARY S3 bucket: ${PRIMARY_BUCKET}"
 aws s3api create-bucket \
     --bucket "${PRIMARY_BUCKET}" \
-    --region "${AWS_REGION}" \
-    --acl public-read
+    --region "${AWS_REGION}"
+
+# Disable ACLs and use bucket policy instead
+aws s3api put-public-access-block \
+    --bucket "${PRIMARY_BUCKET}" \
+    --public-access-block-configuration "BlockPublicAcls=false,IgnorePublicAcls=false,BlockPublicPolicy=false,RestrictPublicBuckets=false"
 
 # 1b. Create SECONDARY S3 bucket (kfring.com - redirect to fring.io)
 echo "📦 Creating SECONDARY S3 bucket (redirect): ${SECONDARY_BUCKET}"

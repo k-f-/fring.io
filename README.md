@@ -72,16 +72,20 @@ git push origin main
 
 **Manual:** Use GitHub Actions workflow dispatch to deploy any version.
 
-When you update a version:
-1. **Versioned bucket** deploys (e.g., s3://v4.fring.io)
-2. **Main bucket** also deploys if it's the latest version (s3://fring.io)
+### How it works
 
-**URLs:**
+All version sites are independently accessible at their versioned URLs. When you update any version:
+1. **Versioned bucket** always deploys (e.g., s3://v3.fring.io)
+2. **Apex bucket** also deploys if it's the LATEST_VERSION (s3://fring.io, s3://kfring.com)
+
+The `LATEST_VERSION` in `.github/workflows/deploy.yml` controls which version appears at the apex domains (fring.io, kfring.com). All other versions remain accessible at their versioned URLs.
+
+**Live URLs:**
 - https://fring.io, https://www.fring.io → Latest version (v3)
 - https://kfring.com, https://www.kfring.com → Latest version (v3)
-- https://v4.fring.io → v4 (in development)
-- https://v3.kfring.com → v3 (current live)
-- https://v2.fring.io, https://v2.kfring.com → v2
-- https://v1.fring.io, https://v1.kfring.com → v1
+- https://v3.fring.io, https://v3.kfring.com → v3 (current latest)
+- https://v2.fring.io, https://v2.kfring.com → v2 (previous version)
+- https://v1.fring.io, https://v1.kfring.com → v1 (original)
+- https://v4.fring.io → v4 (in development, not yet latest)
 
 See [DEPLOYMENT_ARCHITECTURE.md](DEPLOYMENT_ARCHITECTURE.md) for complete details.

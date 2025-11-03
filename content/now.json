@@ -1,0 +1,45 @@
+{
+  "meta": {
+    "version": "1.0",
+    "lastUpdated": "2025-11-02T21:00:00.000000",
+    "description": "Current activities and status - /now page content"
+  },
+  "location": {
+    "city": "Chattanooga",
+    "state": "TN",
+    "country": "USA",
+    "emoji": "📍"
+  },
+  "sections": {
+    "life": {
+      "text": "Most mornings I sweat at Crux, an incredible gym with a great community. Progress there has been a massive solace through the second half of Covid-19's 2020. I'm able to get outdoors on the weekends and go hard.\n\nI've made several good friends since moving here and that's ultra rewarding. Content. Life is good.",
+      "highlights": [
+        {
+          "text": "Crux",
+          "url": "http://cruxconditioning.com/"
+        }
+      ]
+    },
+    "work": {
+      "currentRole": "Program Director",
+      "company": "Fortune 500 managed care provider",
+      "description": "I lead cross-functional initiatives bridging data engineering, analytics, and business strategy. It's rewarding work that impacts tens of thousands of co-workers and many millions of members.",
+      "previousRole": {
+        "title": "Senior Data Analyst/Engineer",
+        "description": "I designed data pipelines, built value-based contracting datasets, and led pharmacy data lake migrations. The deep dive into healthcare data-sets—becoming responsible for the single source of truth—was both challenging and engaging."
+      }
+    },
+    "future": {
+      "desires": [
+        "I'd like to use different tools. Microsoft is fine, Teams & PowerBI are very good, but in my heart I'm a FOSS guy: Terminals, Python, R, etc. are more interesting to me.",
+        "I do appreciate the modern need for specialization. However, I'd like to flex a life-time of wearing many hats.",
+        "A good deal more flexibility with working hours. I always deliver. Don't make me sit at a desk just because I need to not be afk. Life is way too short."
+      ]
+    }
+  },
+  "links": {
+    "github": "k-f-",
+    "linkedin": "kfring",
+    "goodreads": "kfring"
+  }
+}

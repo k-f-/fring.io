@@ -18,6 +18,18 @@ This directory contains **version-agnostic canonical content** for fring.io. All
   git commit -am "Add book"
   ```
 
+### now.json
+- **Status:** ✅ Implemented
+- **Purpose:** Current activities and status (/now page content)
+- **Format:** JSON with location, sections (life/work/future), links
+- **Source:** Extracted from v3 HTML
+
+### career.json
+- **Status:** ✅ Implemented
+- **Purpose:** Professional experience and career history
+- **Format:** JSON with summary, experience array, education, certifications, preferences
+- **Source:** Extracted from LinkedIn profile
+
 ## Future Expansions
 
 ### 1. Apple Notes Integration (PLANNED - Mac Mini)
@@ -205,10 +217,10 @@ Each section would get its own tooling:
 ## Implementation Priority
 
 1. ✅ books.json (DONE)
-2. 📌 Apple Notes sync for books (Mac mini setup)
-3. 🔜 now.json (simple, high value)
-4. 🔜 about.json (simple, high value)
-5. 🔜 experience.json (CV/resume data)
+2. ✅ now.json (DONE)
+3. ✅ career.json (DONE - experience/CV data)
+4. 📌 Apple Notes sync for books (Mac mini setup)
+5. 🔜 about.json (simple, high value)
 6. 🔜 notes.json (blog posts)
 7. 🔜 projects.json
 

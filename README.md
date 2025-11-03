@@ -4,6 +4,15 @@ What it says on the tin. 😉
 
 **Live at**: https://fring.io
 
+## Current Live Version
+
+**🟢 v3** (defined in `VERSION` file)
+
+To change the live version, update:
+1. `VERSION` file in repo root
+2. `LATEST_VERSION` in `.github/workflows/deploy.yml`
+3. This README
+
 ## Structure
 
 This is a monorepo containing all versions of the site:

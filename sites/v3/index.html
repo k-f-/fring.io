@@ -214,17 +214,39 @@
             background: var(--table-stripe);
         }
 
+        /* Show/hide theme icons based on current theme */
+        [data-theme="light"] .theme-toggle-light {
+            display: none;
+        }
+
+        [data-theme="dark"] .theme-toggle-dark {
+            display: none;
+        }
+
         /* ========================================
            Book Lists (box-drawing)
            ======================================== */
         .book-list {
             margin: 1.5rem 0;
-            font-size: 0.88rem;
+            font-size: 0.75rem;
             line-height: 1.0;
             padding: 0.5rem;
             font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
             white-space: pre;
             word-wrap: normal;
+        }
+
+        /* Larger font on wider screens */
+        @media (min-width: 600px) {
+            .book-list {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (min-width: 900px) {
+            .book-list {
+                font-size: 0.95rem;
+            }
         }
 
         /* ========================================

@@ -54,21 +54,24 @@ jobs:
         run: |
           VERSION="${{ steps.changed.outputs.version }}"
 
-          # Determine source directory (v1 is Jekyll with _site subdirectory)
+          # Determine source directory and target bucket
+          # v1 is Jekyll with _site subdirectory and uses kfring.com domain
           if [[ "$VERSION" == "v1" ]]; then
             SOURCE_DIR="sites/v1/_site"
+            BUCKET="${VERSION}.kfring.com"
           else
             SOURCE_DIR="sites/${VERSION}"
+            BUCKET="${VERSION}.fring.io"
           fi
 
-          # Deploy to versioned bucket (e.g., s3://v4.fring.io/)
-          aws s3 sync ${SOURCE_DIR}/ s3://${VERSION}.fring.io/ \
+          # Deploy to versioned bucket
+          aws s3 sync ${SOURCE_DIR}/ s3://${BUCKET}/ \
             --delete \
             --cache-control "public, max-age=3600"
 
           # Set longer cache for static assets
-          if aws s3 ls s3://${VERSION}.fring.io/css/ 2>/dev/null; then
-            aws s3 cp s3://${VERSION}.fring.io/css s3://${VERSION}.fring.io/css \
+          if aws s3 ls s3://${BUCKET}/css/ 2>/dev/null; then
+            aws s3 cp s3://${BUCKET}/css s3://${BUCKET}/css \
               --recursive \
               --cache-control "public, max-age=31536000, immutable" \
               --metadata-directive REPLACE
@@ -115,8 +118,14 @@ jobs:
           echo "📦 Deployed: ${VERSION}"
           echo ""
           echo "🌐 URLs:"
-          echo "   - https://${VERSION}.fring.io (versioned)"
-          echo "   - https://${VERSION}.kfring.com (redirects to ${VERSION}.fring.io)"
+
+          if [[ "$VERSION" == "v1" ]]; then
+            echo "   - https://v1.kfring.com (primary)"
+            echo "   - https://v1.fring.io (redirects to v1.kfring.com)"
+          else
+            echo "   - https://${VERSION}.fring.io (primary)"
+            echo "   - https://${VERSION}.kfring.com (redirects to ${VERSION}.fring.io)"
+          fi
 
           if [[ "$VERSION" == "${{ env.LATEST_VERSION }}" ]]; then
             echo ""

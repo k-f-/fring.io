@@ -15,7 +15,10 @@ on:
 
 env:
   AWS_REGION: ${{ secrets.AWS_REGION }}
-  LATEST_VERSION: v3  # Current live version (change to v4 when ready to launch)
+  # IMPORTANT: When changing live version, also update:
+  # - VERSION file in repo root
+  # - README.md "Current Live Version" section
+  LATEST_VERSION: v3
 
 jobs:
   deploy:

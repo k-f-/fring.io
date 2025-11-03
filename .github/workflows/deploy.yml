@@ -54,8 +54,15 @@ jobs:
         run: |
           VERSION="${{ steps.changed.outputs.version }}"
 
+          # Determine source directory (v1 is Jekyll with _site subdirectory)
+          if [[ "$VERSION" == "v1" ]]; then
+            SOURCE_DIR="sites/v1/_site"
+          else
+            SOURCE_DIR="sites/${VERSION}"
+          fi
+
           # Deploy to versioned bucket (e.g., s3://v4.fring.io/)
-          aws s3 sync sites/${VERSION}/ s3://${VERSION}.fring.io/ \
+          aws s3 sync ${SOURCE_DIR}/ s3://${VERSION}.fring.io/ \
             --delete \
             --cache-control "public, max-age=3600"
 
@@ -72,8 +79,15 @@ jobs:
         run: |
           VERSION="${{ steps.changed.outputs.version }}"
 
+          # Determine source directory (v1 is Jekyll with _site subdirectory)
+          if [[ "$VERSION" == "v1" ]]; then
+            SOURCE_DIR="sites/v1/_site"
+          else
+            SOURCE_DIR="sites/${VERSION}"
+          fi
+
           # Also deploy to main bucket so apex domains show latest
-          aws s3 sync sites/${VERSION}/ s3://fring.io/ \
+          aws s3 sync ${SOURCE_DIR}/ s3://fring.io/ \
             --delete \
             --cache-control "public, max-age=3600"
 

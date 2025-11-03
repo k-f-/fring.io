@@ -55,7 +55,17 @@ jobs:
           VERSION="${{ steps.changed.outputs.version }}"
 
           # Determine source directory and target bucket
-          # v1 is Jekyll with _site subdirectory and uses kfring.com domain
+          #
+          # ARCHITECTURE NOTE:
+          # - v2, v3, v4: Use fring.io as primary domain
+          #   - Deploy to: v2.fring.io, v3.fring.io buckets
+          #   - Redirect buckets: v2.kfring.com, v3.kfring.com → redirect to fring.io
+          #
+          # - v1: LEGACY - Uses kfring.com as primary domain
+          #   - Jekyll site with hardcoded http://v1.kfring.com URLs in _config.yml
+          #   - Deploy to: v1.kfring.com bucket (from _site/ directory)
+          #   - Redirect bucket: v1.fring.io → redirects to v1.kfring.com
+          #
           if [[ "$VERSION" == "v1" ]]; then
             SOURCE_DIR="sites/v1/_site"
             BUCKET="${VERSION}.kfring.com"
@@ -64,7 +74,9 @@ jobs:
             BUCKET="${VERSION}.fring.io"
           fi
 
-          # Deploy to versioned bucket
+          # Deploy to versioned bucket (content hosting)
+          # Note: Redirect buckets (v*.kfring.com, v1.fring.io) are empty and
+          # managed manually via S3 website redirect configuration
           aws s3 sync ${SOURCE_DIR}/ s3://${BUCKET}/ \
             --delete \
             --cache-control "public, max-age=3600"
@@ -130,8 +142,8 @@ jobs:
           if [[ "$VERSION" == "${{ env.LATEST_VERSION }}" ]]; then
             echo ""
             echo "   Also deployed to apex domains (latest version):"
-            echo "   - https://fring.io"
-            echo "   - https://www.fring.io"
-            echo "   - https://kfring.com"
-            echo "   - https://www.kfring.com"
+            echo "   - https://fring.io (primary)"
+            echo "   - https://www.fring.io (primary)"
+            echo "   - https://kfring.com (redirects to fring.io)"
+            echo "   - https://www.kfring.com (redirects to fring.io)"
           fi

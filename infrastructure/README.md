@@ -2,275 +2,223 @@
 
 This directory contains scripts and documentation for managing the fring.io infrastructure.
 
-## Architecture Overview
+> **📚 For comprehensive infrastructure documentation, see [INFRASTRUCTURE.md](INFRASTRUCTURE.md)**
+
+## Quick Reference
+
+### Current Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│                         GitHub                              │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐                  │
-│  │   main   │  │v3.fring.io│ │v4.fring.io│                  │
-│  └────┬─────┘  └────┬─────┘  └────┬─────┘                  │
-│       │             │              │                         │
-│       └─────────────┴──────────────┘                        │
-│                     │                                        │
-│              GitHub Actions                                 │
-└─────────────────────┴───────────────────────────────────────┘
+│                    GitHub (main branch)                      │
+│  sites/                                                      │
+│    ├── v1/  (Jekyll, legacy)                                │
+│    ├── v2/  (Minimal HTML)                                  │
+│    └── v3/  (Current live) ← LATEST_VERSION                 │
+│                                                              │
+│  Push to main → GitHub Actions                              │
+└─────────────────────┬───────────────────────────────────────┘
                       │
                       ▼
 ┌─────────────────────────────────────────────────────────────┐
 │                      AWS                                     │
 │                                                              │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │
-│  │  S3 Bucket   │  │  S3 Bucket   │  │  S3 Bucket   │      │
-│  │  fring.io    │  │v3.fring.io   │  │v4.fring.io   │      │
-│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘      │
-│         │                 │                  │               │
-│         ▼                 ▼                  ▼               │
-│  ┌─────────────────────────────────────────────────────┐    │
-│  │              CloudFront CDN                         │    │
-│  └─────────────────────┬───────────────────────────────┘    │
-│                        │                                     │
-│                        ▼                                     │
-│  ┌─────────────────────────────────────────────────────┐    │
-│  │              Route53 DNS                            │    │
-│  │  fring.io      ──>  CloudFront (main/latest)       │    │
-│  │  www.fring.io  ──>  CloudFront (main/latest)       │    │
-│  │  v3.fring.io   ──>  S3 Website Endpoint            │    │
-│  │  v4.fring.io   ──>  S3 Website Endpoint            │    │
-│  └─────────────────────────────────────────────────────┘    │
-└──────────────────────────────────────────────────────────────┘
+│  Content Buckets (host actual files):                       │
+│    ├── fring.io         → Latest version (via CloudFront)   │
+│    ├── v1.kfring.com    → v1 site                           │
+│    ├── v2.fring.io      → v2 site                           │
+│    └── v3.fring.io      → v3 site                           │
+│                                                              │
+│  Redirect Buckets (empty, HTTP 301):                        │
+│    ├── kfring.com       → https://fring.io                  │
+│    ├── www.kfring.com   → https://fring.io                  │
+│    ├── v1.fring.io      → http://v1.kfring.com              │
+│    ├── v2.kfring.com    → http://v2.fring.io                │
+│    └── v3.kfring.com    → http://v3.fring.io                │
+│                                                              │
+│  CloudFront CDN (E2D0LEBFJYK5DC):                           │
+│    ├── fring.io         (origin: fring.io S3 website)       │
+│    └── www.fring.io     (origin: fring.io S3 website)       │
+│                                                              │
+│  Route53 DNS:                                               │
+│    ├── fring.io zone    (Z02559231DI1MPZVK109K)             │
+│    └── kfring.com zone  (Z3UYN92ABCCNG4)                    │
+└─────────────────────────────────────────────────────────────┘
 ```
 
 ## Deployment Workflow
 
-### 1. Main Site (fring.io, www.fring.io)
-- **Branch**: `main`
-- **S3 Bucket**: `fring.io`
-- **URLs**: `https://fring.io`, `https://www.fring.io`
-- **Deployment**: Automatic on push to `main`
+### How it Works
 
-### 2. Version Sites (v3.fring.io, v4.fring.io, etc.)
-- **Branch**: `v<N>.fring.io` (e.g., `v4.fring.io`)
-- **S3 Bucket**: `v<N>.fring.io`
-- **URL**: `https://v<N>.fring.io`
-- **Deployment**: Automatic on push to version branch
+1. **Push to main branch** with changes in `sites/vN/`
+2. **GitHub Actions** detects changed version
+3. **Deploys to versioned bucket**: `s3://vN.fring.io/`
+4. **If version == LATEST_VERSION**: Also deploys to `s3://fring.io/` and invalidates CloudFront
+
+### Current Live Version
+
+**v3** (defined in `VERSION` file and `LATEST_VERSION` in `.github/workflows/deploy.yml`)
+
+## Common Tasks
+
+### Working on Current Version (v3)
+
+```bash
+# Edit files
+cd sites/v3/
+vim index.html
+
+# Commit and deploy
+git add sites/v3/
+git commit -m "Update v3 design"
+git push origin main
+# Deploys to both v3.fring.io and fring.io (apex)
+```
+
+### Creating a New Version (v4)
+
+```bash
+# 1. Provision AWS infrastructure
+./infrastructure/provision-site.sh v4
+
+# 2. Create v4 directory
+mkdir sites/v4
+cp sites/v3/* sites/v4/
+
+# 3. Make changes
+cd sites/v4/
+# Edit files...
+
+# 4. Commit and push
+git add sites/v4/
+git commit -m "Add v4 site"
+git push origin main
+# Deploys to v4.fring.io only (not apex yet)
+```
+
+### Launching v4 as Live Version
+
+See [LAUNCH_CHECKLIST.md](../LAUNCH_CHECKLIST.md) for complete procedure:
+
+1. Update `VERSION` file → `echo "v4" > VERSION`
+2. Update `LATEST_VERSION` in `.github/workflows/deploy.yml`
+3. Update `README.md` "Current Live Version" section
+4. Commit and push
 
 ## Prerequisites
 
 ### AWS Setup
 1. AWS Account with appropriate permissions
-2. Route53 hosted zone for `fring.io`
-3. IAM user with deployment permissions for S3, CloudFront, and Route53
+2. Route53 hosted zones: `fring.io` and `kfring.com`
+3. IAM user: `github-actions-deploy` with deployment permissions
 
 ### GitHub Secrets Required
-Add these secrets to your GitHub repository:
 
 ```
 AWS_ACCESS_KEY_ID             - IAM user access key
 AWS_SECRET_ACCESS_KEY         - IAM user secret key
-AWS_REGION                    - Default: us-east-1
-CLOUDFRONT_DISTRIBUTION_MAIN  - CloudFront distribution ID for main site
-CLOUDFRONT_DISTRIBUTION_VERSIONS - CloudFront distribution ID for versioned sites (optional)
-CLOUDFRONT_DOMAIN_MAIN        - CloudFront domain name (e.g., d1234abcd.cloudfront.net)
-ROUTE53_HOSTED_ZONE_ID        - Route53 hosted zone ID for fring.io
+AWS_REGION                    - us-east-1
+CLOUDFRONT_DISTRIBUTION_MAIN  - E2D0LEBFJYK5DC
 ```
 
-## Provisioning a New Version Site
+## Provisioning a New Version
 
-### Quick Start
+The `provision-site.sh` script automates infrastructure setup:
+
 ```bash
-# Provision v4.fring.io
 cd infrastructure
-chmod +x provision-site.sh
 ./provision-site.sh v4
-
-# With CloudFront (recommended for production)
-./provision-site.sh v4 --create-cloudfront
 ```
 
-### Manual Steps
-1. **Provision infrastructure**:
-   ```bash
-   ./infrastructure/provision-site.sh v4
-   ```
+This creates:
+- **Primary bucket**: `v4.fring.io` (content hosting)
+- **Redirect bucket**: `v4.kfring.com` (redirects to v4.fring.io)
+- **DNS records**: Both CNAME records in Route53
+- **Bucket policies**: Public read access
+- **Website hosting**: Enabled with index.html
 
-2. **Create and checkout new branch**:
-   ```bash
-   git checkout -b v4.fring.io
-   ```
+## Special Cases
 
-3. **Add your site files**:
-   ```bash
-   # Copy your HTML, CSS, etc.
-   cp /path/to/your/site/* .
-   git add .
-   git commit -m "Add v4 site"
-   ```
+### v1 (Legacy Jekyll Site)
 
-4. **Push to GitHub**:
-   ```bash
-   git push -u origin v4.fring.io
-   ```
+v1 is special because it has hardcoded `http://v1.kfring.com` URLs in Jekyll `_config.yml`:
 
-5. **Deploy automatically via GitHub Actions**:
-   - GitHub Actions will detect the push
-   - Files will sync to S3
-   - CloudFront cache will invalidate (if configured)
-   - DNS will update automatically
+- **Source**: `sites/v1/_site/` (Jekyll build output)
+- **Bucket**: `v1.kfring.com` (not v1.fring.io)
+- **Redirect**: `v1.fring.io` → `v1.kfring.com`
 
-## Promoting a Version to Main
+Deployment workflow handles this automatically.
 
-When you want to make a version site (e.g., v4) the main site:
+## Manual Operations
 
+### Deploy Specific Version
 ```bash
-# 1. Checkout main branch
-git checkout main
+# Deploy v3 to v3.fring.io
+aws s3 sync sites/v3/ s3://v3.fring.io/ --delete
 
-# 2. Merge version branch
-git merge v4.fring.io
+# Deploy to apex (if you're making it live)
+aws s3 sync sites/v3/ s3://fring.io/ --delete
 
-# 3. Push to main
-git push origin main
-```
-
-GitHub Actions will automatically:
-- Deploy to `fring.io` S3 bucket
-- Update Route53 records for `fring.io` and `www.fring.io`
-- Invalidate CloudFront cache
-
-## Manual Deployment
-
-If you need to deploy manually without GitHub Actions:
-
-```bash
-# Deploy to main site
-aws s3 sync . s3://fring.io/ \
-  --exclude ".git/*" \
-  --exclude ".github/*" \
-  --exclude "*.md" \
-  --delete
-
-# Deploy to version site
-aws s3 sync . s3://v4.fring.io/ \
-  --exclude ".git/*" \
-  --exclude ".github/*" \
-  --exclude "*.md" \
-  --delete
-
-# Invalidate CloudFront cache
+# Invalidate CloudFront
 aws cloudfront create-invalidation \
-  --distribution-id YOUR_DISTRIBUTION_ID \
+  --distribution-id E2D0LEBFJYK5DC \
   --paths "/*"
 ```
 
-## Updating DNS Records
-
-### Using AWS CLI
+### Check Bucket Contents
 ```bash
-# Update main site DNS
-aws route53 change-resource-record-sets \
-  --hosted-zone-id YOUR_ZONE_ID \
-  --change-batch file://infrastructure/dns-main.json
-
-# Update version site DNS
-aws route53 change-resource-record-sets \
-  --hosted-zone-id YOUR_ZONE_ID \
-  --change-batch file://infrastructure/dns-version.json
+aws s3 ls s3://v3.fring.io/ --recursive
 ```
 
-### Using AWS Console
-1. Go to Route53 > Hosted zones > fring.io
-2. Create/Edit record:
-   - **Name**: `fring.io` or `v4.fring.io`
-   - **Type**: A (Alias)
-   - **Alias to**: CloudFront distribution or S3 website endpoint
-   - **Routing policy**: Simple
-
-## Cleanup/Decommissioning
-
-To remove an old version site:
-
+### Test Redirects
 ```bash
-# 1. Delete S3 bucket contents
-aws s3 rm s3://v3.fring.io/ --recursive
-
-# 2. Delete S3 bucket
-aws s3 rb s3://v3.fring.io
-
-# 3. Delete Route53 record
-aws route53 change-resource-record-sets \
-  --hosted-zone-id YOUR_ZONE_ID \
-  --change-batch '{
-    "Changes": [{
-      "Action": "DELETE",
-      "ResourceRecordSet": {
-        "Name": "v3.fring.io",
-        "Type": "CNAME",
-        "TTL": 300,
-        "ResourceRecords": [{"Value": "..."}]
-      }
-    }]
-  }'
-
-# 4. Delete CloudFront distribution (if exists)
-# Note: Must disable first, then delete after ~15 minutes
-aws cloudfront update-distribution --id DIST_ID --if-match ETAG \
-  --distribution-config '{"Enabled": false, ...}'
+curl -I http://v3.kfring.com  # Should redirect to v3.fring.io
+curl -I http://kfring.com     # Should redirect to fring.io
 ```
 
 ## Troubleshooting
 
-### Deployment Fails
+### Changes Not Showing
 1. Check GitHub Actions logs
-2. Verify AWS credentials in GitHub Secrets
-3. Check IAM permissions
-4. Verify bucket exists and is accessible
+2. Clear CloudFront cache (for apex domains)
+3. Hard refresh browser (Cmd+Shift+R)
+4. Wait for DNS propagation (5-15 min)
 
-### DNS Not Updating
-1. Check Route53 hosted zone exists
-2. Verify `ROUTE53_HOSTED_ZONE_ID` secret is correct
-3. DNS propagation can take up to 48 hours (usually <1 hour)
-
-### CloudFront Cache Issues
-1. Manually invalidate: `aws cloudfront create-invalidation --distribution-id ID --paths "/*"`
-2. Check cache headers in S3 objects
-3. Wait for invalidation to complete (~5 minutes)
-
-### 403 Forbidden Errors
+### 403 Forbidden
 1. Check S3 bucket policy allows public read
-2. Verify bucket website hosting is enabled
-3. Check CloudFront origin settings
+2. Verify CloudFront origin uses S3 website endpoint (not S3 API)
+3. Invalidate CloudFront cache
 
-## Cost Optimization
+### Version Confusion
+- Check `VERSION` file for current live version
+- Check `LATEST_VERSION` in `.github/workflows/deploy.yml`
+- See [INFRASTRUCTURE.md](INFRASTRUCTURE.md) for complete domain mapping
 
-- **S3**: ~$0.023/GB/month (first 50TB)
-- **CloudFront**: ~$0.085/GB for first 10TB
-- **Route53**: $0.50/hosted zone/month + $0.40/million queries
-- **Data transfer**: Free from S3 to CloudFront
+## Cost Estimate
 
-**Estimated monthly cost for personal site**: $0.50 - $2.00
+- **S3 Storage**: ~$0.10/month (minimal files)
+- **CloudFront**: Free tier covers most traffic
+- **Route53**: $1.00/month (2 hosted zones)
 
-### Tips to reduce costs:
-1. Use CloudFront (free tier: 1TB data transfer/month)
-2. Enable gzip/brotli compression
-3. Set appropriate cache headers
-4. Delete old version sites
-5. Use S3 Intelligent-Tiering for infrequent access
+**Total**: ~$2-3/month
 
-## Security Checklist
+## Documentation
 
-- [ ] IAM user has least-privilege permissions
-- [ ] AWS credentials stored in GitHub Secrets (not code)
-- [ ] S3 buckets block public write access
-- [ ] CloudFront uses HTTPS
-- [ ] Route53 DNS locked (registrar lock)
-- [ ] Billing alerts enabled
-- [ ] CloudTrail logging enabled
-- [ ] S3 versioning enabled (optional, for rollback)
+- **[INFRASTRUCTURE.md](INFRASTRUCTURE.md)** - Complete infrastructure documentation
+- **[LAUNCH_CHECKLIST.md](../LAUNCH_CHECKLIST.md)** - Version launch procedure
+- **[README.md](../README.md)** - Project overview
+- **[V3_FUTURE_ENHANCEMENTS.md](../V3_FUTURE_ENHANCEMENTS.md)** - Future improvements
+
+## Security
+
+- ✅ IAM users with least-privilege permissions
+- ✅ AWS credentials in GitHub Secrets only
+- ✅ S3 buckets block public write access
+- ✅ CloudFront enforces HTTPS
+- ✅ Git history cleaned of credentials (BFG)
 
 ## Additional Resources
 
 - [AWS S3 Static Website Hosting](https://docs.aws.amazon.com/AmazonS3/latest/userguide/WebsiteHosting.html)
 - [CloudFront Documentation](https://docs.aws.amazon.com/cloudfront/)
 - [Route53 Documentation](https://docs.aws.amazon.com/route53/)
-- [GitHub Actions AWS Guide](https://github.com/aws-actions)

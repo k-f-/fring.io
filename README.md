@@ -31,6 +31,74 @@ infrastructure/
   └── deploy.yml
 ```
 
+## Content Management
+
+**Version-agnostic content** lives in `content/` and is managed via markdown-first workflow:
+
+```
+content/
+  ├── books.json      # Canonical data (generated from .md)
+  ├── books.md        # Human-editable source
+  ├── career.json     # Canonical data (generated from .md)
+  ├── career.md       # Human-editable source
+  ├── now.json        # Canonical data (generated from .md)
+  ├── now.md          # Human-editable source
+  ├── albums.json     # Canonical data (generated from .md)
+  └── albums.md       # Human-editable source
+
+infrastructure/
+  ├── json_to_markdown.py   # JSON → MD export
+  ├── parse_albums.py       # MD → JSON parser (albums)
+  └── migrate_albums.py     # One-time migration script
+```
+
+### Workflow: Editing Content
+
+**Edit markdown files directly** (preferred human workflow):
+```bash
+# Edit content in markdown
+vim content/albums.md
+
+# Parse markdown back to JSON
+python3 infrastructure/parse_albums.py
+
+# Commit both files
+git add content/albums.md content/albums.json
+git commit -m "Add new album"
+```
+
+**Export JSON to markdown** (for initial setup or bulk changes):
+```bash
+# Export all JSON files to markdown
+python3 infrastructure/json_to_markdown.py --file all
+
+# Export single file
+python3 infrastructure/json_to_markdown.py --file albums
+
+# Preview without writing
+python3 infrastructure/json_to_markdown.py --file albums --preview
+```
+
+**Round-trip conversion** (lossless):
+```bash
+# JSON → MD → JSON preserves all data
+python3 infrastructure/json_to_markdown.py --file albums
+python3 infrastructure/parse_albums.py
+# Result: Identical JSON (except timestamps)
+```
+
+### Markdown Format
+
+Albums use `[YYYY-MM-DD]` prefix for exact date preservation:
+```markdown
+### [2019-10-21] The Jackson 5 - Gold
+**Released:** 2005
+**Listen:** [Spotify](https://open.spotify.com/album/...)
+**Duration:** 36 tracks, 2 hr 13 min.
+
+hits. that Motown sound.
+```
+
 ## Development
 
 **To work on v3 (current):**

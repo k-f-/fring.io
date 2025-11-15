@@ -294,19 +294,21 @@ Format: `VIZ-{DATA}-{STYLE}-{NUMBER}`
 ### VIZ-LOCATION-ROAD-001: Chattanooga Highway Intersection
 **Location**: sites/v4/index.html:492
 **Function**: `generate_location_roadways()`
-**Description**: Phylogenetic tree-style diagram showing major highway convergence in Chattanooga
+**Description**: Compass rose layout showing geographically accurate highway convergence
 **Features**:
 - Three interstate highways (I-75, I-24, I-59)
-- Directional flow (N/S/W/SW)
+- Accurate compass bearings (NW, NE, SSE, WSW)
 - Distance annotations to major cities
-- The "75/24 Split" central hub visualization
+- Directional arrows and flow indicators
+- Geographic coordinates
 
 **Key Elements**:
-- Double-line characters (║ ═ ╬) for major highways
-- Diagonal characters (╱) for branches
+- Compass rose (N, S, E, W cardinal directions)
+- Diagonal characters (╲ ╱) for angled roads
+- Directional arrows (↖ ↗ ↘ ↙)
 - City labels with distances
-- Hub status annotation
-- Location marker 📍
+- Hub status and coordinates
+- Accurate geographic relationships (Nashville NW not W, Atlanta SSE not S)
 
 ---
 

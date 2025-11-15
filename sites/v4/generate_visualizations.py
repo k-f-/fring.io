@@ -22,140 +22,116 @@ def generate_books_bar_chart():
     """Generate horizontal bar chart of books read per year"""
     data = load_books_data()
 
-    # Count books by year
+    # Count books by year and by label
     books_by_year = {}
+    prior_books = 0
+
     for book in data['books']:
         year = book.get('year')
+        year_label = book.get('yearLabel')
+
         if isinstance(year, int):
             books_by_year[year] = books_by_year.get(year, 0) + 1
+        elif year_label:  # Books with yearLabel (e.g., "<2015")
+            prior_books += 1
 
-    # Sort by year
-    years = sorted(books_by_year.items())
-    max_books = max(books_by_year.values())
+    # Sort by year DESCENDING (newest first)
+    years = sorted(books_by_year.items(), reverse=True)
+    max_recent_books = max(books_by_year.values()) if books_by_year else 1
+    max_books_for_chart = max(max_recent_books, prior_books)
+
+    recent_total = sum(books_by_year.values())
+    grand_total = recent_total + prior_books
+    avg = recent_total / len(books_by_year) if books_by_year else 0
+
+    # Create horizontal stats line with sparkline (only for recent years)
+    sparkline_chars = " ▁▂▃▄▅▆▇█"
+    sparkline = ""
+    for year, count in sorted(books_by_year.items()):  # ascending for sparkline
+        index = int((count / max_recent_books) * (len(sparkline_chars) - 1))
+        sparkline += sparkline_chars[index]
 
     # Generate chart
     lines = []
     lines.append("READING ACTIVITY")
-    lines.append("Books Read Per Year")
+    lines.append(f"Total: {grand_total} books │ 2015-2020: {recent_total} │ Avg: {avg:.1f}/year │ Peak: 2017 (21) │ Trend: {sparkline}")
     lines.append("")
 
     for year, count in years:
-        # Scale bar to max 40 characters
-        bar_length = int((count / max_books) * 40)
+        # Scale bar to max 40 characters - use continuous string
+        bar_length = int((count / max_books_for_chart) * 40)
         bar = "█" * bar_length
         lines.append(f"{year} │{bar} {count}")
 
+    # Add prior books
+    if prior_books > 0:
+        bar_length = int((prior_books / max_books_for_chart) * 40)
+        bar = "░" * bar_length  # Use lighter shade for prior
+        lines.append(f"<2015│{bar} {prior_books}")
+
     lines.append("     └" + "─" * 45)
-    lines.append(f"      Total: {sum(books_by_year.values())} books (2015-2020)")
 
     return "\n".join(lines)
 
 def generate_career_timeline():
-    """Generate career timeline visualization"""
+    """Generate vertical career timeline - progression moves upward"""
     data = load_career_data()
 
     lines = []
-    lines.append("CAREER TIMELINE")
+    lines.append("CAREER TRAJECTORY")
+    lines.append("(Progression moves upward)")
     lines.append("")
 
-    # Create timeline from 2006 to present
-    current_year = 2025
-    timeline_start = 2006
-    timeline_width = 60
+    # Build from bottom to top (oldest to newest)
+    # Reverse the experience list so oldest is first
+    experiences = list(reversed(data['experience']))
 
-    # Header with year markers
-    years_header = "       "
-    for year in range(timeline_start, current_year + 1, 5):
-        years_header += f"{year}      "
-    lines.append(years_header[:timeline_width])
-    lines.append("       " + "┬" + "─" * 4 + "┬" + "─" * 4 + "┬" + "─" * 4 + "┬" + "─" * 4 + "┬")
-
-    # Plot each role
-    for exp in data['experience']:
+    for i, exp in enumerate(experiences):
         title = exp['title']
-        company = exp.get('company', '')
-        start = int(exp['startDate'].split('-')[0])
-        end = int(exp['endDate'].split('-')[0]) if exp.get('endDate') else current_year
+        company = exp.get('company', 'Independent')
+        start = exp['startDate'][:4]
+        end = exp['endDate'][:4] if exp.get('endDate') else 'Present'
 
-        # Calculate position
-        start_pos = int(((start - timeline_start) / (current_year - timeline_start)) * 40)
-        end_pos = int(((end - timeline_start) / (current_year - timeline_start)) * 40)
-        duration = end_pos - start_pos
+        # Vertical line and label
+        if exp.get('current'):
+            lines.append(f"        ▲  ◄── {title}")
+            lines.append(f"        │      @ {company} ({start}-{end})")
+        else:
+            lines.append(f"        ├──◄── {title}")
+            lines.append(f"        │      @ {company} ({start}-{end})")
 
-        # Create bar
-        bar = " " * start_pos + "├" + "─" * (duration - 1) + ("┤" if not exp.get('current') else "►")
-        role_label = f"{title[:30]} @ {company[:20]}"
-        lines.append(bar[:45].ljust(45) + " │ " + role_label)
+        # Add vertical spacing between roles
+        if i < len(experiences) - 1:
+            lines.append(f"        │")
 
-    lines.append("")
-    lines.append(f"Program Director @ Molina Healthcare (2023-Present)")
-    lines.append(f"Senior Data Analyst/Engineer (2020-2023)")
-    lines.append(f"14+ years: Network Eng, SysAdmin, DevOps (2006-2020)")
+    lines.append(f"        │")
+    lines.append(f"        └────── Career Start (2006)")
 
     return "\n".join(lines)
 
 def generate_site_tree():
-    """Generate site structure tree like phylogenetic example"""
+    """Generate site structure tree with clickable links"""
     lines = []
     lines.append("SITE STRUCTURE")
     lines.append("")
-    lines.append("                  ┌─── Life (Location, Friends)")
-    lines.append("         ┌─ Now ─┼─── Work (Senior Data Engineer)")
-    lines.append("         │        └─── Future (Goals, Aspirations)")
-    lines.append("         │")
-    lines.append("fring.io─┼─ Elsewhere ─── Links (GitHub, LinkedIn, Goodreads)")
-    lines.append("         │")
-    lines.append("         │        ┌─── 2020 (9 books)")
-    lines.append("         │        ├─── 2019 (6 books)")
-    lines.append("         ├─ Books─┼─── 2018 (12 books)")
-    lines.append("         │        ├─── 2017 (21 books)")
-    lines.append("         │        ├─── 2016 (15 books)")
-    lines.append("         │        ├─── 2015 (3 books)")
-    lines.append("         │        └─── Prior (77 books)")
-    lines.append("         │")
-    lines.append("         └─ Epilogue ─── Previous versions (v1, v2, v3)")
+    lines.append('                     ┌─── Life (Location, Friends)')
+    lines.append('         ┌─ <a href="#now">Now</a> ───┼─── Work (Senior Data Engineer)')
+    lines.append('         │           └─── Future (Goals, Aspirations)')
+    lines.append('         │')
+    lines.append('fring.io─┼─ <a href="#elsewhere">Elsewhere</a> ─── Links (GitHub, LinkedIn, Goodreads)')
+    lines.append('         │')
+    lines.append('         │           ┌─── 2020 (9 books)')
+    lines.append('         │           ├─── 2019 (6 books)')
+    lines.append('         ├─ <a href="#bookshelf">Books</a> ─┼─── 2018 (12 books)')
+    lines.append('         │           ├─── 2017 (21 books)')
+    lines.append('         │           ├─── 2016 (15 books)')
+    lines.append('         │           ├─── 2015 (3 books)')
+    lines.append('         │           └─── Prior (77 books)')
+    lines.append('         │')
+    lines.append('         └─ <a href="#epilogue">Epilogue</a> ─── Previous versions (v1, v2, v3)')
     lines.append("")
     lines.append("     PERSONAL WEBSITE & DIGITAL GARDEN")
     lines.append("              TEXT ONLY")
-
-    return "\n".join(lines)
-
-def generate_reading_stats():
-    """Generate reading statistics with sparkline"""
-    data = load_books_data()
-
-    # Count by year
-    books_by_year = {}
-    for book in data['books']:
-        year = book.get('year')
-        if isinstance(year, int):
-            books_by_year[year] = books_by_year.get(year, 0) + 1
-
-    years = sorted(books_by_year.items())
-    total = sum(books_by_year.values())
-    avg = total / len(books_by_year)
-
-    # Create sparkline
-    max_val = max(books_by_year.values())
-    sparkline_chars = " ▁▂▃▄▅▆▇█"
-    sparkline = ""
-    for year, count in years:
-        index = int((count / max_val) * (len(sparkline_chars) - 1))
-        sparkline += sparkline_chars[index]
-
-    lines = []
-    lines.append("READING STATISTICS")
-    lines.append("")
-    lines.append(f"Total Books (2015-2020): {total}")
-    lines.append(f"Average per Year:        {avg:.1f}")
-    lines.append(f"Peak Year:               2017 (21 books)")
-    lines.append(f"Trend (2015-2020):       {sparkline}")
-    lines.append("")
-    lines.append("Genre Distribution:")
-    lines.append("├─ Fiction:        ~40%")
-    lines.append("├─ Non-fiction:    ~35%")
-    lines.append("├─ Technical:      ~15%")
-    lines.append("└─ Other:          ~10%")
 
     return "\n".join(lines)
 
@@ -170,6 +146,3 @@ if __name__ == "__main__":
     print("\n" + "=" * 70 + "\n")
 
     print(generate_site_tree())
-    print("\n" + "=" * 70 + "\n")
-
-    print(generate_reading_stats())

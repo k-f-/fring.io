@@ -4,11 +4,11 @@ Complete reference for all ASCII visualizations with unique identifiers.
 
 ## Overview
 
-Total Visualizations: **15**
+Total Visualizations: **16**
 - Books Data: 5 variations
 - Career Data: 4 variations
 - Site Structure: 3 variations
-- New Data: 3 visualizations
+- New Data: 4 visualizations
 
 ## Naming Convention
 
@@ -256,7 +256,7 @@ Format: `VIZ-{DATA}-{STYLE}-{NUMBER}`
 ---
 
 ### VIZ-DECADE-DIST-001: Decade Distribution
-**Location**: sites/v4/index.html:400
+**Location**: sites/v4/index.html:462
 **Function**: `generate_decade_distribution()`
 **Description**: Reading distribution by decade/era
 **Features**:
@@ -271,6 +271,24 @@ Format: `VIZ-{DATA}-{STYLE}-{NUMBER}`
 
 ---
 
+### VIZ-READING-CAL-001: Calendar Heatmap
+**Location**: sites/v4/index.html:479
+**Function**: `generate_reading_calendar()`
+**Description**: GitHub-style calendar heatmap showing reading activity over time
+**Features**:
+- Week-by-week activity grid
+- Month labels across top
+- Intensity-based shading
+- Shows peak reading year (2017)
+
+**Key Elements**:
+- Activity dots (·)
+- Intensity blocks (░ ▒ ▓ █)
+- 52-week horizontal grid
+- Day-of-week labels (Mon/Wed/Fri/Sun)
+
+---
+
 ## Quick Reference
 
 ### By Data Source
@@ -281,7 +299,7 @@ Format: `VIZ-{DATA}-{STYLE}-{NUMBER}`
 | Career | 4 | VIZ-CAREER-VERT-001 through VIZ-CAREER-TREE-004 |
 | Site | 3 | VIZ-SITE-TREE-001 through VIZ-SITE-BOXES-003 |
 | Tech | 1 | VIZ-TECH-STACK-001 |
-| Reading | 1 | VIZ-READING-VEL-001 |
+| Reading | 2 | VIZ-READING-VEL-001, VIZ-READING-CAL-001 |
 | Decade | 1 | VIZ-DECADE-DIST-001 |
 
 ### By Visualization Style
@@ -339,13 +357,21 @@ Each function follows naming convention: `generate_{data}_{style}()`
 
 - [ ] Interactive toggling between permutations
 - [ ] Dark mode color variants
-- [ ] Additional chart types (pie, radar, heatmap)
+- [ ] Additional chart types (pie, radar)
+- [x] Calendar heatmap (GitHub-style)
 - [ ] Animation sequences
 - [ ] Export to PNG/SVG
 - [ ] Dynamic data updates
 - [ ] Responsive sizing variants
+- [ ] Horizontal grid layouts for side-by-side comparisons
 
 ## Version History
+
+- **v1.1** (2025-11-14): Week 1 Quick Wins
+  - Added calendar heatmap visualization (VIZ-READING-CAL-001)
+  - Integrated visualization styling with site aesthetic
+  - CSS Grid horizontal layouts for side-by-side display
+  - 16 total visualizations
 
 - **v1.0** (2025-11-14): Initial catalog with 15 visualizations
   - 3 original visualizations

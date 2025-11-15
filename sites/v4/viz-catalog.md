@@ -4,11 +4,13 @@ Complete reference for all ASCII visualizations with unique identifiers.
 
 ## Overview
 
-Total Visualizations: **16**
+Total Visualizations: **17**
 - Books Data: 5 variations
 - Career Data: 4 variations
 - Site Structure: 3 variations
-- New Data: 4 visualizations
+- Reading Data: 2 visualizations
+- Location Data: 1 visualization
+- Tech/Decade Data: 2 visualizations
 
 ## Naming Convention
 
@@ -289,6 +291,25 @@ Format: `VIZ-{DATA}-{STYLE}-{NUMBER}`
 
 ---
 
+### VIZ-LOCATION-ROAD-001: Chattanooga Highway Intersection
+**Location**: sites/v4/index.html:492
+**Function**: `generate_location_roadways()`
+**Description**: Phylogenetic tree-style diagram showing major highway convergence in Chattanooga
+**Features**:
+- Three interstate highways (I-75, I-24, I-59)
+- Directional flow (N/S/W/SW)
+- Distance annotations to major cities
+- The "75/24 Split" central hub visualization
+
+**Key Elements**:
+- Double-line characters (║ ═ ╬) for major highways
+- Diagonal characters (╱) for branches
+- City labels with distances
+- Hub status annotation
+- Location marker 📍
+
+---
+
 ## Quick Reference
 
 ### By Data Source
@@ -301,6 +322,7 @@ Format: `VIZ-{DATA}-{STYLE}-{NUMBER}`
 | Tech | 1 | VIZ-TECH-STACK-001 |
 | Reading | 2 | VIZ-READING-VEL-001, VIZ-READING-CAL-001 |
 | Decade | 1 | VIZ-DECADE-DIST-001 |
+| Location | 1 | VIZ-LOCATION-ROAD-001 |
 
 ### By Visualization Style
 
@@ -366,6 +388,15 @@ Each function follows naming convention: `generate_{data}_{style}()`
 - [ ] Horizontal grid layouts for side-by-side comparisons
 
 ## Version History
+
+- **v1.2** (2025-11-14): Visualization Fixes & Location Map
+  - **Fixed**: VIZ-BOOKS-LINE-003 spacing (3-char spacing per data point)
+  - **Fixed**: VIZ-CAREER-HORIZ-002 order (newest roles first)
+  - **Enhanced**: VIZ-SITE-INDENT-002 hyperlinks (12 links total)
+    - Added Chattanooga Wikipedia link
+    - Added year section links (#b2020, #b2019, etc.)
+  - **New**: VIZ-LOCATION-ROAD-001 Chattanooga highway intersection
+  - 17 total visualizations
 
 - **v1.1** (2025-11-14): Week 1 Quick Wins
   - Added calendar heatmap visualization (VIZ-READING-CAL-001)

@@ -202,43 +202,56 @@ def generate_books_line_graph():
     lines.append("READING TREND - Line Graph [VIZ-BOOKS-LINE-003]")
     lines.append("")
 
+    # Each data point occupies 3 characters for proper spacing
+    spacing = 3
+
     # Create line graph (height = 15 rows)
     for height in range(15, -1, -1):
         row = f"{height:2d} │"
+
         for i, (year, count) in enumerate(years):
             plot_height = int((count / max_books) * 15)
 
             if plot_height == height:
-                # Check if we should draw a line to next point
+                # At a data point
                 if i < len(years) - 1:
                     next_height = int((years[i+1][1] / max_books) * 15)
                     if next_height > plot_height:
-                        row += "╱"
+                        row += "╱  "
                     elif next_height < plot_height:
-                        row += "╲"
+                        row += "╲  "
                     else:
-                        row += "─"
+                        row += "─  "
                 else:
-                    row += "●"
+                    row += "●  "
             elif i > 0:
+                # Between points - draw connector
                 prev_height = int((years[i-1][1] / max_books) * 15)
-                if plot_height > height > prev_height or plot_height < height < prev_height:
-                    if prev_height < plot_height:
-                        row += "╱"
+                curr_height = plot_height
+
+                # Check if we're on the line between previous and current point
+                if (prev_height < curr_height and prev_height < height < curr_height) or \
+                   (prev_height > curr_height and curr_height < height < prev_height):
+                    if prev_height < curr_height:
+                        row += "╱  "
                     else:
-                        row += "╲"
+                        row += "╲  "
                 else:
-                    row += " "
+                    row += "   "
             else:
-                row += " "
-        lines.append(row)
+                row += "   "
+
+        lines.append(row.rstrip())
 
     # X-axis
-    lines.append("   └" + "─" * len(years))
+    axis_width = len(years) * spacing
+    lines.append("   └" + "─" * axis_width)
+
+    # Year labels
     axis_line = "    "
     for year, count in years:
-        axis_line += str(year)[-2:]
-    lines.append(axis_line[:40])
+        axis_line += f"{str(year)[-2:]} "
+    lines.append(axis_line.rstrip())
 
     return "\n".join(lines)
 
@@ -359,8 +372,8 @@ def generate_career_horizontal():
     lines.append(years_header[:timeline_width])
     lines.append("       " + "┬────┬────┬────┬")
 
-    # Plot each role
-    for exp in reversed(data['experience']):
+    # Plot each role (newest first)
+    for exp in data['experience']:
         title = exp['title'][:25]
         company = exp.get('company', 'Independent')[:15]
         start = int(exp['startDate'].split('-')[0])
@@ -454,19 +467,19 @@ def generate_site_indent():
     lines.append("")
     lines.append("□ fring.io")
     lines.append("  ├─ <a href=\"#now\">Now</a>")
-    lines.append("  │  ├─ Life (Chattanooga, TN)")
+    lines.append("  │  ├─ Life (<a href=\"https://en.wikipedia.org/wiki/Chattanooga,_Tennessee\">Chattanooga, TN</a>)")
     lines.append("  │  ├─ Work (Program Director)")
     lines.append("  │  └─ Future (Career goals)")
     lines.append("  ├─ <a href=\"#visualizations\">Data</a> (Visualizations)")
     lines.append("  ├─ <a href=\"#elsewhere\">Elsewhere</a> (GitHub, LinkedIn, Goodreads)")
     lines.append("  ├─ <a href=\"#bookshelf\">Bookshelf</a>")
-    lines.append("  │  ├─ 2020 (9 books)")
-    lines.append("  │  ├─ 2019 (6 books)")
-    lines.append("  │  ├─ 2018 (12 books)")
-    lines.append("  │  ├─ 2017 (21 books)")
-    lines.append("  │  ├─ 2016 (15 books)")
-    lines.append("  │  ├─ 2015 (3 books)")
-    lines.append("  │  └─ Prior (77 books)")
+    lines.append("  │  ├─ <a href=\"#b2020\">2020</a> (9 books)")
+    lines.append("  │  ├─ <a href=\"#b2019\">2019</a> (6 books)")
+    lines.append("  │  ├─ <a href=\"#b2018\">2018</a> (12 books)")
+    lines.append("  │  ├─ <a href=\"#b2017\">2017</a> (21 books)")
+    lines.append("  │  ├─ <a href=\"#b2016\">2016</a> (15 books)")
+    lines.append("  │  ├─ <a href=\"#b2015\">2015</a> (3 books)")
+    lines.append("  │  └─ <a href=\"#bprior\">Prior</a> (77 books)")
     lines.append("  └─ <a href=\"#epilogue\">Epilogue</a> (v1, v2, v3)")
 
     return "\n".join(lines)
@@ -673,6 +686,44 @@ def generate_reading_calendar():
 
     return "\n".join(lines)
 
+def generate_location_roadways():
+    """VIZ-LOCATION-ROAD-001: Chattanooga highway intersection diagram"""
+    lines = []
+    lines.append("CHATTANOOGA ROADWAYS - Highway Intersection [VIZ-LOCATION-ROAD-001]")
+    lines.append("")
+    lines.append("                      Knoxville, TN (112 mi)")
+    lines.append("                               ║")
+    lines.append("                            I-75 N")
+    lines.append("                               ║")
+    lines.append("                               ║")
+    lines.append("     Nashville, TN             ║")
+    lines.append("       (134 mi)                ║")
+    lines.append("            ║                  ║")
+    lines.append("         I-24 W           [75/24 SPLIT]")
+    lines.append("            ║══════════════════╬═══════════")
+    lines.append("                         CHATTANOOGA")
+    lines.append("                               ║")
+    lines.append("                            I-75 S")
+    lines.append("                               ║")
+    lines.append("                               ║")
+    lines.append("                          Atlanta, GA")
+    lines.append("                           (118 mi)")
+    lines.append("                             ╱")
+    lines.append("                          I-59")
+    lines.append("                           ╱")
+    lines.append("                    Birmingham, AL")
+    lines.append("                       (147 mi)")
+    lines.append("")
+    lines.append("Major Interstates:")
+    lines.append("  I-75: North-South corridor (Miami ↔ Michigan)")
+    lines.append("  I-24: East-West connector (Nashville ↔ Chattanooga)")
+    lines.append("  I-59: Southwest branch (Birmingham ↔ New Orleans)")
+    lines.append("")
+    lines.append("Hub Status: 80% pass-through freight traffic")
+    lines.append("Location: 📍 Chattanooga, TN")
+
+    return "\n".join(lines)
+
 if __name__ == "__main__":
     print("Generating ASCII visualizations...")
     print("\n" + "=" * 70 + "\n")
@@ -728,3 +779,6 @@ if __name__ == "__main__":
     print("\n" + "=" * 70 + "\n")
 
     print(generate_reading_calendar())
+    print("\n" + "=" * 70 + "\n")
+
+    print(generate_location_roadways())

@@ -21,7 +21,7 @@
 
 ## Life
 
-Most mornings I sweat at Crux, an incredible gym with a great community. Progress there has been a massive solace through the second half of Covid-19's 2020. I'm able to get outdoors on the weekends and go hard.
+Most mornings I sweat at [Crux](http://cruxconditioning.com/), an incredible gym with a great community. Progress there has been a massive solace through the second half of Covid-19's 2020. I'm able to get outdoors on the weekends and go hard.
 
 I've made several good friends since moving here and that's ultra rewarding. Content. Life is good.
 

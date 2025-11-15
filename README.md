@@ -47,7 +47,10 @@ content/
   └── albums.md       # Human-editable source
 
 infrastructure/
-  ├── json_to_markdown.py   # JSON → MD export
+  ├── json_to_markdown.py   # JSON → MD export (all files)
+  ├── parse_books.py        # MD → JSON parser (books)
+  ├── parse_career.py       # MD → JSON parser (career)
+  ├── parse_now.py          # MD → JSON parser (now)
   ├── parse_albums.py       # MD → JSON parser (albums)
   └── migrate_albums.py     # One-time migration script
 ```
@@ -56,15 +59,21 @@ infrastructure/
 
 **Edit markdown files directly** (preferred human workflow):
 ```bash
-# Edit content in markdown
+# Edit any content file
 vim content/albums.md
+vim content/books.md
+vim content/career.md
+vim content/now.md
 
 # Parse markdown back to JSON
 python3 infrastructure/parse_albums.py
+python3 infrastructure/parse_books.py
+python3 infrastructure/parse_career.py
+python3 infrastructure/parse_now.py
 
-# Commit both files
-git add content/albums.md content/albums.json
-git commit -m "Add new album"
+# Commit both .md and .json files
+git add content/
+git commit -m "Update content"
 ```
 
 **Export JSON to markdown** (for initial setup or bulk changes):
@@ -79,10 +88,13 @@ python3 infrastructure/json_to_markdown.py --file albums
 python3 infrastructure/json_to_markdown.py --file albums --preview
 ```
 
-**Round-trip conversion** (lossless):
+**Round-trip conversion** (lossless for all files):
 ```bash
 # JSON → MD → JSON preserves all data
-python3 infrastructure/json_to_markdown.py --file albums
+python3 infrastructure/json_to_markdown.py --file all
+python3 infrastructure/parse_books.py
+python3 infrastructure/parse_career.py
+python3 infrastructure/parse_now.py
 python3 infrastructure/parse_albums.py
 # Result: Identical JSON (except timestamps)
 ```

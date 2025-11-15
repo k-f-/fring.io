@@ -306,7 +306,16 @@ class JSONToMarkdownConverter:
             md.append("## Life\n")
             life_data = sections["life"]
             if isinstance(life_data, dict):
-                md.append(life_data.get("text", ""))
+                text = life_data.get("text", "")
+                # Convert highlights to inline markdown links
+                highlights = life_data.get("highlights", [])
+                for highlight in highlights:
+                    highlight_text = highlight.get("text", "")
+                    highlight_url = highlight.get("url", "")
+                    if highlight_text and highlight_url:
+                        # Replace the text with markdown link
+                        text = text.replace(highlight_text, f"[{highlight_text}]({highlight_url})")
+                md.append(text)
             else:
                 md.append(life_data)
             md.append("")

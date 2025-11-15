@@ -93,13 +93,33 @@
        /* Visualization styling */
        pre.visualization {
            font-family: 'Monospace Extended', 'SF Mono', SFMono-Regular, ui-monospace, 'Cascadia Code', monospace;
-           font-size: 0.85rem;
-           line-height: 1.3;
-           background: #f5f5f5;
-           padding: 1.5rem;
-           border-radius: 4px;
+           font-size: 0.9rem;
+           line-height: 1.4;
+           background: transparent;
+           padding: 1rem 0 1rem 1rem;
+           border: none;
+           border-left: 2px solid #ccc;
+           border-top: 1px solid #e0e0e0;
+           border-bottom: 1px solid #e0e0e0;
            overflow-x: auto;
-           border-left: 4px solid #0000EE;
+           margin: 1.5rem 0;
+           color: #444;
+           transition: border-left-color 0.3s ease;
+       }
+
+       pre.visualization:hover {
+           border-left-color: #0000EE;
+       }
+
+       pre.visualization a {
+           color: #0000EE;
+           text-decoration: none;
+           border-bottom: 1px dotted #0000EE;
+       }
+
+       pre.visualization a:hover {
+           color: #333;
+           border-bottom-style: solid;
        }
     </style>
 </head>

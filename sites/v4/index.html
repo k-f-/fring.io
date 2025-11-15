@@ -121,6 +121,36 @@
            color: #333;
            border-bottom-style: solid;
        }
+
+       /* Visualization grid layouts for horizontal positioning */
+       .viz-grid {
+           display: grid;
+           gap: 2rem;
+           margin: 2rem 0;
+       }
+
+       /* Two-column layout for side-by-side comparisons */
+       .viz-grid.cols-2 {
+           grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+       }
+
+       /* Three-column layout for compact visualizations */
+       .viz-grid.cols-3 {
+           grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+       }
+
+       /* Responsive behavior: stack on mobile */
+       @media (max-width: 768px) {
+           .viz-grid.cols-2,
+           .viz-grid.cols-3 {
+               grid-template-columns: 1fr;
+           }
+       }
+
+       /* Optional: visualization headers within grids */
+       .viz-grid h4 {
+           margin-top: 0;
+       }
     </style>
 </head>
 <body>
@@ -221,8 +251,10 @@ fring.io─┼─ <a href="#elsewhere">Elsewhere</a> ─── Links (GitHub, Li
      PERSONAL WEBSITE & DIGITAL GARDEN
               TEXT ONLY</pre>
 
-    <h4>VIZ-BOOKS-VBAR-002: Vertical Bars</h4>
-    <pre class="visualization" id="viz-books-vbar-002" data-viz-id="VIZ-BOOKS-VBAR-002">READING ACTIVITY - Vertical Bars [VIZ-BOOKS-VBAR-002]
+    <div class="viz-grid cols-2">
+        <div>
+            <h4>VIZ-BOOKS-VBAR-002: Vertical Bars</h4>
+            <pre class="visualization" id="viz-books-vbar-002" data-viz-id="VIZ-BOOKS-VBAR-002">READING ACTIVITY - Vertical Bars [VIZ-BOOKS-VBAR-002]
 
        █
        █
@@ -246,9 +278,11 @@ fring.io─┼─ <a href="#elsewhere">Elsewhere</a> ─── Links (GitHub, Li
  █  █  █  █  █  █
  █  █  █  █  █  █
 15 21 12  6  9  3</pre>
+        </div>
 
-    <h4>VIZ-BOOKS-LINE-003: Line Graph</h4>
-    <pre class="visualization" id="viz-books-line-003" data-viz-id="VIZ-BOOKS-LINE-003">READING TREND - Line Graph [VIZ-BOOKS-LINE-003]
+        <div>
+            <h4>VIZ-BOOKS-LINE-003: Line Graph</h4>
+            <pre class="visualization" id="viz-books-line-003" data-viz-id="VIZ-BOOKS-LINE-003">READING TREND - Line Graph [VIZ-BOOKS-LINE-003]
 
 15 │  ╲
 14 │  ╱╲
@@ -268,6 +302,8 @@ fring.io─┼─ <a href="#elsewhere">Elsewhere</a> ─── Links (GitHub, Li
  0 │
    └──────
     151617181920</pre>
+        </div>
+    </div>
 
     <h4>VIZ-BOOKS-SPARK-004: Compact Sparklines</h4>
     <pre class="visualization" id="viz-books-spark-004" data-viz-id="VIZ-BOOKS-SPARK-004">READING TRENDS - Sparklines [VIZ-BOOKS-SPARK-004]
@@ -318,8 +354,10 @@ Years:  151617181920</pre>
                              ├───┤       │ Senior Data Analyst / Eng @ Molina Healthca
                                    ├──── │ Program Director @ Molina Healthca</pre>
 
-    <h4>VIZ-CAREER-COMPACT-003: Compact Timeline</h4>
-    <pre class="visualization" id="viz-career-compact-003" data-viz-id="VIZ-CAREER-COMPACT-003">CAREER - Compact Timeline [VIZ-CAREER-COMPACT-003]
+    <div class="viz-grid cols-2">
+        <div>
+            <h4>VIZ-CAREER-COMPACT-003: Compact Timeline</h4>
+            <pre class="visualization" id="viz-career-compact-003" data-viz-id="VIZ-CAREER-COMPACT-003">CAREER - Compact Timeline [VIZ-CAREER-COMPACT-003]
 
 2006 → 2006:SP( → 2020:C → 2020:SDA → 2023:PD
 
@@ -328,9 +366,11 @@ Legend:
   C = Consultant
   SDA = Senior Data Analyst / Engineer
   PD = Program Director</pre>
+        </div>
 
-    <h4>VIZ-CAREER-TREE-004: Organization View</h4>
-    <pre class="visualization" id="viz-career-tree-004" data-viz-id="VIZ-CAREER-TREE-004">CAREER - Organization View [VIZ-CAREER-TREE-004]
+        <div>
+            <h4>VIZ-CAREER-TREE-004: Organization View</h4>
+            <pre class="visualization" id="viz-career-tree-004" data-viz-id="VIZ-CAREER-TREE-004">CAREER - Organization View [VIZ-CAREER-TREE-004]
 
 CAREER HISTORY
 ├── Molina Healthcare
@@ -340,6 +380,8 @@ CAREER HISTORY
 │   └── Consultant (2020-2021)
 └── Various Companies
     └── Senior Positions (Various) (2006-2020)</pre>
+        </div>
+    </div>
 
     <h4>VIZ-SITE-INDENT-002: Indented List</h4>
     <pre class="visualization" id="viz-site-indent-002" data-viz-id="VIZ-SITE-INDENT-002">SITE MAP - Indented [VIZ-SITE-INDENT-002]

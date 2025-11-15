@@ -589,6 +589,90 @@ def generate_decade_distribution():
 
     return "\n".join(lines)
 
+def generate_reading_calendar():
+    """VIZ-READING-CAL-001: GitHub-style calendar heatmap of reading activity"""
+    data = load_books_data()
+    from datetime import datetime, timedelta
+    from collections import defaultdict
+    import random
+
+    # Count books by year (use year field, not dateAdded)
+    books_by_year = defaultdict(list)
+
+    for book in data['books']:
+        year = book.get('year')
+        if isinstance(year, int) and 2015 <= year <= 2020:
+            books_by_year[year].append(book)
+
+    if not books_by_year:
+        return "READING CALENDAR [VIZ-READING-CAL-001]\n(No year data available)"
+
+    # Use most recent year with data or a representative year
+    # For visualization purposes, we'll show 2017 (peak year)
+    target_year = 2017
+    if target_year not in books_by_year:
+        target_year = max(books_by_year.keys())
+
+    # Create calendar grid for the target year
+    lines = []
+    lines.append("READING CALENDAR - Activity Heatmap [VIZ-READING-CAL-001]")
+    lines.append(f"Reading activity for {target_year} ({len(books_by_year[target_year])} books)")
+    lines.append("")
+
+    # Distribute books across weeks (simulated, since we don't have exact dates)
+    # Create a more realistic spread across the year
+    books_by_week = defaultdict(int)
+    random.seed(target_year)  # Deterministic distribution
+
+    for book in books_by_year[target_year]:
+        # Random week in the year (1-52)
+        week = random.randint(1, 52)
+        books_by_week[week] += 1
+
+    # Month labels
+    start_date = datetime(target_year, 1, 1)
+    month_labels = "     "
+
+    for week in range(52):
+        week_date = start_date + timedelta(weeks=week)
+        if week % 4 == 0:  # Every 4 weeks
+            month_labels += week_date.strftime('%b')[:3] + " "
+        else:
+            month_labels += "    "
+
+    lines.append(month_labels)
+
+    # Days of week (show Mon, Wed, Fri, Sun for compactness)
+    days = ['Mon', 'Wed', 'Fri', 'Sun']
+
+    for day_idx in range(4):
+        line = f"{days[day_idx]:3s}  "
+
+        for week in range(1, 53):
+            count = books_by_week.get(week, 0)
+
+            # Choose character based on intensity
+            if count == 0:
+                char = "·"
+            elif count == 1:
+                char = "░"
+            elif count == 2:
+                char = "▒"
+            elif count == 3:
+                char = "▓"
+            else:
+                char = "█"
+
+            line += char + " "
+
+        lines.append(line)
+
+    lines.append("")
+    lines.append("Legend: · None  ░ 1 book  ▒ 2 books  ▓ 3 books  █ 4+ books")
+    lines.append(f"Note: Distribution is simulated based on yearly totals")
+
+    return "\n".join(lines)
+
 if __name__ == "__main__":
     print("Generating ASCII visualizations...")
     print("\n" + "=" * 70 + "\n")
@@ -641,3 +725,6 @@ if __name__ == "__main__":
     print("\n" + "=" * 70 + "\n")
 
     print(generate_decade_distribution())
+    print("\n" + "=" * 70 + "\n")
+
+    print(generate_reading_calendar())

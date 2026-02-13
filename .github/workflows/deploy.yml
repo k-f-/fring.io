@@ -11,14 +11,14 @@ on:
       version:
         description: 'Version to deploy (e.g., v4, v3, v2, v1)'
         required: true
-        default: 'v4'
+        default: 'v3'
 
 env:
   AWS_REGION: ${{ secrets.AWS_REGION }}
   # IMPORTANT: When changing live version, also update:
   # - VERSION file in repo root
   # - README.md "Current Live Version" section
-  LATEST_VERSION: v3
+  LATEST_VERSION: v4
 
 jobs:
   deploy:

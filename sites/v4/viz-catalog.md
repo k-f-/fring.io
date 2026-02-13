@@ -4,10 +4,11 @@ Complete reference for all ASCII visualizations with unique identifiers.
 
 ## Overview
 
-Total Visualizations: **17**
+Total Visualizations: **25**
 - Books Data: 5 variations
 - Career Data: 4 variations
 - Site Structure: 3 variations
+- Albums Data: 8 variations
 - Reading Data: 2 visualizations
 - Location Data: 1 visualization
 - Tech/Decade Data: 2 visualizations
@@ -16,8 +17,8 @@ Total Visualizations: **17**
 
 Format: `VIZ-{DATA}-{STYLE}-{NUMBER}`
 
-- **DATA**: Source category (BOOKS, CAREER, SITE, TECH, READING, DECADE)
-- **STYLE**: Visualization type (HBAR, VBAR, LINE, TREE, etc.)
+- **DATA**: Source category (BOOKS, CAREER, SITE, ALBUMS, TECH, READING, DECADE, LOCATION)
+- **STYLE**: Visualization type (HBAR, VBAR, LINE, TREE, ARTIST, YEAR, CHARS, COVER, etc.)
 - **NUMBER**: Sequential ID within category
 
 ## Books Visualizations
@@ -223,6 +224,148 @@ Format: `VIZ-{DATA}-{STYLE}-{NUMBER}`
 
 ---
 
+## Albums Visualizations
+
+### VIZ-ALBUMS-ARTIST-001: Artist Frequency
+**Location**: sites/v4/index.html:[TBD]
+**Function**: `generate_albums_artist_freq()`
+**Description**: Artist frequency analysis with dot plot
+**Features**:
+- Shows artists with 2+ albums
+- Frequency comparison using dots
+- Diversity statistics
+
+**Key Elements**:
+- Filled dots (●) for albums by artist
+- Empty dots (○) for visual scale
+- Vertical separator (│)
+- Diversity index calculation
+
+---
+
+### VIZ-ALBUMS-ARTIST-002: Artist Sparkline
+**Location**: sites/v4/index.html:[TBD]
+**Function**: `generate_albums_artist_sparkline()`
+**Description**: Compact artist listening patterns
+**Features**:
+- Multi-album artists highlighted
+- Sparkline bars showing frequency
+- Diversity index (96.3% unique artists)
+
+**Key Elements**:
+- Solid blocks (█) for albums
+- Light blocks (░) for visual spacing
+- Percentage calculation
+
+---
+
+### VIZ-ALBUMS-YEAR-001: Decade Distribution
+**Location**: sites/v4/index.html:[TBD]
+**Function**: `generate_albums_decade_dist()`
+**Description**: Release decade histogram (compact)
+**Features**:
+- Albums grouped by decade (1960s-2010s)
+- Bar chart showing distribution
+- Sparkline trend indicator
+- Decade abbreviations
+
+**Key Elements**:
+- Solid blocks (█) for bars
+- Sparkline characters (▁▂▃▄▅▆▇█)
+- Decade labels (1960s, 1970s, etc.)
+
+---
+
+### VIZ-ALBUMS-YEAR-002: Release Timeline
+**Location**: sites/v4/index.html:[TBD]
+**Function**: `generate_albums_year_timeline()`
+**Description**: Release year analysis with age statistics
+**Features**:
+- Timeline showing release years
+- Album age when listened (2019)
+- Oldest/newest/average age stats
+- 52-year span (1967-2019)
+
+**Key Elements**:
+- Dot markers (●) for albums per year
+- Age calculations
+- Statistical summary
+
+---
+
+### VIZ-ALBUMS-CHARS-001: Track Distribution
+**Location**: sites/v4/index.html:[TBD]
+**Function**: `generate_albums_track_distribution()`
+**Description**: Track count distribution sparkline
+**Features**:
+- Shows frequency of track counts
+- Range: 5-36 tracks
+- Most common: 10 tracks (8 albums)
+- Median and average stats
+
+**Key Elements**:
+- Dot markers (●) for frequency
+- Range and statistics
+- Compact presentation
+
+---
+
+### VIZ-ALBUMS-CHARS-002: Duration Scatter
+**Location**: sites/v4/index.html:[TBD]
+**Function**: `generate_albums_playtime_scatter()`
+**Description**: Playtime vs tracks scatter plot
+**Features**:
+- 2D scatter showing relationship
+- Duration (minutes) vs track count
+- Average duration and track statistics
+
+**Key Elements**:
+- Data points (●) for albums
+- Placeholder dots (·) for grid
+- Axis labels
+- Statistical summary
+
+---
+
+### VIZ-ALBUMS-CHARS-003: Duration Distribution
+**Location**: sites/v4/index.html:[TBD]
+**Function**: `generate_albums_duration_dist()`
+**Description**: Album duration histogram
+**Features**:
+- Duration bins (0-30, 30-40, 40-50, 50-60, 60+)
+- Bar chart showing frequency
+- Average and range statistics
+
+**Key Elements**:
+- Solid blocks (█) for bars
+- Duration bins
+- Statistical summary
+
+---
+
+### VIZ-ALBUMS-COVER-001: Album Grid
+**Location**: sites/v4/index.html:[TBD]
+**Function**: `generate_albums_cover_grid()`
+**Description**: Album grid with Spotify integration
+**Features**:
+- Grid of albums (4 per row)
+- Shows first 12 albums
+- Artist, title, and year in boxes
+- Spotify ID integration notes
+
+**Key Elements**:
+- Box drawing (┌─┐ │ └─┘)
+- Grid layout (4 columns)
+- Truncated text labels
+- Spotify integration info
+
+**Notes**:
+- Spotify oEmbed API available for future album art integration
+- API endpoint: `https://open.spotify.com/oembed?url=[spotify_url]`
+- Returns thumbnail_url without OAuth authentication
+
+---
+
 ## New Data Visualizations
 
 ### VIZ-TECH-STACK-001: Technology Timeline
@@ -321,6 +464,7 @@ Format: `VIZ-{DATA}-{STYLE}-{NUMBER}`
 | Books | 5 | VIZ-BOOKS-HBAR-001 through VIZ-BOOKS-DOT-005 |
 | Career | 4 | VIZ-CAREER-VERT-001 through VIZ-CAREER-TREE-004 |
 | Site | 3 | VIZ-SITE-TREE-001 through VIZ-SITE-BOXES-003 |
+| Albums | 8 | VIZ-ALBUMS-ARTIST-001 through VIZ-ALBUMS-COVER-001 |
 | Tech | 1 | VIZ-TECH-STACK-001 |
 | Reading | 2 | VIZ-READING-VEL-001, VIZ-READING-CAL-001 |
 | Decade | 1 | VIZ-DECADE-DIST-001 |
@@ -390,6 +534,20 @@ Each function follows naming convention: `generate_{data}_{style}()`
 - [ ] Horizontal grid layouts for side-by-side comparisons
 
 ## Version History
+
+- **v1.3** (2025-11-16): Albums Visualizations
+  - **New**: Complete albums data visualization suite (8 visualizations)
+    - VIZ-ALBUMS-ARTIST-001: Artist frequency analysis
+    - VIZ-ALBUMS-ARTIST-002: Artist sparkline patterns
+    - VIZ-ALBUMS-YEAR-001: Decade distribution histogram
+    - VIZ-ALBUMS-YEAR-002: Release year timeline with age stats
+    - VIZ-ALBUMS-CHARS-001: Track count distribution
+    - VIZ-ALBUMS-CHARS-002: Duration vs tracks scatter plot
+    - VIZ-ALBUMS-CHARS-003: Duration distribution histogram
+    - VIZ-ALBUMS-COVER-001: Album grid with Spotify integration
+  - **Enhanced**: Spotify oEmbed API integration notes for future album art
+  - **Added**: Parse playtime utility for duration analysis
+  - 25 total visualizations
 
 - **v1.2** (2025-11-14): Visualization Fixes & Location Map
   - **Fixed**: VIZ-BOOKS-LINE-003 spacing (3-char spacing per data point)

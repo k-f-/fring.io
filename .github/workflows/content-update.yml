@@ -17,8 +17,9 @@ permissions:
 jobs:
   regenerate:
     runs-on: ubuntu-latest
-    # Prevent infinite loops: skip if the commit was made by this workflow
-    if: github.actor != 'github-actions[bot]'
+    # Prevent infinite loops on push events, but always run on workflow_dispatch
+    # (content-sync dispatches this after committing as github-actions[bot])
+    if: github.event_name == 'workflow_dispatch' || github.actor != 'github-actions[bot]'
 
     steps:
       - name: Checkout code

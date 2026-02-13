@@ -18,6 +18,7 @@ Environment variables:
 
 import json
 import os
+import re
 import sys
 import time
 from pathlib import Path
@@ -31,8 +32,23 @@ except ImportError:
 
 SPOTIFY_CLIENT_ID = os.environ.get("SPOTIFY_CLIENT_ID", "")
 SPOTIFY_CLIENT_SECRET = os.environ.get("SPOTIFY_CLIENT_SECRET", "")
-SPOTIFY_PLAYLIST_ID = os.environ.get("SPOTIFY_PLAYLIST_ID", "")
-SPOTIFY_REDIRECT_URI = os.environ.get("SPOTIFY_REDIRECT_URI", "http://localhost:8888/callback")
+SPOTIFY_REDIRECT_URI = os.environ.get(
+    "SPOTIFY_REDIRECT_URI", "http://localhost:8888/callback"
+)
+
+_raw_playlist_id = os.environ.get("SPOTIFY_PLAYLIST_ID", "")
+
+
+def _extract_playlist_id(raw):
+    if not raw:
+        return ""
+    match = re.search(r"playlist[/:]([a-zA-Z0-9]+)", raw)
+    if match:
+        return match.group(1)
+    return raw.split("?")[0].strip()
+
+
+SPOTIFY_PLAYLIST_ID = _extract_playlist_id(_raw_playlist_id)
 
 ALBUMS_JSON = Path("content/albums.json")
 

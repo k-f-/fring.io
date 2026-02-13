@@ -33,14 +33,14 @@ class BooksMarkdownParser:
             content = f.read()
 
         # Extract JSON metadata from HTML comment
-        meta_match = re.search(r'<!--\n(.+?)\n-->', content, re.DOTALL)
+        meta_match = re.search(r"<!--\n(.+?)\n-->", content, re.DOTALL)
         if meta_match:
             meta_json = json.loads(meta_match.group(1))
             meta = meta_json.get("meta", {})
         else:
             meta = {
                 "version": "1.0",
-                "description": "Canonical book list for fring.io - version agnostic content"
+                "description": "Canonical book list for fring.io - version agnostic content",
             }
 
         # Update lastUpdated
@@ -48,20 +48,21 @@ class BooksMarkdownParser:
 
         books = []
 
-        # Find all year sections: ## 2020 (9 books) or ## Prior to 2015 (77 books)
-        year_sections = re.finditer(r'^## (.+?) \(\d+ books?\)\n', content, re.MULTILINE)
+        year_sections = re.finditer(
+            r"^## (.+?)(?:\s*\([^)]*\))?\s*\n", content, re.MULTILINE
+        )
 
         for match in year_sections:
             year_text = match.group(1)  # "2020" or "Prior to 2015"
             section_start = match.end()
 
             # Find the next section or end of document
-            next_match = re.search(r'\n##', content[section_start:])
+            next_match = re.search(r"\n##", content[section_start:])
             if next_match:
                 section_end = section_start + next_match.start()
             else:
                 # Look for the footer (---)
-                footer_match = re.search(r'\n---', content[section_start:])
+                footer_match = re.search(r"\n---", content[section_start:])
                 if footer_match:
                     section_end = section_start + footer_match.start()
                 else:
@@ -82,27 +83,26 @@ class BooksMarkdownParser:
                     year_label = year_text
 
             # Extract book titles from bullet points
-            book_titles = re.findall(r'^- (.+)$', section_content, re.MULTILINE)
+            book_titles = re.findall(r"^- (.+)$", section_content, re.MULTILINE)
 
             for title in book_titles:
-                books.append({
-                    "title": title.strip(),
-                    "year": year,
-                    "yearLabel": year_label,
-                    "dateAdded": datetime.now().isoformat()
-                })
+                books.append(
+                    {
+                        "title": title.strip(),
+                        "year": year,
+                        "yearLabel": year_label,
+                        "dateAdded": datetime.now().isoformat(),
+                    }
+                )
 
-        return {
-            "meta": meta,
-            "books": books
-        }
+        return {"meta": meta, "books": books}
 
     def save_books_json(self, data: dict, output_file: Path = None):
         """Save parsed data to books.json"""
         if output_file is None:
             output_file = self.content_dir / "books.json"
 
-        with open(output_file, 'w') as f:
+        with open(output_file, "w") as f:
             json.dump(data, f, indent=2)
 
         print(f"✓ Parsed {len(data['books'])} books from markdown")
@@ -111,19 +111,28 @@ class BooksMarkdownParser:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Parse books.md to JSON")
-    parser.add_argument("--input", type=Path, default=None,
-                       help="Input markdown file (default: content/books.md)")
-    parser.add_argument("--output", type=Path, default=None,
-                       help="Output JSON file (default: content/books.json)")
-    parser.add_argument("--preview", action="store_true",
-                       help="Preview output without writing files")
+    parser.add_argument(
+        "--input",
+        type=Path,
+        default=None,
+        help="Input markdown file (default: content/books.md)",
+    )
+    parser.add_argument(
+        "--output",
+        type=Path,
+        default=None,
+        help="Output JSON file (default: content/books.json)",
+    )
+    parser.add_argument(
+        "--preview", action="store_true", help="Preview output without writing files"
+    )
 
     args = parser.parse_args()
 
     md_parser = BooksMarkdownParser()
 
     print("Books Markdown Parser")
-    print("="*50)
+    print("=" * 50)
     print("")
 
     data = md_parser.parse_books(args.input)

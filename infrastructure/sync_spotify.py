@@ -187,14 +187,41 @@ def fetch_playlist_albums(sp):
     return albums_seen
 
 
-def load_existing_spotify_ids():
+def _normalize(text):
+    """Normalize for fuzzy matching: lowercase, strip parens/reissue/deluxe, punctuation."""
+    t = text.lower().strip()
+    t = re.sub(r"\s*\(([^)]*)\)\s*", " ", t)
+    for tag in ["reissue", "remastered", "deluxe", "expanded", "bonus"]:
+        t = re.sub(rf"\b{tag}\b", "", t)
+    t = re.sub(r"[^\w\s]", "", t)
+    t = re.sub(r"\s+", " ", t).strip()
+    return t
+
+
+def load_existing_albums():
     if not ALBUMS_JSON.exists():
-        return set()
+        return set(), set()
 
     with open(ALBUMS_JSON) as f:
         data = json.load(f)
 
-    return {a["spotifyId"] for a in data.get("albums", []) if a.get("spotifyId")}
+    spotify_ids = set()
+    artist_album_keys = set()
+    for a in data.get("albums", []):
+        if a.get("spotifyId"):
+            spotify_ids.add(a["spotifyId"])
+        key = _normalize(a.get("artist", "")) + " | " + _normalize(a.get("album", ""))
+        artist_album_keys.add(key)
+
+    return spotify_ids, artist_album_keys
+
+
+def _is_existing(album, spotify_ids, artist_album_keys):
+    """Check by spotifyId first, then fuzzy artist+title match."""
+    if album["spotifyId"] in spotify_ids:
+        return True
+    key = _normalize(album["artist"]) + " | " + _normalize(album["album"])
+    return key in artist_album_keys
 
 
 def format_album_md_entry(album):
@@ -284,8 +311,12 @@ def main():
         print("\nPlaylist is empty or inaccessible.")
         return
 
-    existing_ids = load_existing_spotify_ids()
-    new_album_ids = [aid for aid in playlist_albums if aid not in existing_ids]
+    spotify_ids, artist_album_keys = load_existing_albums()
+    new_album_ids = [
+        aid
+        for aid in playlist_albums
+        if not _is_existing(playlist_albums[aid], spotify_ids, artist_album_keys)
+    ]
 
     if not new_album_ids:
         print("\nNo new albums found.")

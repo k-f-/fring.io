@@ -12,100 +12,6 @@
 
 Music I've listened to, chronologically.
 
-## 2026 (18 albums)
-
-
-### [2026-02-13] The Horrible Crowes - Elsie
-**Released:** 2011
-**Listen:** [Spotify](https://open.spotify.com/album/2vPbYgtDftIIGGksyUd02R)
-**Duration:** 12 tracks, 46 min.
-
-### [2026-02-13] Better Oblivion Community Center - Better Oblivion Community Center
-**Released:** 2019
-**Listen:** [Spotify](https://open.spotify.com/album/0uJIxkI8D0rR4shEIKeiDs)
-**Duration:** 10 tracks, 37 min.
-
-### [2026-02-13] Bembeya Jazz National - Discothèque 76
-**Released:** 1977
-**Listen:** [Spotify](https://open.spotify.com/album/2zoqIVDpc4PCdqeHt2ILfB)
-**Duration:** 5 tracks, 34 min.
-
-### [2026-02-13] Orville Peck - Pony
-**Released:** 2019
-**Listen:** [Spotify](https://open.spotify.com/album/3950FHVErcINW3tjRgjebQ)
-**Duration:** 12 tracks, 42 min.
-
-### [2026-02-13] ALEX - AKUMA II
-**Released:** 2019
-**Listen:** [Spotify](https://open.spotify.com/album/2EwfTy4XZSjUhzYv77i73o)
-**Duration:** 10 tracks, 39 min.
-
-### [2026-02-13] Propagandhi - How to Clean Everything (Reissue)
-**Released:** 2013
-**Listen:** [Spotify](https://open.spotify.com/album/1YomhJOu7zq0c45WmAjSWY)
-**Duration:** 19 tracks, 51 min.
-
-### [2026-02-13] The Budos Band - The Budos Band II
-**Released:** 2007
-**Listen:** [Spotify](https://open.spotify.com/album/5VIBZxcuGS57zwKvHMLkaN)
-**Duration:** 10 tracks, 38 min.
-
-### [2026-02-13] Herb Alpert - Rise
-**Released:** 1979
-**Listen:** [Spotify](https://open.spotify.com/album/7HY0aAzDNhAqmFHATtABPY)
-**Duration:** 8 tracks, 41 min.
-
-### [2026-02-13] Leon Bridges - Coming Home (Deluxe)
-**Released:** 2015
-**Listen:** [Spotify](https://open.spotify.com/album/21KIagsx1ZvYcv0sVkEAWv)
-**Duration:** 15 tracks, 46 min.
-
-### [2026-02-13] The Horrible Crowes - Elsie
-**Released:** 2011
-**Listen:** [Spotify](https://open.spotify.com/album/2vPbYgtDftIIGGksyUd02R)
-**Duration:** 12 tracks, 46 min.
-
-### [2026-02-13] Better Oblivion Community Center - Better Oblivion Community Center
-**Released:** 2019
-**Listen:** [Spotify](https://open.spotify.com/album/0uJIxkI8D0rR4shEIKeiDs)
-**Duration:** 10 tracks, 37 min.
-
-### [2026-02-13] Bembeya Jazz National - Discothèque 76
-**Released:** 1977
-**Listen:** [Spotify](https://open.spotify.com/album/2zoqIVDpc4PCdqeHt2ILfB)
-**Duration:** 5 tracks, 34 min.
-
-### [2026-02-13] Orville Peck - Pony
-**Released:** 2019
-**Listen:** [Spotify](https://open.spotify.com/album/3950FHVErcINW3tjRgjebQ)
-**Duration:** 12 tracks, 42 min.
-
-### [2026-02-13] ALEX - AKUMA II
-**Released:** 2019
-**Listen:** [Spotify](https://open.spotify.com/album/2EwfTy4XZSjUhzYv77i73o)
-**Duration:** 10 tracks, 39 min.
-
-### [2026-02-13] Propagandhi - How to Clean Everything (Reissue)
-**Released:** 2013
-**Listen:** [Spotify](https://open.spotify.com/album/1YomhJOu7zq0c45WmAjSWY)
-**Duration:** 19 tracks, 51 min.
-
-### [2026-02-13] The Budos Band - The Budos Band II
-**Released:** 2007
-**Listen:** [Spotify](https://open.spotify.com/album/5VIBZxcuGS57zwKvHMLkaN)
-**Duration:** 10 tracks, 38 min.
-
-### [2026-02-13] Herb Alpert - Rise
-**Released:** 1979
-**Listen:** [Spotify](https://open.spotify.com/album/7HY0aAzDNhAqmFHATtABPY)
-**Duration:** 8 tracks, 41 min.
-
-### [2026-02-13] Leon Bridges - Coming Home (Deluxe)
-**Released:** 2015
-**Listen:** [Spotify](https://open.spotify.com/album/21KIagsx1ZvYcv0sVkEAWv)
-**Duration:** 15 tracks, 46 min.
-
-
 ## 2019 (27 albums)
 
 ### [2019-10-21] The Jackson 5 - Gold
@@ -117,14 +23,14 @@ hits. that Motown sound.
 
 ### [2019-10-18] Leon Bridges - Coming Home
 **Released:** 2015
-**Listen:** [Spotify](https://open.spotify.com/album/4svLfrPPk2npPVuI4kXPYg?si=T1IfF6u0SPmbLSvQ0Zf-gg)
+**Listen:** [Spotify](https://open.spotify.com/album/21KIagsx1ZvYcv0sVkEAWv)
 **Duration:** 10 tracks, 34 min.
 
 Incredible Delta sounds.
 
 ### [2019-09-23] Herb Alpert - Rise
 **Released:** 1979
-**Listen:** [Spotify](https://open.spotify.com/album/0UP3rWITqj74OAVCHP5034?si=UwTv4zz2QCm42XZC47Lt2g)
+**Listen:** [Spotify](https://open.spotify.com/album/7HY0aAzDNhAqmFHATtABPY)
 **Duration:** 8 tracks, 41 min
 
 bonkers.
@@ -173,7 +79,7 @@ Most of these songs could get you beat up at the beach in New Jersey. Growing up
 
 ### [2019-07-08] Propagandhi - How to Clean Everything
 **Released:** 1993
-**Listen:** [Spotify](https://open.spotify.com/album/0MCiMfs35PPI4WFypTpsrK?si=5aGOFTFLRBOWCBx8IJq-6A)
+**Listen:** [Spotify](https://open.spotify.com/album/1YomhJOu7zq0c45WmAjSWY)
 **Duration:** 19 tracks, 51 minutes
 
 Formative in my early teens.
@@ -187,7 +93,7 @@ Johnny Fucking Cash.
 
 ### [2019-07-08] The Budos Band - The Budos Band II
 **Released:** 2007
-**Listen:** [Spotify](https://open.spotify.com/album/1HarDRl9Lt8Clh9nYJ9n6a?si=2jGmQd5tTfWRkOoRC9RN_A)
+**Listen:** [Spotify](https://open.spotify.com/album/5VIBZxcuGS57zwKvHMLkaN)
 **Duration:** 10 tracks, 37 Minutes
 
 Charles Bradly's backing band formed Budos. Tight, tight, tight.
@@ -222,19 +128,19 @@ Interesting. I don't know enough about the Artist.
 
 ### [2019-06-10] Alex, Tokyo Rose - Akuma II
 **Released:** 2019
-**Listen:** [Spotify](https://open.spotify.com/album/6tTvGto8mk0xYfOmMR4224?si=cJIcO7phTqq3mza9IAsF4g)
+**Listen:** [Spotify](https://open.spotify.com/album/2EwfTy4XZSjUhzYv77i73o)
 **Duration:** 10 tracks, 38 minutes
 
-### [2019-05-27] Bembeya Jazz National - Discoteque 76
+### [2019-05-27] Bembeya Jazz National - Discothèque 76
 **Released:** 1976
-**Listen:** [Spotify](https://open.spotify.com/album/67OQuCcp8yfLRKa49asN8i?si=cZr_3PUkT7iTIug-UYI3OQ)
+**Listen:** [Spotify](https://open.spotify.com/album/2zoqIVDpc4PCdqeHt2ILfB)
 **Duration:** 5 tracks, 34 minutes
 
 wonderful afro-jazz. The third track is a long-time favorite
 
 ### [2019-05-27] Orville Peck - Pony
 **Released:** 2019
-**Listen:** [Spotify](https://open.spotify.com/album/7Jn1h8E5aT96pdyrPxrLWi?si=NKZpnbChQhCDIjwC4xnrPA)
+**Listen:** [Spotify](https://open.spotify.com/album/3950FHVErcINW3tjRgjebQ)
 **Duration:** 12 tracks, 41 minutes
 
 Shoegaze-Outlaw-Country...AWESOME!
@@ -262,14 +168,14 @@ I don't know anything about Buckethead except that it seems to be a fun mockery 
 
 ### [2019-02-24] Better Oblivion Community Center - Better Oblivion Community Center
 **Released:** 2019
-**Listen:** [Spotify](https://open.spotify.com/album/5622zSt4RLqNSPShdqmWpj?si=cAEfErUKTs2jNh0T_NValA)
+**Listen:** [Spotify](https://open.spotify.com/album/0uJIxkI8D0rR4shEIKeiDs)
 **Duration:** 10 tracks, 37 minutes
 
 think I'll have to give this one a few more listens over the coming weeks.  Initial impressions are that it's fucking incredible.
 
-### [2019-02-17] The Horrible Crows - Elise
+### [2019-02-17] The Horrible Crowes - Elsie
 **Released:** 2011
-**Listen:** [Spotify](https://open.spotify.com/album/7JSUMJpXFj2Tmv4wYGmUp8?si=uh2MBH4uTGeJSvu8UwgdcQ)
+**Listen:** [Spotify](https://open.spotify.com/album/2vPbYgtDftIIGGksyUd02R)
 **Duration:** 12 tracks, 45 minutes
 
 Gaslight Anthem front-man does a Tom Waits, Nick Cave inspired album.  The first few tracks destroyed me.  I like the contrast of upbeat tempo with crushing lyrics.

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kyle Fring</title>
+    <meta name="description" content="Kyle Fring — Program Director / Data Engineer. Personal website.">
+    <meta property="og:title" content="Kyle Fring">
+    <meta property="og:description" content="Program Director / Data Engineer in Chattanooga, TN.">
+    <meta property="og:type" content="website">
+    
+    <style>
+        :root {
+            /* Dark Mode (Default) */
+            --bg: #1a1a1a;
+            --text: #e0e0e0;
+            --muted: #888;
+            --accent: #5eead4;
+            --border: #333;
+            --code-bg: #222;
+            --selection: rgba(94, 234, 212, 0.2);
+            --font-stack: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+        }
+
+        [data-theme="light"] {
+            --bg: #fafafa;
+            --text: #1a1a1a;
+            --muted: #666;
+            --accent: #0d9488;
+            --border: #ddd;
+            --code-bg: #f0f0f0;
+            --selection: rgba(13, 148, 136, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        ::selection {
+            background: var(--selection);
+            color: inherit;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-stack);
+            font-size: 16px;
+            line-height: 1.7;
+            margin: 0;
+            padding: 2rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 700;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: 2rem; margin-top: 0; }
+        h2 { font-size: 1.4rem; color: var(--accent); }
+        h3 { font-size: 1.1rem; margin-top: 1.5rem; }
+
+        p, li { margin-bottom: 1rem; }
+        
+        a {
+            color: var(--text);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent);
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        a:hover {
+            color: var(--accent);
+            border-bottom-color: transparent;
+        }
+
+        ul {
+            padding-left: 1.5rem;
+            list-style-type: square;
+        }
+
+        .muted { color: var(--muted); font-size: 0.9em; }
+        .small { font-size: 0.85rem; }
+
+        /* Navigation */
+        nav {
+            margin: 1.5rem 0 3rem 0;
+            padding: 1rem 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        nav a { border-bottom: none; }
+        nav a:hover { color: var(--accent); }
+        .nav-separator { color: var(--muted); padding: 0 0.5rem; }
+
+        /* Sections */
+        section {
+            margin-bottom: 4rem;
+            padding-left: 1rem;
+            border-left: 3px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        section:hover {
+            border-left-color: var(--selection);
+        }
+
+        /* Content Grid (Books & Albums) */
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+            gap: 1rem 2rem;
+        }
+
+        .book-group {
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            border-left: 2px solid var(--border);
+            transition: border-color 0.2s;
+        }
+
+        .book-group:hover {
+            border-left-color: var(--accent);
+        }
+
+        .book-year {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .book-title {
+            display: block;
+            color: var(--muted);
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        .album-entry {
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 2px solid var(--border);
+            transition: border-color 0.2s;
+        }
+
+        .album-entry:hover {
+            border-left-color: var(--accent);
+        }
+
+        .album-title {
+            display: block;
+            font-weight: bold;
+            border-bottom: none;
+        }
+
+        .album-title:hover {
+            color: var(--accent);
+        }
+
+        .album-note {
+            display: block;
+            color: var(--muted);
+            font-size: 0.85em;
+            font-style: italic;
+            line-height: 1.4;
+            margin-top: 0.2rem;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 0.5rem;
+            cursor: pointer;
+            border-radius: 4px;
+            font-family: inherit;
+            line-height: 1;
+            z-index: 100;
+        }
+        
+        .theme-toggle:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .back-to-top {
+            display: block;
+            text-align: right;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            color: var(--muted);
+            border: none;
+        }
+        .back-to-top:hover { color: var(--accent); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            h1 { font-size: 1.7rem; }
+            nav { font-size: 0.9rem; }
+            .theme-toggle { top: 1rem; right: 1rem; }
+            .book-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">☀</button>
+
+    <div class="container">
+        
+        <header>
+            <h1>Kyle Fring</h1>
+            <nav>
+                <a href="#now">Now</a> <span class="nav-separator">·</span>
+                <a href="#bookshelf">Bookshelf</a> <span class="nav-separator">·</span>
+                <a href="#albums">Albums</a> <span class="nav-separator">·</span>
+                <a href="#elsewhere">Elsewhere</a> <span class="nav-separator">·</span>
+                <a href="#epilogue">Epilogue</a>
+            </nav>
+        </header>
+
+        <main>
+            <section id="now">
+                <h2>Now</h2>
+                
+                <h3>Life</h3>
+                <aside class="muted">📍 Chattanooga, TN</aside>
+                <p>Most mornings I sweat at <a href="http://cruxconditioning.com/">Crux</a>, an incredible gym with a great community. Progress there has been a massive solace through the second half of Covid-19's 2020. I'm able to get outdoors on the weekends and go hard.</p>
+                <p>I've made several good friends since moving here and that's <em>ultra</em> rewarding. Content. Life is good.</p>
+                <h3>Work</h3>
+                <p>I'm fortunate to be able to work remotely as a <strong>Program Director</strong> for a Fortune 500 managed care provider. I lead cross-functional initiatives bridging data engineering, analytics, and business strategy. It's rewarding work that impacts tens of thousands of co-workers and many millions of members.</p>
+                <h3>Future</h3>
+                <ul>
+                    <li>I'd like to use different tools. Microsoft is fine, Teams & PowerBI are <em>very</em> good, but in my heart I'm a <em>FOSS</em> guy: Terminals, Python, R, etc. are more interesting to me.</li>
+                    <li>I do appreciate the modern need for <em>specialization</em>. However, I'd like to flex a life-time of wearing many hats.</li>
+                    <li>A good deal more flexibility with working hours. I al<strong>way</strong>s deliver. Don't make me sit at a desk just because I need to <em>not</em> be afk. Life is <strong>way</strong> too short.</li>
+                </ul>
+
+                <p class="muted small">Last updated: February 2026</p>
+                <a href="#top" class="back-to-top">↑</a>
+            </section>
+
+            <section id="bookshelf">
+                <h2>Bookshelf</h2>
+                
+                <p class="muted small">143 books tracked · 2015–2020 + prior</p>
+                <div class="book-grid">
+                <div class="book-group">
+                    <span class="book-year">2020</span>
+                    <span class="book-title">Discrete Mathematics and it&#x27;s Applications</span>
+                    <span class="book-title">Python3 The Hard Way</span>
+                    <span class="book-title">Unwanted</span>
+                    <span class="book-title">The Book of Joy</span>
+                    <span class="book-title">Let&#x27;s pretend this never happened</span>
+                    <span class="book-title">The Personality Brokers</span>
+                    <span class="book-title">The Book of Joy: Lasting Happiness in a Changing World</span>
+                    <span class="book-title">Black Elk Speaks: Being the Life Story of a Holy Man of the Oglala Sioux</span>
+                    <span class="book-title">I Hate You, Don&#x27;t Leave Me: Understanding the Borderline Personality</span>
+                </div>
+                <div class="book-group">
+                    <span class="book-year">2019</span>
+                    <span class="book-title">Gang Leader for a Day</span>
+                    <span class="book-title">Re:Work</span>
+                    <span class="book-title">The Crossing</span>
+                    <span class="book-title">Cities of the Plain</span>
+                    <span class="book-title">All the Pretty Horses</span>
+                    <span class="book-title">The Idiot</span>
+                </div>
+                <div class="book-group">
+                    <span class="book-year">2018</span>
+                    <span class="book-title">Man&#x27;s Search for Meaning</span>
+                    <span class="book-title">Snowcrash</span>
+                    <span class="book-title">Codependent No More</span>
+                    <span class="book-title">Ask Polly&#x27;s Guide To Your Next Crisis</span>
+                    <span class="book-title">Getting The Love You Want</span>
+                    <span class="book-title">Tribe of Mentors</span>
+                    <span class="book-title">The Curious Case of Benjamin Button</span>
+                    <span class="book-title">Sapiens</span>
+                    <span class="book-title">A Brief History of Time</span>
+                    <span class="book-title">Kitchen Confidential</span>
+                    <span class="book-title">Devil in the Kitchen</span>
+                    <span class="book-title">Manhood</span>
+                </div>
+                <div class="book-group">
+                    <span class="book-year">2017</span>
+                    <span class="book-title">The Simple Path to Wealth</span>
+                    <span class="book-title">Early Retirement Extreme</span>
+                    <span class="book-title">The Autobiography of Benjamin Franklin</span>
+                    <span class="book-title">Aesop&#x27;s Fables</span>
+                    <span class="book-title">Ulysses</span>
+                    <span class="book-title">How to Speak and Write Correctly</span>
+                    <span class="book-title">Popular Tales from the Norse</span>
+                    <span class="book-title">Complete Works of David Hume (selections)</span>
+                    <span class="book-title">The Greatest Generation</span>
+                    <span class="book-title">Don Quixote</span>
+                    <span class="book-title">The Ultimate Sherlock Holmes Collection</span>
+                    <span class="book-title">The Wisdom of Insecurity</span>
+                    <span class="book-title">The 4-Hour Body</span>
+                    <span class="book-title">The Little Book that Beats the Market</span>
+                    <span class="book-title">A Book of Five Rings</span>
+                    <span class="book-title">Meditations</span>
+                    <span class="book-title">Designing Your Life</span>
+                    <span class="book-title">The New Better Off</span>
+                    <span class="book-title">Your Money or Your Life</span>
+                    <span class="book-title">The Magic of Thinking BIG</span>
+                    <span class="book-title">City in the City</span>
+                </div>
+                <div class="book-group">
+                    <span class="book-year">2016</span>
+                    <span class="book-title">Still Life with Woodpecker</span>
+                    <span class="book-title">Media Control</span>
+                    <span class="book-title">Practical Lock Picking</span>
+                    <span class="book-title">The Rings of Saturn</span>
+                    <span class="book-title">The Economist Guide to Financial Markets</span>
+                    <span class="book-title">Gratitude</span>
+                    <span class="book-title">Cryptonomicon</span>
+                    <span class="book-title">The Name of the Wind</span>
+                    <span class="book-title">The Wise Man&#x27;s Fear</span>
+                    <span class="book-title">Power Systems</span>
+                    <span class="book-title">How to Archer</span>
+                    <span class="book-title">The Joy of x</span>
+                    <span class="book-title">Ready Player One</span>
+                    <span class="book-title">The Road to Character</span>
+                    <span class="book-title">Berkshire Hathaway Letters</span>
+                </div>
+                <div class="book-group">
+                    <span class="book-year">2015</span>
+                    <span class="book-title">1Q84</span>
+                    <span class="book-title">The Swarm</span>
+                    <span class="book-title">4 Hour Work Week</span>
+                </div>
+                <div class="book-group">
+                    <span class="book-year">&lt;2015</span>
+                    <span class="book-title">The Watchmen</span>
+                    <span class="book-title">Evidence</span>
+                    <span class="book-title">The White Tiger</span>
+                    <span class="book-title">Collapse: How Societies Chose to Fail or Succeed</span>
+                    <span class="book-title">Guns, Germs and Steel</span>
+                    <span class="book-title">The Prince</span>
+                    <span class="book-title">Sphere</span>
+                    <span class="book-title">Out of the Silent Planet</span>
+                    <span class="book-title">Perelandra</span>
+                    <span class="book-title">That Hideous Strength</span>
+                    <span class="book-title">Redwall</span>
+                    <span class="book-title">Mossflower</span>
+                    <span class="book-title">Mattimeo</span>
+                    <span class="book-title">Martin the Warrior</span>
+                    <span class="book-title">Salamandastron</span>
+                    <span class="book-title">Mariel of Redwall</span>
+                    <span class="book-title">The Bellmaker</span>
+                    <span class="book-title">Outcast of Redwall</span>
+                    <span class="book-title">Pearls of Lutra</span>
+                    <span class="book-title">The Long Patrol</span>
+                    <span class="book-title">Inferno</span>
+                    <span class="book-title">The Book of Three</span>
+                    <span class="book-title">The Black Cauldron</span>
+                    <span class="book-title">Taran Wanderer</span>
+                    <span class="book-title">The Castle of Llyr</span>
+                    <span class="book-title">The High King</span>
+                    <span class="book-title">The Foundling and Other Tales of Prydain</span>
+                    <span class="book-title">A Game of Thrones</span>
+                    <span class="book-title">A Clash of Kings</span>
+                    <span class="book-title">A Storm of Swords</span>
+                    <span class="book-title">A Feast for Crows</span>
+                    <span class="book-title">A Dance with Dragons</span>
+                    <span class="book-title">The Flight of the Silvers</span>
+                    <span class="book-title">Dune</span>
+                    <span class="book-title">Dune Messiah</span>
+                    <span class="book-title">Children of Dune</span>
+                    <span class="book-title">The Gunslinger</span>
+                    <span class="book-title">The Drawing of the Three</span>
+                    <span class="book-title">The Waste Lands</span>
+                    <span class="book-title">Wizard and Glass</span>
+                    <span class="book-title">Wolves of the Calla</span>
+                    <span class="book-title">Song of Susannah</span>
+                    <span class="book-title">The Dark Tower</span>
+                    <span class="book-title">American Gods</span>
+                    <span class="book-title">Ender&#x27;s Game</span>
+                    <span class="book-title">Zen and the Art of Motorcycle Maintenance</span>
+                    <span class="book-title">The New American Road Trip Mixtape</span>
+                    <span class="book-title">Self-Coached Climber</span>
+                    <span class="book-title">Shantaram</span>
+                    <span class="book-title">The One-Straw Revolution</span>
+                    <span class="book-title">The China Study</span>
+                    <span class="book-title">The Hobbit</span>
+                    <span class="book-title">Fellowship of the Ring</span>
+                    <span class="book-title">The Two Towers</span>
+                    <span class="book-title">Return of the King</span>
+                    <span class="book-title">This is Water</span>
+                    <span class="book-title">9 Out of 10 Climbers Make the Same Mistakes</span>
+                    <span class="book-title">Great Expectations</span>
+                    <span class="book-title">The Communist Manifesto</span>
+                    <span class="book-title">Ethics</span>
+                    <span class="book-title">The Odyssey</span>
+                    <span class="book-title">Dracula</span>
+                    <span class="book-title">The Hedge Knight</span>
+                    <span class="book-title">Flow</span>
+                    <span class="book-title">Foundation</span>
+                    <span class="book-title">Hyperion</span>
+                    <span class="book-title">The Fall of Hyperion</span>
+                    <span class="book-title">Endymion</span>
+                    <span class="book-title">The Rise of Endymion</span>
+                    <span class="book-title">The History of Herodotus</span>
+                    <span class="book-title">Autobiography of a Yogi</span>
+                    <span class="book-title">A Picture of Dorian Gray</span>
+                    <span class="book-title">Twenty Thousand Leagues Under the Sea</span>
+                    <span class="book-title">The Art of War</span>
+                    <span class="book-title">A Tale of Two Cities</span>
+                    <span class="book-title">Pride and Prejudice</span>
+                    <span class="book-title">The Adventures of Sherlock Holmes</span>
+                </div>
+                </div>
+                <a href="#top" class="back-to-top">↑</a>
+            </section>
+
+            <section id="albums">
+                <h2>Albums</h2>
+                
+                <p class="muted small">27 albums · listened 2019 · releases spanning 1967–2019</p>
+                <div class="sparkline" aria-hidden="true">
+                    Jan ▁  Feb ▄  Mar ▁  Apr    May ▄  Jun ▄  Jul █  Aug ▂  Sep ▂  Oct ▂  Nov    Dec  
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/2DKJWh4uNozTDpuaSKb1oK?si=xA9lBDTbRzeUvU1T9BkkHw" target="_blank" class="album-title">The Jackson 5 — Gold (2005)</a>
+                    <span class="album-note">hits. that Motown sound.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/4svLfrPPk2npPVuI4kXPYg?si=T1IfF6u0SPmbLSvQ0Zf-gg" target="_blank" class="album-title">Leon Bridges — Coming Home (2015)</a>
+                    <span class="album-note">Incredible Delta sounds.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/0UP3rWITqj74OAVCHP5034?si=UwTv4zz2QCm42XZC47Lt2g" target="_blank" class="album-title">Herb Alpert — Rise (1979)</a>
+                    <span class="album-note">bonkers.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/5DVNCzpvDrSEIFiU7hm8ey?si=pchRWfTzRg2GdqpH0msvEg" target="_blank" class="album-title">The Runaways — The Runaways (1976)</a>
+                    <span class="album-note">Early Joan Jett.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/1H9g6j4Wwj6wh6p8YHVtkf?si=W5G0MNdhSV-zXJRcA6nNzg" target="_blank" class="album-title">The Police — Outlandos D&#x27;Amour (Remastered 2003) (1978)</a>
+                    <span class="album-note">Co-worker and I played two albums from the Police last week. I never knew that the drummer was Moroccan? Allegedly, they started the punk/reggae vibe because they were not able to get folks digging their more eclectic sound.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/2EpuND32cO7CX0gXZl2NB6?si=-UL40aAfQaOuhdwCaFvmzg" target="_blank" class="album-title">The Police — Reggatta De Blanc (1979)</a>
+                    <span class="album-note">Ok. Sting is both dark AF and an odd-ball. I dig it. Walking on the Moon is a great song, ostensibly about floating home on positive vibes from his girlfriends house. We&#x27;ve all been there.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/18rcvgzvr5DMsPNOBwL5Cz?si=TDiDkz-vQYeabKeBXL0Fuw" target="_blank" class="album-title">Photay — Photay (2014)</a>
+                    <span class="album-note">A Patrick recommendation.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc?si=ae0w4EPnRfucTPFYQhv2Gg" target="_blank" class="album-title">Daft Punk — Discovery (2001)</a>
+                    <span class="album-note">The year I graduated High School rewarded me with this incredible album.  An all time favorite.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/05J8PFXdYKeYNb8YjqqJYr?si=q6zFFDxPQq6oKEyxDawK3w" target="_blank" class="album-title">The Beach Boys — Endless Summer (1974)</a>
+                    <span class="album-note">Most of these songs could get you beat up at the beach in New Jersey. Growing up I think my Father enjoyed these albums, but I don&#x27;t know why. The opening of Good Vibrations is legendary.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/0MCiMfs35PPI4WFypTpsrK?si=5aGOFTFLRBOWCBx8IJq-6A" target="_blank" class="album-title">Propagandhi — How to Clean Everything (1993)</a>
+                    <span class="album-note">Formative in my early teens.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/4TJIdlY9hGSSTO1kUs1neh?si=Ik_xPy3zR1G1BtOeN_jbBw" target="_blank" class="album-title">Johnny Cash — At Folsom Prison (1968)</a>
+                    <span class="album-note">Johnny Fucking Cash.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/1HarDRl9Lt8Clh9nYJ9n6a?si=2jGmQd5tTfWRkOoRC9RN_A" target="_blank" class="album-title">The Budos Band — The Budos Band II (2007)</a>
+                    <span class="album-note">Charles Bradly&#x27;s backing band formed Budos. Tight, tight, tight.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/6nL0U84JsEJ0cRsGCnsDnJ?si=SukQK0siSyywD66h0Hx7Rg" target="_blank" class="album-title">Broken Social Scene — You Forgot It In People (2003)</a>
+                    <span class="album-note">an old favorite</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/0DFhGsFKG7G58cke33GlAh?si=CyOr_4OwQVOM9UjgBHzbaw" target="_blank" class="album-title">Captain Beefheart &amp; His Magic Band — Safe as Milk (1967)</a>
+                    <span class="album-note">&quot;Catching up, huh?&quot;</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/5f6Nz2v1DESbpu1NerEql2?si=yfhgArIkQ2KFPjLEalgMQQ" target="_blank" class="album-title">Gang Starr — Moment of Truth (1998)</a>
+                    <span class="album-note">Seminal and socially woke.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/5zi7WsKlIiUXv09tbGLKsE?si=lwXfen2rRWadXKk6bwBFyg" target="_blank" class="album-title">Tyler, The Creator — IGOR (2019)</a>
+                    <span class="album-note">Interesting. I don&#x27;t know enough about the Artist.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/6tTvGto8mk0xYfOmMR4224?si=cJIcO7phTqq3mza9IAsF4g" target="_blank" class="album-title">Alex, Tokyo Rose — Akuma II (2019)</a>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/67OQuCcp8yfLRKa49asN8i?si=cZr_3PUkT7iTIug-UYI3OQ" target="_blank" class="album-title">Bembeya Jazz National — Discoteque 76 (1976)</a>
+                    <span class="album-note">wonderful afro-jazz. The third track is a long-time favorite</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/7Jn1h8E5aT96pdyrPxrLWi?si=NKZpnbChQhCDIjwC4xnrPA" target="_blank" class="album-title">Orville Peck — Pony (2019)</a>
+                    <span class="album-note">Shoegaze-Outlaw-Country...AWESOME!</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/4QH2Ppf0BHxK8mGVF6aEmD?si=2iNBFe5yRGWnOPjgS2o3Yg" target="_blank" class="album-title">Night Moves — Colored Emotions (2012)</a>
+                    <span class="album-note">Smooth and fun. Little sexy.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/3ZGUBwDiY5HPOcWv4SBPQg?si=IHR3TLS3TXW5kfnUsAub1A" target="_blank" class="album-title">Tom Petty — Wildflowers (1994)</a>
+                    <span class="album-note">Classic album with some of what I think is his best work.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/0LBQdWnuV0CAXyPIngb0UX?si=-Sfc4ywWTu-oAbECWYBC-g" target="_blank" class="album-title">Buckethead — Colma (1998)</a>
+                    <span class="album-note">I don&#x27;t know anything about Buckethead except that it seems to be a fun mockery of Slash&#x27;s aestetic choices. Super enjoyable progressive instrumental guitar work.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/5622zSt4RLqNSPShdqmWpj?si=cAEfErUKTs2jNh0T_NValA" target="_blank" class="album-title">Better Oblivion Community Center — Better Oblivion Community Center (2019)</a>
+                    <span class="album-note">think I&#x27;ll have to give this one a few more listens over the coming weeks.  Initial impressions are that it&#x27;s fucking incredible.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/7JSUMJpXFj2Tmv4wYGmUp8?si=uh2MBH4uTGeJSvu8UwgdcQ" target="_blank" class="album-title">The Horrible Crows — Elise (2011)</a>
+                    <span class="album-note">Gaslight Anthem front-man does a Tom Waits, Nick Cave inspired album.  The first few tracks destroyed me.  I like the contrast of upbeat tempo with crushing lyrics.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/6BOQkxcHspMoRWEwEexf4l?si=r1HasGOvTImPRvLQ1taKKA" target="_blank" class="album-title">Beck — Colors (2017)</a>
+                    <span class="album-note">Beck. One of those artists who I expect will put out at least interesting if</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/0huXZPw7bhK5vTv7CMYOmP?si=1TMn5SWPSpqAWQsMkEzicw" target="_blank" class="album-title">Circa Survive — Juturna (2005)</a>
+                    <span class="album-note">I originally received this album from the lead singer at a 24 hour dinner</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/2JeW42eEkcpxw1UHvZFfVG?si=DuERQJ_NR5y7Mcv9BJSnaQ" target="_blank" class="album-title">Daikaiju — Daikaiju (2005)</a>
+                    <span class="album-note">In Japanese, Daikaiju translates to &quot;giant monster&quot; Recorded in *2003*, but not released until *2005*.</span>
+                </div>
+                <a href="#top" class="back-to-top">↑</a>
+            </section>
+
+            <section id="elsewhere">
+                <h2>Elsewhere</h2>
+                <p>
+                    <a href="https://github.com/k-f-/">github</a> <span class="nav-separator">·</span>
+                    <a href="https://linkedin.com/in/kfring/">linkedin</a> <span class="nav-separator">·</span>
+                    <a href="https://goodreads.com/kfring/">goodreads</a>
+                </p>
+                <a href="#top" class="back-to-top">↑</a>
+            </section>
+
+            <section id="epilogue">
+                <h2>Epilogue</h2>
+                <p>Previous iterations: <a href="http://v3.fring.io">v3</a> · <a href="http://v2.fring.io">v2</a> · <a href="http://v1.kfring.com">v1</a></p>
+                <p class="muted small">Credit to <a href="http://bettermotherfuckingwebsite.com/">bettermotherfuckingwebsite.com</a></p>
+                <a href="#top" class="back-to-top">↑</a>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        // Check local storage or system preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            html.setAttribute('data-theme', savedTheme);
+            updateIcon(savedTheme);
+        } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+            html.setAttribute('data-theme', 'light');
+            updateIcon('light');
+        }
+
+        function updateIcon(theme) {
+            toggleBtn.textContent = theme === 'light' ? '☾' : '☀';
+        }
+
+        toggleBtn.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcon(newTheme);
+        });
+    </script>
+</body>
+</html>

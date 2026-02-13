@@ -147,6 +147,41 @@
            }
        }
 
+       /* Album cover gallery */
+       .album-gallery {
+           display: grid;
+           grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+           gap: 1rem;
+           margin: 2rem 0;
+       }
+
+       .album-cover {
+           display: block;
+           position: relative;
+           transition: transform 0.2s ease, box-shadow 0.2s ease;
+           border-radius: 4px;
+           overflow: hidden;
+       }
+
+       .album-cover:hover {
+           transform: translateY(-4px);
+           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+       }
+
+       .album-cover img {
+           width: 100%;
+           height: auto;
+           display: block;
+           border-radius: 4px;
+       }
+
+       @media (max-width: 768px) {
+           .album-gallery {
+               grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+               gap: 0.75rem;
+           }
+       }
+
        /* Optional: visualization headers within grids */
        .viz-grid h4 {
            margin-top: 0;
@@ -524,6 +559,168 @@ Interstate Corridors:
 Geographic Hub: 80% pass-through freight traffic
 Coordinates: 35.05°N, 85.31°W 📍</pre>
 
+    <h3>Albums</h3>
+    <h4>VIZ-ALBUMS-ARTIST-001: Artist Frequency</h4>
+    <pre class="visualization" id="viz-albums-artist-001" data-viz-id="VIZ-ALBUMS-ARTIST-001">ALBUM ARTISTS - Frequency Analysis [VIZ-ALBUMS-ARTIST-001]
+
+Total: 27 albums │ Artists: 26 │ Avg: 1.0 albums/artist
+
+The Police                     │●● 2
+
+Showing artists with 2+ albums (1 of 26)</pre>
+
+    <h4>VIZ-ALBUMS-ARTIST-002: Artist Sparkline</h4>
+    <pre class="visualization" id="viz-albums-artist-002" data-viz-id="VIZ-ALBUMS-ARTIST-002">ARTIST PATTERNS - Sparkline View [VIZ-ALBUMS-ARTIST-002]
+
+The Police                ██░░░ (2 albums)
+
+Diversity Index: 26/27 = 96.3%</pre>
+
+    <h4>VIZ-ALBUMS-YEAR-001: Decade Distribution</h4>
+    <pre class="visualization" id="viz-albums-year-001" data-viz-id="VIZ-ALBUMS-YEAR-001">ALBUM RELEASE DECADES - Distribution [VIZ-ALBUMS-YEAR-001]
+
+1960s  │██████                          2
+1970s  │████████████████████            6
+1990s  │█████████████                   4
+2000s  │████████████████████            6
+2010s  │██████████████████████████████  9
+       └───────────────────────────────────
+
+Trend: ▁▅▃▅█
+Decades: 6070900010</pre>
+
+    <div class="viz-grid cols-2">
+        <div>
+            <h4>VIZ-ALBUMS-YEAR-002: Release Timeline</h4>
+            <pre class="visualization" id="viz-albums-year-002" data-viz-id="VIZ-ALBUMS-YEAR-002">ALBUM TIMELINE - Release Year Analysis [VIZ-ALBUMS-YEAR-002]
+
+Release Year Span: 1967 → 2019 (52 years)
+
+Release Timeline:
+1967 │●
+1968 │●
+1974 │●
+1976 │●●
+1978 │●
+1979 │●●
+1993 │●
+1994 │●
+1998 │●●
+2001 │●
+2003 │●
+2005 │●●●
+2007 │●
+2011 │●
+2012 │●
+2014 │●
+2015 │●
+2017 │●
+2019 │●●●●
+
+Album Age When Listened (2019):
+  Oldest:  52 years (1967)
+  Newest:  0 years (2019)
+  Average: 20.8 years</pre>
+        </div>
+        <div>
+            <h4>VIZ-ALBUMS-CHARS-001: Track Distribution</h4>
+            <pre class="visualization" id="viz-albums-chars-001" data-viz-id="VIZ-ALBUMS-CHARS-001">TRACK COUNT DISTRIBUTION - Compact View [VIZ-ALBUMS-CHARS-001]
+
+Range: 5-36 tracks │ Avg: 13.3 │ Median: 12
+
+ 5 tracks │● (1 albums)
+ 8 tracks │● (1 albums)
+ 9 tracks │● (1 albums)
+10 tracks │●●●●●●●● (8 albums)
+11 tracks │●● (2 albums)
+12 tracks │●●●● (4 albums)
+13 tracks │●● (2 albums)
+14 tracks │● (1 albums)
+15 tracks │● (1 albums)
+16 tracks │● (1 albums)
+19 tracks │●● (2 albums)
+20 tracks │● (1 albums)
+21 tracks │● (1 albums)
+36 tracks │● (1 albums)
+
+Most common: 10 tracks (8 albums)</pre>
+        </div>
+    </div>
+
+    <h4>VIZ-ALBUMS-CHARS-002: Duration Scatter</h4>
+    <pre class="visualization" id="viz-albums-chars-002" data-viz-id="VIZ-ALBUMS-CHARS-002">ALBUM CHARACTERISTICS - Duration vs Tracks [VIZ-ALBUMS-CHARS-002]
+
+Minutes │
+133    │· · · · · · · · · ●
+124    │· · · · · · · · · ●
+115    │· · · · · · · · · ·
+106    │· · · · · · · · · ·
+ 97    │· · · · · · · · · ·
+ 88    │· · · · · ● · · · ·
+ 79    │· · · · ● ● · · · ·
+ 70    │· · · ● ● ● · · · ·
+ 62    │· · · ● ● · · · · ·
+ 53    │· · ● ● ● ● · · · ·
+ 44    │· ● ● ● ● ● · · · ·
+ 35    │· ● ● ● · · · · · ·
+ 26    │· ● ● ● · · · · · ·
+ 17    │· · ● ● · · · · · ·
+  8    │· · · · · · · · · ·
+  0    │· · · · · · · · · ·
+       └────────────────────
+        0   10   20   30   40+ tracks
+
+Avg duration: 48 min │ Avg tracks: 13.3</pre>
+
+    <div class="viz-grid cols-2">
+        <div>
+            <h4>VIZ-ALBUMS-CHARS-003: Duration Distribution</h4>
+            <pre class="visualization" id="viz-albums-chars-003" data-viz-id="VIZ-ALBUMS-CHARS-003">ALBUM DURATION DISTRIBUTION [VIZ-ALBUMS-CHARS-003]
+
+0-30 min    │█████                     2
+30-40 min   │█████████████████████████ 10
+40-50 min   │███████████████           6
+50-60 min   │██████████                4
+60+ min     │████████████              5
+            └──────────────────────────────
+
+Avg: 48 min │ Range: 23-133 min</pre>
+        </div>
+        <div>
+            <h4>VIZ-ALBUMS-COVER-001: Album Gallery</h4>
+            <p><em>Click any album to open in Spotify</em></p>
+            <div class="album-gallery" id="viz-albums-cover-001" data-viz-id="VIZ-ALBUMS-COVER-001">
+<a href="https://open.spotify.com/album/2DKJWh4uNozTDpuaSKb1oK?si=xA9lBDTbRzeUvU1T9BkkHw" target="_blank" rel="noopener" class="album-cover" title="The Jackson 5 - Gold (2005)"><img src="https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e023d7d7d2f80dcbb081a6e02de" alt="The Jackson 5 - Gold" loading="lazy" /></a>
+<a href="https://open.spotify.com/album/4svLfrPPk2npPVuI4kXPYg?si=T1IfF6u0SPmbLSvQ0Zf-gg" target="_blank" rel="noopener" class="album-cover" title="Leon Bridges - Coming Home (2015)"><img src="https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e0269101a9ff9d0653a753eab10" alt="Leon Bridges - Coming Home" loading="lazy" /></a>
+<a href="https://open.spotify.com/album/0UP3rWITqj74OAVCHP5034?si=UwTv4zz2QCm42XZC47Lt2g" target="_blank" rel="noopener" class="album-cover" title="Herb Alpert - Rise (1979)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02a0af62d5ff3f6d58f25d2d7f" alt="Herb Alpert - Rise" loading="lazy" /></a>
+<a href="https://open.spotify.com/album/5DVNCzpvDrSEIFiU7hm8ey?si=pchRWfTzRg2GdqpH0msvEg" target="_blank" rel="noopener" class="album-cover" title="The Runaways - The Runaways (1976)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02a1c553575418ca43404cb48b" alt="The Runaways - The Runaways" loading="lazy" /></a>
+<a href="https://open.spotify.com/album/1H9g6j4Wwj6wh6p8YHVtkf?si=W5G0MNdhSV-zXJRcA6nNzg" target="_blank" rel="noopener" class="album-cover" title="The Police - Outlandos D'Amour (Remastered 2003) (1978)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e022043dd3544a339547d04b436" alt="The Police - Outlandos D'Amour (Remastered 2003)" loading="lazy" /></a>
+<a href="https://open.spotify.com/album/2EpuND32cO7CX0gXZl2NB6?si=-UL40aAfQaOuhdwCaFvmzg" target="_blank" rel="noopener" class="album-cover" title="The Police - Reggatta De Blanc (1979)"><img src="https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e028ec81cc654b45ade8bdf1486" alt="The Police - Reggatta De Blanc" loading="lazy" /></a>
+<a href="https://open.spotify.com/album/18rcvgzvr5DMsPNOBwL5Cz?si=TDiDkz-vQYeabKeBXL0Fuw" target="_blank" rel="noopener" class="album-cover" title="Photay - Photay (2014)"><img src="https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e0229468317ab30be52670de2e3" alt="Photay - Photay" loading="lazy" /></a>
+<a href="https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc?si=ae0w4EPnRfucTPFYQhv2Gg" target="_blank" rel="noopener" class="album-cover" title="Daft Punk - Discovery (2001)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e022c25dad9f8fd54652f7ba5df" alt="Daft Punk - Discovery" loading="lazy" /></a>
+<a href="https://open.spotify.com/album/05J8PFXdYKeYNb8YjqqJYr?si=q6zFFDxPQq6oKEyxDawK3w" target="_blank" rel="noopener" class="album-cover" title="The Beach Boys - Endless Summer (1974)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02116fbd1449c091ff694464f3" alt="The Beach Boys - Endless Summer" loading="lazy" /></a>
+<a href="https://open.spotify.com/album/0MCiMfs35PPI4WFypTpsrK?si=5aGOFTFLRBOWCBx8IJq-6A" target="_blank" rel="noopener" class="album-cover" title="Propagandhi - How to Clean Everything (1993)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e0294351d4e7c1b7945f52b760f" alt="Propagandhi - How to Clean Everything" loading="lazy" /></a>
+<a href="https://open.spotify.com/album/4TJIdlY9hGSSTO1kUs1neh?si=Ik_xPy3zR1G1BtOeN_jbBw" target="_blank" rel="noopener" class="album-cover" title="Johnny Cash - At Folsom Prison (1968)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e024a04593b7c149dc7b725683e" alt="Johnny Cash - At Folsom Prison" loading="lazy" /></a>
+<a href="https://open.spotify.com/album/1HarDRl9Lt8Clh9nYJ9n6a?si=2jGmQd5tTfWRkOoRC9RN_A" target="_blank" rel="noopener" class="album-cover" title="The Budos Band - The Budos Band II (2007)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e027fc11cc22d9c79156e0786cb" alt="The Budos Band - The Budos Band II" loading="lazy" /></a>
+<a href="https://open.spotify.com/album/6nL0U84JsEJ0cRsGCnsDnJ?si=SukQK0siSyywD66h0Hx7Rg" target="_blank" rel="noopener" class="album-cover" title="Broken Social Scene - You Forgot It In People (2003)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e0203da841c188eb597c6cf3611" alt="Broken Social Scene - You Forgot It In People" loading="lazy" /></a>
+<a href="https://open.spotify.com/album/0DFhGsFKG7G58cke33GlAh?si=CyOr_4OwQVOM9UjgBHzbaw" target="_blank" rel="noopener" class="album-cover" title="Captain Beefheart & His Magic Band - Safe as Milk (1967)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02a1b6277839cf22f21b69f267" alt="Captain Beefheart & His Magic Band - Safe as Milk" loading="lazy" /></a>
+<a href="https://open.spotify.com/album/5f6Nz2v1DESbpu1NerEql2?si=yfhgArIkQ2KFPjLEalgMQQ" target="_blank" rel="noopener" class="album-cover" title="Gang Starr - Moment of Truth (1998)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e023a76edacefe2e7a589222787" alt="Gang Starr - Moment of Truth" loading="lazy" /></a>
+<a href="https://open.spotify.com/album/5zi7WsKlIiUXv09tbGLKsE?si=lwXfen2rRWadXKk6bwBFyg" target="_blank" rel="noopener" class="album-cover" title="Tyler, The Creator - IGOR (2019)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e0230a635de2bb0caa4e26f6abb" alt="Tyler, The Creator - IGOR" loading="lazy" /></a>
+<a href="https://open.spotify.com/album/6tTvGto8mk0xYfOmMR4224?si=cJIcO7phTqq3mza9IAsF4g" target="_blank" rel="noopener" class="album-cover" title="Alex, Tokyo Rose - Akuma II (2019)"><img src="https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02bb92fb5ce4500eefbed577c6" alt="Alex, Tokyo Rose - Akuma II" loading="lazy" /></a>
+<a href="https://open.spotify.com/album/67OQuCcp8yfLRKa49asN8i?si=cZr_3PUkT7iTIug-UYI3OQ" target="_blank" rel="noopener" class="album-cover" title="Bembeya Jazz National - Discoteque 76 (1976)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e0246390410cfcb24d92c86199c" alt="Bembeya Jazz National - Discoteque 76" loading="lazy" /></a>
+<a href="https://open.spotify.com/album/7Jn1h8E5aT96pdyrPxrLWi?si=NKZpnbChQhCDIjwC4xnrPA" target="_blank" rel="noopener" class="album-cover" title="Orville Peck - Pony (2019)"><img src="https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e0256ebaf407e8dbc09afd7f6be" alt="Orville Peck - Pony" loading="lazy" /></a>
+<a href="https://open.spotify.com/album/4QH2Ppf0BHxK8mGVF6aEmD?si=2iNBFe5yRGWnOPjgS2o3Yg" target="_blank" rel="noopener" class="album-cover" title="Night Moves - Colored Emotions (2012)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02fd0ea87c616bf1db825bf66d" alt="Night Moves - Colored Emotions" loading="lazy" /></a>
+<a href="https://open.spotify.com/album/3ZGUBwDiY5HPOcWv4SBPQg?si=IHR3TLS3TXW5kfnUsAub1A" target="_blank" rel="noopener" class="album-cover" title="Tom Petty - Wildflowers (1994)"><img src="https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e0241be6d9cf0ec0067d095a072" alt="Tom Petty - Wildflowers" loading="lazy" /></a>
+<a href="https://open.spotify.com/album/0LBQdWnuV0CAXyPIngb0UX?si=-Sfc4ywWTu-oAbECWYBC-g" target="_blank" rel="noopener" class="album-cover" title="Buckethead - Colma (1998)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02277eeda94eb2882ef1c42371" alt="Buckethead - Colma" loading="lazy" /></a>
+<a href="https://open.spotify.com/album/5622zSt4RLqNSPShdqmWpj?si=cAEfErUKTs2jNh0T_NValA" target="_blank" rel="noopener" class="album-cover" title="Better Oblivion Community Center - Better Oblivion Community Center (2019)"><img src="https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02f3e71e36d206dc9cb967674d" alt="Better Oblivion Community Center - Better Oblivion Community Center" loading="lazy" /></a>
+<a href="https://open.spotify.com/album/7JSUMJpXFj2Tmv4wYGmUp8?si=uh2MBH4uTGeJSvu8UwgdcQ" target="_blank" rel="noopener" class="album-cover" title="The Horrible Crows - Elise (2011)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02c1bb4175f232cc628a263baf" alt="The Horrible Crows - Elise" loading="lazy" /></a>
+<a href="https://open.spotify.com/album/6BOQkxcHspMoRWEwEexf4l?si=r1HasGOvTImPRvLQ1taKKA" target="_blank" rel="noopener" class="album-cover" title="Beck - Colors (2017)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e0285c5d4eeba7c22b3df57e054" alt="Beck - Colors" loading="lazy" /></a>
+<a href="https://open.spotify.com/album/0huXZPw7bhK5vTv7CMYOmP?si=1TMn5SWPSpqAWQsMkEzicw" target="_blank" rel="noopener" class="album-cover" title="Circa Survive - Juturna (2005)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e023c7737aea2a393c863cf6bce" alt="Circa Survive - Juturna" loading="lazy" /></a>
+<a href="https://open.spotify.com/album/2JeW42eEkcpxw1UHvZFfVG?si=DuERQJ_NR5y7Mcv9BJSnaQ" target="_blank" rel="noopener" class="album-cover" title="Daikaiju - Daikaiju (2005)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02494612456a2346fdf7af2f94" alt="Daikaiju - Daikaiju" loading="lazy" /></a>
+            </div>
+        </div>
+    </div>
+
     <p><a href="#top">⬆</a></p>
     <hr>
     <h2><a id="elsewhere">Elsewhere</a></h2>
@@ -711,7 +908,28 @@ Coordinates: 35.05°N, 85.31°W 📍</pre>
     <p><a href="#top">⬆</a></p>
     <hr>
     <h2><a id="albums">Albums</a></h2>
-    <p>Soon&#8482;</p>
+    <p>
+        A listening log from 2019. 27 albums spanning 52 years of music history (1967-2019).
+        See the <a href="#visualizations">visualizations section</a> for analysis of listening patterns.
+    </p>
+    <p>
+        <strong>Stats:</strong> 26 unique artists │ 96.3% diversity │ Average album age: 21 years │ Most common: 10-track albums
+    </p>
+    <h3>Selected Albums (2019)</h3>
+    <ul>
+        <li><strong>Daft Punk</strong> - Discovery (2001) - <em>"The year I graduated High School rewarded me with this incredible album. An all time favorite."</em></li>
+        <li><strong>Johnny Cash</strong> - At Folsom Prison (1968) - <em>"Johnny Fucking Cash."</em></li>
+        <li><strong>Gang Starr</strong> - Moment of Truth (1998) - <em>"Seminal and socially woke."</em></li>
+        <li><strong>The Police</strong> - Outlandos D'Amour (1978) & Reggatta De Blanc (1979)</li>
+        <li><strong>Leon Bridges</strong> - Coming Home (2015) - <em>"Incredible Delta sounds."</em></li>
+        <li><strong>Orville Peck</strong> - Pony (2019) - <em>"Shoegaze-Outlaw-Country...AWESOME!"</em></li>
+        <li><strong>Captain Beefheart & His Magic Band</strong> - Safe as Milk (1967)</li>
+        <li><strong>Broken Social Scene</strong> - You Forgot It In People (2003) - <em>"an old favorite"</em></li>
+    </ul>
+    <p>
+        <em>Complete data available in <a href="https://github.com/k-f-/fring.io/blob/main/content/albums.json">albums.json</a></em>
+        │ All albums linked via Spotify
+    </p>
     <p><a href="#top">⬆</a></p>
     <hr>
     <h2><a id="epilogue">Epilogue</a></h2>

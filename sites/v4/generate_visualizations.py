@@ -18,6 +18,11 @@ def load_career_data():
     with open('../../content/career.json', 'r') as f:
         return json.load(f)
 
+def load_albums_data():
+    """Load and parse albums.json"""
+    with open('../../content/albums.json', 'r') as f:
+        return json.load(f)
+
 def generate_books_bar_chart():
     """VIZ-BOOKS-HBAR-001: Horizontal bar chart of books read per year"""
     data = load_books_data()
@@ -725,6 +730,358 @@ def generate_location_roadways():
 
     return "\n".join(lines)
 
+# ============================================================================
+# ALBUMS VISUALIZATIONS
+# ============================================================================
+
+def parse_playtime(playtime_str):
+    """Parse playtime string to minutes (e.g., '2 hr 13 min.' -> 133)"""
+    if not playtime_str:
+        return 0
+
+    minutes = 0
+    # Handle various formats: "2 hr 13 min.", "34 min.", "41 min", "38 minutes.", "61 Minutes"
+    parts = playtime_str.lower().replace('.', '').split()
+
+    i = 0
+    while i < len(parts):
+        if parts[i].isdigit():
+            num = int(parts[i])
+            if i + 1 < len(parts):
+                unit = parts[i + 1]
+                if 'hr' in unit or 'hour' in unit:
+                    minutes += num * 60
+                elif 'min' in unit:
+                    minutes += num
+            i += 2
+        else:
+            i += 1
+
+    return minutes
+
+def generate_albums_artist_freq():
+    """VIZ-ALBUMS-ARTIST-001: Artist frequency dot plot (compact)"""
+    data = load_albums_data()
+
+    # Count albums by artist
+    artist_counts = {}
+    for album in data['albums']:
+        artist = album['artist']
+        artist_counts[artist] = artist_counts.get(artist, 0) + 1
+
+    # Sort by count descending, then alphabetically
+    artists = sorted(artist_counts.items(), key=lambda x: (-x[1], x[0]))
+
+    # Only show artists with more than 1 album, or top 10
+    significant_artists = [a for a in artists if a[1] > 1]
+    if not significant_artists:
+        significant_artists = artists[:10]
+
+    max_count = max(artist_counts.values())
+    total_albums = len(data['albums'])
+    unique_artists = len(artist_counts)
+
+    lines = []
+    lines.append("ALBUM ARTISTS - Frequency Analysis [VIZ-ALBUMS-ARTIST-001]")
+    lines.append("")
+    lines.append(f"Total: {total_albums} albums │ Artists: {unique_artists} │ Avg: {total_albums/unique_artists:.1f} albums/artist")
+    lines.append("")
+
+    # Show artist frequencies
+    for artist, count in significant_artists:
+        dots = "●" * count + "○" * (max_count - count)
+        lines.append(f"{artist[:30]:30s} │{dots} {count}")
+
+    lines.append("")
+    lines.append(f"Showing artists with 2+ albums ({len(significant_artists)} of {unique_artists})")
+
+    return "\n".join(lines)
+
+def generate_albums_artist_sparkline():
+    """VIZ-ALBUMS-ARTIST-002: Artist listening patterns over time"""
+    data = load_albums_data()
+
+    # Count albums by artist
+    artist_counts = {}
+    for album in data['albums']:
+        artist = album['artist']
+        artist_counts[artist] = artist_counts.get(artist, 0) + 1
+
+    # Find artists with multiple albums
+    multi_album_artists = [a for a, c in artist_counts.items() if c > 1]
+
+    lines = []
+    lines.append("ARTIST PATTERNS - Sparkline View [VIZ-ALBUMS-ARTIST-002]")
+    lines.append("")
+
+    if multi_album_artists:
+        for artist in multi_album_artists:
+            count = artist_counts[artist]
+            sparkline = "█" * count + "░" * (5 - count)
+            lines.append(f"{artist[:25]:25s} {sparkline[:5]} ({count} albums)")
+    else:
+        lines.append("All albums by different artists - diverse listening!")
+
+    lines.append("")
+    lines.append(f"Diversity Index: {len(artist_counts)}/{len(data['albums'])} = {len(artist_counts)/len(data['albums']):.1%}")
+
+    return "\n".join(lines)
+
+def generate_albums_decade_dist():
+    """VIZ-ALBUMS-YEAR-001: Decade distribution histogram (compact)"""
+    data = load_albums_data()
+
+    # Group by decade
+    decade_counts = {}
+    for album in data['albums']:
+        year = album['releaseYear']
+        decade = (year // 10) * 10
+        decade_counts[decade] = decade_counts.get(decade, 0) + 1
+
+    decades = sorted(decade_counts.items())
+    max_count = max(decade_counts.values())
+
+    lines = []
+    lines.append("ALBUM RELEASE DECADES - Distribution [VIZ-ALBUMS-YEAR-001]")
+    lines.append("")
+
+    # Create histogram
+    for decade, count in decades:
+        bar_length = int((count / max_count) * 30)
+        bar = "█" * bar_length
+        decade_label = f"{decade}s"
+        lines.append(f"{decade_label:6s} │{bar:30s} {count:2d}")
+
+    lines.append("       └" + "─" * 35)
+
+    # Add sparkline
+    sparkline_chars = " ▁▂▃▄▅▆▇█"
+    sparkline = ""
+    for decade, count in decades:
+        index = int((count / max_count) * (len(sparkline_chars) - 1))
+        sparkline += sparkline_chars[index]
+
+    lines.append("")
+    lines.append(f"Trend: {sparkline}")
+    lines.append(f"Decades: {''.join(str(d)[-2:] for d, c in decades)}")
+
+    return "\n".join(lines)
+
+def generate_albums_year_timeline():
+    """VIZ-ALBUMS-YEAR-002: Release year vs listen date scatter"""
+    data = load_albums_data()
+
+    lines = []
+    lines.append("ALBUM TIMELINE - Release Year Analysis [VIZ-ALBUMS-YEAR-002]")
+    lines.append("")
+
+    # Get release year range
+    release_years = [a['releaseYear'] for a in data['albums']]
+    min_year = min(release_years)
+    max_year = max(release_years)
+    year_range = max_year - min_year
+
+    # Create timeline showing release years
+    lines.append(f"Release Year Span: {min_year} → {max_year} ({year_range} years)")
+    lines.append("")
+
+    # Group albums by release year
+    by_year = {}
+    for album in data['albums']:
+        year = album['releaseYear']
+        by_year[year] = by_year.get(year, 0) + 1
+
+    # Create compact dot plot for timeline
+    lines.append("Release Timeline:")
+    for year in sorted(by_year.keys()):
+        count = by_year[year]
+        dots = "●" * count
+        lines.append(f"{year} │{dots}")
+
+    # Calculate age statistics
+    listen_year = 2019  # All albums listened in 2019
+    ages = [listen_year - y for y in release_years]
+    avg_age = sum(ages) / len(ages)
+    oldest = max(ages)
+    newest = min(ages)
+
+    lines.append("")
+    lines.append(f"Album Age When Listened (2019):")
+    lines.append(f"  Oldest:  {oldest} years ({min_year})")
+    lines.append(f"  Newest:  {newest} years ({max_year})")
+    lines.append(f"  Average: {avg_age:.1f} years")
+
+    return "\n".join(lines)
+
+def generate_albums_track_distribution():
+    """VIZ-ALBUMS-CHARS-001: Track count distribution sparkline"""
+    data = load_albums_data()
+
+    # Get track counts
+    track_counts = [a['tracks'] for a in data['albums']]
+    min_tracks = min(track_counts)
+    max_tracks = max(track_counts)
+    avg_tracks = sum(track_counts) / len(track_counts)
+
+    # Create distribution
+    track_dist = {}
+    for count in track_counts:
+        track_dist[count] = track_dist.get(count, 0) + 1
+
+    lines = []
+    lines.append("TRACK COUNT DISTRIBUTION - Compact View [VIZ-ALBUMS-CHARS-001]")
+    lines.append("")
+    lines.append(f"Range: {min_tracks}-{max_tracks} tracks │ Avg: {avg_tracks:.1f} │ Median: {sorted(track_counts)[len(track_counts)//2]}")
+    lines.append("")
+
+    # Show distribution with dots
+    for tracks in sorted(track_dist.keys()):
+        count = track_dist[tracks]
+        dots = "●" * count
+        lines.append(f"{tracks:2d} tracks │{dots} ({count} albums)")
+
+    # Find most common
+    most_common_tracks = max(track_dist.items(), key=lambda x: x[1])
+    lines.append("")
+    lines.append(f"Most common: {most_common_tracks[0]} tracks ({most_common_tracks[1]} albums)")
+
+    return "\n".join(lines)
+
+def generate_albums_playtime_scatter():
+    """VIZ-ALBUMS-CHARS-002: Playtime vs tracks scatter plot"""
+    data = load_albums_data()
+
+    lines = []
+    lines.append("ALBUM CHARACTERISTICS - Duration vs Tracks [VIZ-ALBUMS-CHARS-002]")
+    lines.append("")
+
+    # Parse playtime and create scatter data
+    scatter_data = []
+    for album in data['albums']:
+        tracks = album['tracks']
+        minutes = parse_playtime(album.get('playtime', ''))
+        if minutes > 0:
+            scatter_data.append((tracks, minutes, album['artist'][:20]))
+
+    # Create scatter plot
+    max_tracks = max(d[0] for d in scatter_data)
+    max_minutes = max(d[1] for d in scatter_data)
+
+    # Grid: 15 rows (minutes), varying columns (tracks)
+    lines.append(f"Minutes │")
+    for row in range(15, -1, -1):
+        minute_threshold = int((row / 15) * max_minutes)
+        line = f"{minute_threshold:3d}    │"
+
+        for col in range(0, max_tracks + 1, 4):
+            # Check if any album falls in this cell
+            has_point = any(
+                col <= d[0] < col + 4 and
+                minute_threshold - 10 <= d[1] < minute_threshold + 10
+                for d in scatter_data
+            )
+            line += "● " if has_point else "· "
+
+        lines.append(line)
+
+    lines.append("       └" + "─" * 20)
+    lines.append("        0   10   20   30   40+ tracks")
+
+    # Statistics
+    avg_duration = sum(d[1] for d in scatter_data) / len(scatter_data)
+    avg_tracks = sum(d[0] for d in scatter_data) / len(scatter_data)
+
+    lines.append("")
+    lines.append(f"Avg duration: {avg_duration:.0f} min │ Avg tracks: {avg_tracks:.1f}")
+
+    return "\n".join(lines)
+
+def generate_albums_duration_dist():
+    """VIZ-ALBUMS-CHARS-003: Duration distribution histogram"""
+    data = load_albums_data()
+
+    lines = []
+    lines.append("ALBUM DURATION DISTRIBUTION [VIZ-ALBUMS-CHARS-003]")
+    lines.append("")
+
+    # Parse all playtimes
+    durations = []
+    for album in data['albums']:
+        minutes = parse_playtime(album.get('playtime', ''))
+        if minutes > 0:
+            durations.append(minutes)
+
+    if not durations:
+        return "\n".join(["No duration data available"])
+
+    # Create bins: 0-30, 30-40, 40-50, 50-60, 60+
+    bins = {
+        '0-30 min': 0,
+        '30-40 min': 0,
+        '40-50 min': 0,
+        '50-60 min': 0,
+        '60+ min': 0
+    }
+
+    for duration in durations:
+        if duration < 30:
+            bins['0-30 min'] += 1
+        elif duration < 40:
+            bins['30-40 min'] += 1
+        elif duration < 50:
+            bins['40-50 min'] += 1
+        elif duration < 60:
+            bins['50-60 min'] += 1
+        else:
+            bins['60+ min'] += 1
+
+    max_count = max(bins.values())
+
+    # Create histogram
+    for bin_label, count in bins.items():
+        bar_length = int((count / max_count) * 25) if count > 0 else 0
+        bar = "█" * bar_length
+        lines.append(f"{bin_label:11s} │{bar:25s} {count}")
+
+    lines.append("            └" + "─" * 30)
+
+    # Statistics
+    avg_duration = sum(durations) / len(durations)
+    min_duration = min(durations)
+    max_duration = max(durations)
+
+    lines.append("")
+    lines.append(f"Avg: {avg_duration:.0f} min │ Range: {min_duration}-{max_duration} min")
+
+    return "\n".join(lines)
+
+def generate_albums_cover_grid():
+    """VIZ-ALBUMS-COVER-001: Album grid with actual cover images"""
+    data = load_albums_data()
+
+    # Generate HTML for album cover grid
+    albums = data['albums']
+
+    html_parts = []
+
+    # Show all albums in a grid
+    for album in albums:
+        thumbnail_url = album.get('thumbnailUrl', '')
+        spotify_url = album.get('spotifyUrl', '')
+        artist = album['artist']
+        album_name = album['album']
+        year = album['releaseYear']
+
+        # Create clickable album cover
+        html_parts.append(
+            f'<a href="{spotify_url}" target="_blank" rel="noopener" class="album-cover" '
+            f'title="{artist} - {album_name} ({year})">'
+            f'<img src="{thumbnail_url}" alt="{artist} - {album_name}" loading="lazy" />'
+            f'</a>'
+        )
+
+    return '\n'.join(html_parts)
+
 if __name__ == "__main__":
     print("Generating ASCII visualizations...")
     print("\n" + "=" * 70 + "\n")
@@ -783,3 +1140,28 @@ if __name__ == "__main__":
     print("\n" + "=" * 70 + "\n")
 
     print(generate_location_roadways())
+    print("\n" + "=" * 70 + "\n")
+
+    # Albums visualizations
+    print(generate_albums_artist_freq())
+    print("\n" + "=" * 70 + "\n")
+
+    print(generate_albums_artist_sparkline())
+    print("\n" + "=" * 70 + "\n")
+
+    print(generate_albums_decade_dist())
+    print("\n" + "=" * 70 + "\n")
+
+    print(generate_albums_year_timeline())
+    print("\n" + "=" * 70 + "\n")
+
+    print(generate_albums_track_distribution())
+    print("\n" + "=" * 70 + "\n")
+
+    print(generate_albums_playtime_scatter())
+    print("\n" + "=" * 70 + "\n")
+
+    print(generate_albums_duration_dist())
+    print("\n" + "=" * 70 + "\n")
+
+    print(generate_albums_cover_grid())

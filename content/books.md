@@ -12,6 +12,10 @@
 
 Books I've read, organized by year.
 
+## 2026 (? books)
+
+- How to Change your Mind
+
 ## 2020 (9 books)
 
 - Discrete Mathematics and it's Applications

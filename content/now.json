@@ -1,18 +1,18 @@
 {
   "meta": {
     "version": "1.0",
-    "lastUpdated": "2025-11-02T21:00:00.000000",
+    "lastUpdated": "2026-02-13T11:47:46.804126",
     "description": "Current activities and status - /now page content"
   },
   "location": {
     "city": "Chattanooga",
     "state": "TN",
     "country": "USA",
-    "emoji": "📍"
+    "emoji": "\ud83d\udccd"
   },
   "sections": {
     "life": {
-      "text": "Most mornings I sweat at Crux, an incredible gym with a great community. Progress there has been a massive solace through the second half of Covid-19's 2020. I'm able to get outdoors on the weekends and go hard.\n\nI've made several good friends since moving here and that's ultra rewarding. Content. Life is good.",
+      "text": "Most mornings I sweat at [Crux](http://cruxconditioning.com/), an incredible gym with a great community. Progress there has been a massive solace through the second half of Covid-19's 2020. I'm able to get outdoors on the weekends and go hard.\n\nI've made several good friends since moving here and that's ultra rewarding. Content. Life is good.",
       "highlights": [
         {
           "text": "Crux",
@@ -26,7 +26,7 @@
       "description": "I lead cross-functional initiatives bridging data engineering, analytics, and business strategy. It's rewarding work that impacts tens of thousands of co-workers and many millions of members.",
       "previousRole": {
         "title": "Senior Data Analyst/Engineer",
-        "description": "I designed data pipelines, built value-based contracting datasets, and led pharmacy data lake migrations. The deep dive into healthcare data-sets—becoming responsible for the single source of truth—was both challenging and engaging."
+        "description": "I designed data pipelines, built value-based contracting datasets, and led pharmacy data lake migrations. The deep dive into healthcare data-sets\u2014becoming responsible for the single source of truth\u2014was both challenging and engaging."
       }
     },
     "future": {

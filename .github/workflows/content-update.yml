@@ -8,6 +8,7 @@ on:
       - main
     paths:
       - 'content/*.md'
+  workflow_dispatch:
 
 permissions:
   contents: write

@@ -107,17 +107,19 @@ def fetch_playlist_track_ids():
 def fetch_playlist_albums(sp):
     """Get track IDs from embed, then look up album metadata via API.
 
-    Uses sp.track() individually (not sp.tracks() batch) because Spotify
-    dev mode (Feb 2026) returns 403 on the batch endpoint.
+    Uses sp.track() individually because Spotify dev mode (Feb 2026)
+    returns 403 on batch endpoints (sp.tracks, sp.albums). Album metadata
+    is extracted from the track response. Duration is fetched best-effort
+    via sp.album() individually.
     """
     track_ids = fetch_playlist_track_ids()
     if not track_ids:
         return {}
 
-    # Step 1: Get album IDs from individual track lookups
-    album_ids_seen = {}  # album_id -> first track that referenced it
+    # Step 1: Get album metadata from individual track lookups
+    albums_seen = {}
     print(f"  Looking up {len(track_ids)} tracks individually...")
-    for idx, track_id in enumerate(track_ids, 1):
+    for track_id in track_ids:
         try:
             track = sp.track(track_id)
         except Exception as e:
@@ -127,45 +129,45 @@ def fetch_playlist_albums(sp):
         if not track or not track.get("album"):
             continue
 
-        album_id = track["album"].get("id")
-        if not album_id or album_id in album_ids_seen:
+        album = track["album"]
+        album_id = album.get("id")
+        if not album_id or album_id in albums_seen:
             continue
-        album_ids_seen[album_id] = True
 
-    print(f"  Found {len(album_ids_seen)} unique album IDs from tracks")
+        artists = album.get("artists", [])
+        artist_name = artists[0]["name"] if artists else "Unknown Artist"
 
-    if not album_ids_seen:
-        return {}
+        release_date = album.get("release_date", "")
+        release_year = None
+        if release_date:
+            try:
+                release_year = int(release_date[:4])
+            except (ValueError, IndexError):
+                pass
 
-    # Step 2: Batch-fetch full album metadata via sp.albums() (works in dev mode)
-    albums_seen = {}
-    album_id_list = list(album_ids_seen.keys())
-    for i in range(0, len(album_id_list), 20):
-        batch = album_id_list[i : i + 20]
-        results = sp.albums(batch)
+        spotify_url = album.get("external_urls", {}).get("spotify", "")
+        images = album.get("images", [])
+        thumbnail_url = images[0]["url"] if images else None
 
-        for album_data in results.get("albums", []):
-            if not album_data:
-                continue
+        albums_seen[album_id] = {
+            "listenedDate": datetime.now().strftime("%Y-%m-%d"),
+            "artist": artist_name,
+            "album": album["name"],
+            "releaseYear": release_year,
+            "spotifyUrl": spotify_url,
+            "spotifyId": album_id,
+            "tracks": album.get("total_tracks"),
+            "thumbnailUrl": thumbnail_url,
+            "playtime": None,
+        }
 
-            album_id = album_data["id"]
-            artists = album_data.get("artists", [])
-            artist_name = artists[0]["name"] if artists else "Unknown Artist"
+    print(f"  Found {len(albums_seen)} unique albums from tracks")
 
-            # release_date can be YYYY, YYYY-MM, or YYYY-MM-DD
-            release_date = album_data.get("release_date", "")
-            release_year = None
-            if release_date:
-                try:
-                    release_year = int(release_date[:4])
-                except (ValueError, IndexError):
-                    pass
-
-            spotify_url = album_data.get("external_urls", {}).get("spotify", "")
-            images = album_data.get("images", [])
-            thumbnail_url = images[0]["url"] if images else None
-
-            # Calculate duration from tracks in the album response
+    # Step 2: Try to get durations via sp.album() individually (best-effort)
+    print("  Fetching album durations (best-effort)...")
+    for album_id in albums_seen:
+        try:
+            album_data = sp.album(album_id)
             total_ms = sum(
                 t.get("duration_ms", 0)
                 for t in album_data.get("tracks", {}).get("items", [])
@@ -174,23 +176,14 @@ def fetch_playlist_albums(sp):
             if total_min >= 60:
                 hours = total_min // 60
                 mins = total_min % 60
-                playtime = f"{hours} hr {mins} min."
+                albums_seen[album_id]["playtime"] = f"{hours} hr {mins} min."
             else:
-                playtime = f"{total_min} min."
+                albums_seen[album_id]["playtime"] = f"{total_min} min."
+        except Exception as e:
+            print(f"  Warning: could not fetch duration for {album_id}: {e}")
 
-            albums_seen[album_id] = {
-                "listenedDate": datetime.now().strftime("%Y-%m-%d"),
-                "artist": artist_name,
-                "album": album_data["name"],
-                "releaseYear": release_year,
-                "spotifyUrl": spotify_url,
-                "spotifyId": album_id,
-                "tracks": album_data.get("total_tracks"),
-                "thumbnailUrl": thumbnail_url,
-                "playtime": playtime,
-            }
-
-    print(f"  Resolved {len(albums_seen)} unique albums with metadata")
+    resolved_count = sum(1 for a in albums_seen.values() if a["playtime"])
+    print(f"  Resolved {len(albums_seen)} albums ({resolved_count} with durations)")
     return albums_seen
 
 

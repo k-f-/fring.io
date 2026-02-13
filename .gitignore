@@ -23,6 +23,10 @@ dist/
 build/
 *.log
 
+# Python
+__pycache__/
+*.pyc
+
 # Temporary files
 *.tmp
 .cache/

@@ -70,71 +70,63 @@ def get_spotify_client():
 
 
 def fetch_playlist_albums(sp):
+    """Use sp.playlist() instead of sp.playlist_items() to avoid 403 on
+    the /tracks endpoint with Client Credentials in Spotify dev mode."""
     print(f"Fetching playlist: {SPOTIFY_PLAYLIST_ID}")
 
-    albums_seen = {}
-    offset = 0
-    limit = 100
+    playlist = sp.playlist(SPOTIFY_PLAYLIST_ID)
+    tracks_obj = playlist.get("tracks", {})
+    items = tracks_obj.get("items", [])
 
-    while True:
-        results = sp.playlist_items(
-            SPOTIFY_PLAYLIST_ID,
-            offset=offset,
-            limit=limit,
-            fields="items(added_at,track(album(id,name,artists,release_date,total_tracks,images,external_urls))),next",
+    # Paginate if playlist has >100 tracks
+    while tracks_obj.get("next"):
+        tracks_obj = sp.next(tracks_obj)
+        items.extend(tracks_obj.get("items", []))
+
+    albums_seen = {}
+    for item in items:
+        track = item.get("track")
+        if not track or not track.get("album"):
+            continue
+
+        album = track["album"]
+        album_id = album.get("id")
+        if not album_id or album_id in albums_seen:
+            continue
+
+        artists = album.get("artists", [])
+        artist_name = artists[0]["name"] if artists else "Unknown Artist"
+
+        # release_date can be YYYY, YYYY-MM, or YYYY-MM-DD
+        release_date = album.get("release_date", "")
+        release_year = None
+        if release_date:
+            try:
+                release_year = int(release_date[:4])
+            except (ValueError, IndexError):
+                pass
+
+        spotify_url = album.get("external_urls", {}).get("spotify", "")
+
+        images = album.get("images", [])
+        thumbnail_url = images[0]["url"] if images else None
+
+        # added_at = when track was added to playlist, used as listenedDate
+        added_at = item.get("added_at", "")
+        listened_date = (
+            added_at[:10] if added_at else datetime.now().strftime("%Y-%m-%d")
         )
 
-        items = results.get("items", [])
-        if not items:
-            break
-
-        for item in items:
-            track = item.get("track")
-            if not track or not track.get("album"):
-                continue
-
-            album = track["album"]
-            album_id = album.get("id")
-            if not album_id or album_id in albums_seen:
-                continue
-
-            artists = album.get("artists", [])
-            artist_name = artists[0]["name"] if artists else "Unknown Artist"
-
-            # release_date can be YYYY, YYYY-MM, or YYYY-MM-DD
-            release_date = album.get("release_date", "")
-            release_year = None
-            if release_date:
-                try:
-                    release_year = int(release_date[:4])
-                except (ValueError, IndexError):
-                    pass
-
-            spotify_url = album.get("external_urls", {}).get("spotify", "")
-
-            images = album.get("images", [])
-            thumbnail_url = images[0]["url"] if images else None
-
-            # added_at = when track was added to playlist, used as listenedDate
-            added_at = item.get("added_at", "")
-            listened_date = (
-                added_at[:10] if added_at else datetime.now().strftime("%Y-%m-%d")
-            )
-
-            albums_seen[album_id] = {
-                "listenedDate": listened_date,
-                "artist": artist_name,
-                "album": album["name"],
-                "releaseYear": release_year,
-                "spotifyUrl": spotify_url,
-                "spotifyId": album_id,
-                "tracks": album.get("total_tracks"),
-                "thumbnailUrl": thumbnail_url,
-            }
-
-        if not results.get("next"):
-            break
-        offset += limit
+        albums_seen[album_id] = {
+            "listenedDate": listened_date,
+            "artist": artist_name,
+            "album": album["name"],
+            "releaseYear": release_year,
+            "spotifyUrl": spotify_url,
+            "spotifyId": album_id,
+            "tracks": album.get("total_tracks"),
+            "thumbnailUrl": thumbnail_url,
+        }
 
     print(f"  Found {len(albums_seen)} unique albums in playlist")
     return albums_seen

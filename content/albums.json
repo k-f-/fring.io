@@ -1,226 +1,10 @@
 {
   "meta": {
     "version": "1.0",
-    "lastUpdated": "2026-02-13T19:03:10.498722",
+    "lastUpdated": "2026-02-13T14:10:51.982614",
     "description": "Album listening log for fring.io - version agnostic content"
   },
   "albums": [
-    {
-      "listenedDate": "2026-02-13",
-      "artist": "The Horrible Crowes",
-      "album": "Elsie",
-      "releaseYear": 2011,
-      "spotifyUrl": "https://open.spotify.com/album/2vPbYgtDftIIGGksyUd02R",
-      "spotifyId": "2vPbYgtDftIIGGksyUd02R",
-      "tracks": 12,
-      "playtime": "46 min.",
-      "notes": null,
-      "dateAdded": "2026-02-13T19:03:10.498888"
-    },
-    {
-      "listenedDate": "2026-02-13",
-      "artist": "Better Oblivion Community Center",
-      "album": "Better Oblivion Community Center",
-      "releaseYear": 2019,
-      "spotifyUrl": "https://open.spotify.com/album/0uJIxkI8D0rR4shEIKeiDs",
-      "spotifyId": "0uJIxkI8D0rR4shEIKeiDs",
-      "tracks": 10,
-      "playtime": "37 min.",
-      "notes": null,
-      "dateAdded": "2026-02-13T19:03:10.499399"
-    },
-    {
-      "listenedDate": "2026-02-13",
-      "artist": "Bembeya Jazz National",
-      "album": "Discoth\u00e8que 76",
-      "releaseYear": 1977,
-      "spotifyUrl": "https://open.spotify.com/album/2zoqIVDpc4PCdqeHt2ILfB",
-      "spotifyId": "2zoqIVDpc4PCdqeHt2ILfB",
-      "tracks": 5,
-      "playtime": "34 min.",
-      "notes": null,
-      "dateAdded": "2026-02-13T19:03:10.499416"
-    },
-    {
-      "listenedDate": "2026-02-13",
-      "artist": "Orville Peck",
-      "album": "Pony",
-      "releaseYear": 2019,
-      "spotifyUrl": "https://open.spotify.com/album/3950FHVErcINW3tjRgjebQ",
-      "spotifyId": "3950FHVErcINW3tjRgjebQ",
-      "tracks": 12,
-      "playtime": "42 min.",
-      "notes": null,
-      "dateAdded": "2026-02-13T19:03:10.499427"
-    },
-    {
-      "listenedDate": "2026-02-13",
-      "artist": "ALEX",
-      "album": "AKUMA II",
-      "releaseYear": 2019,
-      "spotifyUrl": "https://open.spotify.com/album/2EwfTy4XZSjUhzYv77i73o",
-      "spotifyId": "2EwfTy4XZSjUhzYv77i73o",
-      "tracks": 10,
-      "playtime": "39 min.",
-      "notes": null,
-      "dateAdded": "2026-02-13T19:03:10.499437"
-    },
-    {
-      "listenedDate": "2026-02-13",
-      "artist": "Propagandhi",
-      "album": "How to Clean Everything (Reissue)",
-      "releaseYear": 2013,
-      "spotifyUrl": "https://open.spotify.com/album/1YomhJOu7zq0c45WmAjSWY",
-      "spotifyId": "1YomhJOu7zq0c45WmAjSWY",
-      "tracks": 19,
-      "playtime": "51 min.",
-      "notes": null,
-      "dateAdded": "2026-02-13T19:03:10.499447"
-    },
-    {
-      "listenedDate": "2026-02-13",
-      "artist": "The Budos Band",
-      "album": "The Budos Band II",
-      "releaseYear": 2007,
-      "spotifyUrl": "https://open.spotify.com/album/5VIBZxcuGS57zwKvHMLkaN",
-      "spotifyId": "5VIBZxcuGS57zwKvHMLkaN",
-      "tracks": 10,
-      "playtime": "38 min.",
-      "notes": null,
-      "dateAdded": "2026-02-13T19:03:10.499457"
-    },
-    {
-      "listenedDate": "2026-02-13",
-      "artist": "Herb Alpert",
-      "album": "Rise",
-      "releaseYear": 1979,
-      "spotifyUrl": "https://open.spotify.com/album/7HY0aAzDNhAqmFHATtABPY",
-      "spotifyId": "7HY0aAzDNhAqmFHATtABPY",
-      "tracks": 8,
-      "playtime": "41 min.",
-      "notes": null,
-      "dateAdded": "2026-02-13T19:03:10.499466"
-    },
-    {
-      "listenedDate": "2026-02-13",
-      "artist": "Leon Bridges",
-      "album": "Coming Home (Deluxe)",
-      "releaseYear": 2015,
-      "spotifyUrl": "https://open.spotify.com/album/21KIagsx1ZvYcv0sVkEAWv",
-      "spotifyId": "21KIagsx1ZvYcv0sVkEAWv",
-      "tracks": 15,
-      "playtime": "46 min.",
-      "notes": null,
-      "dateAdded": "2026-02-13T19:03:10.499476"
-    },
-    {
-      "listenedDate": "2026-02-13",
-      "artist": "The Horrible Crowes",
-      "album": "Elsie",
-      "releaseYear": 2011,
-      "spotifyUrl": "https://open.spotify.com/album/2vPbYgtDftIIGGksyUd02R",
-      "spotifyId": "2vPbYgtDftIIGGksyUd02R",
-      "tracks": 12,
-      "playtime": "46 min.",
-      "notes": null,
-      "dateAdded": "2026-02-13T19:03:10.499485"
-    },
-    {
-      "listenedDate": "2026-02-13",
-      "artist": "Better Oblivion Community Center",
-      "album": "Better Oblivion Community Center",
-      "releaseYear": 2019,
-      "spotifyUrl": "https://open.spotify.com/album/0uJIxkI8D0rR4shEIKeiDs",
-      "spotifyId": "0uJIxkI8D0rR4shEIKeiDs",
-      "tracks": 10,
-      "playtime": "37 min.",
-      "notes": null,
-      "dateAdded": "2026-02-13T19:03:10.499495"
-    },
-    {
-      "listenedDate": "2026-02-13",
-      "artist": "Bembeya Jazz National",
-      "album": "Discoth\u00e8que 76",
-      "releaseYear": 1977,
-      "spotifyUrl": "https://open.spotify.com/album/2zoqIVDpc4PCdqeHt2ILfB",
-      "spotifyId": "2zoqIVDpc4PCdqeHt2ILfB",
-      "tracks": 5,
-      "playtime": "34 min.",
-      "notes": null,
-      "dateAdded": "2026-02-13T19:03:10.499504"
-    },
-    {
-      "listenedDate": "2026-02-13",
-      "artist": "Orville Peck",
-      "album": "Pony",
-      "releaseYear": 2019,
-      "spotifyUrl": "https://open.spotify.com/album/3950FHVErcINW3tjRgjebQ",
-      "spotifyId": "3950FHVErcINW3tjRgjebQ",
-      "tracks": 12,
-      "playtime": "42 min.",
-      "notes": null,
-      "dateAdded": "2026-02-13T19:03:10.499514"
-    },
-    {
-      "listenedDate": "2026-02-13",
-      "artist": "ALEX",
-      "album": "AKUMA II",
-      "releaseYear": 2019,
-      "spotifyUrl": "https://open.spotify.com/album/2EwfTy4XZSjUhzYv77i73o",
-      "spotifyId": "2EwfTy4XZSjUhzYv77i73o",
-      "tracks": 10,
-      "playtime": "39 min.",
-      "notes": null,
-      "dateAdded": "2026-02-13T19:03:10.499523"
-    },
-    {
-      "listenedDate": "2026-02-13",
-      "artist": "Propagandhi",
-      "album": "How to Clean Everything (Reissue)",
-      "releaseYear": 2013,
-      "spotifyUrl": "https://open.spotify.com/album/1YomhJOu7zq0c45WmAjSWY",
-      "spotifyId": "1YomhJOu7zq0c45WmAjSWY",
-      "tracks": 19,
-      "playtime": "51 min.",
-      "notes": null,
-      "dateAdded": "2026-02-13T19:03:10.499532"
-    },
-    {
-      "listenedDate": "2026-02-13",
-      "artist": "The Budos Band",
-      "album": "The Budos Band II",
-      "releaseYear": 2007,
-      "spotifyUrl": "https://open.spotify.com/album/5VIBZxcuGS57zwKvHMLkaN",
-      "spotifyId": "5VIBZxcuGS57zwKvHMLkaN",
-      "tracks": 10,
-      "playtime": "38 min.",
-      "notes": null,
-      "dateAdded": "2026-02-13T19:03:10.499541"
-    },
-    {
-      "listenedDate": "2026-02-13",
-      "artist": "Herb Alpert",
-      "album": "Rise",
-      "releaseYear": 1979,
-      "spotifyUrl": "https://open.spotify.com/album/7HY0aAzDNhAqmFHATtABPY",
-      "spotifyId": "7HY0aAzDNhAqmFHATtABPY",
-      "tracks": 8,
-      "playtime": "41 min.",
-      "notes": null,
-      "dateAdded": "2026-02-13T19:03:10.499553"
-    },
-    {
-      "listenedDate": "2026-02-13",
-      "artist": "Leon Bridges",
-      "album": "Coming Home (Deluxe)",
-      "releaseYear": 2015,
-      "spotifyUrl": "https://open.spotify.com/album/21KIagsx1ZvYcv0sVkEAWv",
-      "spotifyId": "21KIagsx1ZvYcv0sVkEAWv",
-      "tracks": 15,
-      "playtime": "46 min.",
-      "notes": "## 2019 (27 albums)",
-      "dateAdded": "2026-02-13T19:03:10.499562"
-    },
     {
       "listenedDate": "2019-10-21",
       "artist": "The Jackson 5",
@@ -231,31 +15,31 @@
       "tracks": 36,
       "playtime": "2 hr 13 min.",
       "notes": "hits. that Motown sound.",
-      "dateAdded": "2026-02-13T19:03:10.499572"
+      "dateAdded": "2026-02-13T14:10:51.982726"
     },
     {
       "listenedDate": "2019-10-18",
       "artist": "Leon Bridges",
       "album": "Coming Home",
       "releaseYear": 2015,
-      "spotifyUrl": "https://open.spotify.com/album/4svLfrPPk2npPVuI4kXPYg?si=T1IfF6u0SPmbLSvQ0Zf-gg",
-      "spotifyId": "4svLfrPPk2npPVuI4kXPYg",
+      "spotifyUrl": "https://open.spotify.com/album/21KIagsx1ZvYcv0sVkEAWv",
+      "spotifyId": "21KIagsx1ZvYcv0sVkEAWv",
       "tracks": 10,
       "playtime": "34 min.",
       "notes": "Incredible Delta sounds.",
-      "dateAdded": "2026-02-13T19:03:10.499582"
+      "dateAdded": "2026-02-13T14:10:51.983012"
     },
     {
       "listenedDate": "2019-09-23",
       "artist": "Herb Alpert",
       "album": "Rise",
       "releaseYear": 1979,
-      "spotifyUrl": "https://open.spotify.com/album/0UP3rWITqj74OAVCHP5034?si=UwTv4zz2QCm42XZC47Lt2g",
-      "spotifyId": "0UP3rWITqj74OAVCHP5034",
+      "spotifyUrl": "https://open.spotify.com/album/7HY0aAzDNhAqmFHATtABPY",
+      "spotifyId": "7HY0aAzDNhAqmFHATtABPY",
       "tracks": 8,
       "playtime": "41 min",
       "notes": "bonkers.",
-      "dateAdded": "2026-02-13T19:03:10.499591"
+      "dateAdded": "2026-02-13T14:10:51.983025"
     },
     {
       "listenedDate": "2019-09-21",
@@ -267,7 +51,7 @@
       "tracks": 10,
       "playtime": "32 min",
       "notes": "Early Joan Jett.",
-      "dateAdded": "2026-02-13T19:03:10.499600"
+      "dateAdded": "2026-02-13T14:10:51.983033"
     },
     {
       "listenedDate": "2019-08-09",
@@ -279,7 +63,7 @@
       "tracks": 10,
       "playtime": "38 minutes.",
       "notes": "Co-worker and I played two albums from the Police last week. I never knew that the drummer was Moroccan? Allegedly, they started the punk/reggae vibe because they were not able to get folks digging their more eclectic sound.",
-      "dateAdded": "2026-02-13T19:03:10.499609"
+      "dateAdded": "2026-02-13T14:10:51.983041"
     },
     {
       "listenedDate": "2019-08-09",
@@ -291,7 +75,7 @@
       "tracks": 11,
       "playtime": "41 minutes",
       "notes": "Ok. Sting is both dark AF and an odd-ball. I dig it. Walking on the Moon is a great song, ostensibly about floating home on positive vibes from his girlfriends house. We've all been there.",
-      "dateAdded": "2026-02-13T19:03:10.499621"
+      "dateAdded": "2026-02-13T14:10:51.983053"
     },
     {
       "listenedDate": "2019-07-14",
@@ -303,7 +87,7 @@
       "tracks": 9,
       "playtime": "39 Minutes",
       "notes": "A Patrick recommendation.",
-      "dateAdded": "2026-02-13T19:03:10.499634"
+      "dateAdded": "2026-02-13T14:10:51.983064"
     },
     {
       "listenedDate": "2019-07-14",
@@ -315,7 +99,7 @@
       "tracks": 14,
       "playtime": "61 Minutes",
       "notes": "The year I graduated High School rewarded me with this incredible album.  An all time favorite.",
-      "dateAdded": "2026-02-13T19:03:10.499643"
+      "dateAdded": "2026-02-13T14:10:51.983071"
     },
     {
       "listenedDate": "2019-07-08",
@@ -327,19 +111,19 @@
       "tracks": 21,
       "playtime": "50 minutes",
       "notes": "Most of these songs could get you beat up at the beach in New Jersey. Growing up I think my Father enjoyed these albums, but I don't know why. The opening of Good Vibrations is legendary.",
-      "dateAdded": "2026-02-13T19:03:10.499655"
+      "dateAdded": "2026-02-13T14:10:51.983080"
     },
     {
       "listenedDate": "2019-07-08",
       "artist": "Propagandhi",
       "album": "How to Clean Everything",
       "releaseYear": 1993,
-      "spotifyUrl": "https://open.spotify.com/album/0MCiMfs35PPI4WFypTpsrK?si=5aGOFTFLRBOWCBx8IJq-6A",
-      "spotifyId": "0MCiMfs35PPI4WFypTpsrK",
+      "spotifyUrl": "https://open.spotify.com/album/1YomhJOu7zq0c45WmAjSWY",
+      "spotifyId": "1YomhJOu7zq0c45WmAjSWY",
       "tracks": 19,
       "playtime": "51 minutes",
       "notes": "Formative in my early teens.",
-      "dateAdded": "2026-02-13T19:03:10.499667"
+      "dateAdded": "2026-02-13T14:10:51.983091"
     },
     {
       "listenedDate": "2019-07-08",
@@ -351,19 +135,19 @@
       "tracks": 16,
       "playtime": "45 Minutes",
       "notes": "Johnny Fucking Cash.",
-      "dateAdded": "2026-02-13T19:03:10.499676"
+      "dateAdded": "2026-02-13T14:10:51.983098"
     },
     {
       "listenedDate": "2019-07-08",
       "artist": "The Budos Band",
       "album": "The Budos Band II",
       "releaseYear": 2007,
-      "spotifyUrl": "https://open.spotify.com/album/1HarDRl9Lt8Clh9nYJ9n6a?si=2jGmQd5tTfWRkOoRC9RN_A",
-      "spotifyId": "1HarDRl9Lt8Clh9nYJ9n6a",
+      "spotifyUrl": "https://open.spotify.com/album/5VIBZxcuGS57zwKvHMLkaN",
+      "spotifyId": "5VIBZxcuGS57zwKvHMLkaN",
       "tracks": 10,
       "playtime": "37 Minutes",
       "notes": "Charles Bradly's backing band formed Budos. Tight, tight, tight.",
-      "dateAdded": "2026-02-13T19:03:10.499684"
+      "dateAdded": "2026-02-13T14:10:51.983106"
     },
     {
       "listenedDate": "2019-07-05",
@@ -375,7 +159,7 @@
       "tracks": 13,
       "playtime": "56 minutes",
       "notes": "an old favorite",
-      "dateAdded": "2026-02-13T19:03:10.499694"
+      "dateAdded": "2026-02-13T14:10:51.983113"
     },
     {
       "listenedDate": "2019-06-22",
@@ -387,7 +171,7 @@
       "tracks": 19,
       "playtime": "70 minutes",
       "notes": "\"Catching up, huh?\"",
-      "dateAdded": "2026-02-13T19:03:10.499702"
+      "dateAdded": "2026-02-13T14:10:51.983121"
     },
     {
       "listenedDate": "2019-06-13",
@@ -399,7 +183,7 @@
       "tracks": 20,
       "playtime": "78 minutes",
       "notes": "Seminal and socially woke.",
-      "dateAdded": "2026-02-13T19:03:10.499711"
+      "dateAdded": "2026-02-13T14:10:51.983128"
     },
     {
       "listenedDate": "2019-06-13",
@@ -411,43 +195,43 @@
       "tracks": 12,
       "playtime": "39 Minutes",
       "notes": "Interesting. I don't know enough about the Artist.",
-      "dateAdded": "2026-02-13T19:03:10.499720"
+      "dateAdded": "2026-02-13T14:10:51.983135"
     },
     {
       "listenedDate": "2019-06-10",
       "artist": "Alex, Tokyo Rose",
       "album": "Akuma II",
       "releaseYear": 2019,
-      "spotifyUrl": "https://open.spotify.com/album/6tTvGto8mk0xYfOmMR4224?si=cJIcO7phTqq3mza9IAsF4g",
-      "spotifyId": "6tTvGto8mk0xYfOmMR4224",
+      "spotifyUrl": "https://open.spotify.com/album/2EwfTy4XZSjUhzYv77i73o",
+      "spotifyId": "2EwfTy4XZSjUhzYv77i73o",
       "tracks": 10,
       "playtime": "38 minutes",
       "notes": null,
-      "dateAdded": "2026-02-13T19:03:10.499729"
+      "dateAdded": "2026-02-13T14:10:51.983143"
     },
     {
       "listenedDate": "2019-05-27",
       "artist": "Bembeya Jazz National",
-      "album": "Discoteque 76",
+      "album": "Discoth\u00e8que 76",
       "releaseYear": 1976,
-      "spotifyUrl": "https://open.spotify.com/album/67OQuCcp8yfLRKa49asN8i?si=cZr_3PUkT7iTIug-UYI3OQ",
-      "spotifyId": "67OQuCcp8yfLRKa49asN8i",
+      "spotifyUrl": "https://open.spotify.com/album/2zoqIVDpc4PCdqeHt2ILfB",
+      "spotifyId": "2zoqIVDpc4PCdqeHt2ILfB",
       "tracks": 5,
       "playtime": "34 minutes",
       "notes": "wonderful afro-jazz. The third track is a long-time favorite",
-      "dateAdded": "2026-02-13T19:03:10.499741"
+      "dateAdded": "2026-02-13T14:10:51.983212"
     },
     {
       "listenedDate": "2019-05-27",
       "artist": "Orville Peck",
       "album": "Pony",
       "releaseYear": 2019,
-      "spotifyUrl": "https://open.spotify.com/album/7Jn1h8E5aT96pdyrPxrLWi?si=NKZpnbChQhCDIjwC4xnrPA",
-      "spotifyId": "7Jn1h8E5aT96pdyrPxrLWi",
+      "spotifyUrl": "https://open.spotify.com/album/3950FHVErcINW3tjRgjebQ",
+      "spotifyId": "3950FHVErcINW3tjRgjebQ",
       "tracks": 12,
       "playtime": "41 minutes",
       "notes": "Shoegaze-Outlaw-Country...AWESOME!",
-      "dateAdded": "2026-02-13T19:03:10.499750"
+      "dateAdded": "2026-02-13T14:10:51.983221"
     },
     {
       "listenedDate": "2019-05-27",
@@ -459,7 +243,7 @@
       "tracks": 10,
       "playtime": "23 minutes",
       "notes": "Smooth and fun. Little sexy.",
-      "dateAdded": "2026-02-13T19:03:10.499759"
+      "dateAdded": "2026-02-13T14:10:51.983228"
     },
     {
       "listenedDate": "2019-05-02",
@@ -471,7 +255,7 @@
       "tracks": 15,
       "playtime": "62 minutes",
       "notes": "Classic album with some of what I think is his best work.",
-      "dateAdded": "2026-02-13T19:03:10.499768"
+      "dateAdded": "2026-02-13T14:10:51.983235"
     },
     {
       "listenedDate": "2019-03-17",
@@ -483,31 +267,31 @@
       "tracks": 13,
       "playtime": "54 minutes",
       "notes": "I don't know anything about Buckethead except that it seems to be a fun mockery of Slash's aestetic choices. Super enjoyable progressive instrumental guitar work.",
-      "dateAdded": "2026-02-13T19:03:10.499777"
+      "dateAdded": "2026-02-13T14:10:51.983243"
     },
     {
       "listenedDate": "2019-02-24",
       "artist": "Better Oblivion Community Center",
       "album": "Better Oblivion Community Center",
       "releaseYear": 2019,
-      "spotifyUrl": "https://open.spotify.com/album/5622zSt4RLqNSPShdqmWpj?si=cAEfErUKTs2jNh0T_NValA",
-      "spotifyId": "5622zSt4RLqNSPShdqmWpj",
+      "spotifyUrl": "https://open.spotify.com/album/0uJIxkI8D0rR4shEIKeiDs",
+      "spotifyId": "0uJIxkI8D0rR4shEIKeiDs",
       "tracks": 10,
       "playtime": "37 minutes",
       "notes": "think I'll have to give this one a few more listens over the coming weeks.  Initial impressions are that it's fucking incredible.",
-      "dateAdded": "2026-02-13T19:03:10.499789"
+      "dateAdded": "2026-02-13T14:10:51.983254"
     },
     {
       "listenedDate": "2019-02-17",
-      "artist": "The Horrible Crows",
-      "album": "Elise",
+      "artist": "The Horrible Crowes",
+      "album": "Elsie",
       "releaseYear": 2011,
-      "spotifyUrl": "https://open.spotify.com/album/7JSUMJpXFj2Tmv4wYGmUp8?si=uh2MBH4uTGeJSvu8UwgdcQ",
-      "spotifyId": "7JSUMJpXFj2Tmv4wYGmUp8",
+      "spotifyUrl": "https://open.spotify.com/album/2vPbYgtDftIIGGksyUd02R",
+      "spotifyId": "2vPbYgtDftIIGGksyUd02R",
       "tracks": 12,
       "playtime": "45 minutes",
       "notes": "Gaslight Anthem front-man does a Tom Waits, Nick Cave inspired album.  The first few tracks destroyed me.  I like the contrast of upbeat tempo with crushing lyrics.",
-      "dateAdded": "2026-02-13T19:03:10.499800"
+      "dateAdded": "2026-02-13T14:10:51.983263"
     },
     {
       "listenedDate": "2019-02-13",
@@ -519,7 +303,7 @@
       "tracks": 11,
       "playtime": "45 minutes",
       "notes": "Beck. One of those artists who I expect will put out at least interesting if",
-      "dateAdded": "2026-02-13T19:03:10.499812"
+      "dateAdded": "2026-02-13T14:10:51.983275"
     },
     {
       "listenedDate": "2019-02-03",
@@ -531,7 +315,7 @@
       "tracks": 12,
       "playtime": "25 minutes",
       "notes": "I originally received this album from the lead singer at a 24 hour dinner",
-      "dateAdded": "2026-02-13T19:03:10.499821"
+      "dateAdded": "2026-02-13T14:10:51.983284"
     },
     {
       "listenedDate": "2019-01-27",
@@ -543,7 +327,7 @@
       "tracks": 10,
       "playtime": "38 minutes",
       "notes": "In Japanese, Daikaiju translates to \"giant monster\" Recorded in *2003*, but not released until *2005*.",
-      "dateAdded": "2026-02-13T19:03:10.499831"
+      "dateAdded": "2026-02-13T14:10:51.983292"
     }
   ]
 }

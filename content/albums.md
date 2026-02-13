@@ -12,6 +12,14 @@
 
 Music I've listened to, chronologically.
 
+## 2026 (1 albums)
+
+### [2026-02-13] Waxahatchee - Tigers Blood
+**Released:** 2024
+**Listen:** [Spotify](https://open.spotify.com/album/2n3HUMLmNl0Cm2atVwWSK6)
+**Duration:** 12 tracks, 43 min.
+
+
 ## 2019 (27 albums)
 
 ### [2019-10-21] The Jackson 5 - Gold

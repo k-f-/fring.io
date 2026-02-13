@@ -1,941 +1,603 @@
 <!DOCTYPE html>
-<html class="no-js" lang="">
-  <head>
-    <meta charset="utf-8" />
-    <title>fring.io</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <meta property="og:title" content="" />
-    <meta property="og:type" content="" />
-    <meta property="og:url" content="" />
-    <meta property="og:image" content="" />
-
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-    <link rel="manifest" href="site.webmanifest" />
-
-    <link rel="stylesheet" href="css/normalize.css" />
-    <link rel="stylesheet" href="css/main.css" />
-    <style type="text/css">
-        @font-face {
-            font-family: 'Monospace Extended';
-            src: url('fonts/monospace-ext-regular.ttf') format('truetype');
-            font-weight: normal;
-            font-style: normal;
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kyle Fring</title>
+    <meta name="description" content="Kyle Fring — Program Director / Data Engineer. Personal website.">
+    <meta property="og:title" content="Kyle Fring">
+    <meta property="og:description" content="Program Director / Data Engineer in Chattanooga, TN.">
+    <meta property="og:type" content="website">
+    
+    <style>
+        :root {
+            /* Dark Mode (Default) */
+            --bg: #1a1a1a;
+            --text: #e0e0e0;
+            --muted: #888;
+            --accent: #5eead4;
+            --border: #333;
+            --code-bg: #222;
+            --selection: rgba(94, 234, 212, 0.2);
+            --font-stack: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
         }
-        @font-face {
-            font-family: 'Monospace Extended';
-            src: url('fonts/monospace-ext-bold.ttf') format('truetype');
-            font-weight: bold;
-            font-style: normal;
+
+        [data-theme="light"] {
+            --bg: #fafafa;
+            --text: #1a1a1a;
+            --muted: #666;
+            --accent: #0d9488;
+            --border: #ddd;
+            --code-bg: #f0f0f0;
+            --selection: rgba(13, 148, 136, 0.2);
         }
-        @font-face {
-            font-family: 'Monospace Extended';
-            src: url('fonts/monospace-ext-italic.ttf') format('truetype');
-            font-weight: normal;
-            font-style: italic;
+
+        * {
+            box-sizing: border-box;
+        }
+
+        ::selection {
+            background: var(--selection);
+            color: inherit;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family:
-            -apple-system, BlinkMacSystemFont,
-            "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
-            "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-            margin: 40px auto;
-            max-width: 800px;
-            line-height: 1.6;
-            font-size: 20px;
-            color: #444;
-            padding: 0 10px;
-            background: #fefefe
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-       }
-
-        h1 { font-family:
-                'Iosevka Sparkle Web',
-                'SF Mono', SFMono-Regular, ui-monospace,
-                -apple-system, BlinkMacSystemFont,
-                “Segoe UI”, “Roboto”, “Oxygen”, “Ubuntu”, “Cantarell”,
-                “Fira Sans”, “Droid Sans”, “Helvetica Neue”,
-                sans-serif; }
-        h2,
-        h3 {
-            font-family:
-                -apple-system, BlinkMacSystemFont,
-                “Segoe UI”, “Roboto”, “Oxygen”, “Ubuntu”, “Cantarell”,
-                “Fira Sans”, “Droid Sans”, “Helvetica Neue”,
-                sans-serif;
-            line-height: 1.2
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: var(--font-stack);
+            font-size: 16px;
+            line-height: 1.7;
+            margin: 0;
+            padding: 2rem;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-       hr { border: none; border-top: 1px solid rgb(0, 0, 0); margin: 1rem 0rem; }
-
-        nav.navbar {
-            font-family:
-            'SF Mono', SFMono-Regular, ui-monospace,
-            -apple-system, BlinkMacSystemFont,
-            “Segoe UI”, “Roboto”, “Oxygen”, “Ubuntu”, “Cantarell”,
-            “Fira Sans”, “Droid Sans”, “Helvetica Neue”, sans-serif;
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
         }
-       nav.navbar ul { list-style-type: none; display: flex; justify-content: center; flex-direction: row; border-top: 1px solid #999; border-bottom: 1px solid #999; padding: 0.5rem 0 0.5rem 0px; margin-top: -0.5rem; margin-bottom: 1.5rem; }
-       nav.navbar ul li { padding: 0 1rem; }
-       nav.navbar ul li.active a { font-weight: bold; text-decoration: none; color: #000 !important; }
-       nav.navbar ul li a:link, nav.navbar ul li a:visited, nav.navbar ul li a:active { color: #0000EE; }
-       nav.navbar ul li a:link:hover, nav.navbar ul li a:visited:hover, nav.navbar ul li a:active:hover { color: #333; }
-       ul li a.active { font-weight: bold; text-decoration: none; }
-       ul.nav li.nav-item a.nav-link { padding-left: 0; }
 
-       blockquote { padding: 0.5rem 2rem; font-style: italic; }
+        /* Typography */
+        h1, h2, h3 {
+            font-weight: 700;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
 
-       /* Visualization styling */
-       pre.visualization {
-           font-family: 'Monospace Extended', 'SF Mono', SFMono-Regular, ui-monospace, 'Cascadia Code', monospace;
-           font-size: 0.9rem;
-           line-height: 1.4;
-           background: transparent;
-           padding: 1rem 0 1rem 1rem;
-           border: none;
-           border-left: 2px solid #ccc;
-           border-top: 1px solid #e0e0e0;
-           border-bottom: 1px solid #e0e0e0;
-           overflow-x: auto;
-           margin: 1.5rem 0;
-           color: #444;
-           transition: border-left-color 0.3s ease;
-       }
+        h1 { font-size: 2rem; margin-top: 0; }
+        h2 { font-size: 1.4rem; color: var(--accent); }
+        h3 { font-size: 1.1rem; margin-top: 1.5rem; }
 
-       pre.visualization:hover {
-           border-left-color: #0000EE;
-       }
+        p, li { margin-bottom: 1rem; }
+        
+        a {
+            color: var(--text);
+            text-decoration: none;
+            border-bottom: 1px solid var(--accent);
+            transition: color 0.2s, border-color 0.2s;
+        }
 
-       pre.visualization a {
-           color: #0000EE;
-           text-decoration: none;
-           border-bottom: 1px dotted #0000EE;
-       }
+        a:hover {
+            color: var(--accent);
+            border-bottom-color: transparent;
+        }
 
-       pre.visualization a:hover {
-           color: #333;
-           border-bottom-style: solid;
-       }
+        ul {
+            padding-left: 1.5rem;
+            list-style-type: square;
+        }
 
-       /* Visualization grid layouts for horizontal positioning */
-       .viz-grid {
-           display: grid;
-           gap: 2rem;
-           margin: 2rem 0;
-       }
+        .muted { color: var(--muted); font-size: 0.9em; }
+        .small { font-size: 0.85rem; }
 
-       /* Two-column layout for side-by-side comparisons */
-       .viz-grid.cols-2 {
-           grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-       }
+        /* Navigation */
+        nav {
+            margin: 1.5rem 0 3rem 0;
+            padding: 1rem 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
 
-       /* Three-column layout for compact visualizations */
-       .viz-grid.cols-3 {
-           grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-       }
+        nav a { border-bottom: none; }
+        nav a:hover { color: var(--accent); }
+        .nav-separator { color: var(--muted); padding: 0 0.5rem; }
 
-       /* Responsive behavior: stack on mobile */
-       @media (max-width: 768px) {
-           .viz-grid.cols-2,
-           .viz-grid.cols-3 {
-               grid-template-columns: 1fr;
-           }
-       }
+        /* Sections */
+        section {
+            margin-bottom: 4rem;
+            padding-left: 1rem;
+            border-left: 3px solid transparent;
+            transition: border-color 0.3s;
+        }
 
-       /* Album cover gallery */
-       .album-gallery {
-           display: grid;
-           grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-           gap: 1rem;
-           margin: 2rem 0;
-       }
+        section:hover {
+            border-left-color: var(--selection);
+        }
 
-       .album-cover {
-           display: block;
-           position: relative;
-           transition: transform 0.2s ease, box-shadow 0.2s ease;
-           border-radius: 4px;
-           overflow: hidden;
-       }
+        /* Content Grid (Books & Albums) */
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+            gap: 1rem 2rem;
+        }
 
-       .album-cover:hover {
-           transform: translateY(-4px);
-           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-       }
+        .book-group {
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            border-left: 2px solid var(--border);
+            transition: border-color 0.2s;
+        }
 
-       .album-cover img {
-           width: 100%;
-           height: auto;
-           display: block;
-           border-radius: 4px;
-       }
+        .book-group:hover {
+            border-left-color: var(--accent);
+        }
 
-       @media (max-width: 768px) {
-           .album-gallery {
-               grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-               gap: 0.75rem;
-           }
-       }
+        .book-year {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
 
-       /* Optional: visualization headers within grids */
-       .viz-grid h4 {
-           margin-top: 0;
-       }
+        .book-title {
+            display: block;
+            color: var(--muted);
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        .album-entry {
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 2px solid var(--border);
+            transition: border-color 0.2s;
+        }
+
+        .album-entry:hover {
+            border-left-color: var(--accent);
+        }
+
+        .album-title {
+            display: block;
+            font-weight: bold;
+            border-bottom: none;
+        }
+
+        .album-title:hover {
+            color: var(--accent);
+        }
+
+        .album-note {
+            display: block;
+            color: var(--muted);
+            font-size: 0.85em;
+            font-style: italic;
+            line-height: 1.4;
+            margin-top: 0.2rem;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 0.5rem;
+            cursor: pointer;
+            border-radius: 4px;
+            font-family: inherit;
+            line-height: 1;
+            z-index: 100;
+        }
+        
+        .theme-toggle:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .back-to-top {
+            display: block;
+            text-align: right;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+            color: var(--muted);
+            border: none;
+        }
+        .back-to-top:hover { color: var(--accent); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body { padding: 1rem; }
+            h1 { font-size: 1.7rem; }
+            nav { font-size: 0.9rem; }
+            .theme-toggle { top: 1rem; right: 1rem; }
+            .book-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
-    <header>
-        <h1><a id="top">Kyle Fring</a></h1>
-        <nav class="navbar">
-        <ul>
-            <li class="nav-item"><a class="nav-link" href="#now"><span itemprop="name">Right Now</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="#visualizations"><span itemprop="name">Data</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="#elsewhere"><span itemprop="name">Elsewhere</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="#bookshelf"><span itemprop="name">Bookshelf</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="#albums"><span itemprop="name"><a href="#albums">Albums</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="#epilogue"><span itemprop="name">Epilogue</span></a></li>
-        </ul>
-        </nav>
-    </header>
-    <h2><a id="now">Now</a></h2>
-    <h3>Life</h3>
-    <aside>📍 <a href="https://en.wikipedia.org/wiki/Chattanooga,_Tennessee">Chattanooga, TN</a></aside>
-    <p>
-        I've made several good friends since moving here and that's <em>ultra</em> rewarding.
-        Content. Life is good.
-    </p>
-    <h3>Work</h3>
-    <p>
-        I'm fortunate to be able to work remotely in a <strong><em>Senior Data Engineer</em></strong> role for a Fortune 100 healthcare company.
-        The fact that my co-workers are fantastic is a bonus.
-    </p>
-    <p>
-        Putting time in on a semantic Data-Lake has been a deep dive on understanding Health Care data-sets.
-    </p>
-    <h3>Future</h3>
-    <p>
-        <ul>
-	<li>I am currently fishing around lightly for a position which will allow me to do <em>more</em> at scale and expose me
-		to new or different tech stacks I am not likely to get exposure to here in any near to medium timeframe.</li>
-            <li>I do appriciate the modern need for <em>specialization</em>. However, I'd like to flex a life-time of wearing many hats.
-        </ul>
-    </p>
-    <p><a href="#top">⬆</a></p>
-    <hr>
-    <h2><a id="visualizations">Data Visualizations</a></h2>
-    <p>ASCII art charts and graphs generated from site content.</p>
 
-    <h3>Reading Activity</h3>
-    <h4>VIZ-BOOKS-HBAR-001: Horizontal Bars</h4>
-    <pre class="visualization" id="viz-books-hbar-001" data-viz-id="VIZ-BOOKS-HBAR-001">READING ACTIVITY
-Total: 143 books │ 2015-2020: 66 │ Avg: 11.0/year │ Peak: 2017 (21) │ Trend: ▁▅█▄▂▃
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">☀</button>
 
-2020 │████ 9
-2019 │███ 6
-2018 │██████ 12
-2017 │██████████ 21
-2016 │███████ 15
-2015 │█ 3
-<2015│░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 77
-     └─────────────────────────────────────────────</pre>
+    <div class="container">
+        
+        <header>
+            <h1>Kyle Fring</h1>
+            <nav>
+                <a href="#now">Now</a> <span class="nav-separator">·</span>
+                <a href="#bookshelf">Bookshelf</a> <span class="nav-separator">·</span>
+                <a href="#albums">Albums</a> <span class="nav-separator">·</span>
+                <a href="#elsewhere">Elsewhere</a> <span class="nav-separator">·</span>
+                <a href="#epilogue">Epilogue</a>
+            </nav>
+        </header>
 
-    <h3>Career Trajectory</h3>
-    <h4>VIZ-CAREER-VERT-001: Vertical Upward</h4>
-    <pre class="visualization" id="viz-career-vert-001" data-viz-id="VIZ-CAREER-VERT-001">CAREER TRAJECTORY
-(Progression moves upward)
+        <main>
+            <section id="now">
+                <h2>Now</h2>
+                
+                <h3>Life</h3>
+                <aside class="muted">📍 Chattanooga, TN</aside>
+                <p>Most mornings I sweat at [<a href="http://cruxconditioning.com/">Crux</a>](http://cruxconditioning.com/), an incredible gym with a great community. Progress there has been a massive solace through the second half of Covid-19's 2020. I'm able to get outdoors on the weekends and go hard.</p>
+                <p>I've made several good friends since moving here and that's <em>ultra</em> rewarding. Content. Life is good.</p>
+                <h3>Work</h3>
+                <p>I'm fortunate to be able to work remotely as a <strong>Program Director</strong> for a Fortune 500 managed care provider. I lead cross-functional initiatives bridging data engineering, analytics, and business strategy. It's rewarding work that impacts tens of thousands of co-workers and many millions of members.</p>
+                <h3>Future</h3>
+                <ul>
+                    <li>I'd like to use different tools. Microsoft is fine, Teams & PowerBI are <em>very</em> good, but in my heart I'm a <em>FOSS</em> guy: Terminals, Python, R, etc. are more interesting to me.</li>
+                    <li>I do appreciate the modern need for <em>specialization</em>. However, I'd like to flex a life-time of wearing many hats.</li>
+                    <li>A good deal more flexibility with working hours. I al<strong>way</strong>s deliver. Don't make me sit at a desk just because I need to <em>not</em> be afk. Life is <strong>way</strong> too short.</li>
+                </ul>
 
-        ├──◄── Senior Positions (Various)
-        │      @ Various Companies (2006-2020)
-        │
-        ├──◄── Consultant
-        │      @ Independent (2020-2021)
-        │
-        ├──◄── Senior Data Analyst / Engineer
-        │      @ Molina Healthcare (2020-2022)
-        │
-        ▲  ◄── Program Director
-        │      @ Molina Healthcare (2023-Present)
-        │
-        └────── Career Start (2006)</pre>
+                <p class="muted small">Last updated: February 2026</p>
+                <a href="#top" class="back-to-top">↑</a>
+            </section>
 
-    <h3>Site Structure</h3>
-    <h4>VIZ-SITE-TREE-001: Phylogenetic Tree</h4>
-    <pre class="visualization" id="viz-site-tree-001" data-viz-id="VIZ-SITE-TREE-001">SITE STRUCTURE
+            <section id="bookshelf">
+                <h2>Bookshelf</h2>
+                
+                <p class="muted small">143 books tracked · 2015–2020 + prior</p>
+                <div class="book-grid">
+                <div class="book-group">
+                    <span class="book-year">2020</span>
+                    <span class="book-title">Discrete Mathematics and it&#x27;s Applications</span>
+                    <span class="book-title">Python3 The Hard Way</span>
+                    <span class="book-title">Unwanted</span>
+                    <span class="book-title">The Book of Joy</span>
+                    <span class="book-title">Let&#x27;s pretend this never happened</span>
+                    <span class="book-title">The Personality Brokers</span>
+                    <span class="book-title">The Book of Joy: Lasting Happiness in a Changing World</span>
+                    <span class="book-title">Black Elk Speaks: Being the Life Story of a Holy Man of the Oglala Sioux</span>
+                    <span class="book-title">I Hate You, Don&#x27;t Leave Me: Understanding the Borderline Personality</span>
+                </div>
+                <div class="book-group">
+                    <span class="book-year">2019</span>
+                    <span class="book-title">Gang Leader for a Day</span>
+                    <span class="book-title">Re:Work</span>
+                    <span class="book-title">The Crossing</span>
+                    <span class="book-title">Cities of the Plain</span>
+                    <span class="book-title">All the Pretty Horses</span>
+                    <span class="book-title">The Idiot</span>
+                </div>
+                <div class="book-group">
+                    <span class="book-year">2018</span>
+                    <span class="book-title">Man&#x27;s Search for Meaning</span>
+                    <span class="book-title">Snowcrash</span>
+                    <span class="book-title">Codependent No More</span>
+                    <span class="book-title">Ask Polly&#x27;s Guide To Your Next Crisis</span>
+                    <span class="book-title">Getting The Love You Want</span>
+                    <span class="book-title">Tribe of Mentors</span>
+                    <span class="book-title">The Curious Case of Benjamin Button</span>
+                    <span class="book-title">Sapiens</span>
+                    <span class="book-title">A Brief History of Time</span>
+                    <span class="book-title">Kitchen Confidential</span>
+                    <span class="book-title">Devil in the Kitchen</span>
+                    <span class="book-title">Manhood</span>
+                </div>
+                <div class="book-group">
+                    <span class="book-year">2017</span>
+                    <span class="book-title">The Simple Path to Wealth</span>
+                    <span class="book-title">Early Retirement Extreme</span>
+                    <span class="book-title">The Autobiography of Benjamin Franklin</span>
+                    <span class="book-title">Aesop&#x27;s Fables</span>
+                    <span class="book-title">Ulysses</span>
+                    <span class="book-title">How to Speak and Write Correctly</span>
+                    <span class="book-title">Popular Tales from the Norse</span>
+                    <span class="book-title">Complete Works of David Hume (selections)</span>
+                    <span class="book-title">The Greatest Generation</span>
+                    <span class="book-title">Don Quixote</span>
+                    <span class="book-title">The Ultimate Sherlock Holmes Collection</span>
+                    <span class="book-title">The Wisdom of Insecurity</span>
+                    <span class="book-title">The 4-Hour Body</span>
+                    <span class="book-title">The Little Book that Beats the Market</span>
+                    <span class="book-title">A Book of Five Rings</span>
+                    <span class="book-title">Meditations</span>
+                    <span class="book-title">Designing Your Life</span>
+                    <span class="book-title">The New Better Off</span>
+                    <span class="book-title">Your Money or Your Life</span>
+                    <span class="book-title">The Magic of Thinking BIG</span>
+                    <span class="book-title">City in the City</span>
+                </div>
+                <div class="book-group">
+                    <span class="book-year">2016</span>
+                    <span class="book-title">Still Life with Woodpecker</span>
+                    <span class="book-title">Media Control</span>
+                    <span class="book-title">Practical Lock Picking</span>
+                    <span class="book-title">The Rings of Saturn</span>
+                    <span class="book-title">The Economist Guide to Financial Markets</span>
+                    <span class="book-title">Gratitude</span>
+                    <span class="book-title">Cryptonomicon</span>
+                    <span class="book-title">The Name of the Wind</span>
+                    <span class="book-title">The Wise Man&#x27;s Fear</span>
+                    <span class="book-title">Power Systems</span>
+                    <span class="book-title">How to Archer</span>
+                    <span class="book-title">The Joy of x</span>
+                    <span class="book-title">Ready Player One</span>
+                    <span class="book-title">The Road to Character</span>
+                    <span class="book-title">Berkshire Hathaway Letters</span>
+                </div>
+                <div class="book-group">
+                    <span class="book-year">2015</span>
+                    <span class="book-title">1Q84</span>
+                    <span class="book-title">The Swarm</span>
+                    <span class="book-title">4 Hour Work Week</span>
+                </div>
+                <div class="book-group">
+                    <span class="book-year">&lt;2015</span>
+                    <span class="book-title">The Watchmen</span>
+                    <span class="book-title">Evidence</span>
+                    <span class="book-title">The White Tiger</span>
+                    <span class="book-title">Collapse: How Societies Chose to Fail or Succeed</span>
+                    <span class="book-title">Guns, Germs and Steel</span>
+                    <span class="book-title">The Prince</span>
+                    <span class="book-title">Sphere</span>
+                    <span class="book-title">Out of the Silent Planet</span>
+                    <span class="book-title">Perelandra</span>
+                    <span class="book-title">That Hideous Strength</span>
+                    <span class="book-title">Redwall</span>
+                    <span class="book-title">Mossflower</span>
+                    <span class="book-title">Mattimeo</span>
+                    <span class="book-title">Martin the Warrior</span>
+                    <span class="book-title">Salamandastron</span>
+                    <span class="book-title">Mariel of Redwall</span>
+                    <span class="book-title">The Bellmaker</span>
+                    <span class="book-title">Outcast of Redwall</span>
+                    <span class="book-title">Pearls of Lutra</span>
+                    <span class="book-title">The Long Patrol</span>
+                    <span class="book-title">Inferno</span>
+                    <span class="book-title">The Book of Three</span>
+                    <span class="book-title">The Black Cauldron</span>
+                    <span class="book-title">Taran Wanderer</span>
+                    <span class="book-title">The Castle of Llyr</span>
+                    <span class="book-title">The High King</span>
+                    <span class="book-title">The Foundling and Other Tales of Prydain</span>
+                    <span class="book-title">A Game of Thrones</span>
+                    <span class="book-title">A Clash of Kings</span>
+                    <span class="book-title">A Storm of Swords</span>
+                    <span class="book-title">A Feast for Crows</span>
+                    <span class="book-title">A Dance with Dragons</span>
+                    <span class="book-title">The Flight of the Silvers</span>
+                    <span class="book-title">Dune</span>
+                    <span class="book-title">Dune Messiah</span>
+                    <span class="book-title">Children of Dune</span>
+                    <span class="book-title">The Gunslinger</span>
+                    <span class="book-title">The Drawing of the Three</span>
+                    <span class="book-title">The Waste Lands</span>
+                    <span class="book-title">Wizard and Glass</span>
+                    <span class="book-title">Wolves of the Calla</span>
+                    <span class="book-title">Song of Susannah</span>
+                    <span class="book-title">The Dark Tower</span>
+                    <span class="book-title">American Gods</span>
+                    <span class="book-title">Ender&#x27;s Game</span>
+                    <span class="book-title">Zen and the Art of Motorcycle Maintenance</span>
+                    <span class="book-title">The New American Road Trip Mixtape</span>
+                    <span class="book-title">Self-Coached Climber</span>
+                    <span class="book-title">Shantaram</span>
+                    <span class="book-title">The One-Straw Revolution</span>
+                    <span class="book-title">The China Study</span>
+                    <span class="book-title">The Hobbit</span>
+                    <span class="book-title">Fellowship of the Ring</span>
+                    <span class="book-title">The Two Towers</span>
+                    <span class="book-title">Return of the King</span>
+                    <span class="book-title">This is Water</span>
+                    <span class="book-title">9 Out of 10 Climbers Make the Same Mistakes</span>
+                    <span class="book-title">Great Expectations</span>
+                    <span class="book-title">The Communist Manifesto</span>
+                    <span class="book-title">Ethics</span>
+                    <span class="book-title">The Odyssey</span>
+                    <span class="book-title">Dracula</span>
+                    <span class="book-title">The Hedge Knight</span>
+                    <span class="book-title">Flow</span>
+                    <span class="book-title">Foundation</span>
+                    <span class="book-title">Hyperion</span>
+                    <span class="book-title">The Fall of Hyperion</span>
+                    <span class="book-title">Endymion</span>
+                    <span class="book-title">The Rise of Endymion</span>
+                    <span class="book-title">The History of Herodotus</span>
+                    <span class="book-title">Autobiography of a Yogi</span>
+                    <span class="book-title">A Picture of Dorian Gray</span>
+                    <span class="book-title">Twenty Thousand Leagues Under the Sea</span>
+                    <span class="book-title">The Art of War</span>
+                    <span class="book-title">A Tale of Two Cities</span>
+                    <span class="book-title">Pride and Prejudice</span>
+                    <span class="book-title">The Adventures of Sherlock Holmes</span>
+                </div>
+                </div>
+                <a href="#top" class="back-to-top">↑</a>
+            </section>
 
-                     ┌─── Life (Location, Friends)
-         ┌─ <a href="#now">Now</a> ───┼─── Work (Senior Data Engineer)
-         │           └─── Future (Goals, Aspirations)
-         │
-fring.io─┼─ <a href="#elsewhere">Elsewhere</a> ─── Links (GitHub, LinkedIn, Goodreads)
-         │
-         │           ┌─── 2020 (9 books)
-         │           ├─── 2019 (6 books)
-         ├─ <a href="#bookshelf">Books</a> ─┼─── 2018 (12 books)
-         │           ├─── 2017 (21 books)
-         │           ├─── 2016 (15 books)
-         │           ├─── 2015 (3 books)
-         │           └─── Prior (77 books)
-         │
-         └─ <a href="#epilogue">Epilogue</a> ─── Previous versions (v1, v2, v3)
+            <section id="albums">
+                <h2>Albums</h2>
+                
+                <p class="muted small">27 albums · listened 2019 · releases spanning 1967–2019</p>
+                <div class="sparkline" aria-hidden="true">
+                    Jan ▁  Feb ▄  Mar ▁  Apr    May ▄  Jun ▄  Jul █  Aug ▂  Sep ▂  Oct ▂  Nov    Dec  
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/2DKJWh4uNozTDpuaSKb1oK?si=xA9lBDTbRzeUvU1T9BkkHw" target="_blank" class="album-title">The Jackson 5 — Gold (2005)</a>
+                    <span class="album-note">hits. that Motown sound.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/4svLfrPPk2npPVuI4kXPYg?si=T1IfF6u0SPmbLSvQ0Zf-gg" target="_blank" class="album-title">Leon Bridges — Coming Home (2015)</a>
+                    <span class="album-note">Incredible Delta sounds.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/0UP3rWITqj74OAVCHP5034?si=UwTv4zz2QCm42XZC47Lt2g" target="_blank" class="album-title">Herb Alpert — Rise (1979)</a>
+                    <span class="album-note">bonkers.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/5DVNCzpvDrSEIFiU7hm8ey?si=pchRWfTzRg2GdqpH0msvEg" target="_blank" class="album-title">The Runaways — The Runaways (1976)</a>
+                    <span class="album-note">Early Joan Jett.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/1H9g6j4Wwj6wh6p8YHVtkf?si=W5G0MNdhSV-zXJRcA6nNzg" target="_blank" class="album-title">The Police — Outlandos D&#x27;Amour (Remastered 2003) (1978)</a>
+                    <span class="album-note">Co-worker and I played two albums from the Police last week. I never knew that the drummer was Moroccan? Allegedly, they started the punk/reggae vibe because they were not able to get folks digging their more eclectic sound.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/2EpuND32cO7CX0gXZl2NB6?si=-UL40aAfQaOuhdwCaFvmzg" target="_blank" class="album-title">The Police — Reggatta De Blanc (1979)</a>
+                    <span class="album-note">Ok. Sting is both dark AF and an odd-ball. I dig it. Walking on the Moon is a great song, ostensibly about floating home on positive vibes from his girlfriends house. We&#x27;ve all been there.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/18rcvgzvr5DMsPNOBwL5Cz?si=TDiDkz-vQYeabKeBXL0Fuw" target="_blank" class="album-title">Photay — Photay (2014)</a>
+                    <span class="album-note">A Patrick recommendation.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc?si=ae0w4EPnRfucTPFYQhv2Gg" target="_blank" class="album-title">Daft Punk — Discovery (2001)</a>
+                    <span class="album-note">The year I graduated High School rewarded me with this incredible album.  An all time favorite.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/05J8PFXdYKeYNb8YjqqJYr?si=q6zFFDxPQq6oKEyxDawK3w" target="_blank" class="album-title">The Beach Boys — Endless Summer (1974)</a>
+                    <span class="album-note">Most of these songs could get you beat up at the beach in New Jersey. Growing up I think my Father enjoyed these albums, but I don&#x27;t know why. The opening of Good Vibrations is legendary.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/0MCiMfs35PPI4WFypTpsrK?si=5aGOFTFLRBOWCBx8IJq-6A" target="_blank" class="album-title">Propagandhi — How to Clean Everything (1993)</a>
+                    <span class="album-note">Formative in my early teens.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/4TJIdlY9hGSSTO1kUs1neh?si=Ik_xPy3zR1G1BtOeN_jbBw" target="_blank" class="album-title">Johnny Cash — At Folsom Prison (1968)</a>
+                    <span class="album-note">Johnny Fucking Cash.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/1HarDRl9Lt8Clh9nYJ9n6a?si=2jGmQd5tTfWRkOoRC9RN_A" target="_blank" class="album-title">The Budos Band — The Budos Band II (2007)</a>
+                    <span class="album-note">Charles Bradly&#x27;s backing band formed Budos. Tight, tight, tight.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/6nL0U84JsEJ0cRsGCnsDnJ?si=SukQK0siSyywD66h0Hx7Rg" target="_blank" class="album-title">Broken Social Scene — You Forgot It In People (2003)</a>
+                    <span class="album-note">an old favorite</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/0DFhGsFKG7G58cke33GlAh?si=CyOr_4OwQVOM9UjgBHzbaw" target="_blank" class="album-title">Captain Beefheart &amp; His Magic Band — Safe as Milk (1967)</a>
+                    <span class="album-note">&quot;Catching up, huh?&quot;</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/5f6Nz2v1DESbpu1NerEql2?si=yfhgArIkQ2KFPjLEalgMQQ" target="_blank" class="album-title">Gang Starr — Moment of Truth (1998)</a>
+                    <span class="album-note">Seminal and socially woke.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/5zi7WsKlIiUXv09tbGLKsE?si=lwXfen2rRWadXKk6bwBFyg" target="_blank" class="album-title">Tyler, The Creator — IGOR (2019)</a>
+                    <span class="album-note">Interesting. I don&#x27;t know enough about the Artist.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/6tTvGto8mk0xYfOmMR4224?si=cJIcO7phTqq3mza9IAsF4g" target="_blank" class="album-title">Alex, Tokyo Rose — Akuma II (2019)</a>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/67OQuCcp8yfLRKa49asN8i?si=cZr_3PUkT7iTIug-UYI3OQ" target="_blank" class="album-title">Bembeya Jazz National — Discoteque 76 (1976)</a>
+                    <span class="album-note">wonderful afro-jazz. The third track is a long-time favorite</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/7Jn1h8E5aT96pdyrPxrLWi?si=NKZpnbChQhCDIjwC4xnrPA" target="_blank" class="album-title">Orville Peck — Pony (2019)</a>
+                    <span class="album-note">Shoegaze-Outlaw-Country...AWESOME!</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/4QH2Ppf0BHxK8mGVF6aEmD?si=2iNBFe5yRGWnOPjgS2o3Yg" target="_blank" class="album-title">Night Moves — Colored Emotions (2012)</a>
+                    <span class="album-note">Smooth and fun. Little sexy.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/3ZGUBwDiY5HPOcWv4SBPQg?si=IHR3TLS3TXW5kfnUsAub1A" target="_blank" class="album-title">Tom Petty — Wildflowers (1994)</a>
+                    <span class="album-note">Classic album with some of what I think is his best work.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/0LBQdWnuV0CAXyPIngb0UX?si=-Sfc4ywWTu-oAbECWYBC-g" target="_blank" class="album-title">Buckethead — Colma (1998)</a>
+                    <span class="album-note">I don&#x27;t know anything about Buckethead except that it seems to be a fun mockery of Slash&#x27;s aestetic choices. Super enjoyable progressive instrumental guitar work.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/5622zSt4RLqNSPShdqmWpj?si=cAEfErUKTs2jNh0T_NValA" target="_blank" class="album-title">Better Oblivion Community Center — Better Oblivion Community Center (2019)</a>
+                    <span class="album-note">think I&#x27;ll have to give this one a few more listens over the coming weeks.  Initial impressions are that it&#x27;s fucking incredible.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/7JSUMJpXFj2Tmv4wYGmUp8?si=uh2MBH4uTGeJSvu8UwgdcQ" target="_blank" class="album-title">The Horrible Crows — Elise (2011)</a>
+                    <span class="album-note">Gaslight Anthem front-man does a Tom Waits, Nick Cave inspired album.  The first few tracks destroyed me.  I like the contrast of upbeat tempo with crushing lyrics.</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/6BOQkxcHspMoRWEwEexf4l?si=r1HasGOvTImPRvLQ1taKKA" target="_blank" class="album-title">Beck — Colors (2017)</a>
+                    <span class="album-note">Beck. One of those artists who I expect will put out at least interesting if</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/0huXZPw7bhK5vTv7CMYOmP?si=1TMn5SWPSpqAWQsMkEzicw" target="_blank" class="album-title">Circa Survive — Juturna (2005)</a>
+                    <span class="album-note">I originally received this album from the lead singer at a 24 hour dinner</span>
+                </div>
+                <div class="album-entry">
+                    <a href="https://open.spotify.com/album/2JeW42eEkcpxw1UHvZFfVG?si=DuERQJ_NR5y7Mcv9BJSnaQ" target="_blank" class="album-title">Daikaiju — Daikaiju (2005)</a>
+                    <span class="album-note">In Japanese, Daikaiju translates to &quot;giant monster&quot; Recorded in *2003*, but not released until *2005*.</span>
+                </div>
+                <a href="#top" class="back-to-top">↑</a>
+            </section>
 
-     PERSONAL WEBSITE & DIGITAL GARDEN
-              TEXT ONLY</pre>
+            <section id="elsewhere">
+                <h2>Elsewhere</h2>
+                <p>
+                    <a href="https://github.com/k-f-/">github</a> <span class="nav-separator">·</span>
+                    <a href="https://linkedin.com/in/kfring/">linkedin</a> <span class="nav-separator">·</span>
+                    <a href="https://goodreads.com/kfring/">goodreads</a>
+                </p>
+                <a href="#top" class="back-to-top">↑</a>
+            </section>
 
-    <div class="viz-grid cols-2">
-        <div>
-            <h4>VIZ-BOOKS-VBAR-002: Vertical Bars</h4>
-            <pre class="visualization" id="viz-books-vbar-002" data-viz-id="VIZ-BOOKS-VBAR-002">READING ACTIVITY - Vertical Bars [VIZ-BOOKS-VBAR-002]
+            <section id="epilogue">
+                <h2>Epilogue</h2>
+                <p>Previous iterations: <a href="http://v3.fring.io">v3</a> · <a href="http://v2.fring.io">v2</a> · <a href="http://v1.kfring.com">v1</a></p>
+                <p class="muted small">Credit to <a href="http://bettermotherfuckingwebsite.com/">bettermotherfuckingwebsite.com</a></p>
+                <a href="#top" class="back-to-top">↑</a>
+            </section>
 
-       █
-       █
-       █
-       █
-       █
-       █
-    █  █
-    █  █
-    █  █
-    █  █  █
-    █  █  █
-    █  █  █
-    █  █  █     █
-    █  █  █     █
-    █  █  █     █
-    █  █  █  █  █
-    █  █  █  █  █
-    █  █  █  █  █
- █  █  █  █  █  █
- █  █  █  █  █  █
- █  █  █  █  █  █
-15 21 12  6  9  3</pre>
-        </div>
-
-        <div>
-            <h4>VIZ-BOOKS-LINE-003: Line Graph</h4>
-            <pre class="visualization" id="viz-books-line-003" data-viz-id="VIZ-BOOKS-LINE-003">READING TREND - Line Graph [VIZ-BOOKS-LINE-003]
-
-15 │      ╲
-14 │      ╱  ╲
-13 │      ╱  ╲
-12 │      ╱  ╲
-11 │      ╱  ╲
-10 │   ╱     ╲
- 9 │   ╱     ╲
- 8 │   ╱     ╲
- 7 │   ╱        ╲
- 6 │   ╱        ╲  ●
- 5 │   ╱        ╲  ╱
- 4 │   ╱        ╱
- 3 │   ╱
- 2 │╱
- 1 │
- 0 │
-   └──────────────────
-    15 16 17 18 19 20</pre>
-        </div>
+        </main>
     </div>
 
-    <h4>VIZ-BOOKS-SPARK-004: Compact Sparklines</h4>
-    <pre class="visualization" id="viz-books-spark-004" data-viz-id="VIZ-BOOKS-SPARK-004">READING TRENDS - Sparklines [VIZ-BOOKS-SPARK-004]
+    <script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        // Check local storage or system preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) {
+            html.setAttribute('data-theme', savedTheme);
+            updateIcon(savedTheme);
+        } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+            html.setAttribute('data-theme', 'light');
+            updateIcon('light');
+        }
 
-Total: 143 books │ 2015-2020: 66 │ Prior: 77
-Average: 11.0/year │ Peak: 21 books
+        function updateIcon(theme) {
+            toggleBtn.textContent = theme === 'light' ? '☾' : '☀';
+        }
 
-Blocks: ▁▅█▄▂▃
-Dots:   ·◉●○·○
-Bars:   ┆│││┆┆
-Years:  151617181920</pre>
-
-    <h4>VIZ-BOOKS-DOT-005: Dot Plot</h4>
-    <pre class="visualization" id="viz-books-dot-005" data-viz-id="VIZ-BOOKS-DOT-005">READING DISTRIBUTION - Dot Plot [VIZ-BOOKS-DOT-005]
-
-21 │    ●
-20 │    ●
-19 │    ●
-18 │    ●
-17 │    ●
-16 │    ●
-15 │  ● ●
-14 │  ● ●
-13 │  ● ●
-12 │  ● ● ●
-11 │  ● ● ●
-10 │  ● ● ●
- 9 │  ● ● ●   ●
- 8 │  ● ● ●   ●
- 7 │  ● ● ●   ●
- 6 │  ● ● ● ● ●
- 5 │  ● ● ● ● ●
- 4 │  ● ● ● ● ●
- 3 │● ● ● ● ● ●
- 2 │● ● ● ● ● ●
- 1 │● ● ● ● ● ●
- 0 │● ● ● ● ● ●
-   └────────────
-    2015 2016 2017 2018 2019 2020</pre>
-
-    <h4>VIZ-CAREER-HORIZ-002: Horizontal Timeline</h4>
-    <pre class="visualization" id="viz-career-horiz-002" data-viz-id="VIZ-CAREER-HORIZ-002">CAREER TIMELINE - Horizontal [VIZ-CAREER-HORIZ-002]
-
-       2006  2011  2016  2021
-       ┬────┬────┬────┬
-                                   ├──── │ Program Director @ Molina Healthca
-                             ├───┤       │ Senior Data Analyst / Eng @ Molina Healthca
-                             ├─┤         │ Consultant @ Independent
-├────────────────────────────┤           │ Senior Positions (Various @ Various Compani</pre>
-
-    <div class="viz-grid cols-2">
-        <div>
-            <h4>VIZ-CAREER-COMPACT-003: Compact Timeline</h4>
-            <pre class="visualization" id="viz-career-compact-003" data-viz-id="VIZ-CAREER-COMPACT-003">CAREER - Compact Timeline [VIZ-CAREER-COMPACT-003]
-
-2006 → 2006:SP( → 2020:C → 2020:SDA → 2023:PD
-
-Legend:
-  SP( = Senior Positions (Various)
-  C = Consultant
-  SDA = Senior Data Analyst / Engineer
-  PD = Program Director</pre>
-        </div>
-
-        <div>
-            <h4>VIZ-CAREER-TREE-004: Organization View</h4>
-            <pre class="visualization" id="viz-career-tree-004" data-viz-id="VIZ-CAREER-TREE-004">CAREER - Organization View [VIZ-CAREER-TREE-004]
-
-CAREER HISTORY
-├── Molina Healthcare
-│   ├── Program Director (2023-Present)
-│   └── Senior Data Analyst / Engineer (2020-2022)
-├── Independent
-│   └── Consultant (2020-2021)
-└── Various Companies
-    └── Senior Positions (Various) (2006-2020)</pre>
-        </div>
-    </div>
-
-    <h4>VIZ-SITE-INDENT-002: Indented List</h4>
-    <pre class="visualization" id="viz-site-indent-002" data-viz-id="VIZ-SITE-INDENT-002">SITE MAP - Indented [VIZ-SITE-INDENT-002]
-
-□ fring.io
-  ├─ <a href="#now">Now</a>
-  │  ├─ Life (<a href="https://en.wikipedia.org/wiki/Chattanooga,_Tennessee">Chattanooga, TN</a>)
-  │  ├─ Work (Program Director)
-  │  └─ Future (Career goals)
-  ├─ <a href="#visualizations">Data</a> (Visualizations)
-  ├─ <a href="#elsewhere">Elsewhere</a> (GitHub, LinkedIn, Goodreads)
-  ├─ <a href="#bookshelf">Bookshelf</a>
-  │  ├─ <a href="#b2020">2020</a> (9 books)
-  │  ├─ <a href="#b2019">2019</a> (6 books)
-  │  ├─ <a href="#b2018">2018</a> (12 books)
-  │  ├─ <a href="#b2017">2017</a> (21 books)
-  │  ├─ <a href="#b2016">2016</a> (15 books)
-  │  ├─ <a href="#b2015">2015</a> (3 books)
-  │  └─ <a href="#bprior">Prior</a> (77 books)
-  └─ <a href="#epilogue">Epilogue</a> (v1, v2, v3)</pre>
-
-    <h4>VIZ-SITE-BOXES-003: Box Layout</h4>
-    <pre class="visualization" id="viz-site-boxes-003" data-viz-id="VIZ-SITE-BOXES-003">SITE NAVIGATION - Boxes [VIZ-SITE-BOXES-003]
-
-┌─────────────┬─────────────┬─────────────┬─────────────┐
-│ <a href="#now">NOW</a>        │ <a href="#visualizations">DATA</a>       │ <a href="#elsewhere">ELSEWHERE</a>  │ <a href="#bookshelf">BOOKS</a>      │
-│             │             │             │             │
-│ Life        │ Charts      │ GitHub      │ 143 books   │
-│ Work        │ Graphs      │ LinkedIn    │ 2015-2020   │
-│ Future      │ Stats       │ Goodreads   │ + Prior     │
-└─────────────┴─────────────┴─────────────┴─────────────┘</pre>
-
-    <h3>New Data Visualizations</h3>
-
-    <h4>VIZ-TECH-STACK-001: Technology Timeline</h4>
-    <pre class="visualization" id="viz-tech-stack-001" data-viz-id="VIZ-TECH-STACK-001">TECHNOLOGY STACK - Timeline [VIZ-TECH-STACK-001]
-
-Current Tech Stack:
-
-  CODE:
-    ▪ Python
-    ▪ SQL
-    ▪ Scala
-    ▪ M
-    ▪ DAX
-    ▪ PowerQuery
-  CLOUD:
-    ▪ Azure Databricks
-    ▪ Machine Learning
-    ▪ Data Engineering
-    ▪ DevOps
-  VISUALIZATION:
-    ▪ PowerBI
-  PROJECTMANAGEMENT:
-    ▪ JIRA
-    ▪ Git
-
-Experience Timeline:
-2006 ━━━━━━━━━━━━━━━ Network Engineering
-2008 ━━━━━━━━━━━━━━━ Systems Administration
-2012 ━━━━━━━━━━━━━━━ AWS & Cloud
-2015 ━━━━━━━━━━━━━━━ DevOps
-2020 ━━━━━━━━━━━━━━━ Data Engineering ◄── Current Focus
-2023 ━━━━━━━━━━━━━━━ AI/ML & Analytics</pre>
-
-    <h4>VIZ-READING-VEL-001: Reading Velocity</h4>
-    <pre class="visualization" id="viz-reading-vel-001" data-viz-id="VIZ-READING-VEL-001">READING VELOCITY - Pace Analysis [VIZ-READING-VEL-001]
-
-2015: ░░░░░  3 books ▼▼▼ Slow pace
-2016: ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ 15 books ▲▲  Above avg
-2017: ████████████████████ 21 books ▲▲▲ High pace
-2018: ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ 12 books ▲▲  Above avg
-2019: ▒▒▒▒▒▒▒▒▒▒  6 books ▼   Below avg
-2020: ▒▒▒▒▒▒▒▒▒▒  9 books ▼   Below avg
-
-Average pace: 11.0 books/year</pre>
-
-    <h4>VIZ-DECADE-DIST-001: Decade Distribution</h4>
-    <pre class="visualization" id="viz-decade-dist-001" data-viz-id="VIZ-DECADE-DIST-001">READING DISTRIBUTION - By Decade [VIZ-DECADE-DIST-001]
-
-┌─────────────────────────────────────────────┐
-│ 2010s (2015-2020): 66 books  ████████░░     │
-│ Pre-2015:          77 books  ██████████     │
-├─────────────────────────────────────────────┤
-│ Total Tracked:     143 books                │
-│ Reading Period:    ~10+ years               │
-│ Rate:              ~14 books/year           │
-└─────────────────────────────────────────────┘
-
-Reading Era Analysis:
-  2015-2017 ████████ Peak reading phase (36 books)
-  2018-2020 ███░░░░░ Sustained reading (27 books)
-  Pre-2015  ██████░░ Historical collection (77 books)</pre>
-
-    <h4>VIZ-READING-CAL-001: Calendar Heatmap</h4>
-    <pre class="visualization" id="viz-reading-cal-001" data-viz-id="VIZ-READING-CAL-001">READING CALENDAR - Activity Heatmap [VIZ-READING-CAL-001]
-Reading activity for 2017 (21 books)
-
-     Jan             Jan             Feb             Mar             Apr             May             Jun             Jul             Aug             Sep             Oct             Nov             Dec
-Mon  ░ · · · ░ · · ░ · · · · ░ ░ · ▒ · · · · ░ ░ · · · ░ · · ░ ░ · · ▒ ░ ░ · · · ░ · · · · ░ · · ▒ · · · ░ ·
-Wed  ░ · · · ░ · · ░ · · · · ░ ░ · ▒ · · · · ░ ░ · · · ░ · · ░ ░ · · ▒ ░ ░ · · · ░ · · · · ░ · · ▒ · · · ░ ·
-Fri  ░ · · · ░ · · ░ · · · · ░ ░ · ▒ · · · · ░ ░ · · · ░ · · ░ ░ · · ▒ ░ ░ · · · ░ · · · · ░ · · ▒ · · · ░ ·
-Sun  ░ · · · ░ · · ░ · · · · ░ ░ · ▒ · · · · ░ ░ · · · ░ · · ░ ░ · · ▒ ░ ░ · · · ░ · · · · ░ · · ▒ · · · ░ ·
-
-Legend: · None  ░ 1 book  ▒ 2 books  ▓ 3 books  █ 4+ books
-Note: Distribution is simulated based on yearly totals</pre>
-
-    <h4>VIZ-LOCATION-ROAD-001: Chattanooga Highway Intersection</h4>
-    <pre class="visualization" id="viz-location-road-001" data-viz-id="VIZ-LOCATION-ROAD-001">CHATTANOOGA ROADWAYS - Compass Layout [VIZ-LOCATION-ROAD-001]
-
-                        N
-                        ↑
-
-        Nashville          Knoxville
-         (134 mi)           (112 mi)
-            NW                  NE
-              ↖               ↗
-             I-24           I-75
-                ╲         ╱
-                 ╲       ╱
-                  ╲     ╱
-        W ←────── CHATTANOOGA ──────→ E
-                  ╱     ╲
-                 ╱       ╲
-                ╱         ╲
-             I-59          I-75
-              ↙               ↘
-            WSW               SSE
-        Birmingham          Atlanta
-         (147 mi)          (118 mi)
-
-                        ↓
-                        S
-
-Interstate Corridors:
-  I-75: NE-SW spine (Detroit ↔ Miami)
-  I-24: NW-SE connector (Nashville ↔ Chattanooga → Georgia)
-  I-59: WSW branch (Chattanooga ← Birmingham ↔ New Orleans)
-
-Geographic Hub: 80% pass-through freight traffic
-Coordinates: 35.05°N, 85.31°W 📍</pre>
-
-    <h3>Albums</h3>
-    <h4>VIZ-ALBUMS-ARTIST-001: Artist Frequency</h4>
-    <pre class="visualization" id="viz-albums-artist-001" data-viz-id="VIZ-ALBUMS-ARTIST-001">ALBUM ARTISTS - Frequency Analysis [VIZ-ALBUMS-ARTIST-001]
-
-Total: 27 albums │ Artists: 26 │ Avg: 1.0 albums/artist
-
-The Police                     │●● 2
-
-Showing artists with 2+ albums (1 of 26)</pre>
-
-    <h4>VIZ-ALBUMS-ARTIST-002: Artist Sparkline</h4>
-    <pre class="visualization" id="viz-albums-artist-002" data-viz-id="VIZ-ALBUMS-ARTIST-002">ARTIST PATTERNS - Sparkline View [VIZ-ALBUMS-ARTIST-002]
-
-The Police                ██░░░ (2 albums)
-
-Diversity Index: 26/27 = 96.3%</pre>
-
-    <h4>VIZ-ALBUMS-YEAR-001: Decade Distribution</h4>
-    <pre class="visualization" id="viz-albums-year-001" data-viz-id="VIZ-ALBUMS-YEAR-001">ALBUM RELEASE DECADES - Distribution [VIZ-ALBUMS-YEAR-001]
-
-1960s  │██████                          2
-1970s  │████████████████████            6
-1990s  │█████████████                   4
-2000s  │████████████████████            6
-2010s  │██████████████████████████████  9
-       └───────────────────────────────────
-
-Trend: ▁▅▃▅█
-Decades: 6070900010</pre>
-
-    <div class="viz-grid cols-2">
-        <div>
-            <h4>VIZ-ALBUMS-YEAR-002: Release Timeline</h4>
-            <pre class="visualization" id="viz-albums-year-002" data-viz-id="VIZ-ALBUMS-YEAR-002">ALBUM TIMELINE - Release Year Analysis [VIZ-ALBUMS-YEAR-002]
-
-Release Year Span: 1967 → 2019 (52 years)
-
-Release Timeline:
-1967 │●
-1968 │●
-1974 │●
-1976 │●●
-1978 │●
-1979 │●●
-1993 │●
-1994 │●
-1998 │●●
-2001 │●
-2003 │●
-2005 │●●●
-2007 │●
-2011 │●
-2012 │●
-2014 │●
-2015 │●
-2017 │●
-2019 │●●●●
-
-Album Age When Listened (2019):
-  Oldest:  52 years (1967)
-  Newest:  0 years (2019)
-  Average: 20.8 years</pre>
-        </div>
-        <div>
-            <h4>VIZ-ALBUMS-CHARS-001: Track Distribution</h4>
-            <pre class="visualization" id="viz-albums-chars-001" data-viz-id="VIZ-ALBUMS-CHARS-001">TRACK COUNT DISTRIBUTION - Compact View [VIZ-ALBUMS-CHARS-001]
-
-Range: 5-36 tracks │ Avg: 13.3 │ Median: 12
-
- 5 tracks │● (1 albums)
- 8 tracks │● (1 albums)
- 9 tracks │● (1 albums)
-10 tracks │●●●●●●●● (8 albums)
-11 tracks │●● (2 albums)
-12 tracks │●●●● (4 albums)
-13 tracks │●● (2 albums)
-14 tracks │● (1 albums)
-15 tracks │● (1 albums)
-16 tracks │● (1 albums)
-19 tracks │●● (2 albums)
-20 tracks │● (1 albums)
-21 tracks │● (1 albums)
-36 tracks │● (1 albums)
-
-Most common: 10 tracks (8 albums)</pre>
-        </div>
-    </div>
-
-    <h4>VIZ-ALBUMS-CHARS-002: Duration Scatter</h4>
-    <pre class="visualization" id="viz-albums-chars-002" data-viz-id="VIZ-ALBUMS-CHARS-002">ALBUM CHARACTERISTICS - Duration vs Tracks [VIZ-ALBUMS-CHARS-002]
-
-Minutes │
-133    │· · · · · · · · · ●
-124    │· · · · · · · · · ●
-115    │· · · · · · · · · ·
-106    │· · · · · · · · · ·
- 97    │· · · · · · · · · ·
- 88    │· · · · · ● · · · ·
- 79    │· · · · ● ● · · · ·
- 70    │· · · ● ● ● · · · ·
- 62    │· · · ● ● · · · · ·
- 53    │· · ● ● ● ● · · · ·
- 44    │· ● ● ● ● ● · · · ·
- 35    │· ● ● ● · · · · · ·
- 26    │· ● ● ● · · · · · ·
- 17    │· · ● ● · · · · · ·
-  8    │· · · · · · · · · ·
-  0    │· · · · · · · · · ·
-       └────────────────────
-        0   10   20   30   40+ tracks
-
-Avg duration: 48 min │ Avg tracks: 13.3</pre>
-
-    <div class="viz-grid cols-2">
-        <div>
-            <h4>VIZ-ALBUMS-CHARS-003: Duration Distribution</h4>
-            <pre class="visualization" id="viz-albums-chars-003" data-viz-id="VIZ-ALBUMS-CHARS-003">ALBUM DURATION DISTRIBUTION [VIZ-ALBUMS-CHARS-003]
-
-0-30 min    │█████                     2
-30-40 min   │█████████████████████████ 10
-40-50 min   │███████████████           6
-50-60 min   │██████████                4
-60+ min     │████████████              5
-            └──────────────────────────────
-
-Avg: 48 min │ Range: 23-133 min</pre>
-        </div>
-        <div>
-            <h4>VIZ-ALBUMS-COVER-001: Album Gallery</h4>
-            <p><em>Click any album to open in Spotify</em></p>
-            <div class="album-gallery" id="viz-albums-cover-001" data-viz-id="VIZ-ALBUMS-COVER-001">
-<a href="https://open.spotify.com/album/2DKJWh4uNozTDpuaSKb1oK?si=xA9lBDTbRzeUvU1T9BkkHw" target="_blank" rel="noopener" class="album-cover" title="The Jackson 5 - Gold (2005)"><img src="https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e023d7d7d2f80dcbb081a6e02de" alt="The Jackson 5 - Gold" loading="lazy" /></a>
-<a href="https://open.spotify.com/album/4svLfrPPk2npPVuI4kXPYg?si=T1IfF6u0SPmbLSvQ0Zf-gg" target="_blank" rel="noopener" class="album-cover" title="Leon Bridges - Coming Home (2015)"><img src="https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e0269101a9ff9d0653a753eab10" alt="Leon Bridges - Coming Home" loading="lazy" /></a>
-<a href="https://open.spotify.com/album/0UP3rWITqj74OAVCHP5034?si=UwTv4zz2QCm42XZC47Lt2g" target="_blank" rel="noopener" class="album-cover" title="Herb Alpert - Rise (1979)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02a0af62d5ff3f6d58f25d2d7f" alt="Herb Alpert - Rise" loading="lazy" /></a>
-<a href="https://open.spotify.com/album/5DVNCzpvDrSEIFiU7hm8ey?si=pchRWfTzRg2GdqpH0msvEg" target="_blank" rel="noopener" class="album-cover" title="The Runaways - The Runaways (1976)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02a1c553575418ca43404cb48b" alt="The Runaways - The Runaways" loading="lazy" /></a>
-<a href="https://open.spotify.com/album/1H9g6j4Wwj6wh6p8YHVtkf?si=W5G0MNdhSV-zXJRcA6nNzg" target="_blank" rel="noopener" class="album-cover" title="The Police - Outlandos D'Amour (Remastered 2003) (1978)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e022043dd3544a339547d04b436" alt="The Police - Outlandos D'Amour (Remastered 2003)" loading="lazy" /></a>
-<a href="https://open.spotify.com/album/2EpuND32cO7CX0gXZl2NB6?si=-UL40aAfQaOuhdwCaFvmzg" target="_blank" rel="noopener" class="album-cover" title="The Police - Reggatta De Blanc (1979)"><img src="https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e028ec81cc654b45ade8bdf1486" alt="The Police - Reggatta De Blanc" loading="lazy" /></a>
-<a href="https://open.spotify.com/album/18rcvgzvr5DMsPNOBwL5Cz?si=TDiDkz-vQYeabKeBXL0Fuw" target="_blank" rel="noopener" class="album-cover" title="Photay - Photay (2014)"><img src="https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e0229468317ab30be52670de2e3" alt="Photay - Photay" loading="lazy" /></a>
-<a href="https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc?si=ae0w4EPnRfucTPFYQhv2Gg" target="_blank" rel="noopener" class="album-cover" title="Daft Punk - Discovery (2001)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e022c25dad9f8fd54652f7ba5df" alt="Daft Punk - Discovery" loading="lazy" /></a>
-<a href="https://open.spotify.com/album/05J8PFXdYKeYNb8YjqqJYr?si=q6zFFDxPQq6oKEyxDawK3w" target="_blank" rel="noopener" class="album-cover" title="The Beach Boys - Endless Summer (1974)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02116fbd1449c091ff694464f3" alt="The Beach Boys - Endless Summer" loading="lazy" /></a>
-<a href="https://open.spotify.com/album/0MCiMfs35PPI4WFypTpsrK?si=5aGOFTFLRBOWCBx8IJq-6A" target="_blank" rel="noopener" class="album-cover" title="Propagandhi - How to Clean Everything (1993)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e0294351d4e7c1b7945f52b760f" alt="Propagandhi - How to Clean Everything" loading="lazy" /></a>
-<a href="https://open.spotify.com/album/4TJIdlY9hGSSTO1kUs1neh?si=Ik_xPy3zR1G1BtOeN_jbBw" target="_blank" rel="noopener" class="album-cover" title="Johnny Cash - At Folsom Prison (1968)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e024a04593b7c149dc7b725683e" alt="Johnny Cash - At Folsom Prison" loading="lazy" /></a>
-<a href="https://open.spotify.com/album/1HarDRl9Lt8Clh9nYJ9n6a?si=2jGmQd5tTfWRkOoRC9RN_A" target="_blank" rel="noopener" class="album-cover" title="The Budos Band - The Budos Band II (2007)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e027fc11cc22d9c79156e0786cb" alt="The Budos Band - The Budos Band II" loading="lazy" /></a>
-<a href="https://open.spotify.com/album/6nL0U84JsEJ0cRsGCnsDnJ?si=SukQK0siSyywD66h0Hx7Rg" target="_blank" rel="noopener" class="album-cover" title="Broken Social Scene - You Forgot It In People (2003)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e0203da841c188eb597c6cf3611" alt="Broken Social Scene - You Forgot It In People" loading="lazy" /></a>
-<a href="https://open.spotify.com/album/0DFhGsFKG7G58cke33GlAh?si=CyOr_4OwQVOM9UjgBHzbaw" target="_blank" rel="noopener" class="album-cover" title="Captain Beefheart & His Magic Band - Safe as Milk (1967)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02a1b6277839cf22f21b69f267" alt="Captain Beefheart & His Magic Band - Safe as Milk" loading="lazy" /></a>
-<a href="https://open.spotify.com/album/5f6Nz2v1DESbpu1NerEql2?si=yfhgArIkQ2KFPjLEalgMQQ" target="_blank" rel="noopener" class="album-cover" title="Gang Starr - Moment of Truth (1998)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e023a76edacefe2e7a589222787" alt="Gang Starr - Moment of Truth" loading="lazy" /></a>
-<a href="https://open.spotify.com/album/5zi7WsKlIiUXv09tbGLKsE?si=lwXfen2rRWadXKk6bwBFyg" target="_blank" rel="noopener" class="album-cover" title="Tyler, The Creator - IGOR (2019)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e0230a635de2bb0caa4e26f6abb" alt="Tyler, The Creator - IGOR" loading="lazy" /></a>
-<a href="https://open.spotify.com/album/6tTvGto8mk0xYfOmMR4224?si=cJIcO7phTqq3mza9IAsF4g" target="_blank" rel="noopener" class="album-cover" title="Alex, Tokyo Rose - Akuma II (2019)"><img src="https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02bb92fb5ce4500eefbed577c6" alt="Alex, Tokyo Rose - Akuma II" loading="lazy" /></a>
-<a href="https://open.spotify.com/album/67OQuCcp8yfLRKa49asN8i?si=cZr_3PUkT7iTIug-UYI3OQ" target="_blank" rel="noopener" class="album-cover" title="Bembeya Jazz National - Discoteque 76 (1976)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e0246390410cfcb24d92c86199c" alt="Bembeya Jazz National - Discoteque 76" loading="lazy" /></a>
-<a href="https://open.spotify.com/album/7Jn1h8E5aT96pdyrPxrLWi?si=NKZpnbChQhCDIjwC4xnrPA" target="_blank" rel="noopener" class="album-cover" title="Orville Peck - Pony (2019)"><img src="https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e0256ebaf407e8dbc09afd7f6be" alt="Orville Peck - Pony" loading="lazy" /></a>
-<a href="https://open.spotify.com/album/4QH2Ppf0BHxK8mGVF6aEmD?si=2iNBFe5yRGWnOPjgS2o3Yg" target="_blank" rel="noopener" class="album-cover" title="Night Moves - Colored Emotions (2012)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02fd0ea87c616bf1db825bf66d" alt="Night Moves - Colored Emotions" loading="lazy" /></a>
-<a href="https://open.spotify.com/album/3ZGUBwDiY5HPOcWv4SBPQg?si=IHR3TLS3TXW5kfnUsAub1A" target="_blank" rel="noopener" class="album-cover" title="Tom Petty - Wildflowers (1994)"><img src="https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e0241be6d9cf0ec0067d095a072" alt="Tom Petty - Wildflowers" loading="lazy" /></a>
-<a href="https://open.spotify.com/album/0LBQdWnuV0CAXyPIngb0UX?si=-Sfc4ywWTu-oAbECWYBC-g" target="_blank" rel="noopener" class="album-cover" title="Buckethead - Colma (1998)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02277eeda94eb2882ef1c42371" alt="Buckethead - Colma" loading="lazy" /></a>
-<a href="https://open.spotify.com/album/5622zSt4RLqNSPShdqmWpj?si=cAEfErUKTs2jNh0T_NValA" target="_blank" rel="noopener" class="album-cover" title="Better Oblivion Community Center - Better Oblivion Community Center (2019)"><img src="https://image-cdn-fa.spotifycdn.com/image/ab67616d00001e02f3e71e36d206dc9cb967674d" alt="Better Oblivion Community Center - Better Oblivion Community Center" loading="lazy" /></a>
-<a href="https://open.spotify.com/album/7JSUMJpXFj2Tmv4wYGmUp8?si=uh2MBH4uTGeJSvu8UwgdcQ" target="_blank" rel="noopener" class="album-cover" title="The Horrible Crows - Elise (2011)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02c1bb4175f232cc628a263baf" alt="The Horrible Crows - Elise" loading="lazy" /></a>
-<a href="https://open.spotify.com/album/6BOQkxcHspMoRWEwEexf4l?si=r1HasGOvTImPRvLQ1taKKA" target="_blank" rel="noopener" class="album-cover" title="Beck - Colors (2017)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e0285c5d4eeba7c22b3df57e054" alt="Beck - Colors" loading="lazy" /></a>
-<a href="https://open.spotify.com/album/0huXZPw7bhK5vTv7CMYOmP?si=1TMn5SWPSpqAWQsMkEzicw" target="_blank" rel="noopener" class="album-cover" title="Circa Survive - Juturna (2005)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e023c7737aea2a393c863cf6bce" alt="Circa Survive - Juturna" loading="lazy" /></a>
-<a href="https://open.spotify.com/album/2JeW42eEkcpxw1UHvZFfVG?si=DuERQJ_NR5y7Mcv9BJSnaQ" target="_blank" rel="noopener" class="album-cover" title="Daikaiju - Daikaiju (2005)"><img src="https://image-cdn-ak.spotifycdn.com/image/ab67616d00001e02494612456a2346fdf7af2f94" alt="Daikaiju - Daikaiju" loading="lazy" /></a>
-            </div>
-        </div>
-    </div>
-
-    <p><a href="#top">⬆</a></p>
-    <hr>
-    <h2><a id="elsewhere">Elsewhere</a></h2>
-    <p>
-        <a href="http://github.com/k-f-/">github</a>
-        <a href="http://linkedin.com/in/kfring/">linkedin</a>
-        <a href="http://goodreads.com/kfring/">goodreads</a>
-    </p>
-    <p><a href="#top">⬆</a></p>
-    <hr>
-    <h2><a id="bookshelf">Bookshelf</a></h2>
-    <p>
-        <a href="#b2020">2020</a>
-        <a href="#b2019">2019</a>
-        <a href="#b2018">2018</a>
-        <a href="#b2017">2017</a>
-        <a href="#b2016">2016</a>
-        <a href="#b2015">2015</a>
-        <a href="#bprior">prior</a>
-    </p>
-    <h3><a id="b2020">2020</a></h3>
-    <ul>
-        <li>Discrete Mathematics and it's Applications</li>
-        <li>Python3 The Hard Way</li>
-        <li>Unwanted</li>
-        <li>The Book of Joy</li>
-        <li>Let's pretend this never happened</li>
-        <li>The Personality Brokers</li>
-        <li>The Book of Joy: Lasting Happiness in a Changing World</li>
-        <li>Black Elk Speaks: Being the Life Story of a Holy Man of the Oglala Sioux</li>
-        <li>I Hate You, Don't Leave Me: Understanding the Borderline Personality</li>
-    </ul>
-    <h3><a id="b2019">2019</a></h3>
-    <ul>
-        <li>Gang Leader for a Day</li>
-        <li>Re:Work</li>
-        <li>The Crossing</li>
-        <li>Cities of the Plain</li>
-        <li>All the Pretty Horses</li>
-        <li>The Idiot</li>
-    </ul>
-    <h3><a id="b2018">2018</a></h3>
-    <ul>
-        <li>Man's Search for Meaning</li>
-        <li>Snowcrash</li>
-        <li>Codependent No More</li>
-        <li>Ask Polly's Guide To Your Next Crisis</li>
-        <li>Getting The Love You Want</li>
-        <li>Tribe of Mentors</li>
-        <li>The Curious Case of Benjamin Button</li>
-        <li>Sapiens</li>
-        <li>A Brief History of Time</li>
-        <li>Kitchen Confidential</li>
-        <li>Devil in the Kitchen</li>
-        <li>Manhood</li>
-     </ul>
-     <h3><a id="b2017">2017</a></h3>
-     <ul>
-         <li>The Simple Path to Wealth</li>
-         <li>Early Retirement Extreme</li>
-         <li>The Autobiography of Benjamin Franklin</li>
-         <li>Aesop’s Fables</li>
-         <li>Ulysses</li>
-         <li>How to Speak and Write Correctly</li>
-         <li>Popular Tales from the Norse</li>
-         <li>Complete Works of David Hume (selections)</li>
-         <li>The Greatest Generation</li>
-         <li>Don Quixote</li>
-         <li>The Ultimate Sherlock Holmes Collection</li>
-         <li>The Wisdom of Insecurity</li>
-         <li>The 4-Hour Body</li>
-         <li>The Little Book that Beats the Market</li>
-         <li>A Book of Five Rings</li>
-         <li>Meditations</li>
-         <li>Designing Your Life</li>
-         <li>The New Better Off</li>
-         <li>Your Money or Your Life</li>
-         <li>The Magic of Thinking BIG</li>
-         <li>City in the City</li>
-    </ul>
-    <h3><a id="b2016">2016</a></h3>
-    <ul>
-        <li>Still Life with Woodpecker</li>
-        <li>Media Control</li>
-        <li>Practical Lock Picking</li>
-        <li>The Rings of Saturn</li>
-        <li>The Economist Guide to Financial Markets</li>
-        <li>Gratitude</li>
-        <li>Cryptonomicon</li>
-        <li>The Name of the Wind</li>
-        <li>The Wise Man's Fear</li>
-        <li>Power Systems</li>
-        <li>How to Archer</li>
-        <li>The Joy of x</li>
-        <li>Ready Player One</li>
-        <li>The Road to Character</li>
-        <li>Berkshire Hathaway Letters</li>
-    </ul>    
-    <h3><a id="b2015">2015</a></h3>
-    <ul>
-        <li>1Q84</li>
-        <li>The Swarm</li>
-        <li>4 Hour Work Week</li>
-    </ul>
-    <h3><a id="bprior">Prior</a></h3>
-    <ul>
-        <li>The Watchmen</li>
-        <li>Evidence</li>
-        <li>The White Tiger</li>
-        <li>Collapse: How Societies Chose to Fail or Succeed</li>
-        <li>Guns, Germs and Steel</li>
-        <li>The Prince</li>
-        <li>Sphere</li>
-        <li>Out of the Silent Planet</li>
-        <li>Perelandra</li>
-        <li>That Hideous Strength</li>
-        <li>Redwall</li>
-        <li>Mossflower</li>
-        <li>Mattimeo</li>
-        <li>Martin the Warrior</li>
-        <li>Salamandastron</li>
-        <li>Mariel of Redwall</li>
-        <li>The Bellmaker</li>
-        <li>Outcast of Redwall</li>
-        <li>Pearls of Lutra</li>
-        <li>The Long Patrol</li>
-        <li>Inferno</li>
-        <li>The Book of Three</li>
-        <li>The Black Cauldron</li>
-        <li>Taran Wanderer</li>
-        <li>The Castle of Llyr</li>
-        <li>The High King</li>
-        <li>The Foundling and Other Tales of Prydain</li>
-        <li>A Game of Thrones</li>
-        <li>A Clash of Kings</li>
-        <li>A Storm of Swords</li>
-        <li>A Feast for Crows</li>
-        <li>A Dance with Dragons</li>
-        <li>The Flight of the Silvers</li>
-        <li>Dune</li>
-        <li>Dune Messiah</li>
-        <li>Children of Dune</li>
-        <li>The Gunslinger</li>
-        <li>The Drawing of the Three</li>
-        <li>The Waste Lands</li>
-        <li>Wizard and Glass</li>
-        <li>Wolves of the Calla</li>
-        <li>Song of Susannah</li>
-        <li>The Dark Tower</li>
-        <li>American Gods</li>
-        <li>Ender’s Game</li>
-        <li>Zen and the Art of Motorcycle Maintenance</li>
-        <li>The New American Road Trip Mixtape</li>
-        <li>Self-Coached Climber</li>
-        <li>Shantaram</li>
-        <li>The One-Straw Revolution</li>
-        <li>The China Study</li>
-        <li>The Hobbit</li>
-        <li>Fellowship of the Ring</li>
-        <li>The Two Towers</li>
-        <li>Return of the King</li>
-        <li>This is Water</li>
-        <li>9 Out of 10 Climbers Make the Same Mistakes</li>
-        <li>Great Expectations</li>
-        <li>The Communist Manifesto</li>
-        <li>Ethics</li>
-        <li>The Odyssey</li>
-        <li>Dracula</li>
-        <li>The Hedge Knight</li>
-        <li>Flow</li>
-        <li>Foundation</li>
-        <li>Hyperion</li>
-        <li>The Fall of Hyperion</li>
-        <li>Endymion</li>
-        <li>The Rise of Endymion</li>
-        <li>The History of Herodotus</li>
-        <li>Autobiography of a Yogi</li>
-        <li>A Picture of Dorian Gray</li>
-        <li>Twenty Thousand Leagues Under the Sea</li>
-        <li>The Art of War</li>
-        <li>A Tale of Two Cities</li>
-        <li>Pride and Prejudice</li>
-        <li>The Adventures of Sherlock Holmes</li>
-    </ul>
-    <p><a href="#top">⬆</a></p>
-    <hr>
-    <h2><a id="albums">Albums</a></h2>
-    <p>
-        A listening log from 2019. 27 albums spanning 52 years of music history (1967-2019).
-        See the <a href="#visualizations">visualizations section</a> for analysis of listening patterns.
-    </p>
-    <p>
-        <strong>Stats:</strong> 26 unique artists │ 96.3% diversity │ Average album age: 21 years │ Most common: 10-track albums
-    </p>
-    <h3>Selected Albums (2019)</h3>
-    <ul>
-        <li><strong>Daft Punk</strong> - Discovery (2001) - <em>"The year I graduated High School rewarded me with this incredible album. An all time favorite."</em></li>
-        <li><strong>Johnny Cash</strong> - At Folsom Prison (1968) - <em>"Johnny Fucking Cash."</em></li>
-        <li><strong>Gang Starr</strong> - Moment of Truth (1998) - <em>"Seminal and socially woke."</em></li>
-        <li><strong>The Police</strong> - Outlandos D'Amour (1978) & Reggatta De Blanc (1979)</li>
-        <li><strong>Leon Bridges</strong> - Coming Home (2015) - <em>"Incredible Delta sounds."</em></li>
-        <li><strong>Orville Peck</strong> - Pony (2019) - <em>"Shoegaze-Outlaw-Country...AWESOME!"</em></li>
-        <li><strong>Captain Beefheart & His Magic Band</strong> - Safe as Milk (1967)</li>
-        <li><strong>Broken Social Scene</strong> - You Forgot It In People (2003) - <em>"an old favorite"</em></li>
-    </ul>
-    <p>
-        <em>Complete data available in <a href="https://github.com/k-f-/fring.io/blob/main/content/albums.json">albums.json</a></em>
-        │ All albums linked via Spotify
-    </p>
-    <p><a href="#top">⬆</a></p>
-    <hr>
-    <h2><a id="epilogue">Epilogue</a></h2>
-    <p>Previous iterations: <a href="http://v1.kfring.com">v1</a></p>
-    <p>
-        Credit to <a href="http://bettermotherfuckingwebsite.com/">this guy</a> for inspiring me to get this up with minimal fuss.
-    </p>
-    <p><a href="#top">⬆</a></p>
+        toggleBtn.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcon(newTheme);
+        });
+    </script>
+</body>
 </html>

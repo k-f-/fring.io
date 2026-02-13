@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-regenerate_v5_html.py - Regenerate sites/v5/index.html from content JSON files.
+regenerate_v4_html.py - Regenerate sites/v4/index.html from content JSON files.
 
 Reads from:
   - content/books.json
@@ -15,8 +15,8 @@ Generates a single-page HTML file with:
   - Epilogue (static)
 
 Usage:
-    python infrastructure/regenerate_v5_html.py
-    python infrastructure/regenerate_v5_html.py --preview
+    python infrastructure/regenerate_v4_html.py
+    python infrastructure/regenerate_v4_html.py --preview
 """
 
 import json
@@ -225,7 +225,7 @@ def generate_elsewhere_html(now: dict, indent: str = "                ") -> str:
 
 
 def generate_full_html(books_data: dict, albums_data: dict, now_data: dict) -> str:
-    """Generate the complete v5 HTML page."""
+    """Generate the complete v4 HTML page."""
     books_html = generate_book_groups_html(books_data["books"])
     albums_html = generate_albums_html(albums_data["albums"])
     now_html = generate_now_html(now_data)
@@ -546,16 +546,16 @@ def generate_full_html(books_data: dict, albums_data: dict, now_data: dict) -> s
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Regenerate v5 HTML from content JSON")
+    parser = argparse.ArgumentParser(description="Regenerate v4 HTML from content JSON")
     parser.add_argument(
         "--preview", action="store_true", help="Print HTML to stdout instead of writing"
     )
     args = parser.parse_args()
 
     content_dir = Path("content")
-    output_file = Path("sites/v5/index.html")
+    output_file = Path("sites/v4/index.html")
 
-    print("Regenerating v5 HTML")
+    print("Regenerating v4 HTML")
     print("=" * 50)
 
     books_data = load_json(content_dir / "books.json")

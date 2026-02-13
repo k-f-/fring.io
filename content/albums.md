@@ -12,6 +12,54 @@
 
 Music I've listened to, chronologically.
 
+## 2026 (9 albums)
+
+### [2026-02-13] The Horrible Crowes - Elsie
+**Released:** 2011
+**Listen:** [Spotify](https://open.spotify.com/album/2vPbYgtDftIIGGksyUd02R)
+**Duration:** 12 tracks, 46 min.
+
+### [2026-02-13] Better Oblivion Community Center - Better Oblivion Community Center
+**Released:** 2019
+**Listen:** [Spotify](https://open.spotify.com/album/0uJIxkI8D0rR4shEIKeiDs)
+**Duration:** 10 tracks, 37 min.
+
+### [2026-02-13] Bembeya Jazz National - Discothèque 76
+**Released:** 1977
+**Listen:** [Spotify](https://open.spotify.com/album/2zoqIVDpc4PCdqeHt2ILfB)
+**Duration:** 5 tracks, 34 min.
+
+### [2026-02-13] Orville Peck - Pony
+**Released:** 2019
+**Listen:** [Spotify](https://open.spotify.com/album/3950FHVErcINW3tjRgjebQ)
+**Duration:** 12 tracks, 42 min.
+
+### [2026-02-13] ALEX - AKUMA II
+**Released:** 2019
+**Listen:** [Spotify](https://open.spotify.com/album/2EwfTy4XZSjUhzYv77i73o)
+**Duration:** 10 tracks, 39 min.
+
+### [2026-02-13] Propagandhi - How to Clean Everything (Reissue)
+**Released:** 2013
+**Listen:** [Spotify](https://open.spotify.com/album/1YomhJOu7zq0c45WmAjSWY)
+**Duration:** 19 tracks, 51 min.
+
+### [2026-02-13] The Budos Band - The Budos Band II
+**Released:** 2007
+**Listen:** [Spotify](https://open.spotify.com/album/5VIBZxcuGS57zwKvHMLkaN)
+**Duration:** 10 tracks, 38 min.
+
+### [2026-02-13] Herb Alpert - Rise
+**Released:** 1979
+**Listen:** [Spotify](https://open.spotify.com/album/7HY0aAzDNhAqmFHATtABPY)
+**Duration:** 8 tracks, 41 min.
+
+### [2026-02-13] Leon Bridges - Coming Home (Deluxe)
+**Released:** 2015
+**Listen:** [Spotify](https://open.spotify.com/album/21KIagsx1ZvYcv0sVkEAWv)
+**Duration:** 15 tracks, 46 min.
+
+
 ## 2019 (27 albums)
 
 ### [2019-10-21] The Jackson 5 - Gold

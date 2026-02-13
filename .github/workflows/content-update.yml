@@ -91,7 +91,8 @@ jobs:
               workflow_id: 'deploy.yml',
               ref: 'main',
               inputs: {
-              version: 'v4'
+                version: 'v4'
+              }
             });
             console.log('✅ Triggered deploy.yml for v4');
 

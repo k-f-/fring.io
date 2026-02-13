@@ -45,9 +45,9 @@ jobs:
             # Manual dispatch - use input
             VERSION="${{ github.event.inputs.version }}"
           else
-            # Auto-deploy - detect from changed files
+            # Auto-deploy - detect from changed files (take latest version if multiple)
             CHANGED=$(git diff --name-only HEAD~1 HEAD)
-            VERSION=$(echo "$CHANGED" | grep '^sites/v' | cut -d'/' -f2 | sort -u)
+            VERSION=$(echo "$CHANGED" | grep '^sites/v' | cut -d'/' -f2 | sort -Vu | tail -1)
           fi
 
           echo "version=${VERSION}" >> $GITHUB_OUTPUT

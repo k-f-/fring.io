@@ -577,8 +577,7 @@ def generate_full_html(books_data: dict, albums_data: dict, now_data: dict) -> s
 
             <section id="epilogue">
                 <h2>Epilogue</h2>
-                <p>Previous iterations: <a href="http://v3.fring.io">v3</a> · <a href="http://v2.fring.io">v2</a> · <a href="http://v1.kfring.com">v1</a></p>
-                <p class="muted small">Credit to <a href="http://bettermotherfuckingwebsite.com/">bettermotherfuckingwebsite.com</a></p>
+                <p>Previous iterations: <a href="http://v3.fring.io">v3</a> (2020) · <a href="http://v2.fring.io">v2</a> (2015) · <a href="http://v1.kfring.com">v1</a> (2013)</p>
                 <p class="muted small">Built {build_date}</p>
                 <a href="#top" class="back-to-top">↑</a>
             </section>

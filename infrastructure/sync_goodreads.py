@@ -179,6 +179,12 @@ def main():
         added += len(titles)
 
     updated_md = rebuild_md(header, sections)
+    today = datetime.now().strftime("%Y-%m-%d")
+    updated_md = re.sub(
+        r'"contentUpdated":\s*"[^"]*"',
+        f'"contentUpdated": "{today}"',
+        updated_md,
+    )
     BOOKS_MD.write_text(updated_md)
     print(f"\n✓ Added {added} book(s) to {BOOKS_MD}")
 

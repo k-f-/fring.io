@@ -298,6 +298,12 @@ def prepend_albums_to_md(new_albums):
                     + f"\n\n## {year} ({len(albums)} albums)\n\n{entries_md}\n"
                 )
 
+    today = datetime.now().strftime("%Y-%m-%d")
+    md_content = re.sub(
+        r'"contentUpdated":\s*"[^"]*"',
+        f'"contentUpdated": "{today}"',
+        md_content,
+    )
     ALBUMS_MD.write_text(md_content)
     print(f"\n✓ Added {len(new_albums)} album(s) to {ALBUMS_MD}")
 

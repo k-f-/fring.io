@@ -95,6 +95,31 @@
         .muted { color: var(--muted); font-size: 0.9em; }
         .small { font-size: 0.85rem; }
 
+        /* Header */
+        .header-row {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .header-icon {
+            color: var(--muted);
+            border: none;
+            transition: color 0.2s;
+            display: flex;
+        }
+
+        .header-icon:hover {
+            color: var(--accent);
+        }
+
         /* Navigation */
         nav {
             margin: 1.5rem 0 3rem 0;
@@ -250,12 +275,18 @@
     <div class="container">
         
         <header>
-            <h1>Kyle Fring</h1>
+            <div class="header-row">
+                <h1>Kyle Fring</h1>
+                <div class="header-icons">
+                    <a href="https://github.com/k-f-/" class="header-icon" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+            <a href="https://linkedin.com/in/kfring/" class="header-icon" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+            <a href="https://goodreads.com/kfring/" class="header-icon" aria-label="Goodreads"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.43 23.995c-3.608-.208-6.274-2.077-6.448-5.078.695.007 1.375-.013 2.07-.006.224 1.342 1.065 2.43 2.683 3.026 1.583.496 3.737.46 5.082-.174 1.351-.636 2.145-1.822 2.503-3.577.212-1.042.236-1.734.231-2.92l-.005-1.199h-.046c-.556 1.118-1.278 2.003-2.27 2.622-1.063.665-2.307.96-3.525.96-2.605 0-4.403-1.395-5.505-3.397-.93-1.686-1.327-3.97-1.174-6.21.096-1.417.39-2.725.936-3.856.547-1.13 1.347-2.08 2.374-2.755.969-.638 2.148-1.015 3.483-1.015 1.211 0 2.278.272 3.167.837.89.564 1.571 1.39 2.126 2.405h.044l.179-2.935h2.003c-.042.554-.08 1.388-.08 2.495l-.004 11.237c.002 2.467-.236 4.287-.882 5.578-.872 1.722-2.736 3.072-5.543 3.072-.553 0-1.082-.044-1.6-.11zm3.57-8.236c1.02-.627 1.737-1.558 2.145-2.659.365-.983.494-2.221.494-3.545 0-1.254-.174-2.38-.521-3.386-.403-1.165-1.108-2.083-2.168-2.704-.682-.398-1.456-.6-2.349-.6-1.218 0-2.183.388-2.961 1.158-.749.744-1.263 1.705-1.511 2.892-.192.92-.26 1.853-.217 2.784.05 1.076.231 2.084.597 2.975.464 1.13 1.201 2.028 2.237 2.623.697.399 1.47.596 2.334.596.675 0 1.316-.105 1.92-.334z"/></svg></a>
+                </div>
+            </div>
             <nav>
                 <a href="#now">Now</a> <span class="nav-separator">·</span>
                 <a href="#bookshelf">Bookshelf</a> <span class="nav-separator">·</span>
                 <a href="#albums">Albums</a> <span class="nav-separator">·</span>
-                <a href="#elsewhere">Elsewhere</a> <span class="nav-separator">·</span>
                 <a href="#epilogue">Epilogue</a>
             </nav>
         </header>
@@ -263,6 +294,7 @@
         <main>
             <section id="now">
                 <h2>Now</h2>
+                <p class="muted small">Last updated: February 2026</p>
                 
                 <h3>Life</h3>
                 <aside class="muted">📍 Chattanooga, TN</aside>
@@ -277,7 +309,6 @@
                     <li>A good deal more flexibility with working hours. I al<strong>way</strong>s deliver. Don't make me sit at a desk just because I need to <em>not</em> be afk. Life is <strong>way</strong> too short.</li>
                 </ul>
 
-                <p class="muted small">Last updated: February 2026</p>
                 <a href="#top" class="back-to-top">↑</a>
             </section>
 
@@ -579,16 +610,6 @@
                     <span class="album-note">In Japanese, Daikaiju translates to &quot;giant monster&quot; Recorded in *2003*, but not released until *2005*.</span>
                 </div>
                 </div>
-                <a href="#top" class="back-to-top">↑</a>
-            </section>
-
-            <section id="elsewhere">
-                <h2>Elsewhere</h2>
-                <p>
-                    <a href="https://github.com/k-f-/">github</a> <span class="nav-separator">·</span>
-                    <a href="https://linkedin.com/in/kfring/">linkedin</a> <span class="nav-separator">·</span>
-                    <a href="https://goodreads.com/kfring/">goodreads</a>
-                </p>
                 <a href="#top" class="back-to-top">↑</a>
             </section>
 

@@ -333,6 +333,14 @@ def generate_full_html(books_data: dict, albums_data: dict, now_data: dict) -> s
         .muted {{ color: var(--muted); font-size: 0.9em; }}
         .small {{ font-size: 0.85rem; }}
 
+        /* Section header (flex row with right-aligned metadata) */
+        .section-header {{
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 1rem;
+        }}
+
         /* Header */
         .header-row {{
             display: flex;
@@ -529,7 +537,10 @@ def generate_full_html(books_data: dict, albums_data: dict, now_data: dict) -> s
 
         <main>
             <section id="now">
-                <h2>Now <span class="muted small">— February 2026</span></h2>
+                <div class="section-header">
+                    <h2>Now</h2>
+                    <span class="muted small">February 15, 2026</span>
+                </div>
                 
 {now_html}
 

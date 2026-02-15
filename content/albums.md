@@ -3,6 +3,7 @@
   "meta": {
     "version": "1.0",
     "lastUpdated": "2025-11-14T22:14:25.641648",
+    "contentUpdated": "2026-02-13",
     "description": "Album listening log for fring.io - version agnostic content"
   }
 }

@@ -153,15 +153,34 @@
             line-height: 1.5;
         }
 
-        .album-entry {
-            margin-bottom: 1.5rem;
+        .sparkline {
+            color: var(--muted);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .album-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+            gap: 1rem 2rem;
+        }
+
+        .album-group {
+            margin-bottom: 0.5rem;
             padding-left: 1rem;
             border-left: 2px solid var(--border);
             transition: border-color 0.2s;
         }
 
-        .album-entry:hover {
+        .album-group:hover {
             border-left-color: var(--accent);
+        }
+
+        .album-year {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.3rem;
         }
 
         .album-title {
@@ -180,7 +199,7 @@
             font-size: 0.85em;
             font-style: italic;
             line-height: 1.4;
-            margin-top: 0.2rem;
+            margin-bottom: 0.5rem;
         }
 
         /* Theme Toggle */
@@ -220,7 +239,7 @@
             h1 { font-size: 1.7rem; }
             nav { font-size: 0.9rem; }
             .theme-toggle { top: 1rem; right: 1rem; }
-            .book-grid { grid-template-columns: 1fr; }
+            .book-grid, .album-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -266,6 +285,9 @@
                 <h2>Bookshelf</h2>
                 
                 <p class="muted small">187 books tracked · 2015–2026 + prior</p>
+                <div class="sparkline" aria-hidden="true">
+                    2026 ▁ | 2024 ▁ | 2022 ▁ | 2020 ▂ | 2019 ▁ | 2018 ▂ | 2017 ▂ | 2016 ▂ | 2015 ▁ | <2015 █
+                </div>
                 <div class="book-grid">
                 <div class="book-group">
                     <span class="book-year">2026</span>
@@ -491,119 +513,71 @@
             <section id="albums">
                 <h2>Albums</h2>
                 
-                <p class="muted small">28 albums · listened 2026, 2019 · releases spanning 1967–2024</p>
+                <p class="muted small">28 albums · releases spanning 1967–2024</p>
                 <div class="sparkline" aria-hidden="true">
-                    Jan ▁  Feb ▅  Mar ▁  Apr    May ▄  Jun ▄  Jul █  Aug ▂  Sep ▂  Oct ▂  Nov    Dec  
+                    2026 ▁ | 2019 █
                 </div>
-                <div class="album-entry">
+                <div class="album-grid">
+                <div class="album-group">
+                    <span class="album-year">2026</span>
                     <a href="https://open.spotify.com/album/2n3HUMLmNl0Cm2atVwWSK6" target="_blank" class="album-title">Waxahatchee — Tigers Blood (2024)</a>
                 </div>
-                <div class="album-entry">
+                <div class="album-group">
+                    <span class="album-year">2019</span>
                     <a href="https://open.spotify.com/album/2DKJWh4uNozTDpuaSKb1oK?si=xA9lBDTbRzeUvU1T9BkkHw" target="_blank" class="album-title">The Jackson 5 — Gold (2005)</a>
                     <span class="album-note">hits. that Motown sound.</span>
-                </div>
-                <div class="album-entry">
                     <a href="https://open.spotify.com/album/21KIagsx1ZvYcv0sVkEAWv" target="_blank" class="album-title">Leon Bridges — Coming Home (2015)</a>
                     <span class="album-note">Incredible Delta sounds.</span>
-                </div>
-                <div class="album-entry">
                     <a href="https://open.spotify.com/album/7HY0aAzDNhAqmFHATtABPY" target="_blank" class="album-title">Herb Alpert — Rise (1979)</a>
                     <span class="album-note">bonkers.</span>
-                </div>
-                <div class="album-entry">
                     <a href="https://open.spotify.com/album/5DVNCzpvDrSEIFiU7hm8ey?si=pchRWfTzRg2GdqpH0msvEg" target="_blank" class="album-title">The Runaways — The Runaways (1976)</a>
                     <span class="album-note">Early Joan Jett.</span>
-                </div>
-                <div class="album-entry">
                     <a href="https://open.spotify.com/album/1H9g6j4Wwj6wh6p8YHVtkf?si=W5G0MNdhSV-zXJRcA6nNzg" target="_blank" class="album-title">The Police — Outlandos D&#x27;Amour (Remastered 2003) (1978)</a>
                     <span class="album-note">Co-worker and I played two albums from the Police last week. I never knew that the drummer was Moroccan? Allegedly, they started the punk/reggae vibe because they were not able to get folks digging their more eclectic sound.</span>
-                </div>
-                <div class="album-entry">
                     <a href="https://open.spotify.com/album/2EpuND32cO7CX0gXZl2NB6?si=-UL40aAfQaOuhdwCaFvmzg" target="_blank" class="album-title">The Police — Reggatta De Blanc (1979)</a>
                     <span class="album-note">Ok. Sting is both dark AF and an odd-ball. I dig it. Walking on the Moon is a great song, ostensibly about floating home on positive vibes from his girlfriends house. We&#x27;ve all been there.</span>
-                </div>
-                <div class="album-entry">
                     <a href="https://open.spotify.com/album/18rcvgzvr5DMsPNOBwL5Cz?si=TDiDkz-vQYeabKeBXL0Fuw" target="_blank" class="album-title">Photay — Photay (2014)</a>
                     <span class="album-note">A Patrick recommendation.</span>
-                </div>
-                <div class="album-entry">
                     <a href="https://open.spotify.com/album/2noRn2Aes5aoNVsU6iWThc?si=ae0w4EPnRfucTPFYQhv2Gg" target="_blank" class="album-title">Daft Punk — Discovery (2001)</a>
                     <span class="album-note">The year I graduated High School rewarded me with this incredible album.  An all time favorite.</span>
-                </div>
-                <div class="album-entry">
                     <a href="https://open.spotify.com/album/05J8PFXdYKeYNb8YjqqJYr?si=q6zFFDxPQq6oKEyxDawK3w" target="_blank" class="album-title">The Beach Boys — Endless Summer (1974)</a>
                     <span class="album-note">Most of these songs could get you beat up at the beach in New Jersey. Growing up I think my Father enjoyed these albums, but I don&#x27;t know why. The opening of Good Vibrations is legendary.</span>
-                </div>
-                <div class="album-entry">
                     <a href="https://open.spotify.com/album/1YomhJOu7zq0c45WmAjSWY" target="_blank" class="album-title">Propagandhi — How to Clean Everything (1993)</a>
                     <span class="album-note">Formative in my early teens.</span>
-                </div>
-                <div class="album-entry">
                     <a href="https://open.spotify.com/album/4TJIdlY9hGSSTO1kUs1neh?si=Ik_xPy3zR1G1BtOeN_jbBw" target="_blank" class="album-title">Johnny Cash — At Folsom Prison (1968)</a>
                     <span class="album-note">Johnny Fucking Cash.</span>
-                </div>
-                <div class="album-entry">
                     <a href="https://open.spotify.com/album/5VIBZxcuGS57zwKvHMLkaN" target="_blank" class="album-title">The Budos Band — The Budos Band II (2007)</a>
                     <span class="album-note">Charles Bradly&#x27;s backing band formed Budos. Tight, tight, tight.</span>
-                </div>
-                <div class="album-entry">
                     <a href="https://open.spotify.com/album/6nL0U84JsEJ0cRsGCnsDnJ?si=SukQK0siSyywD66h0Hx7Rg" target="_blank" class="album-title">Broken Social Scene — You Forgot It In People (2003)</a>
                     <span class="album-note">an old favorite</span>
-                </div>
-                <div class="album-entry">
                     <a href="https://open.spotify.com/album/0DFhGsFKG7G58cke33GlAh?si=CyOr_4OwQVOM9UjgBHzbaw" target="_blank" class="album-title">Captain Beefheart &amp; His Magic Band — Safe as Milk (1967)</a>
                     <span class="album-note">&quot;Catching up, huh?&quot;</span>
-                </div>
-                <div class="album-entry">
                     <a href="https://open.spotify.com/album/5f6Nz2v1DESbpu1NerEql2?si=yfhgArIkQ2KFPjLEalgMQQ" target="_blank" class="album-title">Gang Starr — Moment of Truth (1998)</a>
                     <span class="album-note">Seminal and socially woke.</span>
-                </div>
-                <div class="album-entry">
                     <a href="https://open.spotify.com/album/5zi7WsKlIiUXv09tbGLKsE?si=lwXfen2rRWadXKk6bwBFyg" target="_blank" class="album-title">Tyler, The Creator — IGOR (2019)</a>
                     <span class="album-note">Interesting. I don&#x27;t know enough about the Artist.</span>
-                </div>
-                <div class="album-entry">
                     <a href="https://open.spotify.com/album/2EwfTy4XZSjUhzYv77i73o" target="_blank" class="album-title">Alex, Tokyo Rose — Akuma II (2019)</a>
-                </div>
-                <div class="album-entry">
                     <a href="https://open.spotify.com/album/2zoqIVDpc4PCdqeHt2ILfB" target="_blank" class="album-title">Bembeya Jazz National — Discothèque 76 (1976)</a>
                     <span class="album-note">wonderful afro-jazz. The third track is a long-time favorite</span>
-                </div>
-                <div class="album-entry">
                     <a href="https://open.spotify.com/album/3950FHVErcINW3tjRgjebQ" target="_blank" class="album-title">Orville Peck — Pony (2019)</a>
                     <span class="album-note">Shoegaze-Outlaw-Country...AWESOME!</span>
-                </div>
-                <div class="album-entry">
                     <a href="https://open.spotify.com/album/4QH2Ppf0BHxK8mGVF6aEmD?si=2iNBFe5yRGWnOPjgS2o3Yg" target="_blank" class="album-title">Night Moves — Colored Emotions (2012)</a>
                     <span class="album-note">Smooth and fun. Little sexy.</span>
-                </div>
-                <div class="album-entry">
                     <a href="https://open.spotify.com/album/3ZGUBwDiY5HPOcWv4SBPQg?si=IHR3TLS3TXW5kfnUsAub1A" target="_blank" class="album-title">Tom Petty — Wildflowers (1994)</a>
                     <span class="album-note">Classic album with some of what I think is his best work.</span>
-                </div>
-                <div class="album-entry">
                     <a href="https://open.spotify.com/album/0LBQdWnuV0CAXyPIngb0UX?si=-Sfc4ywWTu-oAbECWYBC-g" target="_blank" class="album-title">Buckethead — Colma (1998)</a>
                     <span class="album-note">I don&#x27;t know anything about Buckethead except that it seems to be a fun mockery of Slash&#x27;s aestetic choices. Super enjoyable progressive instrumental guitar work.</span>
-                </div>
-                <div class="album-entry">
                     <a href="https://open.spotify.com/album/0uJIxkI8D0rR4shEIKeiDs" target="_blank" class="album-title">Better Oblivion Community Center — Better Oblivion Community Center (2019)</a>
                     <span class="album-note">think I&#x27;ll have to give this one a few more listens over the coming weeks.  Initial impressions are that it&#x27;s fucking incredible.</span>
-                </div>
-                <div class="album-entry">
                     <a href="https://open.spotify.com/album/2vPbYgtDftIIGGksyUd02R" target="_blank" class="album-title">The Horrible Crowes — Elsie (2011)</a>
                     <span class="album-note">Gaslight Anthem front-man does a Tom Waits, Nick Cave inspired album.  The first few tracks destroyed me.  I like the contrast of upbeat tempo with crushing lyrics.</span>
-                </div>
-                <div class="album-entry">
                     <a href="https://open.spotify.com/album/6BOQkxcHspMoRWEwEexf4l?si=r1HasGOvTImPRvLQ1taKKA" target="_blank" class="album-title">Beck — Colors (2017)</a>
                     <span class="album-note">Beck. One of those artists who I expect will put out at least interesting if</span>
-                </div>
-                <div class="album-entry">
                     <a href="https://open.spotify.com/album/0huXZPw7bhK5vTv7CMYOmP?si=1TMn5SWPSpqAWQsMkEzicw" target="_blank" class="album-title">Circa Survive — Juturna (2005)</a>
                     <span class="album-note">I originally received this album from the lead singer at a 24 hour dinner</span>
-                </div>
-                <div class="album-entry">
                     <a href="https://open.spotify.com/album/2JeW42eEkcpxw1UHvZFfVG?si=DuERQJ_NR5y7Mcv9BJSnaQ" target="_blank" class="album-title">Daikaiju — Daikaiju (2005)</a>
                     <span class="album-note">In Japanese, Daikaiju translates to &quot;giant monster&quot; Recorded in *2003*, but not released until *2005*.</span>
+                </div>
                 </div>
                 <a href="#top" class="back-to-top">↑</a>
             </section>

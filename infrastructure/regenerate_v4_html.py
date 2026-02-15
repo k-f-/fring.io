@@ -42,39 +42,18 @@ def group_books_by_year(books: list) -> OrderedDict:
     return groups
 
 
-def build_album_sparkline(albums: list) -> str:
-    """Build a month-by-month sparkline for album listening activity."""
-    month_names = [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec",
-    ]
+def build_year_sparkline(year_counts: OrderedDict) -> str:
+    """Build a year-by-year bar sparkline from an OrderedDict of {year: count}."""
     blocks = " ▁▂▃▄▅▆█"
-    counts = [0] * 12
-    for album in albums:
-        date_str = album.get("listenedDate", "")
-        if date_str and len(date_str) >= 7:
-            month = int(date_str[5:7]) - 1
-            counts[month] += 1
-
-    max_count = max(counts) if max(counts) > 0 else 1
+    max_count = max(year_counts.values()) if year_counts else 1
     parts = []
-    for i, count in enumerate(counts):
+    for year, count in year_counts.items():
         if count == 0:
-            parts.append(f"{month_names[i]} {blocks[0]}")
+            parts.append(f"{year} {blocks[0]}")
         else:
             level = max(1, round(count / max_count * (len(blocks) - 1)))
-            parts.append(f"{month_names[i]} {blocks[level]}")
-    return "  ".join(parts)
+            parts.append(f"{year} {blocks[level]}")
+    return " | ".join(parts)
 
 
 def generate_book_groups_html(books: list, indent: str = "                ") -> str:
@@ -86,10 +65,16 @@ def generate_book_groups_html(books: list, indent: str = "                ") -> 
     if "<2015" in groups:
         year_range += " + prior"
 
+    year_counts = OrderedDict((k, len(v)) for k, v in groups.items())
+    sparkline = build_year_sparkline(year_counts)
+
     lines = []
     lines.append(
         f'{indent}<p class="muted small">{total} books tracked · {year_range}</p>'
     )
+    lines.append(f'{indent}<div class="sparkline" aria-hidden="true">')
+    lines.append(f"{indent}    {sparkline}")
+    lines.append(f"{indent}</div>")
     lines.append(f'{indent}<div class="book-grid">')
 
     for year_key, titles in groups.items():
@@ -106,57 +91,70 @@ def generate_book_groups_html(books: list, indent: str = "                ") -> 
     return "\n".join(lines)
 
 
-def generate_albums_html(albums: list, indent: str = "                ") -> str:
-    """Generate flat album list HTML, sorted by listened date (newest first)."""
+def group_albums_by_year(albums: list) -> OrderedDict:
+    """Group albums by listened year, newest first."""
     sorted_albums = sorted(
         albums, key=lambda a: a.get("listenedDate", ""), reverse=True
     )
-    total = len(sorted_albums)
+    groups = OrderedDict()
+    for album in sorted_albums:
+        year = album.get("listenedDate", "")[:4] or "Unknown"
+        if year not in groups:
+            groups[year] = []
+        groups[year].append(album)
+    return groups
 
-    listened_years = {
-        a["listenedDate"][:4] for a in sorted_albums if a.get("listenedDate")
-    }
-    release_years = [
-        a.get("releaseYear") for a in sorted_albums if a.get("releaseYear")
-    ]
+
+def generate_albums_html(albums: list, indent: str = "                ") -> str:
+    """Generate year-grouped album grid HTML, sorted by listened date (newest first)."""
+    groups = group_albums_by_year(albums)
+    total = len(albums)
+
+    release_years = [a.get("releaseYear") for a in albums if a.get("releaseYear")]
     year_span = f"{min(release_years)}–{max(release_years)}" if release_years else ""
-    listened_label = ", ".join(sorted(listened_years, reverse=True))
 
-    sparkline = build_album_sparkline(sorted_albums)
+    year_counts = OrderedDict((k, len(v)) for k, v in groups.items())
+    sparkline = build_year_sparkline(year_counts)
 
     lines = []
     lines.append(
-        f'{indent}<p class="muted small">{total} albums · listened {listened_label} · releases spanning {year_span}</p>'
+        f'{indent}<p class="muted small">{total} albums · releases spanning {year_span}</p>'
     )
     lines.append(f'{indent}<div class="sparkline" aria-hidden="true">')
     lines.append(f"{indent}    {sparkline}")
     lines.append(f"{indent}</div>")
+    lines.append(f'{indent}<div class="album-grid">')
 
-    for album in sorted_albums:
-        artist = html.escape(album["artist"])
-        name = html.escape(album["album"])
-        release_year = album.get("releaseYear", "")
-        title_text = f"{artist} — {name}"
-        if release_year:
-            title_text += f" ({release_year})"
+    for year, year_albums in groups.items():
+        lines.append(f'{indent}<div class="album-group">')
+        lines.append(f'{indent}    <span class="album-year">{html.escape(year)}</span>')
 
-        lines.append(f'{indent}<div class="album-entry">')
+        for album in year_albums:
+            artist = html.escape(album["artist"])
+            name = html.escape(album["album"])
+            release_year = album.get("releaseYear", "")
+            title_text = f"{artist} — {name}"
+            if release_year:
+                title_text += f" ({release_year})"
 
-        spotify_url = album.get("spotifyUrl")
-        if spotify_url:
-            lines.append(
-                f'{indent}    <a href="{html.escape(spotify_url)}" target="_blank" class="album-title">{title_text}</a>'
-            )
-        else:
-            lines.append(f'{indent}    <span class="album-title">{title_text}</span>')
+            spotify_url = album.get("spotifyUrl")
+            if spotify_url:
+                lines.append(
+                    f'{indent}    <a href="{html.escape(spotify_url)}" target="_blank" class="album-title">{title_text}</a>'
+                )
+            else:
+                lines.append(
+                    f'{indent}    <span class="album-title">{title_text}</span>'
+                )
 
-        if album.get("notes"):
-            lines.append(
-                f'{indent}    <span class="album-note">{html.escape(album["notes"])}</span>'
-            )
+            if album.get("notes"):
+                lines.append(
+                    f'{indent}    <span class="album-note">{html.escape(album["notes"])}</span>'
+                )
 
         lines.append(f"{indent}</div>")
 
+    lines.append(f"{indent}</div>")
     return "\n".join(lines)
 
 
@@ -386,15 +384,34 @@ def generate_full_html(books_data: dict, albums_data: dict, now_data: dict) -> s
             line-height: 1.5;
         }}
 
-        .album-entry {{
-            margin-bottom: 1.5rem;
+        .sparkline {{
+            color: var(--muted);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }}
+
+        .album-grid {{
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+            gap: 1rem 2rem;
+        }}
+
+        .album-group {{
+            margin-bottom: 0.5rem;
             padding-left: 1rem;
             border-left: 2px solid var(--border);
             transition: border-color 0.2s;
         }}
 
-        .album-entry:hover {{
+        .album-group:hover {{
             border-left-color: var(--accent);
+        }}
+
+        .album-year {{
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.3rem;
         }}
 
         .album-title {{
@@ -413,7 +430,7 @@ def generate_full_html(books_data: dict, albums_data: dict, now_data: dict) -> s
             font-size: 0.85em;
             font-style: italic;
             line-height: 1.4;
-            margin-top: 0.2rem;
+            margin-bottom: 0.5rem;
         }}
 
         /* Theme Toggle */
@@ -453,7 +470,7 @@ def generate_full_html(books_data: dict, albums_data: dict, now_data: dict) -> s
             h1 {{ font-size: 1.7rem; }}
             nav {{ font-size: 0.9rem; }}
             .theme-toggle {{ top: 1rem; right: 1rem; }}
-            .book-grid {{ grid-template-columns: 1fr; }}
+            .book-grid, .album-grid {{ grid-template-columns: 1fr; }}
         }}
     </style>
 </head>

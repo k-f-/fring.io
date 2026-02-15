@@ -43,8 +43,9 @@ class MarkdownToJSONParser:
                 "description": "Album listening log for fring.io - version agnostic content",
             }
 
-        # Update lastUpdated
         meta["lastUpdated"] = datetime.now().isoformat()
+        if "contentUpdated" not in meta:
+            meta["contentUpdated"] = datetime.now().strftime("%Y-%m-%d")
 
         albums = []
 

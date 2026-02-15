@@ -1,7 +1,8 @@
 {
   "meta": {
     "version": "1.0",
-    "lastUpdated": "2026-02-13T20:19:47.679222",
+    "lastUpdated": "2026-02-15T13:51:07.446369",
+    "contentUpdated": "2026-02-13",
     "description": "Canonical book list for fring.io - version agnostic content"
   },
   "books": [
@@ -9,1123 +10,1123 @@
       "title": "How to Change your Mind",
       "year": 2026,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679451"
+      "dateAdded": "2026-02-15T13:51:07.446495"
     },
     {
       "title": "This Is How They Tell Me the World Ends: The Cyberweapons Arms Race",
       "year": 2024,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679467"
+      "dateAdded": "2026-02-15T13:51:07.446508"
     },
     {
       "title": "The Permanent Portfolio: Harry Browne's Long-Term Investment Strategy",
       "year": 2024,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679469"
+      "dateAdded": "2026-02-15T13:51:07.446510"
     },
     {
       "title": "Lords of Finance: The Bankers Who Broke the World",
       "year": 2024,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679471"
+      "dateAdded": "2026-02-15T13:51:07.446511"
     },
     {
       "title": "The Intelligent Investor",
       "year": 2024,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679472"
+      "dateAdded": "2026-02-15T13:51:07.446513"
     },
     {
       "title": "Die with Zero: Getting All You Can from Your Money and Your Life",
       "year": 2024,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679473"
+      "dateAdded": "2026-02-15T13:51:07.446514"
     },
     {
       "title": "A Random Walk Down Wall Street: The Time-Tested Strategy for Successful Investing",
       "year": 2024,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679474"
+      "dateAdded": "2026-02-15T13:51:07.446515"
     },
     {
       "title": "Surely You're Joking, Mr. Feynman!  Adventures of a Curious Character",
       "year": 2024,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679475"
+      "dateAdded": "2026-02-15T13:51:07.446516"
     },
     {
       "title": "The Algebra of Happiness: Notes on the Pursuit of Success, Love, and Meaning",
       "year": 2022,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679486"
+      "dateAdded": "2026-02-15T13:51:07.446524"
     },
     {
       "title": "The Psychology of Money",
       "year": 2022,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679488"
+      "dateAdded": "2026-02-15T13:51:07.446526"
     },
     {
       "title": "I Am Legend",
       "year": 2022,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679489"
+      "dateAdded": "2026-02-15T13:51:07.446527"
     },
     {
       "title": "Loving Bravely: Twenty Lessons of Self-Discovery to Help You Get the Love You Want",
       "year": 2020,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679503"
+      "dateAdded": "2026-02-15T13:51:07.446536"
     },
     {
       "title": "The Adventures of Huckleberry Finn (Adventures of Tom and Huck, #2)",
       "year": 2020,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679504"
+      "dateAdded": "2026-02-15T13:51:07.446538"
     },
     {
       "title": "The Hobbit, or There and Back Again",
       "year": 2020,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679505"
+      "dateAdded": "2026-02-15T13:51:07.446539"
     },
     {
       "title": "The Kite Runner",
       "year": 2020,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679506"
+      "dateAdded": "2026-02-15T13:51:07.446540"
     },
     {
       "title": "The Lord of the Rings",
       "year": 2020,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679508"
+      "dateAdded": "2026-02-15T13:51:07.446541"
     },
     {
       "title": "To Kill a Mockingbird",
       "year": 2020,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679509"
+      "dateAdded": "2026-02-15T13:51:07.446542"
     },
     {
       "title": "Anything You Want: 40 Lessons for a New Kind of Entrepreneur",
       "year": 2020,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679510"
+      "dateAdded": "2026-02-15T13:51:07.446543"
     },
     {
       "title": "I Hate You\u2014Don't Leave Me: Understanding the Borderline Personality",
       "year": 2020,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679511"
+      "dateAdded": "2026-02-15T13:51:07.446544"
     },
     {
       "title": "Delphi Complete Works of David Hume (Illustrated)",
       "year": 2020,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679512"
+      "dateAdded": "2026-02-15T13:51:07.446545"
     },
     {
       "title": "The Enchiridion",
       "year": 2020,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679513"
+      "dateAdded": "2026-02-15T13:51:07.446546"
     },
     {
       "title": "A Million Miles in a Thousand Years: What I Learned While Editing My Life",
       "year": 2020,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679514"
+      "dateAdded": "2026-02-15T13:51:07.446547"
     },
     {
       "title": "Attached: The New Science of Adult Attachment and How It Can Help You Find\u2014and Keep\u2014Love",
       "year": 2020,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679515"
+      "dateAdded": "2026-02-15T13:51:07.446548"
     },
     {
       "title": "The Daily Stoic: 366 Meditations on Wisdom, Perseverance, and the Art of Living",
       "year": 2020,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679516"
+      "dateAdded": "2026-02-15T13:51:07.446549"
     },
     {
       "title": "Discrete Mathematics and it's Applications",
       "year": 2020,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679517"
+      "dateAdded": "2026-02-15T13:51:07.446550"
     },
     {
       "title": "Python3 The Hard Way",
       "year": 2020,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679519"
+      "dateAdded": "2026-02-15T13:51:07.446551"
     },
     {
       "title": "Unwanted",
       "year": 2020,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679520"
+      "dateAdded": "2026-02-15T13:51:07.446553"
     },
     {
       "title": "The Book of Joy",
       "year": 2020,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679521"
+      "dateAdded": "2026-02-15T13:51:07.446554"
     },
     {
       "title": "Let's pretend this never happened",
       "year": 2020,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679526"
+      "dateAdded": "2026-02-15T13:51:07.446555"
     },
     {
       "title": "The Personality Brokers",
       "year": 2020,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679527"
+      "dateAdded": "2026-02-15T13:51:07.446556"
     },
     {
       "title": "The Book of Joy: Lasting Happiness in a Changing World",
       "year": 2020,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679528"
+      "dateAdded": "2026-02-15T13:51:07.446557"
     },
     {
       "title": "Black Elk Speaks: Being the Life Story of a Holy Man of the Oglala Sioux",
       "year": 2020,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679529"
+      "dateAdded": "2026-02-15T13:51:07.446558"
     },
     {
       "title": "I Hate You, Don't Leave Me: Understanding the Borderline Personality",
       "year": 2020,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679530"
+      "dateAdded": "2026-02-15T13:51:07.446559"
     },
     {
       "title": "ReWork",
       "year": 2019,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679549"
+      "dateAdded": "2026-02-15T13:51:07.446573"
     },
     {
       "title": "Foundation, Foundation and Empire, Second Foundation (Everyman's Library)",
       "year": 2019,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679551"
+      "dateAdded": "2026-02-15T13:51:07.446574"
     },
     {
       "title": "Whitman: Poems",
       "year": 2019,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679552"
+      "dateAdded": "2026-02-15T13:51:07.446575"
     },
     {
       "title": "The Devil in the Kitchen: Sex, Pain, Madness and the Making of a Great Chef",
       "year": 2019,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679553"
+      "dateAdded": "2026-02-15T13:51:07.446576"
     },
     {
       "title": "The Canterbury Tales, and Other Poems",
       "year": 2019,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679554"
+      "dateAdded": "2026-02-15T13:51:07.446577"
     },
     {
       "title": "She Comes First: The Thinking Man's Guide to Pleasuring a Woman",
       "year": 2019,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679555"
+      "dateAdded": "2026-02-15T13:51:07.446578"
     },
     {
       "title": "Self-Reliance and Other Essays",
       "year": 2019,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679556"
+      "dateAdded": "2026-02-15T13:51:07.446579"
     },
     {
       "title": "Gang Leader for a Day",
       "year": 2019,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679557"
+      "dateAdded": "2026-02-15T13:51:07.446580"
     },
     {
       "title": "Re:Work",
       "year": 2019,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679560"
+      "dateAdded": "2026-02-15T13:51:07.446581"
     },
     {
       "title": "The Crossing",
       "year": 2019,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679562"
+      "dateAdded": "2026-02-15T13:51:07.446583"
     },
     {
       "title": "Cities of the Plain",
       "year": 2019,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679563"
+      "dateAdded": "2026-02-15T13:51:07.446584"
     },
     {
       "title": "All the Pretty Horses",
       "year": 2019,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679564"
+      "dateAdded": "2026-02-15T13:51:07.446585"
     },
     {
       "title": "The Idiot",
       "year": 2019,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679565"
+      "dateAdded": "2026-02-15T13:51:07.446586"
     },
     {
       "title": "Alice's Adventures in Wonderland (Alice's Adventures in Wonderland, #1)",
       "year": 2018,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679578"
+      "dateAdded": "2026-02-15T13:51:07.446595"
     },
     {
       "title": "University of Berkshire Hathaway: 30 Years of Lessons Learned from Warren Buffett & Charlie Munger at the Annual Shareholders Meeting",
       "year": 2018,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679579"
+      "dateAdded": "2026-02-15T13:51:07.446597"
     },
     {
       "title": "The Master Key System",
       "year": 2018,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679580"
+      "dateAdded": "2026-02-15T13:51:07.446598"
     },
     {
       "title": "Snow Crash",
       "year": 2018,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679581"
+      "dateAdded": "2026-02-15T13:51:07.446599"
     },
     {
       "title": "The War of Art",
       "year": 2018,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679582"
+      "dateAdded": "2026-02-15T13:51:07.446600"
     },
     {
       "title": "Man's Search for Meaning",
       "year": 2018,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679583"
+      "dateAdded": "2026-02-15T13:51:07.446601"
     },
     {
       "title": "Snowcrash",
       "year": 2018,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679584"
+      "dateAdded": "2026-02-15T13:51:07.446602"
     },
     {
       "title": "Codependent No More",
       "year": 2018,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679586"
+      "dateAdded": "2026-02-15T13:51:07.446603"
     },
     {
       "title": "Ask Polly's Guide To Your Next Crisis",
       "year": 2018,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679587"
+      "dateAdded": "2026-02-15T13:51:07.446604"
     },
     {
       "title": "Getting The Love You Want",
       "year": 2018,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679588"
+      "dateAdded": "2026-02-15T13:51:07.446605"
     },
     {
       "title": "Tribe of Mentors",
       "year": 2018,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679589"
+      "dateAdded": "2026-02-15T13:51:07.446606"
     },
     {
       "title": "The Curious Case of Benjamin Button",
       "year": 2018,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679592"
+      "dateAdded": "2026-02-15T13:51:07.446607"
     },
     {
       "title": "Sapiens",
       "year": 2018,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679593"
+      "dateAdded": "2026-02-15T13:51:07.446608"
     },
     {
       "title": "A Brief History of Time",
       "year": 2018,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679594"
+      "dateAdded": "2026-02-15T13:51:07.446609"
     },
     {
       "title": "Kitchen Confidential",
       "year": 2018,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679595"
+      "dateAdded": "2026-02-15T13:51:07.446610"
     },
     {
       "title": "Devil in the Kitchen",
       "year": 2018,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679596"
+      "dateAdded": "2026-02-15T13:51:07.446611"
     },
     {
       "title": "Manhood",
       "year": 2018,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679597"
+      "dateAdded": "2026-02-15T13:51:07.446612"
     },
     {
       "title": "Popular Tales from Norse Mythology",
       "year": 2017,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679616"
+      "dateAdded": "2026-02-15T13:51:07.446625"
     },
     {
       "title": "Thrilling Cities",
       "year": 2017,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679618"
+      "dateAdded": "2026-02-15T13:51:07.446626"
     },
     {
       "title": "The Book of Five Rings",
       "year": 2017,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679619"
+      "dateAdded": "2026-02-15T13:51:07.446627"
     },
     {
       "title": "The Simple Path to Wealth",
       "year": 2017,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679620"
+      "dateAdded": "2026-02-15T13:51:07.446628"
     },
     {
       "title": "Early Retirement Extreme",
       "year": 2017,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679621"
+      "dateAdded": "2026-02-15T13:51:07.446629"
     },
     {
       "title": "The Autobiography of Benjamin Franklin",
       "year": 2017,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679622"
+      "dateAdded": "2026-02-15T13:51:07.446630"
     },
     {
       "title": "Aesop's Fables",
       "year": 2017,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679623"
+      "dateAdded": "2026-02-15T13:51:07.446631"
     },
     {
       "title": "Ulysses",
       "year": 2017,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679624"
+      "dateAdded": "2026-02-15T13:51:07.446632"
     },
     {
       "title": "How to Speak and Write Correctly",
       "year": 2017,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679625"
+      "dateAdded": "2026-02-15T13:51:07.446633"
     },
     {
       "title": "Popular Tales from the Norse",
       "year": 2017,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679626"
+      "dateAdded": "2026-02-15T13:51:07.446634"
     },
     {
       "title": "Complete Works of David Hume (selections)",
       "year": 2017,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679627"
+      "dateAdded": "2026-02-15T13:51:07.446635"
     },
     {
       "title": "The Greatest Generation",
       "year": 2017,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679630"
+      "dateAdded": "2026-02-15T13:51:07.446637"
     },
     {
       "title": "Don Quixote",
       "year": 2017,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679631"
+      "dateAdded": "2026-02-15T13:51:07.446638"
     },
     {
       "title": "The Ultimate Sherlock Holmes Collection",
       "year": 2017,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679632"
+      "dateAdded": "2026-02-15T13:51:07.446639"
     },
     {
       "title": "The Wisdom of Insecurity",
       "year": 2017,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679633"
+      "dateAdded": "2026-02-15T13:51:07.446640"
     },
     {
       "title": "The 4-Hour Body",
       "year": 2017,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679635"
+      "dateAdded": "2026-02-15T13:51:07.446641"
     },
     {
       "title": "The Little Book that Beats the Market",
       "year": 2017,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679636"
+      "dateAdded": "2026-02-15T13:51:07.446642"
     },
     {
       "title": "A Book of Five Rings",
       "year": 2017,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679637"
+      "dateAdded": "2026-02-15T13:51:07.446643"
     },
     {
       "title": "Meditations",
       "year": 2017,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679638"
+      "dateAdded": "2026-02-15T13:51:07.446644"
     },
     {
       "title": "Designing Your Life",
       "year": 2017,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679639"
+      "dateAdded": "2026-02-15T13:51:07.446645"
     },
     {
       "title": "The New Better Off",
       "year": 2017,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679640"
+      "dateAdded": "2026-02-15T13:51:07.446646"
     },
     {
       "title": "Your Money or Your Life",
       "year": 2017,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679641"
+      "dateAdded": "2026-02-15T13:51:07.446647"
     },
     {
       "title": "The Magic of Thinking BIG",
       "year": 2017,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679642"
+      "dateAdded": "2026-02-15T13:51:07.446648"
     },
     {
       "title": "City in the City",
       "year": 2017,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679643"
+      "dateAdded": "2026-02-15T13:51:07.446649"
     },
     {
       "title": "Berkshire Hathaway Letters to Shareholders: 1965-2024",
       "year": 2016,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679656"
+      "dateAdded": "2026-02-15T13:51:07.446659"
     },
     {
       "title": "The Memoirs of Sherlock Holmes",
       "year": 2016,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679658"
+      "dateAdded": "2026-02-15T13:51:07.446661"
     },
     {
       "title": "Still Life with Woodpecker",
       "year": 2016,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679659"
+      "dateAdded": "2026-02-15T13:51:07.446662"
     },
     {
       "title": "Media Control",
       "year": 2016,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679660"
+      "dateAdded": "2026-02-15T13:51:07.446663"
     },
     {
       "title": "Practical Lock Picking",
       "year": 2016,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679661"
+      "dateAdded": "2026-02-15T13:51:07.446664"
     },
     {
       "title": "The Rings of Saturn",
       "year": 2016,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679662"
+      "dateAdded": "2026-02-15T13:51:07.446665"
     },
     {
       "title": "The Economist Guide to Financial Markets",
       "year": 2016,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679663"
+      "dateAdded": "2026-02-15T13:51:07.446666"
     },
     {
       "title": "Gratitude",
       "year": 2016,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679664"
+      "dateAdded": "2026-02-15T13:51:07.446667"
     },
     {
       "title": "Cryptonomicon",
       "year": 2016,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679665"
+      "dateAdded": "2026-02-15T13:51:07.446668"
     },
     {
       "title": "The Name of the Wind",
       "year": 2016,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679666"
+      "dateAdded": "2026-02-15T13:51:07.446669"
     },
     {
       "title": "The Wise Man's Fear",
       "year": 2016,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679670"
+      "dateAdded": "2026-02-15T13:51:07.446670"
     },
     {
       "title": "Power Systems",
       "year": 2016,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679671"
+      "dateAdded": "2026-02-15T13:51:07.446671"
     },
     {
       "title": "How to Archer",
       "year": 2016,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679672"
+      "dateAdded": "2026-02-15T13:51:07.446672"
     },
     {
       "title": "The Joy of x",
       "year": 2016,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679673"
+      "dateAdded": "2026-02-15T13:51:07.446673"
     },
     {
       "title": "Ready Player One",
       "year": 2016,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679674"
+      "dateAdded": "2026-02-15T13:51:07.446674"
     },
     {
       "title": "The Road to Character",
       "year": 2016,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679675"
+      "dateAdded": "2026-02-15T13:51:07.446675"
     },
     {
       "title": "Berkshire Hathaway Letters",
       "year": 2016,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679676"
+      "dateAdded": "2026-02-15T13:51:07.446676"
     },
     {
       "title": "The Windup Girl",
       "year": 2015,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679686"
+      "dateAdded": "2026-02-15T13:51:07.446683"
     },
     {
       "title": "The Martian",
       "year": 2015,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679687"
+      "dateAdded": "2026-02-15T13:51:07.446684"
     },
     {
       "title": "The City & The City",
       "year": 2015,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679690"
+      "dateAdded": "2026-02-15T13:51:07.446687"
     },
     {
       "title": "1Q84",
       "year": 2015,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679691"
+      "dateAdded": "2026-02-15T13:51:07.446688"
     },
     {
       "title": "The Swarm",
       "year": 2015,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679692"
+      "dateAdded": "2026-02-15T13:51:07.446689"
     },
     {
       "title": "4 Hour Work Week",
       "year": 2015,
       "yearLabel": null,
-      "dateAdded": "2026-02-13T20:19:47.679694"
+      "dateAdded": "2026-02-15T13:51:07.446690"
     },
     {
       "title": "The Watchmen",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679754"
+      "dateAdded": "2026-02-15T13:51:07.446724"
     },
     {
       "title": "Evidence",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679756"
+      "dateAdded": "2026-02-15T13:51:07.446725"
     },
     {
       "title": "The White Tiger",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679757"
+      "dateAdded": "2026-02-15T13:51:07.446727"
     },
     {
       "title": "Collapse: How Societies Chose to Fail or Succeed",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679759"
+      "dateAdded": "2026-02-15T13:51:07.446728"
     },
     {
       "title": "Guns, Germs and Steel",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679760"
+      "dateAdded": "2026-02-15T13:51:07.446729"
     },
     {
       "title": "The Prince",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679761"
+      "dateAdded": "2026-02-15T13:51:07.446730"
     },
     {
       "title": "Sphere",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679762"
+      "dateAdded": "2026-02-15T13:51:07.446731"
     },
     {
       "title": "Out of the Silent Planet",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679763"
+      "dateAdded": "2026-02-15T13:51:07.446732"
     },
     {
       "title": "Perelandra",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679764"
+      "dateAdded": "2026-02-15T13:51:07.446733"
     },
     {
       "title": "That Hideous Strength",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679765"
+      "dateAdded": "2026-02-15T13:51:07.446734"
     },
     {
       "title": "Redwall",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679766"
+      "dateAdded": "2026-02-15T13:51:07.446735"
     },
     {
       "title": "Mossflower",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679767"
+      "dateAdded": "2026-02-15T13:51:07.446736"
     },
     {
       "title": "Mattimeo",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679768"
+      "dateAdded": "2026-02-15T13:51:07.446737"
     },
     {
       "title": "Martin the Warrior",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679769"
+      "dateAdded": "2026-02-15T13:51:07.446738"
     },
     {
       "title": "Salamandastron",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679770"
+      "dateAdded": "2026-02-15T13:51:07.446739"
     },
     {
       "title": "Mariel of Redwall",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679771"
+      "dateAdded": "2026-02-15T13:51:07.446740"
     },
     {
       "title": "The Bellmaker",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679772"
+      "dateAdded": "2026-02-15T13:51:07.446741"
     },
     {
       "title": "Outcast of Redwall",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679773"
+      "dateAdded": "2026-02-15T13:51:07.446742"
     },
     {
       "title": "Pearls of Lutra",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679774"
+      "dateAdded": "2026-02-15T13:51:07.446743"
     },
     {
       "title": "The Long Patrol",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679776"
+      "dateAdded": "2026-02-15T13:51:07.446744"
     },
     {
       "title": "Inferno",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679777"
+      "dateAdded": "2026-02-15T13:51:07.446745"
     },
     {
       "title": "The Book of Three",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679778"
+      "dateAdded": "2026-02-15T13:51:07.446746"
     },
     {
       "title": "The Black Cauldron",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679779"
+      "dateAdded": "2026-02-15T13:51:07.446747"
     },
     {
       "title": "Taran Wanderer",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679780"
+      "dateAdded": "2026-02-15T13:51:07.446748"
     },
     {
       "title": "The Castle of Llyr",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679781"
+      "dateAdded": "2026-02-15T13:51:07.446749"
     },
     {
       "title": "The High King",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679782"
+      "dateAdded": "2026-02-15T13:51:07.446750"
     },
     {
       "title": "The Foundling and Other Tales of Prydain",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679783"
+      "dateAdded": "2026-02-15T13:51:07.446751"
     },
     {
       "title": "A Game of Thrones",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679784"
+      "dateAdded": "2026-02-15T13:51:07.446752"
     },
     {
       "title": "A Clash of Kings",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679791"
+      "dateAdded": "2026-02-15T13:51:07.446753"
     },
     {
       "title": "A Storm of Swords",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679792"
+      "dateAdded": "2026-02-15T13:51:07.446754"
     },
     {
       "title": "A Feast for Crows",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679793"
+      "dateAdded": "2026-02-15T13:51:07.446755"
     },
     {
       "title": "A Dance with Dragons",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679794"
+      "dateAdded": "2026-02-15T13:51:07.446756"
     },
     {
       "title": "The Flight of the Silvers",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679795"
+      "dateAdded": "2026-02-15T13:51:07.446757"
     },
     {
       "title": "Dune",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679796"
+      "dateAdded": "2026-02-15T13:51:07.446758"
     },
     {
       "title": "Dune Messiah",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679797"
+      "dateAdded": "2026-02-15T13:51:07.446760"
     },
     {
       "title": "Children of Dune",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679798"
+      "dateAdded": "2026-02-15T13:51:07.446761"
     },
     {
       "title": "The Gunslinger",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679799"
+      "dateAdded": "2026-02-15T13:51:07.446762"
     },
     {
       "title": "The Drawing of the Three",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679800"
+      "dateAdded": "2026-02-15T13:51:07.446763"
     },
     {
       "title": "The Waste Lands",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679802"
+      "dateAdded": "2026-02-15T13:51:07.446764"
     },
     {
       "title": "Wizard and Glass",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679803"
+      "dateAdded": "2026-02-15T13:51:07.446765"
     },
     {
       "title": "Wolves of the Calla",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679804"
+      "dateAdded": "2026-02-15T13:51:07.446766"
     },
     {
       "title": "Song of Susannah",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679805"
+      "dateAdded": "2026-02-15T13:51:07.446767"
     },
     {
       "title": "The Dark Tower",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679808"
+      "dateAdded": "2026-02-15T13:51:07.446768"
     },
     {
       "title": "American Gods",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679809"
+      "dateAdded": "2026-02-15T13:51:07.446769"
     },
     {
       "title": "Ender's Game",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679810"
+      "dateAdded": "2026-02-15T13:51:07.446770"
     },
     {
       "title": "Zen and the Art of Motorcycle Maintenance",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679811"
+      "dateAdded": "2026-02-15T13:51:07.446771"
     },
     {
       "title": "The New American Road Trip Mixtape",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679812"
+      "dateAdded": "2026-02-15T13:51:07.446772"
     },
     {
       "title": "Self-Coached Climber",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679813"
+      "dateAdded": "2026-02-15T13:51:07.446773"
     },
     {
       "title": "Shantaram",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679814"
+      "dateAdded": "2026-02-15T13:51:07.446774"
     },
     {
       "title": "The One-Straw Revolution",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679815"
+      "dateAdded": "2026-02-15T13:51:07.446775"
     },
     {
       "title": "The China Study",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679816"
+      "dateAdded": "2026-02-15T13:51:07.446776"
     },
     {
       "title": "The Hobbit",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679819"
+      "dateAdded": "2026-02-15T13:51:07.446777"
     },
     {
       "title": "Fellowship of the Ring",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679820"
+      "dateAdded": "2026-02-15T13:51:07.446778"
     },
     {
       "title": "The Two Towers",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679822"
+      "dateAdded": "2026-02-15T13:51:07.446779"
     },
     {
       "title": "Return of the King",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679823"
+      "dateAdded": "2026-02-15T13:51:07.446780"
     },
     {
       "title": "This is Water",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679824"
+      "dateAdded": "2026-02-15T13:51:07.446782"
     },
     {
       "title": "9 Out of 10 Climbers Make the Same Mistakes",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679825"
+      "dateAdded": "2026-02-15T13:51:07.446783"
     },
     {
       "title": "Great Expectations",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679826"
+      "dateAdded": "2026-02-15T13:51:07.446784"
     },
     {
       "title": "The Communist Manifesto",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679827"
+      "dateAdded": "2026-02-15T13:51:07.446785"
     },
     {
       "title": "Ethics",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679828"
+      "dateAdded": "2026-02-15T13:51:07.446786"
     },
     {
       "title": "The Odyssey",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679831"
+      "dateAdded": "2026-02-15T13:51:07.446787"
     },
     {
       "title": "Dracula",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679832"
+      "dateAdded": "2026-02-15T13:51:07.446788"
     },
     {
       "title": "The Hedge Knight",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679833"
+      "dateAdded": "2026-02-15T13:51:07.446789"
     },
     {
       "title": "Flow",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679834"
+      "dateAdded": "2026-02-15T13:51:07.446791"
     },
     {
       "title": "Foundation",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679835"
+      "dateAdded": "2026-02-15T13:51:07.446792"
     },
     {
       "title": "Hyperion",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679836"
+      "dateAdded": "2026-02-15T13:51:07.446793"
     },
     {
       "title": "The Fall of Hyperion",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679837"
+      "dateAdded": "2026-02-15T13:51:07.446794"
     },
     {
       "title": "Endymion",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679838"
+      "dateAdded": "2026-02-15T13:51:07.446795"
     },
     {
       "title": "The Rise of Endymion",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679839"
+      "dateAdded": "2026-02-15T13:51:07.446796"
     },
     {
       "title": "The History of Herodotus",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679840"
+      "dateAdded": "2026-02-15T13:51:07.446797"
     },
     {
       "title": "Autobiography of a Yogi",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679841"
+      "dateAdded": "2026-02-15T13:51:07.446798"
     },
     {
       "title": "A Picture of Dorian Gray",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679842"
+      "dateAdded": "2026-02-15T13:51:07.446799"
     },
     {
       "title": "Twenty Thousand Leagues Under the Sea",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679843"
+      "dateAdded": "2026-02-15T13:51:07.446800"
     },
     {
       "title": "The Art of War",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679845"
+      "dateAdded": "2026-02-15T13:51:07.446801"
     },
     {
       "title": "A Tale of Two Cities",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679846"
+      "dateAdded": "2026-02-15T13:51:07.446802"
     },
     {
       "title": "Pride and Prejudice",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679847"
+      "dateAdded": "2026-02-15T13:51:07.446803"
     },
     {
       "title": "The Adventures of Sherlock Holmes",
       "year": null,
       "yearLabel": "<2015",
-      "dateAdded": "2026-02-13T20:19:47.679848"
+      "dateAdded": "2026-02-15T13:51:07.446804"
     }
   ]
 }

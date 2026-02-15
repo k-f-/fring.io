@@ -22,6 +22,7 @@ Usage:
 import json
 import html
 import argparse
+from datetime import datetime
 from pathlib import Path
 from collections import OrderedDict
 
@@ -29,6 +30,16 @@ from collections import OrderedDict
 def load_json(path: Path) -> dict:
     with open(path) as f:
         return json.load(f)
+
+
+def format_content_date(date_str: str) -> str:
+    if not date_str:
+        return ""
+    try:
+        d = datetime.strptime(date_str[:10], "%Y-%m-%d")
+        return d.strftime("%B %d, %Y")
+    except ValueError:
+        return date_str
 
 
 def group_books_by_year(books: list) -> OrderedDict:
@@ -235,6 +246,9 @@ def generate_full_html(books_data: dict, albums_data: dict, now_data: dict) -> s
     albums_html = generate_albums_html(albums_data["albums"])
     now_html = generate_now_html(now_data)
     header_icons = generate_header_icons_html(now_data)
+
+    now_content_date = format_content_date(now_data["meta"].get("contentUpdated", ""))
+    build_date = datetime.now().strftime("%B %d, %Y")
 
     return f"""<!DOCTYPE html>
 <html lang="en" data-theme="dark">
@@ -539,7 +553,7 @@ def generate_full_html(books_data: dict, albums_data: dict, now_data: dict) -> s
             <section id="now">
                 <div class="section-header">
                     <h2>Now</h2>
-                    <span class="muted small">February 15, 2026</span>
+                    <span class="muted small">{now_content_date}</span>
                 </div>
                 
 {now_html}
@@ -565,6 +579,7 @@ def generate_full_html(books_data: dict, albums_data: dict, now_data: dict) -> s
                 <h2>Epilogue</h2>
                 <p>Previous iterations: <a href="http://v3.fring.io">v3</a> · <a href="http://v2.fring.io">v2</a> · <a href="http://v1.kfring.com">v1</a></p>
                 <p class="muted small">Credit to <a href="http://bettermotherfuckingwebsite.com/">bettermotherfuckingwebsite.com</a></p>
+                <p class="muted small">Built {build_date}</p>
                 <a href="#top" class="back-to-top">↑</a>
             </section>
 

@@ -1,7 +1,8 @@
 {
   "meta": {
     "version": "1.0",
-    "lastUpdated": "2025-11-02T21:00:00.000000",
+    "lastUpdated": "2026-02-15T13:50:41.411108",
+    "contentUpdated": "2025-11-02",
     "description": "Professional experience and career history"
   },
   "summary": {
@@ -15,10 +16,27 @@
       "Cross-functional Leadership"
     ],
     "currentStack": {
-      "code": ["Python", "SQL", "Scala", "M", "DAX", "PowerQuery"],
-      "cloud": ["Azure Databricks", "Machine Learning", "Data Engineering", "DevOps"],
-      "visualization": ["PowerBI"],
-      "projectManagement": ["JIRA", "Git"]
+      "code": [
+        "Python",
+        "SQL",
+        "Scala",
+        "M",
+        "DAX",
+        "PowerQuery"
+      ],
+      "cloud": [
+        "Azure Databricks",
+        "Machine Learning",
+        "Data Engineering",
+        "DevOps"
+      ],
+      "visualization": [
+        "PowerBI"
+      ],
+      "projectmanagement": [
+        "JIRA",
+        "Git"
+      ]
     },
     "background": "25+ years experience in Data, Network Engineering, Software/DevOps, AWS, Systems Admin"
   },
@@ -30,15 +48,22 @@
       "location": "Remote",
       "startDate": "2023-01",
       "endDate": null,
-      "current": true,
       "duration": "2 years 11 months",
+      "current": true,
       "description": "Lead cross-functional initiatives bridging data engineering, analytics, and business strategy. Rewarding work that impacts tens of thousands of co-workers and many millions of members.",
       "highlights": [
         "Expanding domain knowledge within Managed Healthcare",
         "Financial Reconciliation & KPIs (Internal and external with CMS and State Regulators)",
         "Leveraging Big Data platforms for AI/ML in complex data environments"
       ],
-      "skills": ["Leadership", "Data Engineering", "Analytics", "Healthcare", "Strategy", "AI/ML"]
+      "skills": [
+        "Leadership",
+        "Data Engineering",
+        "Analytics",
+        "Healthcare",
+        "Strategy",
+        "AI/ML"
+      ]
     },
     {
       "title": "Senior Data Analyst / Engineer",
@@ -47,16 +72,22 @@
       "location": "Remote",
       "startDate": "2020-02",
       "endDate": "2022-12",
-      "current": false,
       "duration": "2 years 11 months",
-      "description": "Designed data pipelines, built value-based contracting datasets, and led pharmacy data lake migrations. Deep dive into healthcare data-sets—becoming responsible for the single source of truth.",
+      "description": "Designed data pipelines, built value-based contracting datasets, and led pharmacy data lake migrations. Deep dive into healthcare data-sets\u2014becoming responsible for the single source of truth.",
       "highlights": [
         "Designed and implemented data pipelines",
         "Built value-based contracting datasets",
         "Led pharmacy data lake migrations",
         "Established single source of truth for healthcare datasets"
       ],
-      "skills": ["Data Engineering", "SQL", "Python", "Data Pipelines", "Healthcare Data", "Azure"]
+      "skills": [
+        "Data Engineering",
+        "SQL",
+        "Python",
+        "Data Pipelines",
+        "Healthcare Data",
+        "Azure"
+      ]
     },
     {
       "title": "Consultant",
@@ -64,17 +95,19 @@
       "location": "Remote",
       "startDate": "2020-04",
       "endDate": "2021-02",
-      "current": false,
       "duration": "11 months",
       "description": "Independent consulting work during transition period",
-      "skills": ["Consulting", "Data Engineering", "Systems"]
+      "skills": [
+        "Consulting",
+        "Data Engineering",
+        "Systems"
+      ]
     },
     {
       "title": "Senior Positions (Various)",
       "company": "Various Companies",
       "startDate": "2006-01",
       "endDate": "2020-03",
-      "current": false,
       "duration": "14+ years",
       "description": "Senior roles in Network Engineering, Systems Administration, Software Development, and DevOps across multiple companies",
       "highlights": [
@@ -83,11 +116,15 @@
         "AWS infrastructure management",
         "Software development"
       ],
-      "skills": ["Network Engineering", "Systems Admin", "AWS", "DevOps", "Software Development"]
+      "skills": [
+        "Network Engineering",
+        "Systems Admin",
+        "AWS",
+        "DevOps",
+        "Software Development"
+      ]
     }
   ],
-  "education": [],
-  "certifications": [],
   "preferences": {
     "tools": "FOSS tools preferred: Terminals, Python, R, etc. (vs Microsoft stack)",
     "workStyle": [

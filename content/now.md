@@ -3,6 +3,7 @@
   "meta": {
     "version": "1.0",
     "lastUpdated": "2025-11-02T21:00:00.000000",
+    "contentUpdated": "2025-11-02",
     "description": "Current activities and status - /now page content"
   },
   "location": {

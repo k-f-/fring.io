@@ -3,6 +3,7 @@
   "meta": {
     "version": "1.0",
     "lastUpdated": "2025-11-02T20:43:18.625142",
+    "contentUpdated": "2026-02-13",
     "description": "Canonical book list for fring.io - version agnostic content"
   }
 }

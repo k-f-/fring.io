@@ -6,7 +6,7 @@ What it says on the tin. 😉
 
 ## Current Live Version
 
-**🟢 v3** (defined in `VERSION` file)
+**🟢 v4** (defined in `VERSION` file)
 
 To change the live version, update:
 1. `VERSION` file in repo root
@@ -21,7 +21,8 @@ This is a monorepo containing all versions of the site:
 sites/
   ├── v1/  # Jekyll blog (2013-2015)
   ├── v2/  # Minimal HTML (2015-2020)
-  └── v3/  # Refined minimal (2020-present) ← LIVE
+  ├── v3/  # Refined minimal (2020-2025)
+  └── v4/  # Content-driven (2025-present) ← LIVE
 
 infrastructure/
   ├── provision-site.sh
@@ -113,12 +114,12 @@ hits. that Motown sound.
 
 ## Development
 
-**To work on v3 (current):**
+**To work on v4 (current):**
 ```bash
-cd sites/v3/
+cd sites/v4/
 # Edit index.html, CSS, etc.
-git add sites/v3/
-git commit -m "Update v3 design"
+git add sites/v4/
+git commit -m "Update v4 design"
 git push origin main
 # Deploys to both s3://v3.fring.io and s3://fring.io (apex)
 ```
@@ -165,10 +166,11 @@ All version sites are independently accessible at their versioned URLs. When you
 The `LATEST_VERSION` in `.github/workflows/deploy.yml` controls which version appears at the apex domains (fring.io, kfring.com). All other versions remain accessible at their versioned URLs.
 
 **Live URLs:**
-- https://fring.io, https://www.fring.io → Latest version (v3)
-- https://kfring.com, https://www.kfring.com → Latest version (v3)
-- https://v3.fring.io, https://v3.kfring.com → v3 (current latest)
-- https://v2.fring.io, https://v2.kfring.com → v2 (previous version)
+- https://fring.io, https://www.fring.io → Latest version (v4)
+- https://kfring.com, https://www.kfring.com → Latest version (v4)
+- https://v4.fring.io, https://v4.kfring.com → v4 (current latest)
+- https://v3.fring.io, https://v3.kfring.com → v3 (previous version)
+- https://v2.fring.io, https://v2.kfring.com → v2
 - https://v1.fring.io, https://v1.kfring.com → v1 (original)
 
 See [DEPLOYMENT_ARCHITECTURE.md](DEPLOYMENT_ARCHITECTURE.md) for complete details.

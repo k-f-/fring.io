@@ -33,14 +33,14 @@ class MarkdownToJSONParser:
             content = f.read()
 
         # Extract JSON metadata from HTML comment
-        meta_match = re.search(r'<!--\n(.+?)\n-->', content, re.DOTALL)
+        meta_match = re.search(r"<!--\n(.+?)\n-->", content, re.DOTALL)
         if meta_match:
             meta_json = json.loads(meta_match.group(1))
             meta = meta_json.get("meta", {})
         else:
             meta = {
                 "version": "1.0",
-                "description": "Album listening log for fring.io - version agnostic content"
+                "description": "Album listening log for fring.io - version agnostic content",
             }
 
         # Update lastUpdated
@@ -50,7 +50,7 @@ class MarkdownToJSONParser:
 
         # Split into album entries (### [Date] Artist - Album)
         # Pattern: ### [2019-10-21] The Jackson 5 - Gold
-        entry_pattern = r'### \[(\d{4}-\d{2}-\d{2})\] (.+?) - (.+?)\n'
+        entry_pattern = r"### \[(\d{4}-\d{2}-\d{2})\] (.+?) - (.+?)\n"
         entries = re.split(entry_pattern, content)
 
         # Process entries in groups of 4 (split, date, artist, album, content)
@@ -74,52 +74,61 @@ class MarkdownToJSONParser:
                 "tracks": None,
                 "playtime": None,
                 "notes": None,
-                "dateAdded": datetime.now().isoformat()
+                "dateAdded": datetime.now().isoformat(),
             }
 
             # Released year
-            release_match = re.search(r'\*\*Released:\*\* (\d{4})', entry_content)
+            release_match = re.search(r"\*\*Released:\*\* (\d{4})", entry_content)
             if release_match:
                 album_data["releaseYear"] = int(release_match.group(1))
 
             # Spotify URL
-            spotify_match = re.search(r'\*\*Listen:\*\* \[Spotify\]\((.+?)\)', entry_content)
+            spotify_match = re.search(
+                r"\*\*Listen:\*\* \[Spotify\]\((.+?)\)", entry_content
+            )
             if spotify_match:
                 spotify_url = spotify_match.group(1)
                 album_data["spotifyUrl"] = spotify_url
                 # Extract Spotify ID
-                spotify_id_match = re.search(r'/album/([a-zA-Z0-9]+)', spotify_url)
+                spotify_id_match = re.search(r"/album/([a-zA-Z0-9]+)", spotify_url)
                 if spotify_id_match:
                     album_data["spotifyId"] = spotify_id_match.group(1)
 
             # Duration (tracks and playtime)
-            duration_match = re.search(r'\*\*Duration:\*\* (.+?)\n', entry_content)
+            duration_match = re.search(r"\*\*Duration:\*\* (.+?)\n", entry_content)
             if duration_match:
                 duration_str = duration_match.group(1)
                 # Parse "36 tracks, 2 hr 13 min." or "10 tracks, 34 min."
-                tracks_match = re.search(r'(\d+) tracks?', duration_str)
+                tracks_match = re.search(r"(\d+) tracks?", duration_str)
                 if tracks_match:
                     album_data["tracks"] = int(tracks_match.group(1))
                 # Extract playtime (everything after tracks)
-                playtime_match = re.search(r'tracks?, (.+)', duration_str)
+                playtime_match = re.search(r"tracks?, (.+)", duration_str)
                 if playtime_match:
                     album_data["playtime"] = playtime_match.group(1).strip()
 
-            # Notes (everything after Duration until next ### or end)
-            # Find the content between Duration and the next heading or footer
-            notes_match = re.search(r'\*\*Duration:\*\*.*?\n\n(.+?)(?:\n\n###|\n\n---|\Z)',
-                                   entry_content, re.DOTALL)
+            # Notes (everything after Duration until next heading or end)
+            notes_match = re.search(
+                r"\*\*Duration:\*\*.*?\n\n(.+?)(?:\n\n###|\n\n---|\Z)",
+                entry_content,
+                re.DOTALL,
+            )
             if notes_match:
                 notes = notes_match.group(1).strip()
+                # Strip year section headings (## 2019 ...) that bleed in
+                notes = re.sub(r"##\s+\d{4}.*", "", notes, flags=re.DOTALL).strip()
                 if notes:
                     album_data["notes"] = notes
             else:
                 # Check for notes without Duration field
-                notes_match = re.search(r'\*\*Listen:\*\*.*?\n\n(.+?)(?:\n\n###|\n\n---|\Z)',
-                                       entry_content, re.DOTALL)
+                notes_match = re.search(
+                    r"\*\*Listen:\*\*.*?\n\n(.+?)(?:\n\n###|\n\n---|\Z)",
+                    entry_content,
+                    re.DOTALL,
+                )
                 if notes_match:
                     notes = notes_match.group(1).strip()
-                    # Make sure it's not a **Duration:** line
+                    notes = re.sub(r"##\s+\d{4}.*", "", notes, flags=re.DOTALL).strip()
                     if notes and not notes.startswith("**Duration:**"):
                         album_data["notes"] = notes
 
@@ -128,17 +137,14 @@ class MarkdownToJSONParser:
         # Sort by listened date (newest first)
         albums.sort(key=lambda x: x.get("listenedDate", ""), reverse=True)
 
-        return {
-            "meta": meta,
-            "albums": albums
-        }
+        return {"meta": meta, "albums": albums}
 
     def save_albums_json(self, data: dict, output_file: Path = None):
         """Save parsed data to albums.json"""
         if output_file is None:
             output_file = self.content_dir / "albums.json"
 
-        with open(output_file, 'w') as f:
+        with open(output_file, "w") as f:
             json.dump(data, f, indent=2)
 
         print(f"✓ Parsed {len(data['albums'])} albums from markdown")
@@ -147,19 +153,28 @@ class MarkdownToJSONParser:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Parse albums.md to JSON")
-    parser.add_argument("--input", type=Path, default=None,
-                       help="Input markdown file (default: content/albums.md)")
-    parser.add_argument("--output", type=Path, default=None,
-                       help="Output JSON file (default: content/albums.json)")
-    parser.add_argument("--preview", action="store_true",
-                       help="Preview output without writing files")
+    parser.add_argument(
+        "--input",
+        type=Path,
+        default=None,
+        help="Input markdown file (default: content/albums.md)",
+    )
+    parser.add_argument(
+        "--output",
+        type=Path,
+        default=None,
+        help="Output JSON file (default: content/albums.json)",
+    )
+    parser.add_argument(
+        "--preview", action="store_true", help="Preview output without writing files"
+    )
 
     args = parser.parse_args()
 
     md_parser = MarkdownToJSONParser()
 
     print("Albums Markdown Parser")
-    print("="*50)
+    print("=" * 50)
     print("")
 
     data = md_parser.parse_albums(args.input)
@@ -175,4 +190,6 @@ if __name__ == "__main__":
         print("")
         print("Sample albums:")
         for album in data["albums"][:3]:
-            print(f"  • {album['artist']} - {album['album']} ({album.get('listenedDate', 'unknown')})")
+            print(
+                f"  • {album['artist']} - {album['album']} ({album.get('listenedDate', 'unknown')})"
+            )

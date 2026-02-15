@@ -529,8 +529,7 @@ def generate_full_html(books_data: dict, albums_data: dict, now_data: dict) -> s
 
         <main>
             <section id="now">
-                <h2>Now</h2>
-                <p class="muted small">Last updated: February 2026</p>
+                <h2>Now <span class="muted small">— February 2026</span></h2>
                 
 {now_html}
 

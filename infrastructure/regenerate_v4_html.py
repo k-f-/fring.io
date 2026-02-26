@@ -102,7 +102,7 @@ def generate_book_groups_html(
     lines.append(f"{indent}</div>")
     lines.append(f'{indent}<div class="book-grid">')
 
-    OVERFLOW_THRESHOLD = 25
+    OVERFLOW_THRESHOLD = 17
     VISIBLE_COUNT = 10
 
     for year_key, titles in groups.items():

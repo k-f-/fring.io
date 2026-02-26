@@ -6,7 +6,7 @@
     <title>Kyle Fring</title>
     <meta name="description" content="Kyle Fring — Program Director / Data Engineer. Personal website.">
     <meta property="og:title" content="Kyle Fring">
-    <meta property="og:description" content="Program Director / Data Engineer in Chattanooga, TN.">
+    <meta property="og:description" content="Program Director / Data Engineer. Chattanooga, TN & Fayetteville, WV.">
     <meta property="og:type" content="website">
     
     <style>
@@ -15,10 +15,11 @@
             --bg: #1a1a1a;
             --text: #e0e0e0;
             --muted: #888;
-            --accent: #5eead4;
+            --accent: #88dcb4;
             --border: #333;
             --code-bg: #222;
             --selection: rgba(94, 234, 212, 0.2);
+            --bg-alpha: rgba(26,26,26,0.7);
             --font-stack: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
         }
 
@@ -26,10 +27,11 @@
             --bg: #fafafa;
             --text: #1a1a1a;
             --muted: #666;
-            --accent: #0d9488;
+            --accent: #278061;
             --border: #ddd;
             --code-bg: #f0f0f0;
             --selection: rgba(13, 148, 136, 0.2);
+            --bg-alpha: rgba(250,250,250,0.7);
         }
 
         * {
@@ -37,8 +39,8 @@
         }
 
         ::selection {
-            background: var(--selection);
-            color: inherit;
+            background: var(--accent);
+            color: var(--bg);
         }
 
         html {
@@ -50,7 +52,7 @@
             color: var(--text);
             font-family: var(--font-stack);
             font-size: 16px;
-            line-height: 1.7;
+            line-height: 1.6;
             margin: 0;
             padding: 2rem;
             transition: background-color 0.3s ease, color 0.3s ease;
@@ -67,6 +69,7 @@
             margin-top: 2.5rem;
             margin-bottom: 1rem;
             line-height: 1.2;
+            letter-spacing: -0.03em;
         }
 
         h1 { font-size: 2rem; margin-top: 0; }
@@ -77,14 +80,16 @@
         
         a {
             color: var(--text);
-            text-decoration: none;
-            border-bottom: 1px solid var(--accent);
-            transition: color 0.2s, border-color 0.2s;
+            text-decoration: underline;
+            text-decoration-color: var(--accent);
+            text-decoration-thickness: 1px;
+            text-underline-offset: 4px;
+            transition: color 0.2s, text-decoration-color 0.2s;
         }
 
         a:hover {
             color: var(--accent);
-            border-bottom-color: transparent;
+            text-decoration-color: transparent;
         }
 
         ul {
@@ -119,7 +124,7 @@
 
         .header-icon {
             color: var(--muted);
-            border: none;
+            text-decoration: none;
             transition: color 0.2s;
             display: flex;
         }
@@ -139,44 +144,78 @@
             gap: 0.5rem;
         }
 
-        nav a { border-bottom: none; }
+        nav a { text-decoration: none; }
         nav a:hover { color: var(--accent); }
         .nav-separator { color: var(--muted); padding: 0 0.5rem; }
 
         /* Sections */
-        section {
-            margin-bottom: 4rem;
-            padding-left: 1rem;
-            border-left: 3px solid transparent;
-            transition: border-color 0.3s;
-        }
+        section { margin-bottom: 4rem; }
 
-        section:hover {
-            border-left-color: var(--selection);
+        section p, section ul, section aside {
+            max-width: 80ch;
         }
 
         /* Content Grid (Books & Albums) */
-        .book-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
-            gap: 1rem 2rem;
-        }
-
-        .book-group {
+        details.book-group {
             margin-bottom: 0.5rem;
             padding-left: 1rem;
             border-left: 2px solid var(--border);
             transition: border-color 0.2s;
         }
 
-        .book-group:hover {
+        details.book-group:hover {
             border-left-color: var(--accent);
         }
 
-        .book-year {
+        details.book-group summary {
+            list-style: none;
+            cursor: pointer;
             font-weight: bold;
-            display: block;
-            margin-bottom: 0.3rem;
+            padding: 0.25rem 0;
+            user-select: none;
+        }
+
+        details.book-group summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details.book-group summary::before {
+            content: "[+] ";
+            color: var(--muted);
+            font-size: 0.9em;
+        }
+
+        details.book-group[open] > summary::before {
+            content: "[-] ";
+        }
+
+        details.book-group summary:hover {
+            color: var(--accent);
+        }
+
+        details.book-overflow {
+            margin-top: 0.25rem;
+        }
+
+        details.book-overflow summary {
+            list-style: none;
+            cursor: pointer;
+            user-select: none;
+            padding: 0.25rem 0;
+        }
+
+        details.book-overflow summary::-webkit-details-marker {
+            display: none;
+        }
+
+        details.book-overflow summary:hover {
+            color: var(--accent);
+        }
+
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1rem 2rem;
         }
 
         .book-title {
@@ -195,7 +234,7 @@
 
         .album-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 1rem 2rem;
         }
 
@@ -219,7 +258,7 @@
         .album-title {
             display: block;
             font-weight: bold;
-            border-bottom: none;
+            text-decoration: none;
         }
 
         .album-title:hover {
@@ -240,7 +279,9 @@
             position: fixed;
             top: 1.5rem;
             right: 1.5rem;
-            background: none;
+            background: var(--bg-alpha);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             border: 1px solid var(--border);
             color: var(--text);
             padding: 0.5rem;
@@ -262,7 +303,7 @@
             font-size: 0.8rem;
             margin-top: 1rem;
             color: var(--muted);
-            border: none;
+            text-decoration: none;
         }
         .back-to-top:hover { color: var(--accent); }
 
@@ -303,20 +344,21 @@
             <section id="now">
                 <div class="section-header">
                     <h2>Now</h2>
-                    <span class="muted small">November 02, 2025</span>
+                    <span class="muted small">February 25, 2026</span>
                 </div>
                 
                 <h3>Life</h3>
-                <aside class="muted">📍 Chattanooga, TN</aside>
-                <p>Most mornings I sweat at [<a href="http://cruxconditioning.com/">Crux</a>](http://cruxconditioning.com/), an incredible gym with a great community. Progress there has been a massive solace through the second half of Covid-19's 2020. I'm able to get outdoors on the weekends and go hard.</p>
-                <p>I've made several good friends since moving here and that's <em>ultra</em> rewarding. Content. Life is good.</p>
+                <aside class="muted">📍 Chattanooga, TN / Fayetteville, WV</aside>
+                <p>I split my time between Chattanooga, TN and Fayetteville, WV — two towns with world-class outdoor access and tight-knit communities. Weekends are for getting outside or working on my 110-year-old house.</p>
+                <p>Outside the day job, I enjoy running, swimming, and climbing. I run a homelab and an orchestrated AI agent workflow for personal projects — agents delegating across sub-agents, wired through terminal-first tooling.</p>
+                <p>I'm also studying vehicle dynamics, dialing in suspension, and working toward my first HPDE season.</p>
                 <h3>Work</h3>
-                <p>I'm fortunate to be able to work remotely as a <strong>Program Director</strong> for a Fortune 500 managed care provider. I lead cross-functional initiatives bridging data engineering, analytics, and business strategy. It's rewarding work that impacts tens of thousands of co-workers and many millions of members.</p>
+                <p>I'm fortunate to be able to work remotely as a <strong>Program Director</strong> for a Fortune 500 managed care provider. I lead cross-functional teams bridging data engineering, analytics, and business strategy. It's rewarding work that impacts tens of thousands of co-workers and many millions of customers.</p>
                 <h3>Future</h3>
                 <ul>
-                    <li>I'd like to use different tools. Microsoft is fine, Teams & PowerBI are <em>very</em> good, but in my heart I'm a <em>FOSS</em> guy: Terminals, Python, R, etc. are more interesting to me.</li>
-                    <li>I do appreciate the modern need for <em>specialization</em>. However, I'd like to flex a life-time of wearing many hats.</li>
-                    <li>A good deal more flexibility with working hours. I al<strong>way</strong>s deliver. Don't make me sit at a desk just because I need to <em>not</em> be afk. Life is <strong>way</strong> too short.</li>
+                    <li>AI leadership. I've spent 25 years teaching myself new domains — networking, systems, devops, data engineering, software. AI is the current one. I'm building orchestrated agent workflows at home and I want to do it professionally.</li>
+                    <li>A culture that respects focused work over seat time.</li>
+                    <li>A place where the energy I bring to homelab projects is the norm. I've been a self-taught nerd my entire life and I'm <em>not</em> going to stop.</li>
                 </ul>
 
                 <a href="#top" class="back-to-top">↑</a>
@@ -327,15 +369,15 @@
                 
                 <p class="muted small">187 books tracked · 2015–2026 + prior</p>
                 <div class="sparkline" aria-hidden="true">
-                    2026 ▁ | 2024 ▁ | 2022 ▁ | 2020 ▂ | 2019 ▁ | 2018 ▂ | 2017 ▂ | 2016 ▂ | 2015 ▁ | <2015 █
+                    2026 ▁ | 2024 ▄ | 2022 ▃ | 2020 ▅ | 2019 ▅ | 2018 ▅ | 2017 ▅ | 2016 ▅ | 2015 ▃ | <2015 █
                 </div>
                 <div class="book-grid">
-                <div class="book-group">
-                    <span class="book-year">2026</span>
+                <details class="book-group" open>
+                    <summary class="book-year">2026 <span class="muted small">(1)</span></summary>
                     <span class="book-title">How to Change your Mind</span>
-                </div>
-                <div class="book-group">
-                    <span class="book-year">2024</span>
+                </details>
+                <details class="book-group" open>
+                    <summary class="book-year">2024 <span class="muted small">(7)</span></summary>
                     <span class="book-title">This Is How They Tell Me the World Ends: The Cyberweapons Arms Race</span>
                     <span class="book-title">The Permanent Portfolio: Harry Browne&#x27;s Long-Term Investment Strategy</span>
                     <span class="book-title">Lords of Finance: The Bankers Who Broke the World</span>
@@ -343,15 +385,15 @@
                     <span class="book-title">Die with Zero: Getting All You Can from Your Money and Your Life</span>
                     <span class="book-title">A Random Walk Down Wall Street: The Time-Tested Strategy for Successful Investing</span>
                     <span class="book-title">Surely You&#x27;re Joking, Mr. Feynman!  Adventures of a Curious Character</span>
-                </div>
-                <div class="book-group">
-                    <span class="book-year">2022</span>
+                </details>
+                <details class="book-group" open>
+                    <summary class="book-year">2022 <span class="muted small">(3)</span></summary>
                     <span class="book-title">The Algebra of Happiness: Notes on the Pursuit of Success, Love, and Meaning</span>
                     <span class="book-title">The Psychology of Money</span>
                     <span class="book-title">I Am Legend</span>
-                </div>
-                <div class="book-group">
-                    <span class="book-year">2020</span>
+                </details>
+                <details class="book-group" open>
+                    <summary class="book-year">2020 <span class="muted small">(22)</span></summary>
                     <span class="book-title">Loving Bravely: Twenty Lessons of Self-Discovery to Help You Get the Love You Want</span>
                     <span class="book-title">The Adventures of Huckleberry Finn (Adventures of Tom and Huck, #2)</span>
                     <span class="book-title">The Hobbit, or There and Back Again</span>
@@ -374,9 +416,9 @@
                     <span class="book-title">The Book of Joy: Lasting Happiness in a Changing World</span>
                     <span class="book-title">Black Elk Speaks: Being the Life Story of a Holy Man of the Oglala Sioux</span>
                     <span class="book-title">I Hate You, Don&#x27;t Leave Me: Understanding the Borderline Personality</span>
-                </div>
-                <div class="book-group">
-                    <span class="book-year">2019</span>
+                </details>
+                <details class="book-group" open>
+                    <summary class="book-year">2019 <span class="muted small">(13)</span></summary>
                     <span class="book-title">ReWork</span>
                     <span class="book-title">Foundation, Foundation and Empire, Second Foundation (Everyman&#x27;s Library)</span>
                     <span class="book-title">Whitman: Poems</span>
@@ -390,9 +432,9 @@
                     <span class="book-title">Cities of the Plain</span>
                     <span class="book-title">All the Pretty Horses</span>
                     <span class="book-title">The Idiot</span>
-                </div>
-                <div class="book-group">
-                    <span class="book-year">2018</span>
+                </details>
+                <details class="book-group" open>
+                    <summary class="book-year">2018 <span class="muted small">(17)</span></summary>
                     <span class="book-title">Alice&#x27;s Adventures in Wonderland (Alice&#x27;s Adventures in Wonderland, #1)</span>
                     <span class="book-title">University of Berkshire Hathaway: 30 Years of Lessons Learned from Warren Buffett &amp; Charlie Munger at the Annual Shareholders Meeting</span>
                     <span class="book-title">The Master Key System</span>
@@ -410,9 +452,9 @@
                     <span class="book-title">Kitchen Confidential</span>
                     <span class="book-title">Devil in the Kitchen</span>
                     <span class="book-title">Manhood</span>
-                </div>
-                <div class="book-group">
-                    <span class="book-year">2017</span>
+                </details>
+                <details class="book-group" open>
+                    <summary class="book-year">2017 <span class="muted small">(24)</span></summary>
                     <span class="book-title">Popular Tales from Norse Mythology</span>
                     <span class="book-title">Thrilling Cities</span>
                     <span class="book-title">The Book of Five Rings</span>
@@ -437,9 +479,9 @@
                     <span class="book-title">Your Money or Your Life</span>
                     <span class="book-title">The Magic of Thinking BIG</span>
                     <span class="book-title">City in the City</span>
-                </div>
-                <div class="book-group">
-                    <span class="book-year">2016</span>
+                </details>
+                <details class="book-group" open>
+                    <summary class="book-year">2016 <span class="muted small">(17)</span></summary>
                     <span class="book-title">Berkshire Hathaway Letters to Shareholders: 1965-2024</span>
                     <span class="book-title">The Memoirs of Sherlock Holmes</span>
                     <span class="book-title">Still Life with Woodpecker</span>
@@ -457,18 +499,18 @@
                     <span class="book-title">Ready Player One</span>
                     <span class="book-title">The Road to Character</span>
                     <span class="book-title">Berkshire Hathaway Letters</span>
-                </div>
-                <div class="book-group">
-                    <span class="book-year">2015</span>
+                </details>
+                <details class="book-group" open>
+                    <summary class="book-year">2015 <span class="muted small">(6)</span></summary>
                     <span class="book-title">The Windup Girl</span>
                     <span class="book-title">The Martian</span>
                     <span class="book-title">The City &amp; The City</span>
                     <span class="book-title">1Q84</span>
                     <span class="book-title">The Swarm</span>
                     <span class="book-title">4 Hour Work Week</span>
-                </div>
+                </details>
                 <div class="book-group">
-                    <span class="book-year">&lt;2015</span>
+                    <span class="book-year">&lt;2015 <span class="muted small">(77)</span></span>
                     <span class="book-title">The Watchmen</span>
                     <span class="book-title">Evidence</span>
                     <span class="book-title">The White Tiger</span>
@@ -479,73 +521,76 @@
                     <span class="book-title">Out of the Silent Planet</span>
                     <span class="book-title">Perelandra</span>
                     <span class="book-title">That Hideous Strength</span>
-                    <span class="book-title">Redwall</span>
-                    <span class="book-title">Mossflower</span>
-                    <span class="book-title">Mattimeo</span>
-                    <span class="book-title">Martin the Warrior</span>
-                    <span class="book-title">Salamandastron</span>
-                    <span class="book-title">Mariel of Redwall</span>
-                    <span class="book-title">The Bellmaker</span>
-                    <span class="book-title">Outcast of Redwall</span>
-                    <span class="book-title">Pearls of Lutra</span>
-                    <span class="book-title">The Long Patrol</span>
-                    <span class="book-title">Inferno</span>
-                    <span class="book-title">The Book of Three</span>
-                    <span class="book-title">The Black Cauldron</span>
-                    <span class="book-title">Taran Wanderer</span>
-                    <span class="book-title">The Castle of Llyr</span>
-                    <span class="book-title">The High King</span>
-                    <span class="book-title">The Foundling and Other Tales of Prydain</span>
-                    <span class="book-title">A Game of Thrones</span>
-                    <span class="book-title">A Clash of Kings</span>
-                    <span class="book-title">A Storm of Swords</span>
-                    <span class="book-title">A Feast for Crows</span>
-                    <span class="book-title">A Dance with Dragons</span>
-                    <span class="book-title">The Flight of the Silvers</span>
-                    <span class="book-title">Dune</span>
-                    <span class="book-title">Dune Messiah</span>
-                    <span class="book-title">Children of Dune</span>
-                    <span class="book-title">The Gunslinger</span>
-                    <span class="book-title">The Drawing of the Three</span>
-                    <span class="book-title">The Waste Lands</span>
-                    <span class="book-title">Wizard and Glass</span>
-                    <span class="book-title">Wolves of the Calla</span>
-                    <span class="book-title">Song of Susannah</span>
-                    <span class="book-title">The Dark Tower</span>
-                    <span class="book-title">American Gods</span>
-                    <span class="book-title">Ender&#x27;s Game</span>
-                    <span class="book-title">Zen and the Art of Motorcycle Maintenance</span>
-                    <span class="book-title">The New American Road Trip Mixtape</span>
-                    <span class="book-title">Self-Coached Climber</span>
-                    <span class="book-title">Shantaram</span>
-                    <span class="book-title">The One-Straw Revolution</span>
-                    <span class="book-title">The China Study</span>
-                    <span class="book-title">The Hobbit</span>
-                    <span class="book-title">Fellowship of the Ring</span>
-                    <span class="book-title">The Two Towers</span>
-                    <span class="book-title">Return of the King</span>
-                    <span class="book-title">This is Water</span>
-                    <span class="book-title">9 Out of 10 Climbers Make the Same Mistakes</span>
-                    <span class="book-title">Great Expectations</span>
-                    <span class="book-title">The Communist Manifesto</span>
-                    <span class="book-title">Ethics</span>
-                    <span class="book-title">The Odyssey</span>
-                    <span class="book-title">Dracula</span>
-                    <span class="book-title">The Hedge Knight</span>
-                    <span class="book-title">Flow</span>
-                    <span class="book-title">Foundation</span>
-                    <span class="book-title">Hyperion</span>
-                    <span class="book-title">The Fall of Hyperion</span>
-                    <span class="book-title">Endymion</span>
-                    <span class="book-title">The Rise of Endymion</span>
-                    <span class="book-title">The History of Herodotus</span>
-                    <span class="book-title">Autobiography of a Yogi</span>
-                    <span class="book-title">A Picture of Dorian Gray</span>
-                    <span class="book-title">Twenty Thousand Leagues Under the Sea</span>
-                    <span class="book-title">The Art of War</span>
-                    <span class="book-title">A Tale of Two Cities</span>
-                    <span class="book-title">Pride and Prejudice</span>
-                    <span class="book-title">The Adventures of Sherlock Holmes</span>
+                    <details class="book-overflow">
+                        <summary class="muted small">[+] 67 more</summary>
+                        <span class="book-title">Redwall</span>
+                        <span class="book-title">Mossflower</span>
+                        <span class="book-title">Mattimeo</span>
+                        <span class="book-title">Martin the Warrior</span>
+                        <span class="book-title">Salamandastron</span>
+                        <span class="book-title">Mariel of Redwall</span>
+                        <span class="book-title">The Bellmaker</span>
+                        <span class="book-title">Outcast of Redwall</span>
+                        <span class="book-title">Pearls of Lutra</span>
+                        <span class="book-title">The Long Patrol</span>
+                        <span class="book-title">Inferno</span>
+                        <span class="book-title">The Book of Three</span>
+                        <span class="book-title">The Black Cauldron</span>
+                        <span class="book-title">Taran Wanderer</span>
+                        <span class="book-title">The Castle of Llyr</span>
+                        <span class="book-title">The High King</span>
+                        <span class="book-title">The Foundling and Other Tales of Prydain</span>
+                        <span class="book-title">A Game of Thrones</span>
+                        <span class="book-title">A Clash of Kings</span>
+                        <span class="book-title">A Storm of Swords</span>
+                        <span class="book-title">A Feast for Crows</span>
+                        <span class="book-title">A Dance with Dragons</span>
+                        <span class="book-title">The Flight of the Silvers</span>
+                        <span class="book-title">Dune</span>
+                        <span class="book-title">Dune Messiah</span>
+                        <span class="book-title">Children of Dune</span>
+                        <span class="book-title">The Gunslinger</span>
+                        <span class="book-title">The Drawing of the Three</span>
+                        <span class="book-title">The Waste Lands</span>
+                        <span class="book-title">Wizard and Glass</span>
+                        <span class="book-title">Wolves of the Calla</span>
+                        <span class="book-title">Song of Susannah</span>
+                        <span class="book-title">The Dark Tower</span>
+                        <span class="book-title">American Gods</span>
+                        <span class="book-title">Ender&#x27;s Game</span>
+                        <span class="book-title">Zen and the Art of Motorcycle Maintenance</span>
+                        <span class="book-title">The New American Road Trip Mixtape</span>
+                        <span class="book-title">Self-Coached Climber</span>
+                        <span class="book-title">Shantaram</span>
+                        <span class="book-title">The One-Straw Revolution</span>
+                        <span class="book-title">The China Study</span>
+                        <span class="book-title">The Hobbit</span>
+                        <span class="book-title">Fellowship of the Ring</span>
+                        <span class="book-title">The Two Towers</span>
+                        <span class="book-title">Return of the King</span>
+                        <span class="book-title">This is Water</span>
+                        <span class="book-title">9 Out of 10 Climbers Make the Same Mistakes</span>
+                        <span class="book-title">Great Expectations</span>
+                        <span class="book-title">The Communist Manifesto</span>
+                        <span class="book-title">Ethics</span>
+                        <span class="book-title">The Odyssey</span>
+                        <span class="book-title">Dracula</span>
+                        <span class="book-title">The Hedge Knight</span>
+                        <span class="book-title">Flow</span>
+                        <span class="book-title">Foundation</span>
+                        <span class="book-title">Hyperion</span>
+                        <span class="book-title">The Fall of Hyperion</span>
+                        <span class="book-title">Endymion</span>
+                        <span class="book-title">The Rise of Endymion</span>
+                        <span class="book-title">The History of Herodotus</span>
+                        <span class="book-title">Autobiography of a Yogi</span>
+                        <span class="book-title">A Picture of Dorian Gray</span>
+                        <span class="book-title">Twenty Thousand Leagues Under the Sea</span>
+                        <span class="book-title">The Art of War</span>
+                        <span class="book-title">A Tale of Two Cities</span>
+                        <span class="book-title">Pride and Prejudice</span>
+                        <span class="book-title">The Adventures of Sherlock Holmes</span>
+                    </details>
                 </div>
                 </div>
                 <a href="#top" class="back-to-top">↑</a>
@@ -625,7 +670,7 @@
 
             <section id="epilogue">
                 <h2>Epilogue</h2>
-                <p>Previous iterations: <a href="http://v3.fring.io">v3</a> (2020) · <a href="http://v2.fring.io">v2</a> (2015) · <a href="http://v1.kfring.com">v1</a> (2013) · <span class="muted small">Built February 15, 2026</span></p>
+                <p>Previous iterations: <a href="http://v3.fring.io">v3</a> (2020) · <a href="http://v2.fring.io">v2</a> (2015) · <a href="http://v1.kfring.com">v1</a> (2013) · <span class="muted small">Built February 26, 2026</span></p>
                 <a href="#top" class="back-to-top">↑</a>
             </section>
 

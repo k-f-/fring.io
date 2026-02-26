@@ -20,16 +20,19 @@ Usage:
 """
 
 import json
+import re
 import html
+import math
 import argparse
+from typing import cast
 from datetime import datetime
 from pathlib import Path
 from collections import OrderedDict
 
 
-def load_json(path: Path) -> dict:
+def load_json(path: Path) -> dict[str, object]:
     with open(path) as f:
-        return json.load(f)
+        return cast(dict[str, object], json.load(f))
 
 
 def format_content_date(date_str: str) -> str:
@@ -42,32 +45,43 @@ def format_content_date(date_str: str) -> str:
         return date_str
 
 
-def group_books_by_year(books: list) -> OrderedDict:
+def group_books_by_year(books: list[dict[str, object]]) -> OrderedDict[str, list[str]]:
     """Group books by year, maintaining order (newest first). yearLabel books go last."""
-    groups = OrderedDict()
+    groups: OrderedDict[str, list[str]] = OrderedDict()
     for book in books:
-        key = book.get("yearLabel") or str(book.get("year", "Unknown"))
+        key = str(book.get("yearLabel") or book.get("year", "Unknown"))
         if key not in groups:
             groups[key] = []
-        groups[key].append(book["title"])
+        groups[key].append(str(book["title"]))
     return groups
 
 
-def build_year_sparkline(year_counts: OrderedDict) -> str:
+def build_year_sparkline(year_counts: OrderedDict[str, int]) -> str:
     """Build a year-by-year bar sparkline from an OrderedDict of {year: count}."""
     blocks = " ▁▂▃▄▅▆█"
-    max_count = max(year_counts.values()) if year_counts else 1
-    parts = []
+    if not year_counts:
+        return ""
+
+    max_count = max(year_counts.values())
+    parts: list[str] = []
+
     for year, count in year_counts.items():
         if count == 0:
-            parts.append(f"{year} {blocks[0]}")
+            level = 0
+        elif max_count <= 1:
+            level = len(blocks) - 1
         else:
-            level = max(1, round(count / max_count * (len(blocks) - 1)))
-            parts.append(f"{year} {blocks[level]}")
+            fraction = math.log(count) / math.log(max_count)
+            level = 1 + int(fraction * (len(blocks) - 2) + 0.5)
+
+        parts.append(f"{year} {blocks[level]}")
+
     return " | ".join(parts)
 
 
-def generate_book_groups_html(books: list, indent: str = "                ") -> str:
+def generate_book_groups_html(
+    books: list[dict[str, object]], indent: str = "                "
+) -> str:
     """Generate book-grid HTML from books list."""
     groups = group_books_by_year(books)
     total = len(books)
@@ -79,7 +93,7 @@ def generate_book_groups_html(books: list, indent: str = "                ") -> 
     year_counts = OrderedDict((k, len(v)) for k, v in groups.items())
     sparkline = build_year_sparkline(year_counts)
 
-    lines = []
+    lines: list[str] = []
     lines.append(
         f'{indent}<p class="muted small">{total} books tracked · {year_range}</p>'
     )
@@ -88,46 +102,79 @@ def generate_book_groups_html(books: list, indent: str = "                ") -> 
     lines.append(f"{indent}</div>")
     lines.append(f'{indent}<div class="book-grid">')
 
+    OVERFLOW_THRESHOLD = 25
+    VISIBLE_COUNT = 10
+
     for year_key, titles in groups.items():
         year_display = html.escape(str(year_key))
-        lines.append(f'{indent}<div class="book-group">')
-        lines.append(f'{indent}    <span class="book-year">{year_display}</span>')
-        for title in titles:
+        count = len(titles)
+
+        if count <= OVERFLOW_THRESHOLD:
+            lines.append(f'{indent}<details class="book-group" open>')
             lines.append(
-                f'{indent}    <span class="book-title">{html.escape(title)}</span>'
+                f'{indent}    <summary class="book-year">{year_display} <span class="muted small">({count})</span></summary>'
             )
-        lines.append(f"{indent}</div>")
+            for title in titles:
+                lines.append(
+                    f'{indent}    <span class="book-title">{html.escape(title)}</span>'
+                )
+            lines.append(f"{indent}</details>")
+        else:
+            remaining = count - VISIBLE_COUNT
+            lines.append(f'{indent}<div class="book-group">')
+            lines.append(
+                f'{indent}    <span class="book-year">{year_display} <span class="muted small">({count})</span></span>'
+            )
+            for title in titles[:VISIBLE_COUNT]:
+                lines.append(
+                    f'{indent}    <span class="book-title">{html.escape(title)}</span>'
+                )
+            lines.append(f'{indent}    <details class="book-overflow">')
+            lines.append(
+                f'{indent}        <summary class="muted small">[+] {remaining} more</summary>'
+            )
+            for title in titles[VISIBLE_COUNT:]:
+                lines.append(
+                    f'{indent}        <span class="book-title">{html.escape(title)}</span>'
+                )
+            lines.append(f"{indent}    </details>")
+            lines.append(f"{indent}</div>")
 
     lines.append(f"{indent}</div>")
     return "\n".join(lines)
 
 
-def group_albums_by_year(albums: list) -> OrderedDict:
+def group_albums_by_year(
+    albums: list[dict[str, object]],
+) -> OrderedDict[str, list[dict[str, object]]]:
     """Group albums by listened year, newest first."""
     sorted_albums = sorted(
-        albums, key=lambda a: a.get("listenedDate", ""), reverse=True
+        albums, key=lambda a: str(a.get("listenedDate", "")), reverse=True
     )
-    groups = OrderedDict()
+    groups: OrderedDict[str, list[dict[str, object]]] = OrderedDict()
     for album in sorted_albums:
-        year = album.get("listenedDate", "")[:4] or "Unknown"
+        listened_date = str(album.get("listenedDate", ""))
+        year = listened_date[:4] or "Unknown"
         if year not in groups:
             groups[year] = []
         groups[year].append(album)
     return groups
 
 
-def generate_albums_html(albums: list, indent: str = "                ") -> str:
+def generate_albums_html(
+    albums: list[dict[str, object]], indent: str = "                "
+) -> str:
     """Generate year-grouped album grid HTML, sorted by listened date (newest first)."""
     groups = group_albums_by_year(albums)
     total = len(albums)
 
-    release_years = [a.get("releaseYear") for a in albums if a.get("releaseYear")]
+    release_years = [str(a.get("releaseYear")) for a in albums if a.get("releaseYear")]
     year_span = f"{min(release_years)}–{max(release_years)}" if release_years else ""
 
     year_counts = OrderedDict((k, len(v)) for k, v in groups.items())
     sparkline = build_year_sparkline(year_counts)
 
-    lines = []
+    lines: list[str] = []
     lines.append(
         f'{indent}<p class="muted small">{total} albums · releases spanning {year_span}</p>'
     )
@@ -141,15 +188,17 @@ def generate_albums_html(albums: list, indent: str = "                ") -> str:
         lines.append(f'{indent}    <span class="album-year">{html.escape(year)}</span>')
 
         for album in year_albums:
-            artist = html.escape(album["artist"])
-            name = html.escape(album["album"])
-            release_year = album.get("releaseYear", "")
+            artist = html.escape(str(album["artist"]))
+            name = html.escape(str(album["album"]))
+            release_year_value = album.get("releaseYear")
+            release_year = str(release_year_value) if release_year_value else ""
             title_text = f"{artist} — {name}"
             if release_year:
                 title_text += f" ({release_year})"
 
             spotify_url = album.get("spotifyUrl")
             if spotify_url:
+                spotify_url = str(spotify_url)
                 lines.append(
                     f'{indent}    <a href="{html.escape(spotify_url)}" target="_blank" class="album-title">{title_text}</a>'
                 )
@@ -160,7 +209,7 @@ def generate_albums_html(albums: list, indent: str = "                ") -> str:
 
             if album.get("notes"):
                 lines.append(
-                    f'{indent}    <span class="album-note">{html.escape(album["notes"])}</span>'
+                    f'{indent}    <span class="album-note">{html.escape(str(album["notes"]))}</span>'
                 )
 
         lines.append(f"{indent}</div>")
@@ -169,35 +218,45 @@ def generate_albums_html(albums: list, indent: str = "                ") -> str:
     return "\n".join(lines)
 
 
-def generate_now_html(now: dict, indent: str = "                ") -> str:
+def generate_now_html(now: dict[str, object], indent: str = "                ") -> str:
     """Generate Now section content from now.json."""
-    sections = now["sections"]
-    location = now["location"]
+    sections = cast(dict[str, object], now["sections"])
+    location = cast(dict[str, object], now["location"])
 
-    life_text = sections["life"]["text"]
+    life_text = str(cast(dict[str, object], sections["life"])["text"])
     life_paragraphs = life_text.split("\n\n")
-    crux_url = sections["life"]["highlights"][0]["url"]
 
-    work = sections["work"]
-    future = sections["future"]["desires"]
+    work = cast(dict[str, object], sections["work"])
+    future = cast(list[str], cast(dict[str, object], sections["future"])["desires"])
 
-    lines = []
+    lines: list[str] = []
     lines.append(f"{indent}<h3>Life</h3>")
-    lines.append(
-        f'{indent}<aside class="muted">{location["emoji"]} {location["city"]}, {location["state"]}</aside>'
-    )
+    # Location aside — show secondary if present
+    loc_str = f"{location['emoji']} {location['city']}, {location['state']}"
+    secondary = location.get("secondary")
+    if secondary:
+        secondary_loc = cast(dict[str, object], secondary)
+        loc_str += f" / {secondary_loc['city']}, {secondary_loc['state']}"
+    lines.append(f'{indent}<aside class="muted">{loc_str}</aside>')
     for p in life_paragraphs:
-        p_html = p.replace("Crux", f'<a href="{crux_url}">Crux</a>')
+        # Convert markdown links [text](url) to HTML anchors
+        p_html = re.sub(r"\[([^\]]+)\]\(([^\)]+)\)", r'<a href="\2">\1</a>', p)
         p_html = p_html.replace("ultra", "<em>ultra</em>")
         lines.append(f"{indent}<p>{p_html}</p>")
 
     lines.append(f"{indent}<h3>Work</h3>")
-    role = work["currentRole"]
-    company = work["company"]
-    desc = work["description"]
+    role = str(work["currentRole"])
+    company = str(work["company"])
+    desc = str(work["description"])
+    desc_paragraphs = desc.split("\n\n")
+    # First paragraph gets the role/company opener
+    first = desc_paragraphs[0]
     lines.append(
-        f"{indent}<p>I'm fortunate to be able to work remotely as a <strong>{role}</strong> for a {company}. {desc}</p>"
+        f"{indent}<p>I'm fortunate to be able to work remotely as a <strong>{role}</strong> for a {company}. {first}</p>"
     )
+    # Subsequent paragraphs render standalone
+    for p in desc_paragraphs[1:]:
+        lines.append(f"{indent}<p>{p}</p>")
 
     lines.append(f"{indent}<h3>Future</h3>")
     lines.append(f"{indent}<ul>")
@@ -221,10 +280,10 @@ ICON_LINKEDIN = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" 
 ICON_GOODREADS = '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M11.43 23.995c-3.608-.208-6.274-2.077-6.448-5.078.695.007 1.375-.013 2.07-.006.224 1.342 1.065 2.43 2.683 3.026 1.583.496 3.737.46 5.082-.174 1.351-.636 2.145-1.822 2.503-3.577.212-1.042.236-1.734.231-2.92l-.005-1.199h-.046c-.556 1.118-1.278 2.003-2.27 2.622-1.063.665-2.307.96-3.525.96-2.605 0-4.403-1.395-5.505-3.397-.93-1.686-1.327-3.97-1.174-6.21.096-1.417.39-2.725.936-3.856.547-1.13 1.347-2.08 2.374-2.755.969-.638 2.148-1.015 3.483-1.015 1.211 0 2.278.272 3.167.837.89.564 1.571 1.39 2.126 2.405h.044l.179-2.935h2.003c-.042.554-.08 1.388-.08 2.495l-.004 11.237c.002 2.467-.236 4.287-.882 5.578-.872 1.722-2.736 3.072-5.543 3.072-.553 0-1.082-.044-1.6-.11zm3.57-8.236c1.02-.627 1.737-1.558 2.145-2.659.365-.983.494-2.221.494-3.545 0-1.254-.174-2.38-.521-3.386-.403-1.165-1.108-2.083-2.168-2.704-.682-.398-1.456-.6-2.349-.6-1.218 0-2.183.388-2.961 1.158-.749.744-1.263 1.705-1.511 2.892-.192.92-.26 1.853-.217 2.784.05 1.076.231 2.084.597 2.975.464 1.13 1.201 2.028 2.237 2.623.697.399 1.47.596 2.334.596.675 0 1.316-.105 1.92-.334z"/></svg>'
 
 
-def generate_header_icons_html(now: dict) -> str:
+def generate_header_icons_html(now: dict[str, object]) -> str:
     """Generate inline SVG icon links for the header."""
-    links = now["links"]
-    icons = []
+    links = cast(dict[str, str], now["links"])
+    icons: list[str] = []
     if "github" in links:
         icons.append(
             f'<a href="https://github.com/{links["github"]}/" class="header-icon" aria-label="GitHub">{ICON_GITHUB}</a>'
@@ -240,14 +299,21 @@ def generate_header_icons_html(now: dict) -> str:
     return "\n            ".join(icons)
 
 
-def generate_full_html(books_data: dict, albums_data: dict, now_data: dict) -> str:
+def generate_full_html(
+    books_data: dict[str, object],
+    albums_data: dict[str, object],
+    now_data: dict[str, object],
+) -> str:
     """Generate the complete v4 HTML page."""
-    books_html = generate_book_groups_html(books_data["books"])
-    albums_html = generate_albums_html(albums_data["albums"])
+    books = cast(list[dict[str, object]], books_data["books"])
+    albums = cast(list[dict[str, object]], albums_data["albums"])
+    books_html = generate_book_groups_html(books)
+    albums_html = generate_albums_html(albums)
     now_html = generate_now_html(now_data)
     header_icons = generate_header_icons_html(now_data)
 
-    now_content_date = format_content_date(now_data["meta"].get("contentUpdated", ""))
+    now_meta = cast(dict[str, object], now_data["meta"])
+    now_content_date = format_content_date(str(now_meta.get("contentUpdated", "")))
     build_date = datetime.now().strftime("%B %d, %Y")
 
     return f"""<!DOCTYPE html>
@@ -258,7 +324,7 @@ def generate_full_html(books_data: dict, albums_data: dict, now_data: dict) -> s
     <title>Kyle Fring</title>
     <meta name="description" content="Kyle Fring — Program Director / Data Engineer. Personal website.">
     <meta property="og:title" content="Kyle Fring">
-    <meta property="og:description" content="Program Director / Data Engineer in Chattanooga, TN.">
+    <meta property="og:description" content="Program Director / Data Engineer. Chattanooga, TN & Fayetteville, WV.">
     <meta property="og:type" content="website">
     
     <style>
@@ -267,10 +333,11 @@ def generate_full_html(books_data: dict, albums_data: dict, now_data: dict) -> s
             --bg: #1a1a1a;
             --text: #e0e0e0;
             --muted: #888;
-            --accent: #5eead4;
+            --accent: #88dcb4;
             --border: #333;
             --code-bg: #222;
             --selection: rgba(94, 234, 212, 0.2);
+            --bg-alpha: rgba(26,26,26,0.7);
             --font-stack: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
         }}
 
@@ -278,10 +345,11 @@ def generate_full_html(books_data: dict, albums_data: dict, now_data: dict) -> s
             --bg: #fafafa;
             --text: #1a1a1a;
             --muted: #666;
-            --accent: #0d9488;
+            --accent: #278061;
             --border: #ddd;
             --code-bg: #f0f0f0;
             --selection: rgba(13, 148, 136, 0.2);
+            --bg-alpha: rgba(250,250,250,0.7);
         }}
 
         * {{
@@ -289,8 +357,8 @@ def generate_full_html(books_data: dict, albums_data: dict, now_data: dict) -> s
         }}
 
         ::selection {{
-            background: var(--selection);
-            color: inherit;
+            background: var(--accent);
+            color: var(--bg);
         }}
 
         html {{
@@ -302,7 +370,7 @@ def generate_full_html(books_data: dict, albums_data: dict, now_data: dict) -> s
             color: var(--text);
             font-family: var(--font-stack);
             font-size: 16px;
-            line-height: 1.7;
+            line-height: 1.6;
             margin: 0;
             padding: 2rem;
             transition: background-color 0.3s ease, color 0.3s ease;
@@ -319,6 +387,7 @@ def generate_full_html(books_data: dict, albums_data: dict, now_data: dict) -> s
             margin-top: 2.5rem;
             margin-bottom: 1rem;
             line-height: 1.2;
+            letter-spacing: -0.03em;
         }}
 
         h1 {{ font-size: 2rem; margin-top: 0; }}
@@ -329,14 +398,16 @@ def generate_full_html(books_data: dict, albums_data: dict, now_data: dict) -> s
         
         a {{
             color: var(--text);
-            text-decoration: none;
-            border-bottom: 1px solid var(--accent);
-            transition: color 0.2s, border-color 0.2s;
+            text-decoration: underline;
+            text-decoration-color: var(--accent);
+            text-decoration-thickness: 1px;
+            text-underline-offset: 4px;
+            transition: color 0.2s, text-decoration-color 0.2s;
         }}
 
         a:hover {{
             color: var(--accent);
-            border-bottom-color: transparent;
+            text-decoration-color: transparent;
         }}
 
         ul {{
@@ -371,7 +442,7 @@ def generate_full_html(books_data: dict, albums_data: dict, now_data: dict) -> s
 
         .header-icon {{
             color: var(--muted);
-            border: none;
+            text-decoration: none;
             transition: color 0.2s;
             display: flex;
         }}
@@ -391,44 +462,78 @@ def generate_full_html(books_data: dict, albums_data: dict, now_data: dict) -> s
             gap: 0.5rem;
         }}
 
-        nav a {{ border-bottom: none; }}
+        nav a {{ text-decoration: none; }}
         nav a:hover {{ color: var(--accent); }}
         .nav-separator {{ color: var(--muted); padding: 0 0.5rem; }}
 
         /* Sections */
-        section {{
-            margin-bottom: 4rem;
-            padding-left: 1rem;
-            border-left: 3px solid transparent;
-            transition: border-color 0.3s;
-        }}
+        section {{ margin-bottom: 4rem; }}
 
-        section:hover {{
-            border-left-color: var(--selection);
+        section p, section ul, section aside {{
+            max-width: 80ch;
         }}
 
         /* Content Grid (Books & Albums) */
-        .book-grid {{
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
-            gap: 1rem 2rem;
-        }}
-
-        .book-group {{
+        details.book-group {{
             margin-bottom: 0.5rem;
             padding-left: 1rem;
             border-left: 2px solid var(--border);
             transition: border-color 0.2s;
         }}
 
-        .book-group:hover {{
+        details.book-group:hover {{
             border-left-color: var(--accent);
         }}
 
-        .book-year {{
+        details.book-group summary {{
+            list-style: none;
+            cursor: pointer;
             font-weight: bold;
-            display: block;
-            margin-bottom: 0.3rem;
+            padding: 0.25rem 0;
+            user-select: none;
+        }}
+
+        details.book-group summary::-webkit-details-marker {{
+            display: none;
+        }}
+
+        details.book-group summary::before {{
+            content: "[+] ";
+            color: var(--muted);
+            font-size: 0.9em;
+        }}
+
+        details.book-group[open] > summary::before {{
+            content: "[-] ";
+        }}
+
+        details.book-group summary:hover {{
+            color: var(--accent);
+        }}
+
+        details.book-overflow {{
+            margin-top: 0.25rem;
+        }}
+
+        details.book-overflow summary {{
+            list-style: none;
+            cursor: pointer;
+            user-select: none;
+            padding: 0.25rem 0;
+        }}
+
+        details.book-overflow summary::-webkit-details-marker {{
+            display: none;
+        }}
+
+        details.book-overflow summary:hover {{
+            color: var(--accent);
+        }}
+
+        .book-grid {{
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1rem 2rem;
         }}
 
         .book-title {{
@@ -447,7 +552,7 @@ def generate_full_html(books_data: dict, albums_data: dict, now_data: dict) -> s
 
         .album-grid {{
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 1rem 2rem;
         }}
 
@@ -471,7 +576,7 @@ def generate_full_html(books_data: dict, albums_data: dict, now_data: dict) -> s
         .album-title {{
             display: block;
             font-weight: bold;
-            border-bottom: none;
+            text-decoration: none;
         }}
 
         .album-title:hover {{
@@ -492,7 +597,9 @@ def generate_full_html(books_data: dict, albums_data: dict, now_data: dict) -> s
             position: fixed;
             top: 1.5rem;
             right: 1.5rem;
-            background: none;
+            background: var(--bg-alpha);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             border: 1px solid var(--border);
             color: var(--text);
             padding: 0.5rem;
@@ -514,7 +621,7 @@ def generate_full_html(books_data: dict, albums_data: dict, now_data: dict) -> s
             font-size: 0.8rem;
             margin-top: 1rem;
             color: var(--muted);
-            border: none;
+            text-decoration: none;
         }}
         .back-to-top:hover {{ color: var(--accent); }}
 
@@ -617,10 +724,11 @@ def generate_full_html(books_data: dict, albums_data: dict, now_data: dict) -> s
 
 def main():
     parser = argparse.ArgumentParser(description="Regenerate v4 HTML from content JSON")
-    parser.add_argument(
+    _ = parser.add_argument(
         "--preview", action="store_true", help="Print HTML to stdout instead of writing"
     )
     args = parser.parse_args()
+    preview = bool(getattr(args, "preview", False))
 
     content_dir = Path("content")
     output_file = Path("sites/v4/index.html")
@@ -632,17 +740,19 @@ def main():
     albums_data = load_json(content_dir / "albums.json")
     now_data = load_json(content_dir / "now.json")
 
-    print(f"  Books:  {len(books_data['books'])}")
-    print(f"  Albums: {len(albums_data['albums'])}")
+    books = cast(list[dict[str, object]], books_data["books"])
+    albums = cast(list[dict[str, object]], albums_data["albums"])
+    print(f"  Books:  {len(books)}")
+    print(f"  Albums: {len(albums)}")
 
     full_html = generate_full_html(books_data, albums_data, now_data)
 
-    if args.preview:
+    if preview:
         print("\n" + full_html)
     else:
-        output_file.parent.mkdir(parents=True, exist_ok=True)
+        _ = output_file.parent.mkdir(parents=True, exist_ok=True)
         with open(output_file, "w") as f:
-            f.write(full_html)
+            _ = f.write(full_html)
 
         size_kb = len(full_html.encode("utf-8")) / 1024
         print(f"\n✓ Generated {output_file} ({size_kb:.1f} KB)")

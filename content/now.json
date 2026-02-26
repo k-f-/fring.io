@@ -1,40 +1,35 @@
 {
   "meta": {
     "version": "1.0",
-    "lastUpdated": "2026-02-15T18:53:58.178477",
-    "contentUpdated": "2025-11-02",
+    "lastUpdated": "2026-02-25T22:48:35.850960",
+    "contentUpdated": "2026-02-25",
     "description": "Current activities and status - /now page content"
   },
   "location": {
     "city": "Chattanooga",
     "state": "TN",
     "country": "USA",
-    "emoji": "\ud83d\udccd"
+    "emoji": "\ud83d\udccd",
+    "secondary": {
+      "city": "Fayetteville",
+      "state": "WV"
+    }
   },
   "sections": {
     "life": {
-      "text": "Most mornings I sweat at [Crux](http://cruxconditioning.com/), an incredible gym with a great community. Progress there has been a massive solace through the second half of Covid-19's 2020. I'm able to get outdoors on the weekends and go hard.\n\nI've made several good friends since moving here and that's ultra rewarding. Content. Life is good.",
-      "highlights": [
-        {
-          "text": "Crux",
-          "url": "http://cruxconditioning.com/"
-        }
-      ]
+      "text": "I split my time between Chattanooga, TN and Fayetteville, WV \u2014 two towns with world-class outdoor access and tight-knit communities. Weekends are for getting outside or working on my 110-year-old house.\n\nOutside the day job, I enjoy running, swimming, and climbing. I run a homelab and an orchestrated AI agent workflow for personal projects \u2014 agents delegating across sub-agents, wired through terminal-first tooling.\n\nI'm also studying vehicle dynamics, dialing in suspension, and working toward my first HPDE season.",
+      "highlights": []
     },
     "work": {
       "currentRole": "Program Director",
       "company": "Fortune 500 managed care provider",
-      "description": "I lead cross-functional initiatives bridging data engineering, analytics, and business strategy. It's rewarding work that impacts tens of thousands of co-workers and many millions of members.",
-      "previousRole": {
-        "title": "Senior Data Analyst/Engineer",
-        "description": "I designed data pipelines, built value-based contracting datasets, and led pharmacy data lake migrations. The deep dive into healthcare data-sets\u2014becoming responsible for the single source of truth\u2014was both challenging and engaging."
-      }
+      "description": "I lead cross-functional teams bridging data engineering, analytics, and business strategy. It's rewarding work that impacts tens of thousands of co-workers and many millions of customers."
     },
     "future": {
       "desires": [
-        "I'd like to use different tools. Microsoft is fine, Teams & PowerBI are very good, but in my heart I'm a FOSS guy: Terminals, Python, R, etc. are more interesting to me.",
-        "I do appreciate the modern need for specialization. However, I'd like to flex a life-time of wearing many hats.",
-        "A good deal more flexibility with working hours. I always deliver. Don't make me sit at a desk just because I need to not be afk. Life is way too short."
+        "AI leadership. I've spent 25 years teaching myself new domains \u2014 networking, systems, devops, data engineering, software. AI is the current one. I'm building orchestrated agent workflows at home and I want to do it professionally.",
+        "A culture that respects focused work over seat time.",
+        "A place where the energy I bring to homelab projects is the norm. I've been a self-taught nerd my entire life and I'm not going to stop."
       ]
     }
   },

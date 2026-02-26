@@ -27,6 +27,10 @@ build/
 __pycache__/
 *.pyc
 
+# Node
+node_modules/
+package-lock.json
+
 # Temporary files
 *.tmp
 .cache/

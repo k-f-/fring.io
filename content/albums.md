@@ -3,7 +3,7 @@
   "meta": {
     "version": "1.0",
     "lastUpdated": "2025-11-14T22:14:25.641648",
-    "contentUpdated": "2026-02-13",
+    "contentUpdated": "2026-02-28",
     "description": "Album listening log for fring.io - version agnostic content"
   }
 }
@@ -13,7 +13,13 @@
 
 Music I've listened to, chronologically.
 
-## 2026 (1 albums)
+## 2026 (2 albums)
+
+
+### [2026-02-28] Boy Harsher - Lesser Man EP
+**Released:** 2014
+**Listen:** [Spotify](https://open.spotify.com/album/3A0q6JgJ9jky4VRJnCDxC3)
+**Duration:** 6 tracks, 29 min.
 
 ### [2026-02-13] Waxahatchee - Tigers Blood
 **Released:** 2024

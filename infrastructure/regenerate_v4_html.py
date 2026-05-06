@@ -243,13 +243,19 @@ def generate_now_html(now: dict[str, object], indent: str = "                ") 
         lines.append(f"{indent}<p>{p_html}</p>")
 
     lines.append(f"{indent}<h3>Work</h3>")
-    role = str(work["currentRole"])
-    company = str(work["company"])
-    desc = str(work["description"])
-    lines.append(f"{indent}<p><strong>Current Role:</strong> {role}<br>")
-    lines.append(f"{indent}<strong>Company:</strong> {company}</p>")
-    for p in desc.split("\n\n"):
-        lines.append(f"{indent}<p>{p}</p>")
+    role = work.get("currentRole")
+    company = work.get("company")
+    desc = work.get("description")
+    meta_lines = []
+    if role:
+        meta_lines.append(f"<strong>Current Role:</strong> {role}")
+    if company:
+        meta_lines.append(f"<strong>Company:</strong> {company}")
+    if meta_lines:
+        lines.append(f"{indent}<p>" + "<br>\n{}".format(indent).join(meta_lines) + "</p>")
+    if desc:
+        for p in str(desc).split("\n\n"):
+            lines.append(f"{indent}<p>{p}</p>")
 
     lines.append(f"{indent}<h3>Future</h3>")
     lines.append(f"{indent}<ul>")

@@ -80,9 +80,9 @@ class NowMarkdownParser:
             if company_match:
                 work_data["company"] = company_match.group(1).strip()
 
-            # Description (text between Company and Previous Role)
+            # Description starts after Current Role or Company (whichever is last present)
             desc_match = re.search(
-                r"\*\*Company:\*\* .+?\n\n(.+?)(?=\n\*\*Previous Role|\Z)",
+                r"(?:\*\*Company:\*\*|\*\*Current Role:\*\*) .+?\n\n(.+?)(?=\n\*\*Previous Role|\Z)",
                 work_content,
                 re.DOTALL,
             )

@@ -112,13 +112,23 @@ class NowMarkdownParser:
 
         # Parse Future section
         future_match = re.search(
-            r"## Future\n\n.+?\n\n(.+?)(?=\n\n---|\n\n##|\Z)", content, re.DOTALL
+            r"## Future\n\n(.+?)(?=\n\n---|\n\n##|\Z)", content, re.DOTALL
         )
         if future_match:
             future_content = future_match.group(1).strip()
+            future_data = {}
+
+            # Capture optional intro paragraph (text before the first bullet)
+            intro_match = re.search(r"^(.+?)(?=\n-\s)", future_content, re.DOTALL)
+            if intro_match:
+                intro = intro_match.group(1).strip()
+                if intro:
+                    future_data["intro"] = intro
+
             # Extract desires from bullet list
             desires = re.findall(r"^- (.+)$", future_content, re.MULTILINE)
-            sections["future"] = {"desires": desires}
+            future_data["desires"] = desires
+            sections["future"] = future_data
 
         # Parse Elsewhere/links section
         elsewhere_match = re.search(

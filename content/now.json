@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0",
-    "lastUpdated": "2026-02-28T13:01:01.551849",
+    "lastUpdated": "2026-05-06T19:22:21.505932",
     "contentUpdated": "2026-02-25",
     "description": "Current activities and status - /now page content"
   },
@@ -17,7 +17,7 @@
   },
   "sections": {
     "life": {
-      "text": "I split my time between Chattanooga, TN and Fayetteville, WV \u2014 two towns with world-class outdoor access and tight-knit communities. Weekends are for getting outside or working on my 110-year-old house.\n\nOutside the day job, I enjoy running, swimming, and climbing. I run a homelab and an orchestrated AI agent workflow for personal projects \u2014 agents delegating across sub-agents, wired through terminal-first tooling.\n\nI'm also studying vehicle dynamics, dialing in suspension, and working toward my first HPDE season.",
+      "text": "I split my time between Chattanooga, TN and Fayetteville, WV \u2014 two towns with world-class outdoor access and tight-knit communities. Weekends are for getting outside or working on my 110-year-old house.\n\nOutside the day job, I enjoy running, swimming, and climbing. I run a home lab and an orchestrated AI agent workflow for personal projects \u2014 agents delegating across sub-agents, wired through terminal-first tooling.\n\nI'm also studying vehicle dynamics and working toward my first HPDE season.",
       "highlights": []
     },
     "work": {
@@ -26,10 +26,11 @@
       "description": "I lead cross-functional teams bridging data engineering, analytics, and business strategy. It's rewarding work that impacts tens of thousands of co-workers and many millions of customers."
     },
     "future": {
+      "intro": "What I'd like in my next role or phase:",
       "desires": [
-        "AI leadership. I've spent 25 years teaching myself new domains \u2014 networking, systems, devops, data engineering, software. AI is the current one. I'm building orchestrated agent workflows at home and I want to do it professionally.",
+        "I've spent 25 years teaching myself new domains \u2014 networking, systems, devops, data engineering, software. I'm building orchestrated agentic workflows at home and I want to do it professionally.",
         "A culture that respects focused work over seat time.",
-        "A place where the energy I bring to homelab projects is the norm. I've been a self-taught nerd my entire life and I'm not going to stop."
+        "I bring engagement and energy to my personal projects, having an opportunity to be that engaged at work would be lovely."
       ]
     }
   },

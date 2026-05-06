@@ -345,7 +345,8 @@ class JSONToMarkdownConverter:
             md.append("## Future\n")
             future = sections["future"]
             if isinstance(future, dict) and future.get("desires"):
-                md.append("What I'd like in my next role or phase:\n")
+                intro = future.get("intro", "What I'd like in my next role or phase:")
+                md.append(intro + "\n")
                 for desire in future["desires"]:
                     md.append(f"- {desire}")
             else:

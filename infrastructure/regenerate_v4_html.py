@@ -239,35 +239,22 @@ def generate_now_html(now: dict[str, object], indent: str = "                ") 
         loc_str += f" / {secondary_loc['city']}, {secondary_loc['state']}"
     lines.append(f'{indent}<aside class="muted">{loc_str}</aside>')
     for p in life_paragraphs:
-        # Convert markdown links [text](url) to HTML anchors
         p_html = re.sub(r"\[([^\]]+)\]\(([^\)]+)\)", r'<a href="\2">\1</a>', p)
-        p_html = p_html.replace("ultra", "<em>ultra</em>")
         lines.append(f"{indent}<p>{p_html}</p>")
 
     lines.append(f"{indent}<h3>Work</h3>")
     role = str(work["currentRole"])
     company = str(work["company"])
     desc = str(work["description"])
-    desc_paragraphs = desc.split("\n\n")
-    # First paragraph gets the role/company opener
-    first = desc_paragraphs[0]
-    lines.append(
-        f"{indent}<p>I'm fortunate to be able to work remotely as a <strong>{role}</strong> for a {company}. {first}</p>"
-    )
-    # Subsequent paragraphs render standalone
-    for p in desc_paragraphs[1:]:
+    lines.append(f"{indent}<p><strong>Current Role:</strong> {role}<br>")
+    lines.append(f"{indent}<strong>Company:</strong> {company}</p>")
+    for p in desc.split("\n\n"):
         lines.append(f"{indent}<p>{p}</p>")
 
     lines.append(f"{indent}<h3>Future</h3>")
     lines.append(f"{indent}<ul>")
     for desire in future:
-        d = desire
-        d = d.replace("very", "<em>very</em>")
-        d = d.replace("FOSS", "<em>FOSS</em>")
-        d = d.replace("specialization", "<em>specialization</em>")
-        d = d.replace("not", "<em>not</em>")
-        d = d.replace("way", "<strong>way</strong>")
-        lines.append(f"{indent}    <li>{d}</li>")
+        lines.append(f"{indent}    <li>{desire}</li>")
     lines.append(f"{indent}</ul>")
 
     return "\n".join(lines)

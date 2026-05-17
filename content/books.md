@@ -3,7 +3,7 @@
   "meta": {
     "version": "1.0",
     "lastUpdated": "2025-11-02T20:43:18.625142",
-    "contentUpdated": "2026-02-13",
+    "contentUpdated": "2026-05-17",
     "description": "Canonical book list for fring.io - version agnostic content"
   }
 }
@@ -15,6 +15,9 @@ Books I've read, organized by year.
 
 ## 2026
 
+- Principles: Life and Work
+- The Three-Body Problem (Remembrance of Earth’s Past, #1)
+- Maintenance of Everything: Part One (Maintenance: Of Everything Book 1)
 - How to Change your Mind
 
 ## 2024

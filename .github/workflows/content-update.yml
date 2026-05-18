@@ -70,6 +70,7 @@ jobs:
           git diff --quiet content/*.json sites/v4/index.html && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
 
       - name: Commit generated files
+        id: commit
         if: steps.changes.outputs.changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
@@ -83,21 +84,25 @@ jobs:
           git pull --rebase origin main
           git push
 
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
       - name: Trigger deployment
         if: steps.changes.outputs.changed == 'true'
         uses: actions/github-script@v7
         with:
           script: |
+            const sha = '${{ steps.commit.outputs.sha }}';
             await github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: 'deploy.yml',
               ref: 'main',
               inputs: {
-                version: 'v4'
+                version: 'v4',
+                sha
               }
             });
-            console.log('✅ Triggered deploy.yml for v4');
+            console.log(`✅ Triggered deploy.yml for v4 @ ${sha}`);
 
       - name: Summary
         run: |

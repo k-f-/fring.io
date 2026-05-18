@@ -12,6 +12,10 @@ on:
         description: 'Version to deploy (e.g., v4, v3, v2, v1)'
         required: true
         default: 'v4'
+      sha:
+        description: 'Specific commit SHA to deploy (defaults to ref HEAD). Use to avoid races when chaining from another workflow.'
+        required: false
+        default: ''
 
 env:
   AWS_REGION: ${{ secrets.AWS_REGION }}
@@ -29,6 +33,10 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 2  # Need at least 2 commits for git diff HEAD~1
+          # Pin to caller-supplied SHA when present; otherwise use the event's resolved ref.
+          # This avoids a race where a dispatching workflow has just pushed a new commit
+          # but GitHub's `main` ref hasn't propagated yet, causing the dispatch to see a stale HEAD.
+          ref: ${{ inputs.sha != '' && inputs.sha || github.sha }}
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4

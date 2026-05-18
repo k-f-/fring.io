@@ -9,6 +9,11 @@ on:
     paths:
       - 'content/*.md'
   workflow_dispatch:
+    inputs:
+      sha:
+        description: 'Specific commit SHA to regenerate from (defaults to ref HEAD). Use to avoid races when chaining from another workflow.'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -27,6 +32,10 @@ jobs:
         with:
           # Use a PAT or default token with write permissions
           token: ${{ secrets.GITHUB_TOKEN }}
+          # Pin to caller-supplied SHA when present (avoids races when chained from
+          # content-sync.yml — see deploy.yml for the same pattern). Falls back to
+          # github.sha for push events and bare manual dispatches.
+          ref: ${{ inputs.sha != '' && inputs.sha || github.sha }}
 
       - name: Set up Python
         uses: actions/setup-python@v5

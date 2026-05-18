@@ -45,6 +45,7 @@ jobs:
           git diff --quiet content/*.md && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
 
       - name: Commit content changes
+        id: commit
         if: steps.changes.outputs.changed == 'true'
         run: |
           git config user.name "github-actions[bot]"
@@ -57,18 +58,22 @@ jobs:
           git pull --rebase origin main
           git push
 
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+
       - name: Trigger content-update pipeline
         if: steps.changes.outputs.changed == 'true'
         uses: actions/github-script@v7
         with:
           script: |
+            const sha = '${{ steps.commit.outputs.sha }}';
             await github.rest.actions.createWorkflowDispatch({
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: 'content-update.yml',
-              ref: 'main'
+              ref: 'main',
+              inputs: { sha }
             });
-            console.log('Triggered content-update.yml');
+            console.log(`Triggered content-update.yml @ ${sha}`);
 
       - name: Summary
         run: |

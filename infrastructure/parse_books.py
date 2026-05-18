@@ -43,9 +43,11 @@ class BooksMarkdownParser:
                 "description": "Canonical book list for fring.io - version agnostic content",
             }
 
-        meta["lastUpdated"] = datetime.now().isoformat()
         if "contentUpdated" not in meta:
             meta["contentUpdated"] = datetime.now().strftime("%Y-%m-%d")
+        # Drop any lastUpdated carried over from prior JSON/MD frontmatter — nothing
+        # renders it, and keeping it just causes phantom diffs each run.
+        meta.pop("lastUpdated", None)
 
         books = []
 
@@ -92,7 +94,6 @@ class BooksMarkdownParser:
                         "title": title.strip(),
                         "year": year,
                         "yearLabel": year_label,
-                        "dateAdded": datetime.now().isoformat(),
                     }
                 )
 

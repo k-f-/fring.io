@@ -43,9 +43,11 @@ class MarkdownToJSONParser:
                 "description": "Album listening log for fring.io - version agnostic content",
             }
 
-        meta["lastUpdated"] = datetime.now().isoformat()
         if "contentUpdated" not in meta:
             meta["contentUpdated"] = datetime.now().strftime("%Y-%m-%d")
+        # Drop any lastUpdated carried over from prior JSON/MD frontmatter — nothing
+        # renders it, and keeping it just causes phantom diffs each run.
+        meta.pop("lastUpdated", None)
 
         albums = []
 
@@ -75,7 +77,6 @@ class MarkdownToJSONParser:
                 "tracks": None,
                 "playtime": None,
                 "notes": None,
-                "dateAdded": datetime.now().isoformat(),
             }
 
             # Released year

@@ -84,6 +84,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+          # Pinning checkout to a SHA leaves us in detached HEAD; reattach to main
+          # so the subsequent rebase + push have a tracking branch to work with.
+          git checkout -B main
           git add content/*.json sites/v4/index.html
           git commit -m "chore: regenerate site from content update
 
@@ -91,7 +94,7 @@ jobs:
           Triggered by: ${{ github.sha }}"
 
           git pull --rebase origin main
-          git push
+          git push origin HEAD:main
 
           echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
 

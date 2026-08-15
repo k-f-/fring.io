@@ -1,10 +1,15 @@
 {
   "meta": {
     "version": "1.0",
-    "contentUpdated": "2026-05-17",
+    "contentUpdated": "2026-08-15",
     "description": "Canonical book list for fring.io - version agnostic content"
   },
   "books": [
+    {
+      "title": "Being the Boss, with a New Preface: The 3 Imperatives for Becoming a Great Leader",
+      "year": 2026,
+      "yearLabel": null
+    },
     {
       "title": "Principles: Life and Work",
       "year": 2026,

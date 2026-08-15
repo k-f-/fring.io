@@ -14,6 +14,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # GitHub disables scheduled workflows after 60 days without human commits;
+      # bot commits via GITHUB_TOKEN don't count. Calling the enable endpoint on
+      # every run resets that inactivity timer so this cron never gets shut off.
+      - name: Keepalive (reset 60-day scheduled-workflow timer)
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh api -X PUT repos/${{ github.repository }}/actions/workflows/content-sync.yml/enable
+
       - name: Checkout code
         uses: actions/checkout@v4
         with:

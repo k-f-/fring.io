@@ -24,6 +24,7 @@ import re
 import html
 import math
 import argparse
+import urllib.parse
 from typing import cast
 from datetime import datetime
 from pathlib import Path
@@ -79,6 +80,12 @@ def build_year_sparkline(year_counts: OrderedDict[str, int]) -> str:
     return " | ".join(parts)
 
 
+def book_title_html(title: str) -> str:
+    """Render a book title as a GoodReads search link."""
+    href = f"https://www.goodreads.com/search?q={urllib.parse.quote_plus(title)}"
+    return f'<a href="{href}" target="_blank" class="book-title">{html.escape(title)}</a>'
+
+
 def generate_book_groups_html(
     books: list[dict[str, object]], indent: str = "                "
 ) -> str:
@@ -115,9 +122,7 @@ def generate_book_groups_html(
                 f'{indent}    <summary class="book-year">{year_display} <span class="muted small">({count})</span></summary>'
             )
             for title in titles:
-                lines.append(
-                    f'{indent}    <span class="book-title">{html.escape(title)}</span>'
-                )
+                lines.append(f"{indent}    {book_title_html(title)}")
             lines.append(f"{indent}</details>")
         else:
             remaining = count - VISIBLE_COUNT
@@ -126,17 +131,13 @@ def generate_book_groups_html(
                 f'{indent}    <span class="book-year">{year_display} <span class="muted small">({count})</span></span>'
             )
             for title in titles[:VISIBLE_COUNT]:
-                lines.append(
-                    f'{indent}    <span class="book-title">{html.escape(title)}</span>'
-                )
+                lines.append(f"{indent}    {book_title_html(title)}")
             lines.append(f'{indent}    <details class="book-overflow">')
             lines.append(
                 f'{indent}        <summary class="muted small">[+] {remaining} more</summary>'
             )
             for title in titles[VISIBLE_COUNT:]:
-                lines.append(
-                    f'{indent}        <span class="book-title">{html.escape(title)}</span>'
-                )
+                lines.append(f"{indent}        {book_title_html(title)}")
             lines.append(f"{indent}    </details>")
             lines.append(f"{indent}</div>")
 
@@ -534,6 +535,12 @@ def generate_full_html(
             color: var(--muted);
             font-size: 0.9em;
             line-height: 1.5;
+            text-decoration: none;
+        }}
+
+        a.book-title:hover {{
+            color: var(--accent);
+            text-decoration: underline;
         }}
 
         .sparkline {{
@@ -568,12 +575,12 @@ def generate_full_html(
 
         .album-title {{
             display: block;
-            font-weight: bold;
             text-decoration: none;
         }}
 
-        .album-title:hover {{
+        a.album-title:hover {{
             color: var(--accent);
+            text-decoration: underline;
         }}
 
         .album-note {{

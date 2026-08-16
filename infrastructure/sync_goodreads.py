@@ -23,9 +23,16 @@ RSS_URL = f"https://www.goodreads.com/review/list_rss/{GOODREADS_USER_ID}?shelf=
 BOOKS_MD = Path("content/books.md")
 
 
+def display_title(entry):
+    """Extract the display title from a books.md entry, which may be a
+    plain title or a markdown link like [Title](url)."""
+    m = re.match(r"\[(.+)\]\(\S+\)$", entry.strip())
+    return m.group(1) if m else entry
+
+
 def normalize_title(title):
     """Strip subtitles, series markers, punctuation for fuzzy title matching."""
-    t = title.lower().strip()
+    t = display_title(title).lower().strip()
     t = re.sub(r"\s*\([^)]*\)\s*$", "", t)
     t = t.split(":")[0].strip()
     t = re.sub(r"[^\w\s]", "", t)
@@ -63,7 +70,10 @@ def fetch_rss_books():
             except ValueError:
                 pass
 
-        books.append({"title": title, "year": year})
+        book_id = item.findtext("book_id", "").strip()
+        url = f"https://www.goodreads.com/book/show/{book_id}" if book_id else None
+
+        books.append({"title": title, "year": year, "url": url})
 
     print(f"  Found {len(books)} books in RSS feed")
     return books
@@ -156,7 +166,11 @@ def main():
 
     by_year = {}
     for book in new_books:
-        by_year.setdefault(book["year"], []).append(book["title"])
+        # Store as a markdown link when the RSS gave us the book page URL
+        entry = (
+            f"[{book['title']}]({book['url']})" if book.get("url") else book["title"]
+        )
+        by_year.setdefault(book["year"], []).append(entry)
 
     year_to_idx = {s[0]: i for i, s in enumerate(sections) if s[0] is not None}
 

@@ -56,19 +56,25 @@ class JSONToMarkdownConverter:
             else:
                 prior_books.append(book)
 
+        def book_entry(book):
+            # Preserve goodreadsUrl as a markdown link for lossless round-trips
+            if book.get("goodreadsUrl"):
+                return f"- [{book['title']}]({book['goodreadsUrl']})"
+            return f"- {book['title']}"
+
         # Recent years (descending)
         for year in sorted(books_by_year.keys(), reverse=True):
             books = books_by_year[year]
             md.append(f"## {year} ({len(books)} books)\n")
             for book in books:
-                md.append(f"- {book['title']}")
+                md.append(book_entry(book))
             md.append("")
 
         # Prior books
         if prior_books:
             md.append(f"## Prior to 2015 ({len(prior_books)} books)\n")
             for book in prior_books:
-                md.append(f"- {book['title']}")
+                md.append(book_entry(book))
             md.append("")
 
         # Footer

@@ -46,14 +46,16 @@ def format_content_date(date_str: str) -> str:
         return date_str
 
 
-def group_books_by_year(books: list[dict[str, object]]) -> OrderedDict[str, list[str]]:
+def group_books_by_year(
+    books: list[dict[str, object]],
+) -> OrderedDict[str, list[dict[str, object]]]:
     """Group books by year, maintaining order (newest first). yearLabel books go last."""
-    groups: OrderedDict[str, list[str]] = OrderedDict()
+    groups: OrderedDict[str, list[dict[str, object]]] = OrderedDict()
     for book in books:
         key = str(book.get("yearLabel") or book.get("year", "Unknown"))
         if key not in groups:
             groups[key] = []
-        groups[key].append(str(book["title"]))
+        groups[key].append(book)
     return groups
 
 
@@ -80,10 +82,17 @@ def build_year_sparkline(year_counts: OrderedDict[str, int]) -> str:
     return " | ".join(parts)
 
 
-def book_title_html(title: str) -> str:
-    """Render a book title as a GoodReads search link."""
-    href = f"https://www.goodreads.com/search?q={urllib.parse.quote_plus(title)}"
-    return f'<a href="{href}" target="_blank" class="book-title">{html.escape(title)}</a>'
+def book_title_html(book: dict[str, object]) -> str:
+    """Render a book title as a GoodReads link — the exact book page when
+    the data carries a URL, otherwise a title search."""
+    title = str(book["title"])
+    url = book.get("goodreadsUrl")
+    href = (
+        str(url)
+        if url
+        else f"https://www.goodreads.com/search?q={urllib.parse.quote_plus(title)}"
+    )
+    return f'<a href="{html.escape(href)}" target="_blank" class="book-title">{html.escape(title)}</a>'
 
 
 def generate_book_groups_html(
@@ -112,17 +121,17 @@ def generate_book_groups_html(
     OVERFLOW_THRESHOLD = 17
     VISIBLE_COUNT = 10
 
-    for year_key, titles in groups.items():
+    for year_key, year_books in groups.items():
         year_display = html.escape(str(year_key))
-        count = len(titles)
+        count = len(year_books)
 
         if count <= OVERFLOW_THRESHOLD:
             lines.append(f'{indent}<details class="book-group" open>')
             lines.append(
                 f'{indent}    <summary class="book-year">{year_display} <span class="muted small">({count})</span></summary>'
             )
-            for title in titles:
-                lines.append(f"{indent}    {book_title_html(title)}")
+            for book in year_books:
+                lines.append(f"{indent}    {book_title_html(book)}")
             lines.append(f"{indent}</details>")
         else:
             remaining = count - VISIBLE_COUNT
@@ -130,14 +139,14 @@ def generate_book_groups_html(
             lines.append(
                 f'{indent}    <span class="book-year">{year_display} <span class="muted small">({count})</span></span>'
             )
-            for title in titles[:VISIBLE_COUNT]:
-                lines.append(f"{indent}    {book_title_html(title)}")
+            for book in year_books[:VISIBLE_COUNT]:
+                lines.append(f"{indent}    {book_title_html(book)}")
             lines.append(f'{indent}    <details class="book-overflow">')
             lines.append(
                 f'{indent}        <summary class="muted small">[+] {remaining} more</summary>'
             )
-            for title in titles[VISIBLE_COUNT:]:
-                lines.append(f"{indent}        {book_title_html(title)}")
+            for book in year_books[VISIBLE_COUNT:]:
+                lines.append(f"{indent}        {book_title_html(book)}")
             lines.append(f"{indent}    </details>")
             lines.append(f"{indent}</div>")
 

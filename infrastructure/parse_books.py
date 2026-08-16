@@ -89,13 +89,18 @@ class BooksMarkdownParser:
             book_titles = re.findall(r"^- (.+)$", section_content, re.MULTILINE)
 
             for title in book_titles:
-                books.append(
-                    {
-                        "title": title.strip(),
-                        "year": year,
-                        "yearLabel": year_label,
-                    }
-                )
+                title = title.strip()
+                book = {
+                    "title": title,
+                    "year": year,
+                    "yearLabel": year_label,
+                }
+                # Entries may be markdown links: [Title](goodreads-url)
+                link_match = re.match(r"\[(.+)\]\((https?://\S+)\)$", title)
+                if link_match:
+                    book["title"] = link_match.group(1)
+                    book["goodreadsUrl"] = link_match.group(2)
+                books.append(book)
 
         return {"meta": meta, "books": books}
 

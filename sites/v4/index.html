@@ -156,18 +156,21 @@
         }
 
         /* Content Grid (Books & Albums) */
-        details.book-group {
+        details.book-group,
+        details.album-group {
             margin-bottom: 0.5rem;
             padding-left: 1rem;
             border-left: 2px solid var(--border);
             transition: border-color 0.2s;
         }
 
-        details.book-group:hover {
+        details.book-group:hover,
+        details.album-group:hover {
             border-left-color: var(--accent);
         }
 
-        details.book-group summary {
+        details.book-group summary,
+        details.album-group summary {
             list-style: none;
             cursor: pointer;
             font-weight: bold;
@@ -175,21 +178,25 @@
             user-select: none;
         }
 
-        details.book-group summary::-webkit-details-marker {
+        details.book-group summary::-webkit-details-marker,
+        details.album-group summary::-webkit-details-marker {
             display: none;
         }
 
-        details.book-group summary::before {
+        details.book-group summary::before,
+        details.album-group summary::before {
             content: "[+] ";
             color: var(--muted);
             font-size: 0.9em;
         }
 
-        details.book-group[open] > summary::before {
+        details.book-group[open] > summary::before,
+        details.album-group[open] > summary::before {
             content: "[-] ";
         }
 
-        details.book-group summary:hover {
+        details.book-group summary:hover,
+        details.album-group summary:hover {
             color: var(--accent);
         }
 
@@ -242,23 +249,6 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 1rem 2rem;
-        }
-
-        .album-group {
-            margin-bottom: 0.5rem;
-            padding-left: 1rem;
-            border-left: 2px solid var(--border);
-            transition: border-color 0.2s;
-        }
-
-        .album-group:hover {
-            border-left-color: var(--accent);
-        }
-
-        .album-year {
-            font-weight: bold;
-            display: block;
-            margin-bottom: 0.3rem;
         }
 
         .album-title {
@@ -621,13 +611,13 @@
                     2026 ▂ | 2019 █
                 </div>
                 <div class="album-grid">
-                <div class="album-group">
-                    <span class="album-year">2026</span>
+                <details class="album-group" open>
+                    <summary class="album-year">2026 <span class="muted small">(2)</span></summary>
                     <a href="https://open.spotify.com/album/3A0q6JgJ9jky4VRJnCDxC3" target="_blank" class="album-title">Boy Harsher — Lesser Man EP (2014)</a>
                     <a href="https://open.spotify.com/album/2n3HUMLmNl0Cm2atVwWSK6" target="_blank" class="album-title">Waxahatchee — Tigers Blood (2024)</a>
-                </div>
-                <div class="album-group">
-                    <span class="album-year">2019</span>
+                </details>
+                <details class="album-group" open>
+                    <summary class="album-year">2019 <span class="muted small">(27)</span></summary>
                     <a href="https://open.spotify.com/album/2DKJWh4uNozTDpuaSKb1oK?si=xA9lBDTbRzeUvU1T9BkkHw" target="_blank" class="album-title">The Jackson 5 — Gold (2005)</a>
                     <span class="album-note">hits. that Motown sound.</span>
                     <a href="https://open.spotify.com/album/21KIagsx1ZvYcv0sVkEAWv" target="_blank" class="album-title">Leon Bridges — Coming Home (2015)</a>
@@ -681,14 +671,14 @@
                     <span class="album-note">I originally received this album from the lead singer at a 24 hour dinner</span>
                     <a href="https://open.spotify.com/album/2JeW42eEkcpxw1UHvZFfVG?si=DuERQJ_NR5y7Mcv9BJSnaQ" target="_blank" class="album-title">Daikaiju — Daikaiju (2005)</a>
                     <span class="album-note">In Japanese, Daikaiju translates to &quot;giant monster&quot; Recorded in *2003*, but not released until *2005*.</span>
-                </div>
+                </details>
                 </div>
                 <a href="#top" class="back-to-top">↑</a>
             </section>
 
             <section id="epilogue">
                 <h2>Epilogue</h2>
-                <p>Previous iterations: <a href="http://v3.fring.io">v3</a> (2020) · <a href="http://v2.fring.io">v2</a> (2015) · <a href="http://v1.kfring.com">v1</a> (2013) · <span class="muted small">Built August 16, 2026</span></p>
+                <p>Previous iterations: <a href="http://v3.fring.io">v3</a> (2020) · <a href="http://v2.fring.io">v2</a> (2015) · <a href="http://v1.kfring.com">v1</a> (2013) · <span class="muted small">Built August 17, 2026</span></p>
                 <a href="#top" class="back-to-top">↑</a>
             </section>
 

@@ -194,8 +194,10 @@ def generate_albums_html(
     lines.append(f'{indent}<div class="album-grid">')
 
     for year, year_albums in groups.items():
-        lines.append(f'{indent}<div class="album-group">')
-        lines.append(f'{indent}    <span class="album-year">{html.escape(year)}</span>')
+        lines.append(f'{indent}<details class="album-group" open>')
+        lines.append(
+            f'{indent}    <summary class="album-year">{html.escape(year)} <span class="muted small">({len(year_albums)})</span></summary>'
+        )
 
         for album in year_albums:
             artist = html.escape(str(album["artist"]))
@@ -222,7 +224,7 @@ def generate_albums_html(
                     f'{indent}    <span class="album-note">{html.escape(str(album["notes"]))}</span>'
                 )
 
-        lines.append(f"{indent}</div>")
+        lines.append(f"{indent}</details>")
 
     lines.append(f"{indent}</div>")
     return "\n".join(lines)
@@ -477,18 +479,21 @@ def generate_full_html(
         }}
 
         /* Content Grid (Books & Albums) */
-        details.book-group {{
+        details.book-group,
+        details.album-group {{
             margin-bottom: 0.5rem;
             padding-left: 1rem;
             border-left: 2px solid var(--border);
             transition: border-color 0.2s;
         }}
 
-        details.book-group:hover {{
+        details.book-group:hover,
+        details.album-group:hover {{
             border-left-color: var(--accent);
         }}
 
-        details.book-group summary {{
+        details.book-group summary,
+        details.album-group summary {{
             list-style: none;
             cursor: pointer;
             font-weight: bold;
@@ -496,21 +501,25 @@ def generate_full_html(
             user-select: none;
         }}
 
-        details.book-group summary::-webkit-details-marker {{
+        details.book-group summary::-webkit-details-marker,
+        details.album-group summary::-webkit-details-marker {{
             display: none;
         }}
 
-        details.book-group summary::before {{
+        details.book-group summary::before,
+        details.album-group summary::before {{
             content: "[+] ";
             color: var(--muted);
             font-size: 0.9em;
         }}
 
-        details.book-group[open] > summary::before {{
+        details.book-group[open] > summary::before,
+        details.album-group[open] > summary::before {{
             content: "[-] ";
         }}
 
-        details.book-group summary:hover {{
+        details.book-group summary:hover,
+        details.album-group summary:hover {{
             color: var(--accent);
         }}
 
@@ -563,23 +572,6 @@ def generate_full_html(
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 1rem 2rem;
-        }}
-
-        .album-group {{
-            margin-bottom: 0.5rem;
-            padding-left: 1rem;
-            border-left: 2px solid var(--border);
-            transition: border-color 0.2s;
-        }}
-
-        .album-group:hover {{
-            border-left-color: var(--accent);
-        }}
-
-        .album-year {{
-            font-weight: bold;
-            display: block;
-            margin-bottom: 0.3rem;
         }}
 
         .album-title {{

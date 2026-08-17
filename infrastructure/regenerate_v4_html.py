@@ -193,38 +193,62 @@ def generate_albums_html(
     lines.append(f"{indent}</div>")
     lines.append(f'{indent}<div class="album-grid">')
 
+    OVERFLOW_THRESHOLD = 17
+    VISIBLE_COUNT = 10
+
+    def album_lines(album: dict[str, object], entry_indent: str) -> list[str]:
+        artist = html.escape(str(album["artist"]))
+        name = html.escape(str(album["album"]))
+        release_year_value = album.get("releaseYear")
+        release_year = str(release_year_value) if release_year_value else ""
+        title_text = f"{artist} — {name}"
+        if release_year:
+            title_text += f" ({release_year})"
+
+        out: list[str] = []
+        spotify_url = album.get("spotifyUrl")
+        if spotify_url:
+            spotify_url = str(spotify_url)
+            out.append(
+                f'{entry_indent}<a href="{html.escape(spotify_url)}" target="_blank" class="album-title">{title_text}</a>'
+            )
+        else:
+            out.append(f'{entry_indent}<span class="album-title">{title_text}</span>')
+
+        if album.get("notes"):
+            out.append(
+                f'{entry_indent}<span class="album-note">{html.escape(str(album["notes"]))}</span>'
+            )
+        return out
+
     for year, year_albums in groups.items():
-        lines.append(f'{indent}<details class="album-group" open>')
-        lines.append(
-            f'{indent}    <summary class="album-year">{html.escape(year)} <span class="muted small">({len(year_albums)})</span></summary>'
-        )
+        year_display = html.escape(year)
+        count = len(year_albums)
 
-        for album in year_albums:
-            artist = html.escape(str(album["artist"]))
-            name = html.escape(str(album["album"]))
-            release_year_value = album.get("releaseYear")
-            release_year = str(release_year_value) if release_year_value else ""
-            title_text = f"{artist} — {name}"
-            if release_year:
-                title_text += f" ({release_year})"
-
-            spotify_url = album.get("spotifyUrl")
-            if spotify_url:
-                spotify_url = str(spotify_url)
-                lines.append(
-                    f'{indent}    <a href="{html.escape(spotify_url)}" target="_blank" class="album-title">{title_text}</a>'
-                )
-            else:
-                lines.append(
-                    f'{indent}    <span class="album-title">{title_text}</span>'
-                )
-
-            if album.get("notes"):
-                lines.append(
-                    f'{indent}    <span class="album-note">{html.escape(str(album["notes"]))}</span>'
-                )
-
-        lines.append(f"{indent}</details>")
+        if count <= OVERFLOW_THRESHOLD:
+            lines.append(f'{indent}<details class="album-group" open>')
+            lines.append(
+                f'{indent}    <summary class="album-year">{year_display} <span class="muted small">({count})</span></summary>'
+            )
+            for album in year_albums:
+                lines.extend(album_lines(album, f"{indent}    "))
+            lines.append(f"{indent}</details>")
+        else:
+            remaining = count - VISIBLE_COUNT
+            lines.append(f'{indent}<div class="album-group">')
+            lines.append(
+                f'{indent}    <span class="album-year">{year_display} <span class="muted small">({count})</span></span>'
+            )
+            for album in year_albums[:VISIBLE_COUNT]:
+                lines.extend(album_lines(album, f"{indent}    "))
+            lines.append(f'{indent}    <details class="album-overflow">')
+            lines.append(
+                f'{indent}        <summary class="muted small">[+] {remaining} more</summary>'
+            )
+            for album in year_albums[VISIBLE_COUNT:]:
+                lines.extend(album_lines(album, f"{indent}        "))
+            lines.append(f"{indent}    </details>")
+            lines.append(f"{indent}</div>")
 
     lines.append(f"{indent}</div>")
     return "\n".join(lines)
@@ -479,17 +503,24 @@ def generate_full_html(
         }}
 
         /* Content Grid (Books & Albums) */
-        details.book-group,
-        details.album-group {{
+        .book-group,
+        .album-group {{
             margin-bottom: 0.5rem;
             padding-left: 1rem;
             border-left: 2px solid var(--border);
             transition: border-color 0.2s;
         }}
 
-        details.book-group:hover,
-        details.album-group:hover {{
+        .book-group:hover,
+        .album-group:hover {{
             border-left-color: var(--accent);
+        }}
+
+        .book-year,
+        .album-year {{
+            display: block;
+            font-weight: bold;
+            padding: 0.25rem 0;
         }}
 
         details.book-group summary,
@@ -523,22 +554,26 @@ def generate_full_html(
             color: var(--accent);
         }}
 
-        details.book-overflow {{
+        details.book-overflow,
+        details.album-overflow {{
             margin-top: 0.25rem;
         }}
 
-        details.book-overflow summary {{
+        details.book-overflow summary,
+        details.album-overflow summary {{
             list-style: none;
             cursor: pointer;
             user-select: none;
             padding: 0.25rem 0;
         }}
 
-        details.book-overflow summary::-webkit-details-marker {{
+        details.book-overflow summary::-webkit-details-marker,
+        details.album-overflow summary::-webkit-details-marker {{
             display: none;
         }}
 
-        details.book-overflow summary:hover {{
+        details.book-overflow summary:hover,
+        details.album-overflow summary:hover {{
             color: var(--accent);
         }}
 

@@ -688,6 +688,7 @@ def generate_full_html(
                 <a href="#now">Now</a> <span class="nav-separator">·</span>
                 <a href="#bookshelf">Bookshelf</a> <span class="nav-separator">·</span>
                 <a href="#albums">Albums</a> <span class="nav-separator">·</span>
+                <a href="/brief/">Brief</a> <span class="nav-separator">·</span>
                 <a href="#epilogue">Epilogue</a>
             </nav>
         </header>

@@ -46,6 +46,17 @@ def format_content_date(date_str: str) -> str:
         return date_str
 
 
+def format_updated_stamp(date_str: str) -> str:
+    """Render a compact 'updated @ yyyy-mm-dd' stamp for a contentUpdated date."""
+    if not date_str:
+        return ""
+    try:
+        d = datetime.strptime(date_str[:10], "%Y-%m-%d")
+        return f"updated @ {d.strftime('%Y-%m-%d')}"
+    except ValueError:
+        return f"updated @ {date_str}"
+
+
 def group_books_by_year(
     books: list[dict[str, object]],
 ) -> OrderedDict[str, list[dict[str, object]]]:
@@ -343,6 +354,10 @@ def generate_full_html(
 
     now_meta = cast(dict[str, object], now_data["meta"])
     now_content_date = format_content_date(str(now_meta.get("contentUpdated", "")))
+    books_meta = cast(dict[str, object], books_data["meta"])
+    albums_meta = cast(dict[str, object], albums_data["meta"])
+    books_content_date = format_updated_stamp(str(books_meta.get("contentUpdated", "")))
+    albums_content_date = format_updated_stamp(str(albums_meta.get("contentUpdated", "")))
     build_date = datetime.now().strftime("%B %d, %Y")
 
     return f"""<!DOCTYPE html>
@@ -706,15 +721,21 @@ def generate_full_html(
             </section>
 
             <section id="bookshelf">
-                <h2>Bookshelf</h2>
-                
+                <div class="section-header">
+                    <h2>Bookshelf</h2>
+                    <span class="muted small">{books_content_date}</span>
+                </div>
+
 {books_html}
                 <a href="#top" class="back-to-top">↑</a>
             </section>
 
             <section id="albums">
-                <h2>Albums</h2>
-                
+                <div class="section-header">
+                    <h2>Albums</h2>
+                    <span class="muted small">{albums_content_date}</span>
+                </div>
+
 {albums_html}
                 <a href="#top" class="back-to-top">↑</a>
             </section>

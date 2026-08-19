@@ -1,0 +1,5 @@
+**Vendors** — [OpenAI News](https://openai.com/news/), [Google AI Blog](https://blog.google/technology/ai/), [Google DeepMind](https://deepmind.google/blog/), [Microsoft AI News](https://news.microsoft.com/source/topics/ai/), [Azure Blog](https://azure.microsoft.com/en-us/blog/), [GitHub Copilot Changelog](https://github.blog/changelog/label/copilot/), [Microsoft 365 Blog](https://www.microsoft.com/en-us/microsoft-365/blog/), [Hugging Face Blog](https://huggingface.co/blog), plus Google News searches for Anthropic, xAI, Microsoft 365 Copilot, and open and Chinese model releases.
+
+**Databricks** — [Databricks Blog](https://www.databricks.com/blog), [Databricks Release Notes](https://docs.databricks.com/aws/en/release-notes/), [Azure Updates](https://azure.microsoft.com/en-us/updates/).
+
+**Regulation** — [EU AI Act Newsletter](https://artificialintelligenceact.eu/), [FTC Press Releases](https://www.ftc.gov/news-events/news), [NIST News](https://www.nist.gov/news-events/news), [CMS Newsroom](https://www.cms.gov/newsroom), plus Google News searches for US federal and state AI policy.

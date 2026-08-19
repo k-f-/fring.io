@@ -76,8 +76,7 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border
         <nav>
             <a href="https://fring.io">fring.io</a> <span class="nav-separator">&middot;</span>
             <a href="./">Latest</a> <span class="nav-separator">&middot;</span>
-            <a href="about.html">About</a> <span class="nav-separator">&middot;</span>
-            <span class="muted">Posted August 18, 2026</span>
+            <a href="about.html">About</a> <span class="nav-separator">&middot;</span> <span class="muted">Posted August 18, 2026</span>
         </nav>
     </header>
     <div class="layout">
@@ -132,10 +131,12 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border
 <li>xAI published documentation for Grok Bot for teams and enterprises. Thin detail so far; worth noting as xAI builds out its enterprise offering. <a href="https://news.google.com/rss/articles/CBMiXEFVX3lxTE12UGdFU0tOeWhFZDN4M1pHTUVSUGQ2c09ueXcyRVBaS1dvX2xza2Z1WkpxdWVOaTlsM1VRYjJTWjdvMTBXNllBYU8zcjF1RFctX2czbVdGQVlJd0Y3?oc=5">xAI Docs</a></li>
 </ul>
 <h3 id="open-models">Open Models</h3>
-<p>No non-Chinese open-weight model releases in this week's items; ecosystem reads instead:
-- IBM Research explores how much memory an AI agent actually needs, relevant to right-sizing agent architectures. <a href="https://huggingface.co/blog/ibm-research/altk-evolve-hmm">HuggingFace Blog</a>
-- A walkthrough of multi-vector (late interaction) embedding models in Sentence Transformers, useful for teams building retrieval over documents. <a href="https://huggingface.co/blog/multi-vector-encoder">HuggingFace Blog</a>
-- A GPU cluster management writeup claiming 33 points of added utilization from scheduling order changes alone. <a href="https://huggingface.co/blog/Dharma-AI/gpu-management-pt2">HuggingFace Blog</a></p>
+<p>No non-Chinese open-weight model releases in this week's items; ecosystem reads instead:</p>
+<ul>
+<li>IBM Research explores how much memory an AI agent actually needs, relevant to right-sizing agent architectures. <a href="https://huggingface.co/blog/ibm-research/altk-evolve-hmm">HuggingFace Blog</a></li>
+<li>A walkthrough of multi-vector (late interaction) embedding models in Sentence Transformers, useful for teams building retrieval over documents. <a href="https://huggingface.co/blog/multi-vector-encoder">HuggingFace Blog</a></li>
+<li>A GPU cluster management writeup claiming 33 points of added utilization from scheduling order changes alone. <a href="https://huggingface.co/blog/Dharma-AI/gpu-management-pt2">HuggingFace Blog</a></li>
+</ul>
 <h3 id="chinese-ai">Chinese AI</h3>
 <ul>
 <li>Released: Alibaba's Qwen 3.8 27B, a lightweight model that runs on laptops, positioned against larger systems and Meta's open models and targeting edge deployment. <a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxPNGFodld0bUNaak0zcjNiZU5MbmF6NWhrVjIxTFl5Tkl1MEFSOENuczNza1cwRGFnSXlTcU1sLUJmeWJMTjNOUG1RTFBzMTNMRGJsQzFHTlgzbkp3cmIwdy03N2tYd2RuN2Z0QnZzUGxWTmJJM2lWMVVIWkk3MUFkcjNtWkFqVHBlVjEw0gGQAUFVX3lxTE9LV0xtYUQ5UXpDNVIzYXk5VXVrUGREUFBQSlJyS0NDNzNkdDhSeVBXZkt0QVBKY09TOUtldVpUQjA4SEQ1UmsxaVpaMWdGeWFHdUg5MFVqTTRkRFItRTFWU2FiY3NSRjBMN0NDLTJMNXkwRTJrdi16OTlPd3VyU3RZeFZINEV2c29IeFFUSkhvWg?oc=5">CNBC</a>, <a href="https://news.google.com/rss/articles/CBMihgFBVV95cUxNNnJGUXNWZ0hVNGhRaHdNTnlVOU1mRnhpeHFBZE5ubWZUZEdYdEFHWkpZRXE1UEtTd25ybEhZVHQta1JJRUp6TDJJT25lWm1hVFByVzJJWjdpYzBtNTZUUVZxZm5oX2VyOWlkTlJuc3NBX09ZT2p1VUs4MEJDQks4Z0F3WFNtQQ?oc=5">AI Business</a></li>
@@ -146,34 +147,46 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border
 </ul>
 <h2 id="databricks-watch">Databricks Watch</h2>
 <h3 id="ai-ml">AI / ML</h3>
-<p><strong>GA</strong>
-- Google Gemini 3.7 Flash is now available as a Databricks-hosted model via Foundation Model APIs. Another frontier model usable inside the platform without external egress. <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#google-gemini-37-flash-now-available-as-a-databricks-hosted-model">Release Notes</a>
-- Genie One: workspace-level instructions for chat are GA, and Genie One now accepts image and Word uploads plus PDF email attachments for scheduled tasks. <a href="https://docs.databricks.com/aws/en/ai-bi/release-notes/2026#genie-one-enhancements">Release Notes</a>
-- Genie Code now supports file uploads as chat context. <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#genie-code-supports-file-uploads">Release Notes</a></p>
-<p><strong>Preview</strong>
-- Genie Agents: content search on attached volumes (Beta) improves accuracy over large file sets, and analyzing files in volumes no longer requires Unity AI Gateway (Beta). <a href="https://docs.databricks.com/aws/en/ai-bi/release-notes/2026#genie-agents-enhancements-and-bug-fixes">Release Notes</a>
-- Genie One: ontology snippets are open to all customers (Public Preview) and MCP writes (Beta) let connected external tools perform write actions — review governance implications before enabling writes. <a href="https://docs.databricks.com/aws/en/ai-bi/release-notes/2026#genie-one-enhancements">Release Notes</a>
-- Pages (Beta): governed, single definitions for business terms and KPIs that ground Genie's answers via the Genie Ontology. Useful anywhere teams argue about metric definitions. <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#define-business-concepts-with-pages-beta">Release Notes</a>
-- Custom trace views in the MLflow trace explorer (Beta): describe a review layout in plain language and Genie builds a reusable view. <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#custom-trace-views-in-the-mlflow-trace-explorer-are-in-beta">Release Notes</a></p>
-<p><strong>Announced</strong>
-- Smart Routing in Unity AI Gateway: Databricks describes routing tasks across models to match frontier quality at 30%+ lower cost per task. <a href="https://www.databricks.com/blog/smart-routing-unity-ai-gateway-match-frontier-quality-30-lower-cost-task">Databricks Blog</a></p>
+<p><strong>GA</strong></p>
+<ul>
+<li>Google Gemini 3.7 Flash is now available as a Databricks-hosted model via Foundation Model APIs. Another frontier model usable inside the platform without external egress. <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#google-gemini-37-flash-now-available-as-a-databricks-hosted-model">Release Notes</a></li>
+<li>Genie One: workspace-level instructions for chat are GA, and Genie One now accepts image and Word uploads plus PDF email attachments for scheduled tasks. <a href="https://docs.databricks.com/aws/en/ai-bi/release-notes/2026#genie-one-enhancements">Release Notes</a></li>
+<li>Genie Code now supports file uploads as chat context. <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#genie-code-supports-file-uploads">Release Notes</a></li>
+</ul>
+<p><strong>Preview</strong></p>
+<ul>
+<li>Genie Agents: content search on attached volumes (Beta) improves accuracy over large file sets, and analyzing files in volumes no longer requires Unity AI Gateway (Beta). <a href="https://docs.databricks.com/aws/en/ai-bi/release-notes/2026#genie-agents-enhancements-and-bug-fixes">Release Notes</a></li>
+<li>Genie One: ontology snippets are open to all customers (Public Preview) and MCP writes (Beta) let connected external tools perform write actions — review governance implications before enabling writes. <a href="https://docs.databricks.com/aws/en/ai-bi/release-notes/2026#genie-one-enhancements">Release Notes</a></li>
+<li>Pages (Beta): governed, single definitions for business terms and KPIs that ground Genie's answers via the Genie Ontology. Useful anywhere teams argue about metric definitions. <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#define-business-concepts-with-pages-beta">Release Notes</a></li>
+<li>Custom trace views in the MLflow trace explorer (Beta): describe a review layout in plain language and Genie builds a reusable view. <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#custom-trace-views-in-the-mlflow-trace-explorer-are-in-beta">Release Notes</a></li>
+</ul>
+<p><strong>Announced</strong></p>
+<ul>
+<li>Smart Routing in Unity AI Gateway: Databricks describes routing tasks across models to match frontier quality at 30%+ lower cost per task. <a href="https://www.databricks.com/blog/smart-routing-unity-ai-gateway-match-frontier-quality-30-lower-cost-task">Databricks Blog</a></li>
+</ul>
 <h3 id="data-platform">Data &amp; Platform</h3>
-<p><strong>GA</strong>
-- Sharing managed Iceberg tables is GA for Databricks-to-Databricks and open sharing, including sharing to external Iceberg clients. <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#sharing-managed-iceberg-tables-is-now-generally-available">Release Notes</a>
-- OpenSharing SecureConnect is GA: providers can share data from behind firewalls or private endpoints without per-recipient network allowlists. Default enablement rolls out from mid-September 2026. <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#share-data-behind-a-firewall-with-secureconnect-is-generally-available">Release Notes</a>
-- Sharing tables backed by default storage is GA and being enabled by default on a rolling basis. <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#sharing-tables-backed-by-default-storage-is-now-generally-available">Release Notes</a>
-- The SQL alert task in Lakeflow Jobs now supports all compliance security profile standards and is on by default in compliance-profile workspaces — notable for regulated environments, since downstream tasks can branch on alert results. <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#sql-alert-task-in-lakeflow-jobs-is-now-available-by-default-for-workspaces-with-the-compliance-security-profile-enabled">Release Notes</a>
-- Dashboard fixes: duplicate-subscriber removal, duplicate schedule emails, and several chart/import bugs resolved. <a href="https://docs.databricks.com/aws/en/ai-bi/release-notes/2026#dashboard-enhancements-and-bug-fixes">Release Notes</a></p>
-<p><strong>Preview</strong>
-- Session restore for serverless jobs (Beta): restore Python variables and the Spark session from a failed, long, or cancelled run into an interactive notebook for debugging, without rerunning the job. <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#session-restore-for-serverless-jobs-is-now-in-beta">Release Notes</a>
-- Identity attributes (Beta): sync up to nine IdP attributes (department, title, etc.) to Databricks users and reference them in Unity Catalog ABAC column mask policies — finer-grained masking than group membership alone, relevant for PHI access controls. <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#identity-attributes-beta">Release Notes</a>, <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#identity-attributes-in-abac-column-mask-policies-beta">Release Notes</a>
-- Base environments now work on classic compute (Beta) for managing Python dependencies. <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#base-environments-are-now-supported-on-classic-compute-beta">Release Notes</a>
-- Five new Lakeflow Connect connectors in Beta: <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#workiva-connector-beta">Workiva</a>, <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#gmail-connector-in-lakeflow-connect-beta">Gmail</a>, <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#sendgrid-connector-beta">SendGrid</a>, <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#amplitude-connector-beta">Amplitude</a>, and <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#google-search-console-connector-is-available-in-beta">Google Search Console</a>.
-- Tags page in Governance Hub (Beta): a centralized view of tag usage across the account, with recommendations to fix invalid values and tag important untagged assets. <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#tags-page-in-governance-hub-beta">Release Notes</a></p>
-<p><strong>Announced</strong>
-- Expanded networking billing is coming for OpenSharing SecureConnect, including new charge types billed to recipients. If you consume shared data via SecureConnect, watch for new line items. <a href="https://docs.databricks.com/aws/en/release-notes/whats-coming#expanded-networking-billing-for-opensharing-secureconnect">Release Notes</a>
-- The <code>root_cause_analysis</code> column in the data quality monitoring results system table is deprecated starting August 18, 2026; queries against it should be updated. <a href="https://docs.databricks.com/aws/en/release-notes/whats-coming#upcoming-deprecation-of-the-data-quality-monitoring-root_cause_analysis-column">Release Notes</a>
-- WARNING: Azure Databricks Runtime 10.4 LTS reaches end of life November 1, 2026 and will no longer be available after that date. Migrate any remaining workloads. <a href="https://azure.microsoft.com/updates?id=569353">Azure Updates</a></p>
+<p><strong>GA</strong></p>
+<ul>
+<li>Sharing managed Iceberg tables is GA for Databricks-to-Databricks and open sharing, including sharing to external Iceberg clients. <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#sharing-managed-iceberg-tables-is-now-generally-available">Release Notes</a></li>
+<li>OpenSharing SecureConnect is GA: providers can share data from behind firewalls or private endpoints without per-recipient network allowlists. Default enablement rolls out from mid-September 2026. <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#share-data-behind-a-firewall-with-secureconnect-is-generally-available">Release Notes</a></li>
+<li>Sharing tables backed by default storage is GA and being enabled by default on a rolling basis. <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#sharing-tables-backed-by-default-storage-is-now-generally-available">Release Notes</a></li>
+<li>The SQL alert task in Lakeflow Jobs now supports all compliance security profile standards and is on by default in compliance-profile workspaces — notable for regulated environments, since downstream tasks can branch on alert results. <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#sql-alert-task-in-lakeflow-jobs-is-now-available-by-default-for-workspaces-with-the-compliance-security-profile-enabled">Release Notes</a></li>
+<li>Dashboard fixes: duplicate-subscriber removal, duplicate schedule emails, and several chart/import bugs resolved. <a href="https://docs.databricks.com/aws/en/ai-bi/release-notes/2026#dashboard-enhancements-and-bug-fixes">Release Notes</a></li>
+</ul>
+<p><strong>Preview</strong></p>
+<ul>
+<li>Session restore for serverless jobs (Beta): restore Python variables and the Spark session from a failed, long, or cancelled run into an interactive notebook for debugging, without rerunning the job. <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#session-restore-for-serverless-jobs-is-now-in-beta">Release Notes</a></li>
+<li>Identity attributes (Beta): sync up to nine IdP attributes (department, title, etc.) to Databricks users and reference them in Unity Catalog ABAC column mask policies — finer-grained masking than group membership alone, relevant for PHI access controls. <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#identity-attributes-beta">Release Notes</a>, <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#identity-attributes-in-abac-column-mask-policies-beta">Release Notes</a></li>
+<li>Base environments now work on classic compute (Beta) for managing Python dependencies. <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#base-environments-are-now-supported-on-classic-compute-beta">Release Notes</a></li>
+<li>Five new Lakeflow Connect connectors in Beta: <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#workiva-connector-beta">Workiva</a>, <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#gmail-connector-in-lakeflow-connect-beta">Gmail</a>, <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#sendgrid-connector-beta">SendGrid</a>, <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#amplitude-connector-beta">Amplitude</a>, and <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#google-search-console-connector-is-available-in-beta">Google Search Console</a>.</li>
+<li>Tags page in Governance Hub (Beta): a centralized view of tag usage across the account, with recommendations to fix invalid values and tag important untagged assets. <a href="https://docs.databricks.com/aws/en/release-notes/product/2026/august#tags-page-in-governance-hub-beta">Release Notes</a></li>
+</ul>
+<p><strong>Announced</strong></p>
+<ul>
+<li>Expanded networking billing is coming for OpenSharing SecureConnect, including new charge types billed to recipients. If you consume shared data via SecureConnect, watch for new line items. <a href="https://docs.databricks.com/aws/en/release-notes/whats-coming#expanded-networking-billing-for-opensharing-secureconnect">Release Notes</a></li>
+<li>The <code>root_cause_analysis</code> column in the data quality monitoring results system table is deprecated starting August 18, 2026; queries against it should be updated. <a href="https://docs.databricks.com/aws/en/release-notes/whats-coming#upcoming-deprecation-of-the-data-quality-monitoring-root_cause_analysis-column">Release Notes</a></li>
+<li>WARNING: Azure Databricks Runtime 10.4 LTS reaches end of life November 1, 2026 and will no longer be available after that date. Migrate any remaining workloads. <a href="https://azure.microsoft.com/updates?id=569353">Azure Updates</a></li>
+</ul>
 <h2 id="regulatory-radar">Regulatory Radar</h2>
 <p>No AI-specific rulemaking appeared in this week's items; activity was general FTC enforcement.</p>
 <h3 id="us-federal">US Federal</h3>
@@ -192,7 +205,7 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border
 </ul>
         </article>
     </div>
-    <footer>Compiled 2026-08-18 21:22 &middot; sources linked inline &middot; <a href="https://fring.io">fring.io</a></footer>
+    <footer>Compiled 2026-08-18 21:55 &middot; sources linked inline &middot; <a href="https://fring.io">fring.io</a></footer>
 </div>
 <script>
 const toggleBtn = document.getElementById('theme-toggle');

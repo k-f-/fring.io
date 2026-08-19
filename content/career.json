@@ -1,8 +1,8 @@
 {
   "meta": {
     "version": "1.0",
-    "lastUpdated": "2026-02-15T13:50:41.411108",
-    "contentUpdated": "2025-11-02",
+    "lastUpdated": "2026-08-19T00:00:00.000000",
+    "contentUpdated": "2026-08-19",
     "description": "Professional experience and career history"
   },
   "summary": {
@@ -90,17 +90,52 @@
       ]
     },
     {
-      "title": "Consultant",
-      "company": "Independent",
+      "title": "Programmer IV/Analyst",
+      "company": "Molina Healthcare",
+      "companyType": "Contract",
       "location": "Remote",
       "startDate": "2020-04",
       "endDate": "2021-02",
       "duration": "11 months",
-      "description": "Independent consulting work during transition period",
+      "description": "Contract role delivering pharmacy data lake migration, fraud-inquiry governance, and reporting across Claims, Authorizations, Pharmacy, and Care Management.",
+      "highlights": [
+        "Led the Pharmacy DataLake migration project (terabytes, daily)",
+        "Lead for all Ohio Attorney General's office fraud inquiries (governance, compliance)",
+        "Designed and developed reporting for Claims, Authorizations, Pharmacy, and Care Management",
+        "Provided final validation and data assurance on ETL/ELT curations",
+        "Assisted with training analysts"
+      ],
       "skills": [
-        "Consulting",
         "Data Engineering",
-        "Systems"
+        "ETL/ELT",
+        "Healthcare Data",
+        "Governance",
+        "Compliance"
+      ]
+    },
+    {
+      "title": "Owner",
+      "company": "Everson Consulting",
+      "location": "Greater Philadelphia",
+      "startDate": "2008-11",
+      "endDate": "2020-03",
+      "duration": "11 years 5 months",
+      "description": "Owner-operator delivering cloud infrastructure, DevOps automation, and managed wireless networking for education and property-management clients.",
+      "highlights": [
+        "Developed cloud-based software and infrastructure for clients",
+        "Engineered a VPN/proxy solution on AWS",
+        "Built Python/Scrapyd scrapers on on-demand AWS infrastructure",
+        "Wrote DevOps backend automation",
+        "Deployed early mesh-network Wi-Fi (Aerohive) for education and property-management clients serving thousands of daily users",
+        "Managed cabling technicians and subcontractors"
+      ],
+      "skills": [
+        "AWS",
+        "DevOps",
+        "Python",
+        "Networking",
+        "Wi-Fi/Mesh Networking",
+        "Systems Administration"
       ]
     },
     {
@@ -111,9 +146,7 @@
       "duration": "14+ years",
       "description": "Senior roles in Network Engineering, Systems Administration, Software Development, and DevOps across multiple companies",
       "highlights": [
-        "Network Engineering (2008-2020)",
         "Systems Administration & DevOps",
-        "AWS infrastructure management",
         "Software development"
       ],
       "skills": [

@@ -2,8 +2,8 @@
 {
   "meta": {
     "version": "1.0",
-    "lastUpdated": "2025-11-02T21:00:00.000000",
-    "contentUpdated": "2025-11-02",
+    "lastUpdated": "2026-08-19T00:00:00.000000",
+    "contentUpdated": "2026-08-19",
     "description": "Professional experience and career history"
   }
 }
@@ -93,17 +93,48 @@ Designed data pipelines, built value-based contracting datasets, and led pharmac
 
 ---
 
-### Consultant
+### Programmer IV/Analyst
 
-**Independent**
+**Molina Healthcare (Contract)**
 **Location:** Remote
 **Period:** April 2020 - February 2021
  (11 months)
 
 
-Independent consulting work during transition period
+Contract role delivering pharmacy data lake migration, fraud-inquiry governance, and reporting across Claims, Authorizations, Pharmacy, and Care Management.
 
-**Skills:** Consulting, Data Engineering, Systems
+**Highlights:**
+
+- Led the Pharmacy DataLake migration project (terabytes, daily)
+- Lead for all Ohio Attorney General's office fraud inquiries (governance, compliance)
+- Designed and developed reporting for Claims, Authorizations, Pharmacy, and Care Management
+- Provided final validation and data assurance on ETL/ELT curations
+- Assisted with training analysts
+
+**Skills:** Data Engineering, ETL/ELT, Healthcare Data, Governance, Compliance
+
+---
+
+### Owner
+
+**Everson Consulting**
+**Location:** Greater Philadelphia
+**Period:** November 2008 - March 2020
+ (11 years 5 months)
+
+
+Owner-operator delivering cloud infrastructure, DevOps automation, and managed wireless networking for education and property-management clients.
+
+**Highlights:**
+
+- Developed cloud-based software and infrastructure for clients
+- Engineered a VPN/proxy solution on AWS
+- Built Python/Scrapyd scrapers on on-demand AWS infrastructure
+- Wrote DevOps backend automation
+- Deployed early mesh-network Wi-Fi (Aerohive) for education and property-management clients serving thousands of daily users
+- Managed cabling technicians and subcontractors
+
+**Skills:** AWS, DevOps, Python, Networking, Wi-Fi/Mesh Networking, Systems Administration
 
 ---
 
@@ -118,9 +149,7 @@ Senior roles in Network Engineering, Systems Administration, Software Developmen
 
 **Highlights:**
 
-- Network Engineering (2008-2020)
 - Systems Administration & DevOps
-- AWS infrastructure management
 - Software development
 
 **Skills:** Network Engineering, Systems Admin, AWS, DevOps, Software Development

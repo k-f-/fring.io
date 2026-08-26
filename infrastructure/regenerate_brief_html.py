@@ -127,7 +127,7 @@ footer {{ margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--borde
         <nav>
             <a href="https://fring.io">fring.io</a> <span class="nav-separator">&middot;</span>
             <a href="./">Latest</a> <span class="nav-separator">&middot;</span>
-            <a href="about.html">About</a>{posted_block}
+            <a href="about.html">About this Page</a>{posted_block}
         </nav>
     </header>
     <div class="layout">
@@ -271,7 +271,7 @@ def main():
             sources_html, _ = md_to_html(sources_src.read_text())
             sources_block = "            <h2>Sources</h2>\n" + sources_html
         pages["about.html"] = PAGE.format(
-            title="AI Weekly Brief — About",
+            title="AI Weekly Brief — About this Page",
             posted_block="",
             body=about_body, toc=sources_block,
             archive=archive_html(weeks, None), stamp=stamp)

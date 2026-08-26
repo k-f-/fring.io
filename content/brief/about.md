@@ -1,8 +1,8 @@
-## Why this exists
+## About this Page
 
-This is a weekly brief on AI for people doing data work at a large health plan. A new edition lands every Friday.
+This is a weekly brief on AI to help keep me up to speed.
 
-The scope: AI vendors, Databricks platform changes, and regulation — EU AI Act, US federal and state, healthcare-specific.
+A new edition lands every Friday.
 
 ## How this page works
 

@@ -1,10 +1,21 @@
 {
   "meta": {
     "version": "1.0",
-    "contentUpdated": "2026-02-28",
+    "contentUpdated": "2026-09-11",
     "description": "Album listening log for fring.io - version agnostic content"
   },
   "albums": [
+    {
+      "listenedDate": "2026-09-11",
+      "artist": "Zao",
+      "album": "Where Blood And Fire Bring Rest",
+      "releaseYear": 1998,
+      "spotifyUrl": "https://open.spotify.com/album/2cl5dUYMZOeIAJXjzKpvj5",
+      "spotifyId": "2cl5dUYMZOeIAJXjzKpvj5",
+      "tracks": 10,
+      "playtime": "40 min.",
+      "notes": null
+    },
     {
       "listenedDate": "2026-02-28",
       "artist": "Boy Harsher",

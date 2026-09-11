@@ -3,7 +3,7 @@
   "meta": {
     "version": "1.0",
     "lastUpdated": "2025-11-14T22:14:25.641648",
-    "contentUpdated": "2026-02-28",
+    "contentUpdated": "2026-09-11",
     "description": "Album listening log for fring.io - version agnostic content"
   }
 }
@@ -13,8 +13,14 @@
 
 Music I've listened to, chronologically.
 
-## 2026 (2 albums)
+## 2026 (3 albums)
 
+
+
+### [2026-09-11] Zao - Where Blood And Fire Bring Rest
+**Released:** 1998
+**Listen:** [Spotify](https://open.spotify.com/album/2cl5dUYMZOeIAJXjzKpvj5)
+**Duration:** 10 tracks, 40 min.
 
 ### [2026-02-28] Boy Harsher - Lesser Man EP
 **Released:** 2014

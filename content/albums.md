@@ -3,7 +3,7 @@
   "meta": {
     "version": "1.0",
     "lastUpdated": "2025-11-14T22:14:25.641648",
-    "contentUpdated": "2026-09-11",
+    "contentUpdated": "2026-10-12",
     "description": "Album listening log for fring.io - version agnostic content"
   }
 }
@@ -13,9 +13,15 @@
 
 Music I've listened to, chronologically.
 
-## 2026 (3 albums)
+## 2026 (4 albums)
 
 
+
+
+### [2026-10-12] Friendship - Love the Stranger
+**Released:** 2022
+**Listen:** [Spotify](https://open.spotify.com/album/4o57TCoYfoKGnbUeD3Rnpx)
+**Duration:** 17 tracks, 45 min.
 
 ### [2026-09-11] Zao - Where Blood And Fire Bring Rest
 **Released:** 1998

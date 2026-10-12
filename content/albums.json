@@ -1,10 +1,21 @@
 {
   "meta": {
     "version": "1.0",
-    "contentUpdated": "2026-09-11",
+    "contentUpdated": "2026-10-12",
     "description": "Album listening log for fring.io - version agnostic content"
   },
   "albums": [
+    {
+      "listenedDate": "2026-10-12",
+      "artist": "Friendship",
+      "album": "Love the Stranger",
+      "releaseYear": 2022,
+      "spotifyUrl": "https://open.spotify.com/album/4o57TCoYfoKGnbUeD3Rnpx",
+      "spotifyId": "4o57TCoYfoKGnbUeD3Rnpx",
+      "tracks": 17,
+      "playtime": "45 min.",
+      "notes": null
+    },
     {
       "listenedDate": "2026-09-11",
       "artist": "Zao",

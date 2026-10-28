@@ -35,7 +35,10 @@ jobs:
       - name: Install dependencies
         run: pip install spotipy
 
+      # Goodreads' RSS feed started returning 404 for every user on 2026-10-28.
+      # Keep trying daily, but do not let it block the Spotify sync.
       - name: Sync GoodReads
+        continue-on-error: true
         env:
           GOODREADS_USER_ID: ${{ secrets.GOODREADS_USER_ID }}
         run: python3 infrastructure/sync_goodreads.py
